@@ -1,0 +1,11 @@
+# Nmap 7.91 scan initiated Thu Jun 10 08:21:36 2021 as: nmap -sV -sC -oA nmap-tcp-1000 10.10.10.68
+Nmap scan report for 10.10.10.68
+Host is up (0.032s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Arrexel's Development Site
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Jun 10 08:21:46 2021 -- 1 IP address (1 host up) scanned in 9.67 seconds
