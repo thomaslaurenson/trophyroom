@@ -16,3 +16,4 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | Shocker | Retired | Linux | Easy | Yes |
 | Bashed | Retired | Linux | Easy | Yes |
 | Nibbles | Retired | Linux | Easy | Yes |
+| Beep | Retired | Linux | Easy | Yes |

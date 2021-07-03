@@ -1,0 +1,48 @@
+Version: 2.0.10-static
+OpenSSL 1.1.1l-dev  xx XXX xxxx
+
+Connected to 10.10.10.7
+
+Testing SSL server beep.htb on port 443 using SNI name beep.htb
+
+  SSL/TLS Protocols:
+SSLv2     disabled
+SSLv3     enabled
+TLSv1.0   enabled
+TLSv1.1   disabled
+TLSv1.2   disabled
+TLSv1.3   disabled
+
+  TLS Fallback SCSV:
+Server does not support TLS Fallback SCSV
+
+  TLS renegotiation:
+Secure session renegotiation supported
+
+  TLS Compression:
+Compression enabled (CRIME)
+
+  Heartbleed:
+TLSv1.0 not vulnerable to heartbleed
+
+  Supported Server Cipher(s):
+Preferred TLSv1.0  256 bits  DHE-RSA-AES256-SHA            DHE 1024 bits
+Accepted  TLSv1.0  128 bits  DHE-RSA-AES128-SHA            DHE 1024 bits
+Accepted  TLSv1.0  112 bits  DHE-RSA-DES-CBC3-SHA          DHE 1024 bits
+Accepted  TLSv1.0  256 bits  AES256-SHA                   
+Accepted  TLSv1.0  128 bits  AES128-SHA                   
+Accepted  TLSv1.0  128 bits  RC4-SHA                      
+Accepted  TLSv1.0  128 bits  RC4-MD5                      
+Accepted  TLSv1.0  112 bits  DES-CBC3-SHA                 
+Accepted  TLSv1.0  56 bits   TLS_RSA_WITH_DES_CBC_SHA     
+Accepted  TLSv1.0  56 bits   TLS_DHE_RSA_WITH_DES_CBC_SHA 
+
+  SSL Certificate:
+Signature Algorithm: sha1WithRSAEncryption
+RSA Key Strength:    1024
+
+Subject:  localhost.localdomain
+Issuer:   localhost.localdomain
+
+Not valid before: Apr  7 08:22:08 2017 GMT
+Not valid after:  Apr  7 08:22:08 2018 GMT
