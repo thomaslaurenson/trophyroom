@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Sat Jul  3 16:03:06 2021 as: nmap -Pn -sV -sC -oA nmap-tcp-1000 10.10.10.13
+Host: 10.10.10.13 ()	Status: Up
+Host: 10.10.10.13 ()	Ports: 22/open/tcp//ssh//OpenSSH 7.2p2 Ubuntu 4ubuntu2.1 (Ubuntu Linux; protocol 2.0)/, 53/open/tcp//domain//ISC BIND 9.10.3-P4 (Ubuntu Linux)/, 80/open/tcp//http//Apache httpd 2.4.18 ((Ubuntu))/	Ignored State: filtered (997)
+# Nmap done at Sat Jul  3 16:03:27 2021 -- 1 IP address (1 host up) scanned in 20.58 seconds
