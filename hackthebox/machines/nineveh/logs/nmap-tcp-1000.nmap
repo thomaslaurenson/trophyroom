@@ -1,0 +1,20 @@
+# Nmap 7.91 scan initiated Sun Jul  4 14:33:48 2021 as: nmap -Pn -sV -sC -oA nmap-tcp-1000 10.10.10.43
+Nmap scan report for 10.10.10.43
+Host is up (0.039s latency).
+Not shown: 998 filtered ports
+PORT    STATE SERVICE  VERSION
+80/tcp  open  http     Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+443/tcp open  ssl/http Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+| ssl-cert: Subject: commonName=nineveh.htb/organizationName=HackTheBox Ltd/stateOrProvinceName=Athens/countryName=GR
+| Not valid before: 2017-07-01T15:03:30
+|_Not valid after:  2018-07-01T15:03:30
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  http/1.1
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Jul  4 14:34:10 2021 -- 1 IP address (1 host up) scanned in 22.11 seconds

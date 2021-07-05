@@ -10,11 +10,12 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 
 ### Machines
 
-| Name | Status | System | Difficulty | Released |
-| ---- |--------| -------|------------|----------|
-| Lame | Retired | Linux | Easy | Yes |
-| Shocker | Retired | Linux | Easy | Yes |
-| Bashed | Retired | Linux | Easy | Yes |
-| Nibbles | Retired | Linux | Easy | Yes |
-| Beep | Retired | Linux | Easy | Yes |
-| Cronos | Retired | Linux | Medium | Yes |
+| Name | Status | System | Difficulty | Released | Trophy List |
+| ---- |--------| -------|------------|----------|-------------|
+| Bashed | Retired | Linux | Easy | Yes | Yes |
+| Beep | Retired | Linux | Easy | Yes | Yes |
+| Cronos | Retired | Linux | Medium | Yes | Yes |
+| Lame | Retired | Linux | Easy | Yes | Yes |
+| Nibbles | Retired | Linux | Easy | Yes | Yes |
+| Nineveh | Retired | Linux | Medium | Yes | Yes |
+| Shocker | Retired | Linux | Easy | Yes | Yes |

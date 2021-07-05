@@ -5,11 +5,11 @@
 - There are so many options in Beep - enumerating software and version info is priceless
 - Try get an LFI and dump interesting stuff
 - People reuse passwords, lots!
-- Privesc has options, and can be bypassed completely
+- Privesc has options, and can be skipped based on foothold method
 
 ## nmap
 
-Starting with the usual `nmap` scan. Interesting ports we plentiful:
+Starting with the usual `nmap` scan. Interesting ports were plentiful:
 
 ```none
 22/tcp    open  ssh        OpenSSH 4.3 (protocol 2.0)
@@ -19,7 +19,7 @@ Starting with the usual `nmap` scan. Interesting ports we plentiful:
 10000/tcp open  http       MiniServ 1.570 (Webmin httpd)
 ```
 
-Check the full nmap output in `logs` if you are interested.
+Check the full nmap output in the `logs` folder if you are interested.
 
 ## 80: Recon + Gobuster
 
@@ -38,7 +38,7 @@ After poking around the web app found some interesting stuff. Mainly interesting
 - Trying (and failing) to log into the `/admin` endpoint displayed the FreePBX software with version 2.8.1.4
 - Navigating to the `/vtigercrm` endpoint found the vtiger CRM software version 5.1.0
 
-I had watched ippsec's video on the box a few weeks earlier - and remembered two things. First was he went for an Elastic/FreePBX exploit. The second was he said there were exploits everywhere. So I decided to poke around the vtiger app.
+I had watched ippsec's video on the box a few weeks before trying to box myself - and remembered two things. First was he went for an Elastic/FreePBX exploit. The second was he said there were exploits everywhere. So I decided to poke around the vtiger app and see if I could find something new/interesting.
 
 ![vtiger CRM Home](screenshots/vtigercrm_home.png)
 
@@ -47,7 +47,7 @@ I had watched ippsec's video on the box a few weeks earlier - and remembered two
 vTiger CRM 5.1.0 - Local File Inclusion                                           | php/webapps/18770.txt
 ```
 
-A `searchsploit` lookup found an exact match for the version I was targeting - and was an LFI... perfect. The exploit was exceptionally simple - and endpoint vulnerable with the usual `/etc/passwd` PoC. I updated the example to match the target machine:
+A `searchsploit` lookup found an exact match for the version I was targeting - and was an LFI... perfect. The exploit was simple - and they provided the common `/etc/passwd` PoC. I updated the example to match the target machine:
 
 ```none
 https://beep.htb/vtigercrm/modules/com_vtiger_workflow/sortfieldsjson.php?module_name=../../../../../../../../etc/passwd%00
@@ -67,7 +67,7 @@ https://beep.htb/vtigercrm/modules/com_vtiger_workflow/sortfieldsjson.php?module
 
 ## Getting Credentials
 
-Used the LFI vulnerability to get some more information on the target system. Elastix was new to me - so had no idea where to look, and had no idea what the names of the bundled software were. A little Google found some interesting articles - especially this [PBX in a Flash for Newbies](http://www.telecomworld101.com/PiaF/ConfigurationFiles.html) article which mentioned the `/etc/amportal.conf` file. But this wasn't how I found this file. I did a weird route and searched exploitdb files for a bunch of keywords. Some examples are below - but I also added in FreePBX and Elastix.
+Used the LFI vulnerability to get some more information on the target system. Elastix was new to me - so had no idea where to look, and had no idea what the names of the bundled software were. A little Google found some interesting articles - especially this [PBX in a Flash for Newbies](http://www.telecomworld101.com/PiaF/ConfigurationFiles.html) article which mentioned the `/etc/amportal.conf` file. But this wasn't how I found this file. I did a weird route and searched exploitdb files for a bunch of keywords. Some examples are below - but I also added in FreePBX and Elastix into some of my grep searches.
 
 ```none
 cd /usr/share/exploitdb
@@ -75,13 +75,13 @@ grep -rin vtigercrm .
 grep -rin  'vtigercrm' . | grep "00"
 ```
 
-The idea of the null byte `grep` search was to find other LFI vulnerabilities in different software known to be on the target - and seeing what files they dumped as a PoC. The final result was an LFI to a useful file:
+The idea of this method was to look for other LFI exploits and see what files they dumped. And the idea of the null byte `grep` search was to find other LFI paths in different software known to be on the target. The final result was an LFI to a useful file:
 
 ```none
 view-source:https://beep.htb/vtigercrm/modules/com_vtiger_workflow/sortfieldsjson.php?module_name=../../../../../../../../etc/amportal.conf%00
 ```
 
-This file was gold - and contained some credential:
+This file was gold - and contained some useful credentials:
 
 ```none
 AMPDBHOST=localhost
@@ -135,11 +135,11 @@ Vtiger CRM 6.3.0 - (Authenticated) Arbitrary File Upload (Metasploit)           
 vTiger CRM 6.3.0 - (Authenticated) Remote Code Execution                          | php/webapps/38345.txt
 ```
 
-Looking at `38345.txt` the exploit looked quite simple.
+The version didn't match - but thought I would try as the target exploit was newer. Looking at `38345.txt` the exploit looked quite simple.
 
 > Vtiger CRM's administration interface allows for the upload of a company logo. Instead of uploading an image, an attacker may choose to upload a file containing PHP code and run this code by accessing the resulting PHP file.
 
-The change the company logo navigate to: SETTINGS > Settings > Company Details. And you will see an option to change the logo if you use the `Edit` button.
+To change the company logo navigate to: SETTINGS > Settings > Company Details. And you will see an option to change the logo if you use the `Edit` button.
 
 ![vtiger CRM Change Company Logo](screenshots/vtiger_companylogo.png)
 
@@ -147,7 +147,7 @@ The easiest way to manipulate the upload is Burp (or another proxy). I didn't di
 
 ![vtiger CRM Change Company Logo Request in Burp](screenshots/vtiger_companylogo_burp.png)
 
-Testing out the exploit shows command injection using the `cmd` parameter in the URL. Note, that the URL to run the uploaded PHP code was: `https://beep.htb/vtigercrm/test/logo/meow.php` where `meow.php` was the name I used for my upload.
+Testing out the exploit shows command injection using the `cmd` parameter in the URL. Note, that the URL to run the uploaded PHP code was: `https://beep.htb/vtigercrm/test/logo/meow.php` where `meow.php` was the name I used for my upload. This path was documented in the exploit.
 
 ![vtiger CRM Change Company Logo Command Injection PoC](screenshots/vtiger_companylogo_commandinjection.png)
 
@@ -155,7 +155,7 @@ Finally, instead of a simple PoC to determine command injection - used the popul
 
 ## Privesc
 
-I know we already got `root` access way earlier in this writeup - but it is always good to dig a bit deeper. Given that this box has been quite easy so far, I went for some low-hanging fruit instead of running an automated privesc tool. Luckily I did - because there were many options for elevation using `sudo`
+I know we already got `root` access way earlier in this writeup - but it is always good to dig a bit deeper. Given that this box has been quite easy so far, I went for some low-hanging fruit instead of running an automated privesc tool. Luckily I did - because there were many options for elevation using `sudo`.
 
 ```none
 bash-3.2$ id

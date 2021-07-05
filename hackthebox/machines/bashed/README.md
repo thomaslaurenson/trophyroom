@@ -46,7 +46,7 @@ Browsing to `http://10.10.10.68/dev/phpbash.php` provides a webshell as the `www
 
 ## Flag: User
 
-Looking at the `home` directory, and `/etc/passwd` file shows two users.
+Looking at the `home` directory, and the `/etc/passwd` file - there are two users.
 
 ```
 www-data@bashed:/var/www/html/dev# ls /home/
