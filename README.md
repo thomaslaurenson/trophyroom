@@ -12,16 +12,16 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 
 | Name | Status | System | Difficulty | Released | Trophy List |
 | ---- |--------| -------|------------|----------|-------------|
-| [Archtype](startingpoint/1_archtype) | N/A | Windows | Very Easy | Yes | No |
+| [Archtype](hackthebox/startingpoint/1_archtype) | N/A | Windows | Very Easy | Yes | No |
 
 ### Machines
 
 | Name | Status | System | Difficulty | Released | Trophy List |
 | ---- |--------| -------|------------|----------|-------------|
-| Bashed | Retired | Linux | Easy | Yes | Yes |
-| Beep | Retired | Linux | Easy | Yes | Yes |
-| Cronos | Retired | Linux | Medium | Yes | Yes |
-| Lame | Retired | Linux | Easy | Yes | Yes |
-| Nibbles | Retired | Linux | Easy | Yes | Yes |
-| Nineveh | Retired | Linux | Medium | Yes | Yes |
-| Shocker | Retired | Linux | Easy | Yes | Yes |
+| [Bashed](hackthebox/machines/bashed) | Retired | Linux | Easy | Yes | Yes |
+| [Beep](hackthebox/machines/beep) | Retired | Linux | Easy | Yes | Yes |
+| [Cronos](hackthebox/machines/cronos) | Retired | Linux | Medium | Yes | Yes |
+| [Lame](hackthebox/machines/lame) | Retired | Linux | Easy | Yes | Yes |
+| [Nibbles](hackthebox/machines/nibbles) | Retired | Linux | Easy | Yes | Yes |
+| [Nineveh](hackthebox/machines/nineveh) | Retired | Linux | Medium | Yes | Yes |
+| [Shocker](hackthebox/machines/shocker) | Retired | Linux | Easy | Yes | Yes |
