@@ -8,6 +8,12 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 
 ## Hack The Box
 
+### Starting Point
+
+| Name | Status | System | Difficulty | Released | Trophy List |
+| ---- |--------| -------|------------|----------|-------------|
+| [Archtype](startingpoint/1_archtype) | N/A | Windows | Very Easy | Yes | No |
+
 ### Machines
 
 | Name | Status | System | Difficulty | Released | Trophy List |
