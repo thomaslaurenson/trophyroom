@@ -14,11 +14,12 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | ---- |--------| -------|------------|-------------|
 | [Archtype](hackthebox/startingpoint/1_archtype) | N/A | Windows | Very Easy | No |
 | [Oopsie](hackthebox/startingpoint/2_oopsie) | N/A | Linux | Very Easy | No |
+| [Vaccine](hackthebox/startingpoint/3_vaccine) | N/A | Linux | Very Easy | No |
 
 ### Machines
 
 | Name | Status | System | Difficulty | Trophy List |
-| ---- |--------| -------|------------|-------------|
+| ---- |--------|--------|------------|-------------|
 | [Bashed](hackthebox/machines/bashed) | Retired | Linux | Easy | Yes |
 | [Beep](hackthebox/machines/beep) | Retired | Linux | Easy | Yes |
 | [Cronos](hackthebox/machines/cronos) | Retired | Linux | Medium | Yes |
