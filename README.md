@@ -28,3 +28,4 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [Nineveh](hackthebox/machines/nineveh) | Retired | Linux | Medium | Yes |
 | [Sense](hackthebox/machines/sense) | Retired | Linux | Easy | Yes |
 | [Shocker](hackthebox/machines/shocker) | Retired | Linux | Easy | Yes |
+| [Spectra](hackthebox/machines/spectra) | Retired | Other | Easy | No |
