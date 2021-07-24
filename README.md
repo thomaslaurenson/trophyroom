@@ -24,6 +24,7 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [Beep](hackthebox/machines/beep) | Retired | Linux | Easy | Yes |
 | [Cronos](hackthebox/machines/cronos) | Retired | Linux | Medium | Yes |
 | [Lame](hackthebox/machines/lame) | Retired | Linux | Easy | Yes |
+| [Legacy](hackthebox/machines/legacy) | Retired | Windows | Easy | Yes |
 | [Nibbles](hackthebox/machines/nibbles) | Retired | Linux | Easy | Yes |
 | [Nineveh](hackthebox/machines/nineveh) | Retired | Linux | Medium | Yes |
 | [Sense](hackthebox/machines/sense) | Retired | Linux | Easy | Yes |

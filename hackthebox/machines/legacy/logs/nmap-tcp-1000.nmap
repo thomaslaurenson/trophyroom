@@ -1,0 +1,37 @@
+# Nmap 7.91 scan initiated Thu Jul 22 15:50:58 2021 as: nmap -Pn -sV -sC -oA logs/nmap-tcp-1000 -v 10.10.10.4
+Nmap scan report for 10.10.10.4
+Host is up (0.33s latency).
+Not shown: 997 filtered ports
+PORT     STATE  SERVICE       VERSION
+139/tcp  open   netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open   microsoft-ds  Windows XP microsoft-ds
+3389/tcp closed ms-wbt-server
+Service Info: OSs: Windows, Windows XP; CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_xp
+
+Host script results:
+|_clock-skew: mean: -4h24m34s, deviation: 2h07m16s, median: -5h54m34s
+| nbstat: NetBIOS name: LEGACY, NetBIOS user: <unknown>, NetBIOS MAC: 00:50:56:b9:ed:89 (VMware)
+| Names:
+|   LEGACY<00>           Flags: <unique><active>
+|   HTB<00>              Flags: <group><active>
+|   LEGACY<20>           Flags: <unique><active>
+|   HTB<1e>              Flags: <group><active>
+|   HTB<1d>              Flags: <unique><active>
+|_  \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+| smb-os-discovery: 
+|   OS: Windows XP (Windows 2000 LAN Manager)
+|   OS CPE: cpe:/o:microsoft:windows_xp::-
+|   Computer name: legacy
+|   NetBIOS computer name: LEGACY\x00
+|   Workgroup: HTB\x00
+|_  System time: 2021-07-22T03:57:02+03:00
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_smb2-time: Protocol negotiation failed (SMB2)
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Jul 22 15:52:28 2021 -- 1 IP address (1 host up) scanned in 90.48 seconds
