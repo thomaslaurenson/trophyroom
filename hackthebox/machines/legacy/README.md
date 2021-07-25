@@ -15,7 +15,7 @@ Starting with the usual `nmap` scan. Interesting ports:
 445/tcp  open   microsoft-ds  Windows XP microsoft-ds
 ```
 
-## 80: Recon
+## Recon
 
 Looking at the operating system - it is a relic...
 

@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Fri Jul 16 16:08:56 2021 as: nmap -sV -sC -oA logs/nmap-tcp-1000 10.10.10.5
+Host: 10.10.10.5 ()	Status: Up
+Host: 10.10.10.5 ()	Ports: 21/open/tcp//ftp//Microsoft ftpd/, 80/open/tcp//http//Microsoft IIS httpd 7.5/	Ignored State: filtered (998)
+# Nmap done at Fri Jul 16 16:09:08 2021 -- 1 IP address (1 host up) scanned in 12.98 seconds
