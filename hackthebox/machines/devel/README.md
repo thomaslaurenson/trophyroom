@@ -404,7 +404,7 @@ This found a bunch of exploits...
 Just picked a random exploit.
 
 ```none
-use exploit/windows/local/ms16_075_reflection
+use exploit/windows/local/ms15_051_client_copy_image
 ```
 
 And set the options.
@@ -435,7 +435,7 @@ Done!
 
 ## Lessons Learned
 
-- FTP had different file upload methods, `binary` being important to know
+- FTP has different file upload methods, `binary` being important to know
 - Docker for Python2 apps works well
 - Cross compiling Windows exploits is hard, practice more
 
