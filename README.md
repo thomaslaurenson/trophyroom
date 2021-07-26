@@ -20,6 +20,7 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 
 | Name | Status | System | Difficulty | Trophy List |
 | ---- |--------|--------|------------|-------------|
+| [Armageddon](hackthebox/machines/armageddon) | Retired | Linux | Easy | No |
 | [Bashed](hackthebox/machines/bashed) | Retired | Linux | Easy | Yes |
 | [Beep](hackthebox/machines/beep) | Retired | Linux | Easy | Yes |
 | [Cronos](hackthebox/machines/cronos) | Retired | Linux | Medium | Yes |

