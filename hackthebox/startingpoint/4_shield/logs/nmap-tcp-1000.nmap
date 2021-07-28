@@ -1,0 +1,15 @@
+# Nmap 7.91 scan initiated Sun Jul 11 14:47:39 2021 as: nmap -sV -sC -oA logs/nmap-tcp-1000 10.10.10.29
+Nmap scan report for 10.10.10.29
+Host is up (0.30s latency).
+Not shown: 998 filtered ports
+PORT     STATE SERVICE VERSION
+80/tcp   open  http    Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: IIS Windows Server
+3306/tcp open  mysql   MySQL (unauthorized)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Jul 11 14:48:24 2021 -- 1 IP address (1 host up) scanned in 44.91 seconds

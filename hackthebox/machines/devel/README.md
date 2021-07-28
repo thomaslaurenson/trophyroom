@@ -258,7 +258,7 @@ sudo docker run -it pywes /bin/sh
 This will drop us into a shell where we can run the tool. FYI - I don't auto-run the tool, as the vulnerability database file name changes based on the date. Could probably write some magic to get this done. Anyway, run the tool.
 
 ```none
-/opt/Windows-Exploit-Suggester # python2 windows-exploit-suggester.py -d 2021-07-25-mssb.xls.xls  -d systeminfo
+/opt/Windows-Exploit-Suggester # python2 windows-exploit-suggester.py -d 2021-07-25-mssb.xls.xls -i systeminfo
 ```
 
 And review the results!

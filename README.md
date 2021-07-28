@@ -2,7 +2,7 @@
 
 Collection of my walk throughs, hints, notes, code snippets, tool logs, and resources for vulnerable CTF-style boxes.
 
-## Intro
+## Overview
 
 The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** list by TJ Null, available as a [Google Sheet](https://docs.google.com/spreadsheets/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/htmlview). In addition, I am trying new boxes on Hack The Box when they are released (but they will not be uploaded until the machines are retired).
 
@@ -15,6 +15,7 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [Archtype](hackthebox/startingpoint/1_archtype) | N/A | Windows | Very Easy | No |
 | [Oopsie](hackthebox/startingpoint/2_oopsie) | N/A | Linux | Very Easy | No |
 | [Vaccine](hackthebox/startingpoint/3_vaccine) | N/A | Linux | Very Easy | No |
+| [Shield](hackthebox/startingpoint/4_shield) | N/A | Windows | Very Easy | No |
 
 ### Machines
 
