@@ -35,3 +35,4 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [Shocker](hackthebox/machines/shocker) | Retired | Linux | Easy | Yes |
 | [Spectra](hackthebox/machines/spectra) | Retired | Other | Easy | No |
 | [TheNotebook](hackthebox/machines/thenotebook) | Retired | Linux | Medium | No |
+| [Writeup](hackthebox/machines/writeup) | Retired | Linux | Easy | Yes |

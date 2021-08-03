@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Tue Aug  3 15:22:55 2021 as: nmap -Pn -sV -sC -oA logs/nmap-tcp-1000 10.129.1.195
+Host: 10.129.1.195 ()	Status: Up
+Host: 10.129.1.195 ()	Ports: 22/open/tcp//ssh//OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)/, 80/open/tcp//http//Apache httpd 2.4.25 ((Debian))/	Ignored State: filtered (998)
+# Nmap done at Tue Aug  3 15:23:41 2021 -- 1 IP address (1 host up) scanned in 45.93 seconds
