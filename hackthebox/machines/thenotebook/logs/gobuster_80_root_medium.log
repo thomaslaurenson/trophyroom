@@ -1,0 +1,4 @@
+/login                (Status: 200) [Size: 1250]
+/register             (Status: 200) [Size: 1422]
+/admin                (Status: 403) [Size: 9]
+/logout               (Status: 302) [Size: 209] [--> http://10.10.10.230/]
