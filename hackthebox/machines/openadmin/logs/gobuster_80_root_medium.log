@@ -1,0 +1,4 @@
+/music                (Status: 301) [Size: 312] [--> http://10.10.10.171/music/]
+/artwork              (Status: 301) [Size: 314] [--> http://10.10.10.171/artwork/]
+/sierra               (Status: 301) [Size: 313] [--> http://10.10.10.171/sierra/]
+/server-status        (Status: 403) [Size: 277]
