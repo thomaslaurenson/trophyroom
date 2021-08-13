@@ -28,6 +28,7 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [Devel](hackthebox/machines/devel) | Windows | Easy | Yes |
 | [Lame](hackthebox/machines/lame) | Linux | Easy | Yes |
 | [Legacy](hackthebox/machines/legacy) | Windows | Easy | Yes |
+| [Love](hackthebox/machines/love) | Windows | Easy | No |
 | [Nibbles](hackthebox/machines/nibbles) | Linux | Easy | Yes |
 | [Nineveh](hackthebox/machines/nineveh) | Linux | Medium | Yes |
 | [OpenAdmin](hackthebox/machines/openadmin) | Linux | Easy | Yes |

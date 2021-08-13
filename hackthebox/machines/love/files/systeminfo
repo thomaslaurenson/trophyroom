@@ -1,0 +1,48 @@
+Host Name:                 LOVE
+OS Name:                   Microsoft Windows 10 Pro
+OS Version:                10.0.19042 N/A Build 19042
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Workstation
+OS Build Type:             Multiprocessor Free
+Registered Owner:          roy
+Registered Organization:   
+Product ID:                00330-80112-18556-AA148
+Original Install Date:     4/12/2021, 1:14:12 PM
+System Boot Time:          8/6/2021, 2:44:31 PM
+System Manufacturer:       VMware, Inc.
+System Model:              VMware7,1
+System Type:               x64-based PC
+Processor(s):              1 Processor(s) Installed.
+                           [01]: Intel64 Family 6 Model 79 Stepping 1 GenuineIntel ~2100 Mhz
+BIOS Version:              VMware, Inc. VMW71.00V.13989454.B64.1906190538, 6/19/2019
+Windows Directory:         C:\WINDOWS
+System Directory:          C:\WINDOWS\system32
+Boot Device:               \Device\HarddiskVolume3
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (UTC-08:00) Pacific Time (US & Canada)
+Total Physical Memory:     4,095 MB
+Available Physical Memory: 2,603 MB
+Virtual Memory: Max Size:  4,799 MB
+Virtual Memory: Available: 3,203 MB
+Virtual Memory: In Use:    1,596 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              \\LOVE
+Hotfix(s):                 9 Hotfix(s) Installed.
+                           [01]: KB4601554
+                           [02]: KB4562830
+                           [03]: KB4570334
+                           [04]: KB4577586
+                           [05]: KB4580325
+                           [06]: KB4586864
+                           [07]: KB4589212
+                           [08]: KB5000802
+                           [09]: KB5000858
+Network Card(s):           1 NIC(s) Installed.
+                           [01]: vmxnet3 Ethernet Adapter
+                                 Connection Name: Ethernet0 2
+                                 DHCP Enabled:    No
+                                 IP address(es)
+                                 [01]: 10.10.10.239
+Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.
