@@ -1,0 +1,5 @@
+/files                (Status: 301) [Size: 312] [--> http://10.10.10.194/files/]
+/assets               (Status: 301) [Size: 313] [--> http://10.10.10.194/assets/]
+/news.php             (Status: 200) [Size: 0]
+/index.php            (Status: 200) [Size: 14175]
+/server-status        (Status: 403) [Size: 277]

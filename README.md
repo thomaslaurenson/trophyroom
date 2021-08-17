@@ -36,5 +36,6 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [Sense](hackthebox/machines/sense) | FreeBSD | Easy | Yes |
 | [Shocker](hackthebox/machines/shocker) | Linux | Easy | Yes |
 | [Spectra](hackthebox/machines/spectra) | Other | Easy | No |
+| [Tabby](hackthebox/machines/tabby) | Linux | Easy | Yes |
 | [TheNotebook](hackthebox/machines/thenotebook) | Linux | Medium | No |
 | [Writeup](hackthebox/machines/writeup) | Linux | Easy | No |
