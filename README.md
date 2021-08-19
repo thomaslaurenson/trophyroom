@@ -32,6 +32,7 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [Nibbles](hackthebox/machines/nibbles) | Linux | Easy | Yes |
 | [Nineveh](hackthebox/machines/nineveh) | Linux | Medium | Yes |
 | [OpenAdmin](hackthebox/machines/openadmin) | Linux | Easy | Yes |
+| [Ophiuchi](hackthebox/machines/ophiuchi) | Linux | Medium | Yes |
 | [Popcorn](hackthebox/machines/popcorn) | Linux | Medium | Yes |
 | [Sense](hackthebox/machines/sense) | FreeBSD | Easy | Yes |
 | [Shocker](hackthebox/machines/shocker) | Linux | Easy | Yes |
