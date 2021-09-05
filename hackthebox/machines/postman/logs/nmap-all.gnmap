@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Sat Sep  4 17:25:44 2021 as: nmap -p- -oA logs/nmap-all 10.10.10.160
+Host: 10.10.10.160 ()	Status: Up
+Host: 10.10.10.160 ()	Ports: 22/open/tcp//ssh///, 80/open/tcp//http///, 6379/open/tcp//redis///, 10000/open/tcp//snet-sensor-mgmt///	Ignored State: closed (65531)
+# Nmap done at Sat Sep  4 17:26:02 2021 -- 1 IP address (1 host up) scanned in 18.12 seconds

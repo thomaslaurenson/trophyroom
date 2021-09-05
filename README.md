@@ -37,6 +37,7 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [OpenAdmin](hackthebox/machines/openadmin) | Linux | Easy | Yes | 2020-01-04 | 2021-08-05 |
 | [Ophiuchi](hackthebox/machines/ophiuchi) | Linux | Medium | Yes | 2021-02-13 | 2021-08-19 |
 | [Popcorn](hackthebox/machines/popcorn) | Linux | Medium | Yes | 2017-03-14 | 2021-07-26 |
+| [Postman](hackthebox/machines/postman) | Linux | Easy | Yes | 2019-11-02 | 2021-09-04 |
 | [Sense](hackthebox/machines/sense) | FreeBSD | Easy | Yes | 2017-10-21 | 2021-07-16 |
 | [Shocker](hackthebox/machines/shocker) | Linux | Easy | Yes | 2017-09-30 | 2021-06-27 |
 | [Spectra](hackthebox/machines/spectra) | Other | Easy | No | 2021-02-27 | 2021-07-21 |

@@ -1,0 +1,1965 @@
+
+
+                            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                    ▄▄▄▄▄▄▄             ▄▄▄▄▄▄▄▄
+             ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄
+         ▄▄▄▄     ▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄
+         ▄    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄          ▄▄▄▄▄▄               ▄▄▄▄▄▄ ▄
+         ▄▄▄▄▄▄              ▄▄▄▄▄▄▄▄                 ▄▄▄▄ 
+         ▄▄                  ▄▄▄ ▄▄▄▄▄                  ▄▄▄
+         ▄▄                ▄▄▄▄▄▄▄▄▄▄▄▄                  ▄▄
+         ▄            ▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄   ▄▄
+         ▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                ▄▄▄▄
+         ▄▄▄▄▄  ▄▄▄▄▄                       ▄▄▄▄▄▄     ▄▄▄▄
+         ▄▄▄▄   ▄▄▄▄▄                       ▄▄▄▄▄      ▄ ▄▄
+         ▄▄▄▄▄  ▄▄▄▄▄        ▄▄▄▄▄▄▄        ▄▄▄▄▄     ▄▄▄▄▄
+         ▄▄▄▄▄▄  ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄   ▄▄▄▄▄ 
+          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄        ▄          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄                       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄                         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+          ▀▀▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▀▀▀▀▀▀
+               ▀▀▀▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▀▀
+                     ▀▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀▀▀
+
+      /---------------------------------------------------------------------------\
+      |                             Do you like PEASS?                            |                                 
+      |---------------------------------------------------------------------------|                                 
+      |         Become a Patreon    :     https://www.patreon.com/peass           |                                 
+      |         Follow on Twitter   :     @carlospolopm                           |                                 
+      |         Respect on HTB      :     SirBroccoli & makikvues                 |                                 
+      |---------------------------------------------------------------------------|                                 
+      |                                 Thank you!                                |                                 
+      \---------------------------------------------------------------------------/                                 
+        linpeas-ng by carlospolop                                                                                   
+                                                                                                                    
+ADVISORY: This script should be used for authorized penetration testing and/or educational purposes only. Any misuse of this software will not be the responsibility of the author or of any other collaborator. Use it at your own networks and/or with the network owner's permission.                                                                    
+                                                                                                                    
+Linux Privesc Checklist: https://book.hacktricks.xyz/linux-unix/linux-privilege-escalation-checklist
+ LEGEND:                                                                                                            
+  RED/YELLOW: 95% a PE vector
+  RED: You should take a look to it
+  LightCyan: Users with console
+  Blue: Users without console & mounted devs
+  Green: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs) 
+  LightMagenta: Your username
+
+ Starting linpeas. Caching Writable Folders...
+
+════════════════════════════════════╣ Basic information ╠════════════════════════════════════
+OS: Linux version 4.15.0-58-generic (buildd@lcy01-amd64-013) (gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1)) #64-Ubuntu SMP Tue Aug 6 11:12:41 UTC 2019
+User & Groups: uid=107(redis) gid=114(redis) groups=114(redis)
+Hostname: Postman
+Writable folder: /dev/shm
+[+] /bin/ping is available for network discovery (linpeas can discover hosts, learn more with -h)
+[+] /bin/nc is available for network discover & port scanning (linpeas can discover hosts and scan ports, learn more with -h)                                                                                                           
+                                                                                                                    
+
+Caching directories . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . DONE
+                                                                                                                    
+════════════════════════════════════╣ System Information ╠════════════════════════════════════
+╔══════════╣ Operative system                                                                                       
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#kernel-exploits                                       
+Linux version 4.15.0-58-generic (buildd@lcy01-amd64-013) (gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1)) #64-Ubuntu SMP Tue Aug 6 11:12:41 UTC 2019
+Distributor ID: Ubuntu
+Description:    Ubuntu 18.04.3 LTS
+Release:        18.04
+Codename:       bionic
+
+╔══════════╣ Sudo version
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-version                                          
+Sudo version 1.8.21p2                                                                                               
+
+╔══════════╣ USBCreator
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/d-bus-enumeration-and-command-injection-privilege-escalation                                                                                                              
+                                                                                                                    
+╔══════════╣ PATH
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-path-abuses                                  
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games                            
+New path exported: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+
+╔══════════╣ Date & uptime
+Sat Sep  4 07:16:35 BST 2021                                                                                        
+ 07:16:35 up 53 min,  1 user,  load average: 0.27, 0.07, 0.02
+
+╔══════════╣ System stats
+Filesystem      Size  Used Avail Use% Mounted on                                                                    
+udev            428M     0  428M   0% /dev
+tmpfs            90M  824K   89M   1% /run
+/dev/sda1       9.8G  3.1G  6.3G  33% /
+tmpfs           449M     0  449M   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           449M     0  449M   0% /sys/fs/cgroup
+tmpfs            90M     0   90M   0% /run/user/107
+              total        used        free      shared  buff/cache   available
+Mem:         919140      125724       78716        2264      714700      614116
+Swap:        483800         256      483544
+
+╔══════════╣ CPU info
+Architecture:        x86_64                                                                                         
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+CPU(s):              1
+On-line CPU(s) list: 0
+Thread(s) per core:  1
+Core(s) per socket:  1
+Socket(s):           1
+NUMA node(s):        1
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               79
+Model name:          Intel(R) Xeon(R) CPU E5-2683 v4 @ 2.10GHz
+Stepping:            1
+CPU MHz:             2099.998
+BogoMIPS:            4199.99
+Hypervisor vendor:   VMware
+Virtualization type: full
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            256K
+L3 cache:            40960K
+NUMA node0 CPU(s):   0
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon nopl xtopology tsc_reliable nonstop_tsc cpuid pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid rdseed adx smap xsaveopt arat md_clear flush_l1d arch_capabilities
+
+╔══════════╣ Environment
+╚ Any private information inside environment variables?                                                             
+SSH_CONNECTION=10.10.14.24 40170 10.10.10.160 22                                                                    
+LANG=en_US.UTF-8
+XDG_SESSION_ID=6
+USER=redis
+PWD=/var/lib/redis
+HOME=/var/lib/redis
+SSH_CLIENT=10.10.14.24 40170 22
+HISTFILE=/dev/null
+SSH_TTY=/dev/pts/0
+MAIL=/var/mail/redis
+SHELL=/bin/bash
+TERM=xterm-256color
+SHLVL=2
+LOGNAME=redis
+XDG_RUNTIME_DIR=/run/user/107
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+HISTSIZE=0
+HISTFILESIZE=0
+_=/usr/bin/env
+
+╔══════════╣ Searching Signature verification failed in dmseg
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#dmesg-signature-verification-failed                   
+dmesg Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Protections
+═╣ AppArmor enabled? .............. You do not have enough privilege to read the profile set.                       
+apparmor module is loaded.
+═╣ grsecurity present? ............ grsecurity Not Found
+═╣ PaX bins present? .............. PaX Not Found                                                                   
+═╣ Execshield enabled? ............ Execshield Not Found                                                            
+═╣ SELinux enabled? ............... sestatus Not Found                                                              
+═╣ Is ASLR enabled? ............... Yes                                                                             
+═╣ Printer? ....................... No
+═╣ Is this a virtual machine? ..... Yes (vmware)                                                                    
+
+════════════════════════════════════╣ Containers ╠════════════════════════════════════
+╔══════════╣ Container related tools present                                                                        
+╔══════════╣ Container details                                                                                      
+═╣ Is this a container? ........... No                                                                              
+═╣ Any running containers? ........ No                                                                              
+                                                                                                                    
+════════════════════════════════════╣ Devices ╠════════════════════════════════════
+╔══════════╣ Any sd*/disk* disk in /dev? (limit 20)                                                                 
+disk                                                                                                                
+sda
+sda1
+
+╔══════════╣ Unmounted file-system?
+╚ Check if you can mount umounted devices                                                                           
+UUID=9687c60d-cb06-4f55-9bdc-08678a8f805c /               ext4    errors=remount-ro 0       1                       
+/swapfile                                 none            swap    sw              0       0
+
+╔══════════╣ Mounted disks information
+diskutil Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Mounted SMB Shares
+smbutil Not Found                                                                                                   
+                                                                                                                    
+
+════════════════════════════════════╣ Available Software ╠════════════════════════════════════
+╔══════════╣ Useful software                                                                                        
+/bin/nc                                                                                                             
+/bin/netcat
+/usr/bin/wget
+/bin/ping
+/usr/bin/gcc
+/usr/bin/g++
+/usr/bin/make
+/usr/bin/base64
+/usr/bin/python
+/usr/bin/python2
+/usr/bin/python3
+/usr/bin/python2.7
+/usr/bin/python3.6
+/usr/bin/perl
+/usr/bin/php
+/usr/bin/sudo
+
+╔══════════╣ Installed Compiler
+ii  g++                                   4:7.4.0-1ubuntu2.3                amd64        GNU C++ compiler           
+ii  g++-7                                 7.4.0-1ubuntu1~18.04.1            amd64        GNU C++ compiler
+ii  gcc                                   4:7.4.0-1ubuntu2.3                amd64        GNU C compiler
+ii  gcc-7                                 7.4.0-1ubuntu1~18.04.1            amd64        GNU C compiler
+/usr/bin/gcc
+/usr/bin/g++
+
+
+════════════════════════════════════╣ Processes, Cron, Services, Timers & Sockets ╠════════════════════════════════════                                                                                                                 
+╔══════════╣ Cleaned processes                                                                                      
+╚ Check weird & unexpected proceses run by root: https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                                                                                                  
+root          1  0.0  0.9 159420  8860 ?        Ss   06:22   0:02 /sbin/init splash                                 
+root        230  0.0  1.6  94848 15040 ?        S<s  06:22   0:00 /lib/systemd/systemd-journald
+root        246  0.0  0.4  45320  4200 ?        Ss   06:22   0:00 /lib/systemd/systemd-udevd
+systemd+    325  0.0  0.3 141928  3252 ?        Ssl  06:22   0:00 /lib/systemd/systemd-timesyncd
+systemd+    327  0.0  0.5  70628  5296 ?        Ss   06:22   0:00 /lib/systemd/systemd-resolved
+root        328  0.0  1.0  91152  9892 ?        Ss   06:22   0:00 /usr/bin/VGAuthService
+root        329  0.1  0.8 153288  7636 ?        S<sl 06:22   0:04 /usr/bin/vmtoolsd
+root        333  0.0  0.3  31320  3252 ?        Ss   06:22   0:00 /usr/sbin/cron -f
+syslog      338  0.0  0.5 263036  4612 ?        Ssl  06:22   0:00 /usr/sbin/rsyslogd -n
+root        339  0.0  0.7 289844  7156 ?        Ssl  06:22   0:00 /usr/lib/accountsservice/accounts-daemon[0m
+root        340  0.0  1.8 170344 16984 ?        Ssl  06:22   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+root        344  0.0  0.6  70608  6148 ?        Ss   06:22   0:00 /lib/systemd/systemd-logind
+message+    348  0.0  0.4  49928  4196 ?        Ss   06:22   0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root        604  0.0  0.7  72296  6436 ?        Ss   06:22   0:00 /usr/sbin/sshd -D
+redis      1500  0.0  0.4 108096  4356 ?        S    07:15   0:00      _ sshd: redis@pts/0
+redis      1501  0.0  0.5  22384  5044 pts/0    Ss   07:15   0:00          _ -bash
+redis      1522  1.0  0.4  13892  4296 pts/0    S+   07:16   0:00              _ bash linpeas.sh
+redis      2600  0.0  0.3  13892  2848 pts/0    S+   07:16   0:00                  _ bash linpeas.sh
+redis      2604  0.0  0.4  39816  3752 pts/0    R+   07:16   0:00                  |   _ ps fauxwww
+redis      2603  0.0  0.1  13892  1268 pts/0    S+   07:16   0:00                  _ bash linpeas.sh
+redis       614  0.1  0.4  51572  4196 ?        Ssl  06:22   0:05 /usr/bin/redis-server 0.0.0.0:6379
+root        625  0.0  0.2  16180  1932 tty1     Ss+  06:22   0:00 /sbin/agetty -o -p -- u --noclear tty1 linux
+root        638  0.0  1.9 331360 18016 ?        Ss   06:22   0:00 /usr/sbin/apache2 -k start
+www-data   1007  0.1  1.1 336256 10544 ?        S    06:25   0:03  _ /usr/sbin/apache2 -k start
+www-data   1008  0.1  1.1 336240 10452 ?        S    06:25   0:03  _ /usr/sbin/apache2 -k start
+www-data   1060  0.1  1.1 336248 10344 ?        S    06:31   0:03  _ /usr/sbin/apache2 -k start
+www-data   1061  0.1  0.9 335828  9140 ?        S    06:31   0:03  _ /usr/sbin/apache2 -k start
+www-data   1063  0.1  0.9 335828  9140 ?        S    06:31   0:03  _ /usr/sbin/apache2 -k start
+www-data   1064  0.1  1.1 336288 10412 ?        S    06:32   0:03  _ /usr/sbin/apache2 -k start
+www-data   1067  0.1  0.9 335828  9140 ?        S    06:32   0:03  _ /usr/sbin/apache2 -k start
+www-data   1068  0.1  0.9 335828  9140 ?        S    06:32   0:03  _ /usr/sbin/apache2 -k start
+www-data   1072  0.1  0.9 335828  9140 ?        S    06:32   0:03  _ /usr/sbin/apache2 -k start
+www-data   1078  0.1  0.9 335828  9140 ?        S    06:32   0:03  _ /usr/sbin/apache2 -k start
+root        719  0.0  3.1  95296 29288 ?        Ss   06:23   0:00 /usr/bin/perl /usr/share/webmin/miniserv.pl /etc/webmin/miniserv.conf
+redis      1451  0.0  0.7  76644  6852 ?        Ss   07:15   0:00 /lib/systemd/systemd --user
+redis      1452  0.0  0.2 193404  2236 ?        S    07:15   0:00  _ (sd-pam)
+
+╔══════════╣ Binary processes permissions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                             
+1.6M -rwxr-xr-x 1 root root 1.6M Jul 22  2019 /lib/systemd/systemd                                                  
+128K -rwxr-xr-x 1 root root 127K Jul 22  2019 /lib/systemd/systemd-journald
+216K -rwxr-xr-x 1 root root 215K Jul 22  2019 /lib/systemd/systemd-logind
+372K -rwxr-xr-x 1 root root 371K Jul 22  2019 /lib/systemd/systemd-resolved
+ 40K -rwxr-xr-x 1 root root  39K Jul 22  2019 /lib/systemd/systemd-timesyncd
+572K -rwxr-xr-x 1 root root 571K Jul 22  2019 /lib/systemd/systemd-udevd
+ 56K -rwxr-xr-x 1 root root  56K Oct 15  2018 /sbin/agetty
+   0 lrwxrwxrwx 1 root root   20 Jul 22  2019 /sbin/init -> /lib/systemd/systemd
+232K -rwxr-xr-x 1 root root 232K Jun 10  2019 /usr/bin/dbus-daemon[0m
+2.1M -rwxr-xr-x 2 root root 2.1M Nov 19  2018 /usr/bin/perl
+   0 lrwxrwxrwx 1 root root    9 Oct 25  2018 /usr/bin/python3 -> python3.6
+   0 lrwxrwxrwx 1 root root   15 Jul 14  2019 /usr/bin/redis-server -> redis-check-rdb
+128K -rwxr-xr-x 1 root root 127K Mar 25  2020 /usr/bin/VGAuthService
+ 56K -rwxr-xr-x 1 root root  55K Mar 25  2020 /usr/bin/vmtoolsd
+180K -rwxr-xr-x 1 root root 179K Dec 18  2017 /usr/lib/accountsservice/accounts-daemon[0m
+656K -rwxr-xr-x 1 root root 656K Jul 16  2019 /usr/sbin/apache2
+ 48K -rwxr-xr-x 1 root root  47K Nov 16  2017 /usr/sbin/cron
+668K -rwxr-xr-x 1 root root 665K Apr 24  2018 /usr/sbin/rsyslogd
+772K -rwxr-xr-x 1 root root 769K Mar  4  2019 /usr/sbin/sshd
+
+╔══════════╣ Files opened by processes belonging to other users
+╚ This is usually empty because of the lack of privileges to read other user processes information                  
+COMMAND    PID TID             USER   FD      TYPE             DEVICE SIZE/OFF       NODE NAME                      
+
+╔══════════╣ Processes with credentials in memory (root req)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#credentials-from-process-memory                       
+gdm-password Not Found                                                                                              
+gnome-keyring-daemon Not Found                                                                                      
+lightdm Not Found                                                                                                   
+vsftpd Not Found                                                                                                    
+apache2 process found (dump creds from memory as root)                                                              
+sshd: process found (dump creds from memory as root)
+
+╔══════════╣ Cron jobs
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#scheduled-cron-jobs                                   
+/usr/bin/crontab                                                                                                    
+incrontab Not Found
+-rw-r--r-- 1 root root     722 Nov 16  2017 /etc/crontab                                                            
+
+/etc/cron.d:
+total 20
+drwxr-xr-x  2 root root 4096 Aug 25  2019 .
+drwxr-xr-x 82 root root 4096 Sep 29  2020 ..
+-rw-r--r--  1 root root  712 Jan 17  2018 php
+-rw-r--r--  1 root root  102 Nov 16  2017 .placeholder
+-rw-r--r--  1 root root  191 Aug 24  2019 popularity-contest
+
+/etc/cron.daily:
+total 56
+drwxr-xr-x  2 root root 4096 Aug 25  2019 .
+drwxr-xr-x 82 root root 4096 Sep 29  2020 ..
+-rwxr-xr-x  1 root root  539 Jul 16  2019 apache2
+-rwxr-xr-x  1 root root 1478 Apr 20  2018 apt-compat
+-rwxr-xr-x  1 root root   77 Sep  5  2008 apt-show-versions
+-rwxr-xr-x  1 root root  355 Dec 29  2017 bsdmainutils
+-rwxr-xr-x  1 root root 1176 Nov  2  2017 dpkg
+-rwxr-xr-x  1 root root  372 Aug 21  2017 logrotate
+-rwxr-xr-x  1 root root 1065 Apr  7  2018 man-db
+-rwxr-xr-x  1 root root  538 Mar  1  2018 mlocate
+-rwxr-xr-x  1 root root  249 Jan 25  2018 passwd
+-rw-r--r--  1 root root  102 Nov 16  2017 .placeholder
+-rwxr-xr-x  1 root root 3477 Feb 21  2018 popularity-contest
+-rwxr-xr-x  1 root root  246 Mar 21  2018 ubuntu-advantage-tools
+
+/etc/cron.hourly:
+total 12
+drwxr-xr-x  2 root root 4096 Aug 24  2019 .
+drwxr-xr-x 82 root root 4096 Sep 29  2020 ..
+-rw-r--r--  1 root root  102 Nov 16  2017 .placeholder
+
+/etc/cron.monthly:
+total 12
+drwxr-xr-x  2 root root 4096 Aug 24  2019 .
+drwxr-xr-x 82 root root 4096 Sep 29  2020 ..
+-rw-r--r--  1 root root  102 Nov 16  2017 .placeholder
+
+/etc/cron.weekly:
+total 16
+drwxr-xr-x  2 root root 4096 Aug 24  2019 .
+drwxr-xr-x 82 root root 4096 Sep 29  2020 ..
+-rwxr-xr-x  1 root root  723 Apr  7  2018 man-db
+-rw-r--r--  1 root root  102 Nov 16  2017 .placeholder
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+
+╔══════════╣ Services
+╚ Search for outdated versions                                                                                      
+ [ + ]  apache-htcacheclean                                                                                         
+ [ + ]  apache2
+ [ + ]  apparmor
+ [ - ]  console-setup.sh
+ [ + ]  cron
+ [ + ]  dbus
+ [ + ]  grub-common
+ [ - ]  hwclock.sh
+ [ - ]  irqbalance
+ [ - ]  keyboard-setup.sh
+ [ + ]  kmod
+ [ + ]  networking
+ [ + ]  open-vm-tools
+ [ - ]  plymouth
+ [ - ]  plymouth-log
+ [ + ]  procps
+ [ + ]  redis-server
+ [ + ]  redis_6379
+ [ - ]  rsync
+ [ + ]  rsyslog
+ [ + ]  ssh
+ [ + ]  udev
+ [ + ]  ufw
+ [ - ]  uuidd
+ [ - ]  webmin
+
+╔══════════╣ Systemd PATH
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#systemd-path-relative-paths                           
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin                                                   
+
+╔══════════╣ Analyzing .service files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#services                                              
+You can't write on systemd PATH                                                                                     
+
+╔══════════╣ System timers
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                                
+NEXT                         LEFT           LAST                         PASSED    UNIT                         ACTIVATES
+Sat 2021-09-04 07:39:00 BST  22min left     Sat 2021-09-04 07:09:03 BST  7min ago  phpsessionclean.timer        phpsessionclean.service
+Sat 2021-09-04 13:47:18 BST  6h left        Sat 2021-09-04 06:22:55 BST  53min ago motd-news.timer              motd-news.service
+Sun 2021-09-05 04:33:37 BST  21h left       Sat 2021-09-04 06:22:55 BST  53min ago apt-daily.timer              apt-daily.service
+Sun 2021-09-05 06:25:08 BST  23h left       Sat 2021-09-04 06:22:55 BST  53min ago apt-daily-upgrade.timer      apt-daily-upgrade.service
+Sun 2021-09-05 06:38:02 BST  23h left       Sat 2021-09-04 06:38:02 BST  38min ago systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
+Mon 2021-09-06 00:00:00 BST  1 day 16h left Sat 2021-09-04 06:22:55 BST  53min ago fstrim.timer                 fstrim.service
+n/a                          n/a            n/a                          n/a       ureadahead-stop.timer        ureadahead-stop.service
+
+╔══════════╣ Analyzing .timer files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                                
+                                                                                                                    
+╔══════════╣ Analyzing .socket files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                               
+                                                                                                                    
+╔══════════╣ HTTP sockets
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                               
+                                                                                                                    
+╔══════════╣ D-Bus config files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                                 
+                                                                                                                    
+╔══════════╣ D-Bus Service Objects list
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                                 
+NAME                               PID PROCESS         USER             CONNECTION    UNIT                      SESSION    DESCRIPTION
+:1.0                               327 systemd-resolve systemd-resolve  :1.0          systemd-resolved.service  -          -
+:1.1                                 1 systemd         root             :1.1          init.scope                -          -
+:1.107                            4963 busctl          redis            :1.107        session-6.scope           6          -
+:1.2                               339 accounts-daemon root             :1.2          accounts-daemon.service   -          -
+:1.5                               344 systemd-logind  root             :1.5          systemd-logind.service    -          -
+:1.6                               340 networkd-dispat root             :1.6          networkd-dispatcher.se…ce -          -
+com.ubuntu.LanguageSelector          - -               -                (activatable) -                         -
+org.freedesktop.Accounts           339 accounts-daemon root             :1.2          accounts-daemon.service   -          -
+org.freedesktop.DBus                 1 systemd         root             -             init.scope                -          -
+org.freedesktop.hostname1            - -               -                (activatable) -                         -
+org.freedesktop.locale1              - -               -                (activatable) -                         -
+org.freedesktop.login1             344 systemd-logind  root             :1.5          systemd-logind.service    -          -
+org.freedesktop.network1             - -               -                (activatable) -                         -
+org.freedesktop.resolve1           327 systemd-resolve systemd-resolve  :1.0          systemd-resolved.service  -          -
+org.freedesktop.systemd1             1 systemd         root             :1.1          init.scope                -          -
+org.freedesktop.timedate1            - -               -                (activatable) -                         -
+
+
+════════════════════════════════════╣ Network Information ╠════════════════════════════════════
+╔══════════╣ Hostname, hosts and DNS                                                                                
+Postman                                                                                                             
+127.0.0.1       localhost
+127.0.1.1       Postman
+
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+nameserver 127.0.0.53
+options edns0
+
+╔══════════╣ Content of /etc/inetd.conf & /etc/xinetd.conf
+/etc/inetd.conf Not Found                                                                                           
+                                                                                                                    
+╔══════════╣ Interfaces
+# symbolic names for networks, see networks(5) for more information                                                 
+link-local 169.254.0.0
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.10.10.160  netmask 255.255.255.0  broadcast 10.10.10.255
+        inet6 fe80::250:56ff:feb9:7e45  prefixlen 64  scopeid 0x20<link>
+        ether 00:50:56:b9:7e:45  txqueuelen 1000  (Ethernet)
+        RX packets 381413  bytes 55196793 (55.1 MB)
+        RX errors 5  dropped 46  overruns 0  frame 0
+        TX packets 375012  bytes 156893378 (156.8 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 19  base 0x2000  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 8795  bytes 630144 (630.1 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8795  bytes 630144 (630.1 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+╔══════════╣ Networks and neighbours
+Kernel IP routing table                                                                                             
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         _gateway        0.0.0.0         UG    0      0        0 ens33
+10.10.10.0      0.0.0.0         255.255.255.0   U     0      0        0 ens33
+Address                  HWtype  HWaddress           Flags Mask            Iface
+_gateway                 ether   00:50:56:b9:c8:08   C                     ens33
+
+╔══════════╣ Iptables rules
+iptables rules Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Active Ports
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-ports                                            
+tcp        0      0 0.0.0.0:6379            0.0.0.0:*               LISTEN      614/redis-server 0.                 
+tcp        0      0 0.0.0.0:10000           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 ::1:6379                :::*                    LISTEN      614/redis-server 0. 
+tcp6       0      0 :::80                   :::*                    LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+
+╔══════════╣ Can I sniff with tcpdump?
+No                                                                                                                  
+                                                                                                                    
+
+════════════════════════════════════╣ Users Information ╠════════════════════════════════════
+╔══════════╣ My user                                                                                                
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#users                                                 
+uid=107(redis) gid=114(redis) groups=114(redis)                                                                     
+
+╔══════════╣ Do I have PGP keys?
+/usr/bin/gpg                                                                                                        
+netpgpkeys Not Found
+netpgp Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Clipboard or highlighted text?
+xsel and xclip Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Checking 'sudo -l', /etc/sudoers, and /etc/sudoers.d
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+                                                                                                                    
+╔══════════╣ Checking sudo tokens
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#reusing-sudo-tokens                                   
+/proc/sys/kernel/yama/ptrace_scope is not enabled (1)                                                               
+gdb wasn't found in PATH
+
+╔══════════╣ Checking doas.conf
+doas.conf Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Checking Pkexec policy
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/interesting-groups-linux-pe#pe-method-2               
+                                                                                                                    
+╔══════════╣ Superusers
+root:x:0:0:root:/root:/bin/bash                                                                                     
+
+╔══════════╣ Users with console
+Matt:x:1000:1000:,,,:/home/Matt:/bin/bash                                                                           
+redis:x:107:114::/var/lib/redis:/bin/bash
+root:x:0:0:root:/root:/bin/bash
+
+╔══════════╣ All users & groups
+uid=0(root) gid=0(root) groups=0(root)                                                                              
+uid=1000(Matt) gid=1000(Matt) groups=1000(Matt)
+uid=100(systemd-network) gid=102(systemd-network) groups=102(systemd-network)
+uid=101(systemd-resolve) gid=103(systemd-resolve) groups=103(systemd-resolve)
+uid=102(syslog) gid=106(syslog) groups=106(syslog),4(adm)
+uid=103(messagebus) gid=107(messagebus) groups=107(messagebus)
+uid=104(_apt) gid=65534(nogroup) groups=65534(nogroup)
+uid=105(uuidd) gid=109(uuidd) groups=109(uuidd)
+uid=106(sshd) gid=65534(nogroup) groups=65534(nogroup)
+uid=107(redis) gid=114(redis) groups=114(redis)
+uid=10(uucp) gid=10(uucp) groups=10(uucp)
+uid=13(proxy) gid=13(proxy) groups=13(proxy)
+uid=1(daemon[0m) gid=1(daemon[0m) groups=1(daemon[0m)
+uid=2(bin) gid=2(bin) groups=2(bin)
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+uid=34(backup) gid=34(backup) groups=34(backup)
+uid=38(list) gid=38(list) groups=38(list)
+uid=39(irc) gid=39(irc) groups=39(irc)
+uid=3(sys) gid=3(sys) groups=3(sys)
+uid=41(gnats) gid=41(gnats) groups=41(gnats)
+uid=4(sync) gid=65534(nogroup) groups=65534(nogroup)
+uid=5(games) gid=60(games) groups=60(games)
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+uid=6(man) gid=12(man) groups=12(man)
+uid=7(lp) gid=7(lp) groups=7(lp)
+uid=8(mail) gid=8(mail) groups=8(mail)
+uid=9(news) gid=9(news) groups=9(news)
+
+╔══════════╣ Login now
+ 07:16:42 up 53 min,  1 user,  load average: 0.48, 0.12, 0.04                                                       
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+redis    pts/0    10.10.14.24      07:15   26.00s  0.23s  0.00s w
+
+╔══════════╣ Last logons
+redis    pts/0        Sat Sep  4 07:15:18 2021   still logged in                       10.10.14.24                  
+
+wtmp begins Sat Sep  4 07:15:18 2021
+
+╔══════════╣ Last time logon each user
+Username         Port     From             Latest                                                                   
+root             tty1                      Tue Sep 29 18:01:51 +0100 2020
+Matt             pts/4    192.168.1.4      Mon Aug 26 00:04:37 +0100 2019
+redis            pts/0    10.10.14.24      Sat Sep  4 07:15:18 +0100 2021
+
+╔══════════╣ Password policy
+PASS_MAX_DAYS   99999                                                                                               
+PASS_MIN_DAYS   0
+PASS_WARN_AGE   7
+ENCRYPT_METHOD SHA512
+
+╔══════════╣ Do not forget to test 'su' as any other user with shell: without password and with their names as password (I can't do it...)                                                                                              
+                                                                                                                    
+╔══════════╣ Do not forget to execute 'sudo -l' without password or with valid password (if you know it)!!
+                                                                                                                    
+
+
+════════════════════════════════════╣ Software Information ╠════════════════════════════════════
+╔══════════╣ MySQL version                                                                                          
+mysql Not Found                                                                                                     
+                                                                                                                    
+═╣ MySQL connection using default root/root ........... No
+═╣ MySQL connection using root/toor ................... No                                                          
+═╣ MySQL connection using root/NOPASS ................. No                                                          
+╔══════════╣ Searching mysql credentials and exec                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing MariaDB Files (limit 70)
+mariadb.cnf Not Found                                                                                               
+                                                                                                                    
+debian.cnf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing PostgreSQL Files (limit 70)
+Version: psql Not Found                                                                                             
+                                                                                                                    
+pgadmin*.db Not Found
+                                                                                                                    
+pg_hba.conf Not Found
+                                                                                                                    
+postgresql.conf Not Found
+                                                                                                                    
+pgsql.conf Not Found
+                                                                                                                    
+═╣ PostgreSQL connection to template0 using postgres/NOPASS ........ No
+═╣ PostgreSQL connection to template1 using postgres/NOPASS ........ No                                             
+═╣ PostgreSQL connection to template0 using pgsql/NOPASS ........... No                                             
+═╣ PostgreSQL connection to template1 using pgsql/NOPASS ........... No                                             
+                                                                                                                    
+╔══════════╣ Analyzing Mongo Files (limit 70)
+Version: mongo Not Found                                                                                            
+mongod Not Found                                                                                                    
+                                                                                                                    
+mongod*.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Apache Files (limit 70)
+Version: Server version: Apache/2.4.29 (Ubuntu)                                                                     
+Server built:   2019-07-16T18:14:45
+httpd Not Found
+                                                                                                                    
+══╣ PHP exec extensions
+/etc/apache2/mods-enabled/php7.2.conf-<FilesMatch ".+\.ph(ar|p|tml)$">                                              
+/etc/apache2/mods-enabled/php7.2.conf:    SetHandler application/x-httpd-php
+--
+/etc/apache2/mods-enabled/php7.2.conf-<FilesMatch ".+\.phps$">
+/etc/apache2/mods-enabled/php7.2.conf:    SetHandler application/x-httpd-php-source
+--
+/etc/apache2/mods-available/php7.2.conf-<FilesMatch ".+\.ph(ar|p|tml)$">
+/etc/apache2/mods-available/php7.2.conf:    SetHandler application/x-httpd-php
+--
+/etc/apache2/mods-available/php7.2.conf-<FilesMatch ".+\.phps$">
+/etc/apache2/mods-available/php7.2.conf:    SetHandler application/x-httpd-php-source
+drwxr-xr-x 2 root root 4096 Aug 25  2019 /etc/apache2/sites-enabled
+drwxr-xr-x 2 root root 4096 Aug 25  2019 /etc/apache2/sites-enabled
+lrwxrwxrwx 1 root root 35 Aug 25  2019 /etc/apache2/sites-enabled/000-default.conf -> ../sites-available/000-default.conf                                                                                                               
+
+
+-rw-r--r-- 1 root root 1332 Jul 16  2019 /etc/apache2/sites-available/000-default.conf
+<VirtualHost *:80>
+        # The ServerName directive sets the request scheme, hostname and port that
+        # the server uses to identify itself. This is used when creating
+        # redirection URLs. In the context of virtual hosts, the ServerName
+        # specifies what hostname must appear in the request's Host: header to
+        # match this virtual host. For the default virtual host (this file) this
+        # value is not decisive as it is used as a last resort host regardless.
+        # However, you must set it for any further virtual host explicitly.
+        #ServerName www.example.com
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+        # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+        # error, crit, alert, emerg.
+        # It is also possible to configure the loglevel for particular
+        # modules, e.g.
+        #LogLevel info ssl:warn
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+        # For most configuration files from conf-available/, which are
+        # enabled or disabled at a global level, it is possible to
+        # include a line for only one particular virtual host. For example the
+        # following line enables the CGI configuration for this host only
+        # after it has been globally disabled with "a2disconf".
+        #Include conf-available/serve-cgi-bin.conf
+</VirtualHost>
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+lrwxrwxrwx 1 root root 35 Aug 25  2019 /etc/apache2/sites-enabled/000-default.conf -> ../sites-available/000-default.conf                                                                                                               
+<VirtualHost *:80>
+        # The ServerName directive sets the request scheme, hostname and port that
+        # the server uses to identify itself. This is used when creating
+        # redirection URLs. In the context of virtual hosts, the ServerName
+        # specifies what hostname must appear in the request's Host: header to
+        # match this virtual host. For the default virtual host (this file) this
+        # value is not decisive as it is used as a last resort host regardless.
+        # However, you must set it for any further virtual host explicitly.
+        #ServerName www.example.com
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+        # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+        # error, crit, alert, emerg.
+        # It is also possible to configure the loglevel for particular
+        # modules, e.g.
+        #LogLevel info ssl:warn
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+        # For most configuration files from conf-available/, which are
+        # enabled or disabled at a global level, it is possible to
+        # include a line for only one particular virtual host. For example the
+        # following line enables the CGI configuration for this host only
+        # after it has been globally disabled with "a2disconf".
+        #Include conf-available/serve-cgi-bin.conf
+</VirtualHost>
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+
+╔══════════╣ Analyzing Tomcat Files (limit 70)
+tomcat-users.xml Not Found                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing FastCGI Files (limit 70)
+fastcgi_params Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing Http conf Files (limit 70)
+httpd.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Htpasswd Files (limit 70)
+.htpasswd Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing PHP Sessions Files (limit 70)
+/var/lib/php/sessions Not Found                                                                                     
+sess_* Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Wordpress Files (limit 70)
+wp-config.php Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Analyzing Drupal Files (limit 70)
+settings.php Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Moodle Files (limit 70)
+config.php Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Supervisord Files (limit 70)
+supervisord.conf Not Found                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing Cesi Files (limit 70)
+cesi.conf Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing Rsync Files (limit 70)
+-rw-r--r-- 1 root root 1044 Dec 13  2017 /usr/share/doc/rsync/examples/rsyncd.conf                                  
+[ftp]
+        comment = public archive
+        path = /var/www/pub
+        use chroot = yes
+        lock file = /var/lock/rsyncd
+        read only = yes
+        list = yes
+        uid = nobody
+        gid = nogroup
+        strict modes = yes
+        ignore errors = no
+        ignore nonreadable = yes
+        transfer logging = no
+        timeout = 600
+        refuse options = checksum dry-run
+        dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz
+
+rsyncd.secrets Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Hostapd Files (limit 70)
+hostapd.conf Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Searching wifi conns file
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing Anaconda ks Files (limit 70)
+anaconda-ks.cfg Not Found                                                                                           
+                                                                                                                    
+╔══════════╣ Analyzing VNC Files (limit 70)
+.vnc Not Found                                                                                                      
+                                                                                                                    
+*vnc*.c*nf* Not Found
+                                                                                                                    
+*vnc*.ini Not Found
+                                                                                                                    
+*vnc*.txt Not Found
+                                                                                                                    
+*vnc*.xml Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Ldap Files (limit 70)
+The password hash is from the {SSHA} to 'structural'                                                                
+drwxr-xr-x 2 root root 4096 Aug 25  2019 /etc/ldap
+
+
+╔══════════╣ Analyzing OpenVPN Files (limit 70)
+*.ovpn Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Searching ssl/ssh files
+╔══════════╣ Analyzing SSH Files (limit 70)                                                                         
+id_dsa* Not Found                                                                                                   
+                                                                                                                    
+-rwxr-xr-x 1 Matt Matt 1743 Aug 26  2019 /opt/id_rsa.bak
+-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: DES-EDE3-CBC,73E9CEFBCCF5287C
+JehA51I17rsCOOVqyWx+C8363IOBYXQ11Ddw/pr3L2A2NDtB7tvsXNyqKDghfQnX
+cwGJJUD9kKJniJkJzrvF1WepvMNkj9ZItXQzYN8wbjlrku1bJq5xnJX9EUb5I7k2
+7GsTwsMvKzXkkfEZQaXK/T50s3I4Cdcfbr1dXIyabXLLpZOiZEKvr4+KySjp4ou6
+cdnCWhzkA/TwJpXG1WeOmMvtCZW1HCButYsNP6BDf78bQGmmlirqRmXfLB92JhT9
+1u8JzHCJ1zZMG5vaUtvon0qgPx7xeIUO6LAFTozrN9MGWEqBEJ5zMVrrt3TGVkcv
+EyvlWwks7R/gjxHyUwT+a5LCGGSjVD85LxYutgWxOUKbtWGBbU8yi7YsXlKCwwHP
+UH7OfQz03VWy+K0aa8Qs+Eyw6X3wbWnue03ng/sLJnJ729zb3kuym8r+hU+9v6VY
+Sj+QnjVTYjDfnT22jJBUHTV2yrKeAz6CXdFT+xIhxEAiv0m1ZkkyQkWpUiCzyuYK
+t+MStwWtSt0VJ4U1Na2G3xGPjmrkmjwXvudKC0YN/OBoPPOTaBVD9i6fsoZ6pwnS
+5Mi8BzrBhdO0wHaDcTYPc3B00CwqAV5MXmkAk2zKL0W2tdVYksKwxKCwGmWlpdke
+P2JGlp9LWEerMfolbjTSOU5mDePfMQ3fwCO6MPBiqzrrFcPNJr7/McQECb5sf+O6
+jKE3Jfn0UVE2QVdVK3oEL6DyaBf/W2d/3T7q10Ud7K+4Kd36gxMBf33Ea6+qx3Ge
+SbJIhksw5TKhd505AiUH2Tn89qNGecVJEbjKeJ/vFZC5YIsQ+9sl89TmJHL74Y3i
+l3YXDEsQjhZHxX5X/RU02D+AF07p3BSRjhD30cjj0uuWkKowpoo0Y0eblgmd7o2X
+0VIWrskPK4I7IH5gbkrxVGb/9g/W2ua1C3Nncv3MNcf0nlI117BS/QwNtuTozG8p
+S9k3li+rYr6f3ma/ULsUnKiZls8SpU+RsaosLGKZ6p2oIe8oRSmlOCsY0ICq7eRR
+hkuzUuH9z/mBo2tQWh8qvToCSEjg8yNO9z8+LdoN1wQWMPaVwRBjIyxCPHFTJ3u+
+Zxy0tIPwjCZvxUfYn/K4FVHavvA+b9lopnUCEAERpwIv8+tYofwGVpLVC0DrN58V
+XTfB2X9sL1oB3hO4mJF0Z3yJ2KZEdYwHGuqNTFagN0gBcyNI2wsxZNzIK26vPrOD
+b6Bc9UdiWCZqMKUx4aMTLhG5ROjgQGytWf/q7MGrO3cF25k1PEWNyZMqY4WYsZXi
+WhQFHkFOINwVEOtHakZ/ToYaUQNtRT6pZyHgvjT0mTo0t3jUERsppj1pwbggCGmh
+KTkmhK+MTaoy89Cg0Xw2J18Dm0o78p6UNrkSue1CsWjEfEIF3NAMEU2o+Ngq92Hm
+npAFRetvwQ7xukk0rbb6mvF8gSqLQg7WpbZFytgS05TpPZPM0h8tRE8YRdJheWrQ
+VcNyZH8OHYqES4g2UF62KpttqSwLiiF4utHq+/h5CQwsF+JRg88bnxh2z2BD6i5W
+X+hK5HPpp6QnjZ8A5ERuUEGaZBEUvGJtPGHjZyLpkytMhTjaOrRNYw==
+-----END RSA PRIVATE KEY-----
+
+known_hosts Not Found
+                                                                                                                    
+authorized_hosts Not Found
+                                                                                                                    
+-rw-rw---- 1 redis redis 705 Sep  4 07:14 /var/lib/redis/.ssh/authorized_keys
+
+Port 22
+PermitRootLogin yes
+PubkeyAuthentication yes
+PasswordAuthentication yes
+ChallengeResponseAuthentication no
+UsePAM yes
+══╣ Some home ssh config file was found
+/usr/share/openssh/sshd_config                                                                                      
+ChallengeResponseAuthentication no
+UsePAM yes
+X11Forwarding yes
+PrintMotd no
+AcceptEnv LANG LC_*
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+
+══╣ /etc/hosts.allow file found, trying to read the rules:
+/etc/hosts.allow                                                                                                    
+
+
+Searching inside /etc/ssh/ssh_config for interesting info
+Host *
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+
+╔══════════╣ Searching unexpected auth lines in /etc/pam.d/sshd
+No                                                                                                                  
+                                                                                                                    
+╔══════════╣ NFS exports?
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe                
+/etc/exports Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Searching kerberos conf files and tickets
+╚ https://book.hacktricks.xyz/pentesting/pentesting-kerberos-88#pass-the-ticket-ptt                                 
+tickets kerberos Not Found                                                                                          
+klist Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Knockd Files (limit 70)
+*knockd* Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Kibana Files (limit 70)
+kibana.y*ml Not Found                                                                                               
+                                                                                                                    
+╔══════════╣ Analyzing Elasticsearch Files (limit 70)
+The version is                                                                                                      
+elasticsearch.y*ml Not Found
+                                                                                                                    
+╔══════════╣ Searching logstash files
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Searching Vault-ssh files
+vault-ssh-helper.hcl Not Found                                                                                      
+                                                                                                                    
+╔══════════╣ Searching AD cached hashes
+cached hashes Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Searching screen sessions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                   
+screen Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Searching tmux sessions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                   
+tmux Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing CouchDB Files (limit 70)
+couchdb Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Redis Files (limit 70)
+-rw-r----- 1 redis redis 58859 Oct 29  2019 /etc/redis/redis.conf                                                   
+bind 0.0.0.0 ::1
+protected-mode no
+port 6379
+tcp-backlog 511
+timeout 0
+tcp-keepalive 300
+daemonize yes
+supervised no
+pidfile /var/run/redis/redis-server.pid
+loglevel notice
+logfile /var/log/redis/redis-server.log
+databases 16
+always-show-logo yes
+save 900 1
+save 300 10
+save 60 10000
+stop-writes-on-bgsave-error yes
+rdbcompression yes
+rdbchecksum yes
+dbfilename dump.rdb
+dir /var/lib/redis
+slave-serve-stale-data yes
+slave-read-only yes
+rename-command MODULE ""
+repl-diskless-sync no
+repl-diskless-sync-delay 5
+repl-disable-tcp-nodelay no
+slave-priority 100
+lazyfree-lazy-eviction no
+lazyfree-lazy-expire no
+lazyfree-lazy-server-del no
+slave-lazy-flush no
+appendonly no
+appendfilename "appendonly.aof"
+appendfsync everysec
+no-appendfsync-on-rewrite no
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+aof-load-truncated yes
+aof-use-rdb-preamble no
+lua-time-limit 5000
+slowlog-log-slower-than 10000
+slowlog-max-len 128
+latency-monitor-threshold 0
+notify-keyspace-events ""
+hash-max-ziplist-entries 512
+hash-max-ziplist-value 64
+list-max-ziplist-size -2
+list-compress-depth 0
+set-max-intset-entries 512
+zset-max-ziplist-entries 128
+zset-max-ziplist-value 64
+hll-sparse-max-bytes 3000
+activerehashing yes
+client-output-buffer-limit normal 0 0 0
+client-output-buffer-limit slave 256mb 64mb 60
+client-output-buffer-limit pubsub 32mb 8mb 60
+hz 10
+aof-rewrite-incremental-fsync yes
+
+╔══════════╣ Searching dovecot files
+dovecot credentials Not Found                                                                                       
+                                                                                                                    
+╔══════════╣ Analyzing Mosquitto Files (limit 70)
+mosquitto.conf Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing Neo4j Files (limit 70)
+neo4j Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Cloud Credentials Files (limit 70)
+credentials Not Found                                                                                               
+                                                                                                                    
+credentials.db Not Found
+                                                                                                                    
+legacy_credentials.db Not Found
+                                                                                                                    
+access_tokens.db Not Found
+                                                                                                                    
+access_tokens.json Not Found
+                                                                                                                    
+accessTokens.json Not Found
+                                                                                                                    
+azureProfile.json Not Found
+                                                                                                                    
+TokenCache.dat Not Found
+                                                                                                                    
+AzureRMContext.json Not Found
+                                                                                                                    
+.bluemix Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Cloud Init Files (limit 70)
+cloud.cfg Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing CloudFlare Files (limit 70)
+.cloudflared Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Erlang Files (limit 70)
+.erlang.cookie Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing GMV Auth Files (limit 70)
+gvm-tools.conf Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing IPSec Files (limit 70)
+ipsec.secrets Not Found                                                                                             
+                                                                                                                    
+ipsec.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing IRSSI Files (limit 70)
+.irssi Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Keyring Files (limit 70)
+drwxr-xr-x 2 root root 4096 Aug 24  2019 /usr/share/keyrings                                                        
+
+*.keyring Not Found
+                                                                                                                    
+*.keystore Not Found
+                                                                                                                    
+*.jks Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Filezilla Files (limit 70)
+filezilla Not Found                                                                                                 
+                                                                                                                    
+filezilla.xml Not Found
+                                                                                                                    
+recentservers.xml Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Backup Manager Files (limit 70)
+storage.php Not Found                                                                                               
+                                                                                                                    
+database.php Not Found
+                                                                                                                    
+╔══════════╣ Searching uncommon passwd files (splunk)
+passwd file: /etc/pam.d/passwd                                                                                      
+passwd file: /etc/passwd
+passwd file: /usr/share/bash-completion/completions/passwd
+passwd file: /usr/share/lintian/overrides/passwd
+
+╔══════════╣ Analyzing kcpassword files
+╚ https://book.hacktricks.xyz/macos/macos-security-and-privilege-escalation#kcpassword                              
+n                                                                                                                   
+
+╔══════════╣ Searching GitLab related files
+                                                                                                                    
+
+╔══════════╣ Analyzing Github Files (limit 70)
+.github Not Found                                                                                                   
+                                                                                                                    
+.gitconfig Not Found
+                                                                                                                    
+.git-credentials Not Found
+                                                                                                                    
+.git Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Svn Files (limit 70)
+.svn Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing PGP-GPG Files (limit 70)
+/usr/bin/gpg                                                                                                        
+netpgpkeys Not Found
+netpgp Not Found                                                                                                    
+-rw-r--r-- 1 root root 3074 May  5  2019 /usr/share/webmin/authentic-theme/THEME.pgp                                
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+mQINBFjrwlsBEACkQA1lrTQH2ugCeQdWgDshzTyDs3iqRXxDdAj7H49PXf7GlSME
+ojXnY8N9nD1txdpehEN6s48yzy7E29plQOwX0RSnSPJkLQNJ0GGQuqcI4mUrxh1B
+pDa6+D9BXWQ8gNZX+pQZIcR1mkCdpWlgL9gEPCiJO142cycfpdKkOtFoqvSLwpZf
+ACTKsLtv7D3ko1cnqC+vRNFhBkibI3Sz8CuimlBq7lud5PPFIxKlKsd+A1CM+6Uu
+KatJxv2Na3UsPK8LYFM68G1r2ACHVI2RI4zOLUpP8s00q8M2yIjE4N/2jAUxtTR2
+QqV9bUdv39F5riJk5qbGb1l0HJnyg6t/y/JmcEEzbw17woeLPquDeIzzKAcyJWur
+JkyD0POkPXmsPO6G+M9Te4GMttR921/sOEQ97ws2kVoVUfu/dq4tA4uWlPzmogLF
+wAMeKZRhslMCJWMp0NtccD687ZIBLv/5SoXpDhyq9ee2u6Zy2914rtXltfg9becr
+y6rX8V9sc4tZzja+KChXXE9qno4r2D3WijwVstiHqUNQmTtXM8lodqaXnPPqu1Ld
+aPKGTDDD/DOiwPQshdRLjABUCskeQmzZJmRarp5C3gtdm9sp7FdeiLJhFaDeJ0I1
+hYJKZ3NI5LDw7mCava5Kwy+mM9QVGCjgjFZWrjW9dHIUIEXNU2q7+1hgZQARAQAB
+tCRJbGlhIFJvc3RvdnRzZXYgPGlsaWFAcm9zdG92dHNldi5pbz6JAjgEEwECACIF
+AlvpMzECGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEBIeFm3ZyCGrUKIP
+/2zzwhkrqmIYkAvBkTMoCaZ2fLrZTwyrglWrcAJiLXl2K3vnnfTM6h45u3RP9nqA
+FPO3J0aNYveJYiFHsJuVlO2dZSi4KtbLwR5BPreIYV92HbMTQQpHaifMc3vjJnI6
+RQcoOaYo6+sUn09nCPkT9dFpvq6fy+7kYHv0JMYuYT7TQlJUvlamocWkSrbtkBZV
+irG0IyFJUvi6HyEUaKRwVBkBptCU0jZU0LPkc+yYcW1Kpqiyp0oP63E7qZyPmN2N
+5L7ZQA5lqqv9B6VyKLTvy40nw2SAG327DPemKijt/HL6Je5j56Gotty9qIFooIY/
+NeW+9WYzyeI16+oCB8FV0+QZEkeWDVzQejC4vKukICZgyQlGOzdRXomKSE6Rn6ck
+L2VdmbxDXp/mC/txitRXybefABt0FzRrQoRHOh7mMq6gtmIBZHKPCPn+fR7dVZW9
+l/qbGAumUpaYpkZkZ9yQNFlJ8I4/Sz2dudaH8cD2eaSrC5JI2rUEo9f3rrWqRZc7
+vQ6o7mY3uIRg10Ad52CWjxhkVWcnkTgCSZICSfyflqzKVm8gI99457iEVytG0sub
+LJJItYolO86HpQo7IMTqPez3EZDv3g+pXAHdtjHuLtOcwjjLulObZvho+L5HJ4o1
+kLEO3GSvDw8ZjpBUhataQGBZtPrddBQYk3QFVrVBg/tfuQINBFjrwlsBEACfe+3V
+72r+4JB2kg/CQGbhb1Spc9ifPiHerkkxk5OS1aa0F7iBTVEwy7xZb6DSvVh0C4Me
+A9hPXt9ZhgMAfuWLh4qMeTP6JNMIDCo5Aan07XNbTHHCpr9z7pFpydCLmH7tqkWL
+OOTla08anQpoHGzfkQDFM9h8/i5rg8oyz3kjA0JwZgdbDATt0qPrWZTNzIrL/Eaf
+cSoeH1siT/hVnXw7ldqyzgjGxDp2EclpA1dUhU6cmFNgoZtiZWCl3uyNDIkn4a/6
+NN0QS9qjXtRJ6sIvBRGpyZgHu0J+ODwxqDTEPQMJa0l0bk9vLIjnTRgQ3a/Z3HjF
+Hj8IkQMefT4QvmqoZCltoGPJY6t3JDeXQMX0qSu3omJhtGopKVxdUs0wYEjPQIU+
+7G0bQPxpoyu02B0pPLprnQLATZJf1rq5kfEnK9b0VB7YuT4snrenU+oyE5jf/SX4
+FKidS3AZVhI2xIsS5unVIE87MI4lp0ZjApvhc5FMCQU5Wm3UKplfyRkLQm6NOuMf
+l3A/uJI2T49b7sL8Zkpum/LFApiVMsElPh3gqIcFf/xgpg9rAvCsKRoV18vWWxZA
+bqhUJO83L4O/je+KLehIXlRbnza2pQSYxrx1VYr21fPUP58FPyr/7IuVVlevh2aZ
+oTgx2GFvzSff0MbGrQ+mKNUrJqoXdtSu8dp5GQARAQABiQIfBBgBAgAJBQJY68Jb
+AhsMAAoJEBIeFm3ZyCGr+MUP/3b/B1vWbbpKhDbWwDeNHINHrzzO71x+sKagaitT
+nAcYkLxxULLGn3xvtdZWPr4jF0LZd7KYyF1l6yoecqdDE8NneNZ1Aqq8ukLYKkOq
+brngH0nKOdgXayAvqyuLc8VbsPFixjlAjq4GNit4zneI8+dy47D5mZ7Avx4I0MVl
+QhNo6SqIegskZvG4LaNpGKFV3QoXXkTCJfdM/osTmwo1KM8EtTUlDLf59EZvBJxz
+oXnKESDIYm9a2NT/DUtaU14KVTzr9lYTQxR56NP76xN+FKuVsBLbdNp4PQ5K2KMe
+aai9RLtwWUKhpuXeT6sT7gIe9MRLCzLR5UyTnChrW40TddBzQ6OmezEKBgqsG3Ke
+vn3woXOamjJxKSZlLgUElyY+BijABBx5Wxd8lA1yIaNbkKYBvf7olQ0At2xY05s9
+16XgCpOweYkkjZEmOfbyioYgUj9nn+fz9HpxT3Ag1HMKaY571gmT71V3q78Y4LJ+
+I1r7dq45MKoTqO2+nuPAjjxOp3dprBChkyXpukx2udXG3aPncYI3Npcn3Oi7PKsJ
+MMWuifl4006F5imms19cH+UBFx/fSa00ENR1spL5NFvf4E0uY9VgfvGKv7aF1DTg
+1MrwjaM0aVu0S76NCI4v5cw/cU72Y0471nOU52bCeOTQF8/KP7zRl3im7qa/DFNA
+f4W8
+=PaGr
+-----END PGP PUBLIC KEY BLOCK-----
+
+-rw-r--r-- 1 root root 2796 Sep 18  2018 /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-archive.gpg
+-rw-r--r-- 1 root root 2794 Sep 18  2018 /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cdimage.gpg
+-rw-r--r-- 1 root root 1733 Sep 18  2018 /etc/apt/trusted.gpg.d/ubuntu-keyring-2018-archive.gpg
+-rw-r--r-- 1 root root 3267 Jan 10  2019 /usr/share/gnupg/distsigkey.gpg
+-rw-r--r-- 1 root root 7399 Sep 18  2018 /usr/share/keyrings/ubuntu-archive-keyring.gpg
+-rw-r--r-- 1 root root 6713 Oct 27  2016 /usr/share/keyrings/ubuntu-archive-removed-keys.gpg
+-rw-r--r-- 1 root root 4097 Feb  6  2018 /usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
+-rw-r--r-- 1 root root 0 Jan 17  2018 /usr/share/keyrings/ubuntu-cloudimage-removed-keys.gpg
+-rw-r--r-- 1 root root 2253 Mar 21  2018 /usr/share/keyrings/ubuntu-esm-keyring.gpg
+-rw-r--r-- 1 root root 1139 Mar 21  2018 /usr/share/keyrings/ubuntu-fips-keyring.gpg
+-rw-r--r-- 1 root root 1139 Mar 21  2018 /usr/share/keyrings/ubuntu-fips-updates-keyring.gpg
+-rw-r--r-- 1 root root 1227 May 27  2010 /usr/share/keyrings/ubuntu-master-keyring.gpg
+-rw-r--r-- 1 root root 2867 Feb 22  2018 /usr/share/popularity-contest/debian-popcon.gpg
+
+drwx------ 3 Matt Matt 4096 Aug 25  2019 /home/Matt/.gnupg
+drwx------ 3 redis redis 4096 Sep  4 07:16 /var/lib/redis/.gnupg
+
+╔══════════╣ Analyzing Cache Vi Files (limit 70)
+*.swp Not Found                                                                                                     
+                                                                                                                    
+*.viminfo Not Found
+                                                                                                                    
+╔══════════╣ Checking if containerd(ctr) is available
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/containerd-ctr-privilege-escalation                   
+                                                                                                                    
+╔══════════╣ Checking if runc is available
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/runc-privilege-escalation                             
+                                                                                                                    
+╔══════════╣ Searching docker files (limit 70)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-docker-socket                                
+                                                                                                                    
+╔══════════╣ Analyzing Firefox Files (limit 70)
+.mozilla Not Found                                                                                                  
+                                                                                                                    
+Firefox Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Chrome Files (limit 70)
+google-chrome Not Found                                                                                             
+                                                                                                                    
+Chrome Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Autologin Files (limit 70)
+autologin Not Found                                                                                                 
+                                                                                                                    
+autologin.conf Not Found
+                                                                                                                    
+╔══════════╣ S/Key authentication
+                                                                                                                    
+╔══════════╣ YubiKey authentication
+                                                                                                                    
+╔══════════╣ Passwords inside pam.d
+                                                                                                                    
+╔══════════╣ Analyzing SNMP Files (limit 70)
+snmpd.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Pypirc Files (limit 70)
+.pypirc Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Postfix Files (limit 70)
+drwx--x--x 2 root bin 4096 Aug 25  2019 /etc/webmin/postfix                                                         
+find: ‘/etc/webmin/postfix’: Permission denied
+
+-rw-r--r-- 1 root root 675 Apr  2  2018 /usr/share/bash-completion/completions/postfix
+
+drwxr-xr-x 2 root root 4096 Aug 25  2019 /usr/share/webmin/authentic-theme/images/modules/postfix
+
+drwxr-xr-x 3 root root 4096 Aug 25  2019 /usr/share/webmin/blue-theme/postfix
+
+drwxr-xr-x 3 root root 4096 Aug 25  2019 /usr/share/webmin/gray-theme/postfix
+
+drwxr-xr-x 5 root root 12288 Aug 25  2019 /usr/share/webmin/postfix
+
+
+╔══════════╣ Analyzing Ldaprc Files (limit 70)
+.ldaprc Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Env Files (limit 70)
+.env Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing Msmtprc Files (limit 70)
+.msmtprc Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Keepass Files (limit 70)
+*.kdbx Not Found                                                                                                    
+                                                                                                                    
+KeePass.config* Not Found
+                                                                                                                    
+KeePass.ini Not Found
+                                                                                                                    
+KeePass.enforced* Not Found
+                                                                                                                    
+╔══════════╣ Analyzing FTP Files (limit 70)
+*.ftpconfig Not Found                                                                                               
+                                                                                                                    
+ffftp.ini Not Found
+                                                                                                                    
+-rw-r--r-- 1 root root 69 Aug 12  2019 /etc/php/7.2/mods-available/ftp.ini
+-rw-r--r-- 1 root root 69 Aug 12  2019 /usr/share/php7.2-common/common/ftp.ini
+
+ftp.config Not Found
+                                                                                                                    
+sites.ini Not Found
+                                                                                                                    
+wcx_ftp.ini Not Found
+                                                                                                                    
+winscp.ini Not Found
+                                                                                                                    
+ws_ftp.ini Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Racoon Files (limit 70)
+racoon.conf Not Found                                                                                               
+                                                                                                                    
+psk.txt Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Opera Files (limit 70)
+com.operasoftware.Opera Not Found                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Safari Files (limit 70)
+Safari Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Bind Files (limit 70)
+-rw-r--r-- 1 root root 856 Apr  2  2018 /usr/share/bash-completion/completions/bind                                 
+-rw-r--r-- 1 root root 856 Apr  2  2018 /usr/share/bash-completion/completions/bind
+
+
+
+╔══════════╣ Analyzing SeedDMS Files (limit 70)
+seeddms* Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Ddclient Files (limit 70)
+ddclient.conf Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Analyzing Sentry Files (limit 70)
+drwxr-xr-x 2 root root 4096 Aug 25  2019 /usr/share/webmin/authentic-theme/images/modules/sentry                    
+
+drwxr-xr-x 3 root root 4096 Aug 25  2019 /usr/share/webmin/blue-theme/sentry
+
+drwxr-xr-x 3 root root 4096 Aug 25  2019 /usr/share/webmin/gray-theme/sentry
+
+
+sentry.conf.py Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Strapi Files (limit 70)
+environments Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Cacti Files (limit 70)
+cacti Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Interesting logs Files (limit 70)
+access.log Not Found                                                                                                
+                                                                                                                    
+error.log Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Windows Files Files (limit 70)
+unattend.inf Not Found                                                                                              
+                                                                                                                    
+*.rdg Not Found
+                                                                                                                    
+AppEvent.Evt Not Found
+                                                                                                                    
+ConsoleHost_history.txt Not Found
+                                                                                                                    
+FreeSSHDservice.ini Not Found
+                                                                                                                    
+NetSetup.log Not Found
+                                                                                                                    
+Ntds.dit Not Found
+                                                                                                                    
+protecteduserkey.bin Not Found
+                                                                                                                    
+RDCMan.settings Not Found
+                                                                                                                    
+SAM Not Found
+                                                                                                                    
+SYSTEM Not Found
+                                                                                                                    
+SecEvent.Evt Not Found
+                                                                                                                    
+appcmd.exe Not Found
+                                                                                                                    
+bash.exe Not Found
+                                                                                                                    
+datasources.xml Not Found
+                                                                                                                    
+default.sav Not Found
+                                                                                                                    
+drives.xml Not Found
+                                                                                                                    
+groups.xml Not Found
+                                                                                                                    
+https-xampp.conf Not Found
+                                                                                                                    
+https.conf Not Found
+                                                                                                                    
+iis6.log Not Found
+                                                                                                                    
+index.dat Not Found
+                                                                                                                    
+my.cnf Not Found
+                                                                                                                    
+my.ini Not Found
+                                                                                                                    
+ntuser.dat Not Found
+                                                                                                                    
+pagefile.sys Not Found
+                                                                                                                    
+-rw-r--r-- 1 root root 71908 Aug 12  2019 /etc/php/7.2/apache2/php.ini
+-rw-r--r-- 1 root root 71520 Aug 12  2019 /etc/php/7.2/cli/php.ini
+
+printers.xml Not Found
+                                                                                                                    
+recentservers.xml Not Found
+                                                                                                                    
+scclient.exe Not Found
+                                                                                                                    
+scheduledtasks.xml Not Found
+                                                                                                                    
+security.sav Not Found
+                                                                                                                    
+server.xml Not Found
+                                                                                                                    
+setupinfo Not Found
+                                                                                                                    
+setupinfo.bak Not Found
+                                                                                                                    
+sitemanager.xml Not Found
+                                                                                                                    
+sites.ini Not Found
+                                                                                                                    
+drwx--x--x 2 root bin 4096 Aug 25  2019 /etc/webmin/software
+drwxr-xr-x 2 root root 4096 Aug 25  2019 /usr/share/webmin/authentic-theme/images/modules/software
+drwxr-xr-x 3 root root 4096 Aug 25  2019 /usr/share/webmin/blue-theme/software
+drwxr-xr-x 3 root root 4096 Aug 25  2019 /usr/share/webmin/gray-theme/software
+drwxr-xr-x 5 root root 12288 Aug 25  2019 /usr/share/webmin/software
+
+software.sav Not Found
+                                                                                                                    
+sysprep.inf Not Found
+                                                                                                                    
+sysprep.xml Not Found
+                                                                                                                    
+system.sav Not Found
+                                                                                                                    
+unattend.txt Not Found
+                                                                                                                    
+unattend.xml Not Found
+                                                                                                                    
+unattended.xml Not Found
+                                                                                                                    
+wcx_ftp.ini Not Found
+                                                                                                                    
+ws_ftp.ini Not Found
+                                                                                                                    
+web*.config Not Found
+                                                                                                                    
+winscp.ini Not Found
+                                                                                                                    
+wsl.exe Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Other Interesting Files Files (limit 70)
+-rw-r--r-- 1 root root 3771 Apr  4  2018 /etc/skel/.bashrc                                                          
+-rw-r--r-- 1 Matt Matt 3771 Aug 25  2019 /home/Matt/.bashrc
+
+.google_authenticator Not Found
+                                                                                                                    
+hosts.equiv Not Found
+                                                                                                                    
+.lesshst Not Found
+                                                                                                                    
+.plan Not Found
+                                                                                                                    
+-rw-r--r-- 1 root root 807 Apr  4  2018 /etc/skel/.profile
+-rw-r--r-- 1 Matt Matt 807 Aug 25  2019 /home/Matt/.profile
+
+.recently-used.xbel Not Found
+                                                                                                                    
+.rhosts Not Found
+                                                                                                                    
+.sudo_as_admin_successful Not Found
+                                                                                                                    
+
+════════════════════════════════════╣ Interesting Files ╠════════════════════════════════════
+╔══════════╣ SUID - Check easy privesc, exploits and write perms                                                    
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+-rwsr-xr-x 1 root root 427K Mar  4  2019 /usr/lib/openssh/ssh-keysign                                               
+-rwsr-xr-x 1 root root 10K Mar 28  2017 /usr/lib/eject/dmcrypt-get-device (Unknown SUID binary)
+----------------------------------------------------------------------------------------
+  --- Trying to execute /usr/lib/eject/dmcrypt-get-device with strace in order to look for hijackable libraries...
+access("/etc/suid-debug", F_OK)         = -1 ENOENT (No such file or directory)
+access("/etc/suid-debug", F_OK)         = -1 ENOENT (No such file or directory)
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libdevmapper.so.1.02.1", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libudev.so.1", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre.so.3", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/librt.so.1", O_RDONLY|O_CLOEXEC) = 3
+statfs("/sys/fs/selinux", 0x7ffd2d8f1d60) = -1 ENOENT (No such file or directory)
+statfs("/selinux", 0x7ffd2d8f1d60)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/selinux/config", F_OK)     = -1 ENOENT (No such file or directory)
+----------------------------------------------------------------------------------------
+
+-rwsr-xr-- 1 root messagebus 42K Jun 10  2019 /usr/lib/dbus-1.0/dbus-daemon-launch-helper (Unknown SUID binary)
+-rwsr-xr-x 1 root root 146K Jan 18  2018 /usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable
+-rwsr-xr-x 1 root root 59K Mar 22  2019 /usr/bin/passwd  --->  Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)                                                                                  
+-rwsr-xr-x 1 root root 75K Mar 22  2019 /usr/bin/gpasswd
+-rwsr-xr-x 1 root root 75K Mar 22  2019 /usr/bin/chfn  --->  SuSE_9.3/10
+-rwsr-xr-x 1 root root 19K Jun 28  2019 /usr/bin/traceroute6.iputils
+-rwsr-xr-x 1 root root 40K Mar 22  2019 /usr/bin/newgrp  --->  HP-UX_10.20
+-rwsr-xr-x 1 root root 44K Mar 22  2019 /usr/bin/chsh (Unknown SUID binary)
+----------------------------------------------------------------------------------------
+  --- Trying to execute /usr/bin/chsh with strace in order to look for hijackable libraries...
+access("/etc/suid-debug", F_OK)         = -1 ENOENT (No such file or directory)
+access("/etc/suid-debug", F_OK)         = -1 ENOENT (No such file or directory)
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpam.so.0", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpam_misc.so.0", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libaudit.so.1", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre.so.3", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libcap-ng.so.0", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3
+statfs("/sys/fs/selinux", 0x7fff9eb85e30) = -1 ENOENT (No such file or directory)
+statfs("/selinux", 0x7fff9eb85e30)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/selinux/config", F_OK)     = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/proc/self/loginuid", O_RDONLY) = 3
+connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libnss_compat.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libnss_nis.so.2", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libnsl.so.1", O_RDONLY|O_CLOEXEC) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libnss_files.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/shells", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/pam.d/chsh", O_RDONLY) = 3
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/security/pam_shells.so", O_RDONLY|O_CLOEXEC) = 4
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/security/pam_rootok.so", O_RDONLY|O_CLOEXEC) = 4
+openat(AT_FDCWD, "/etc/pam.d/common-auth", O_RDONLY) = 4
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/security/pam_unix.so", O_RDONLY|O_CLOEXEC) = 5
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 5
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libcrypt.so.1", O_RDONLY|O_CLOEXEC) = 5
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/security/pam_deny.so", O_RDONLY|O_CLOEXEC) = 5
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/security/pam_permit.so", O_RDONLY|O_CLOEXEC) = 5
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/security/pam_cap.so", O_RDONLY|O_CLOEXEC) = 5
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 5
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libcap.so.2", O_RDONLY|O_CLOEXEC) = 5
+openat(AT_FDCWD, "/etc/pam.d/common-account", O_RDONLY) = 4
+openat(AT_FDCWD, "/etc/pam.d/common-session", O_RDONLY) = 4
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/security/pam_umask.so", O_RDONLY|O_CLOEXEC) = 5
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/security/pam_systemd.so", O_RDONLY|O_CLOEXEC) = 5
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 5
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/librt.so.1", O_RDONLY|O_CLOEXEC) = 5
+openat(AT_FDCWD, "/etc/pam.d/other", O_RDONLY) = 3
+openat(AT_FDCWD, "/etc/pam.d/common-auth", O_RDONLY) = 4
+openat(AT_FDCWD, "/etc/pam.d/common-account", O_RDONLY) = 4
+openat(AT_FDCWD, "/etc/pam.d/common-password", O_RDONLY) = 4
+openat(AT_FDCWD, "/etc/pam.d/common-session", O_RDONLY) = 4
+openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/shells", O_RDONLY) = 3
+openat(AT_FDCWD, "/etc/login.defs", O_RDONLY) = 3
+openat(AT_FDCWD, "/usr/share/locale/locale.alias", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/usr/share/locale/en_US.UTF-8/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en_US.utf8/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en_US/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en.UTF-8/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en.utf8/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en_US.UTF-8/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)                                                                                                   
+openat(AT_FDCWD, "/usr/share/locale-langpack/en_US.utf8/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)                                                                                                    
+openat(AT_FDCWD, "/usr/share/locale-langpack/en_US/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en.UTF-8/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en.utf8/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en/LC_MESSAGES/Linux-PAM.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/shadow", O_RDONLY|O_CLOEXEC) = -1 EACCES (Permission denied)
+openat(AT_FDCWD, "/etc/localtime", O_RDONLY|O_CLOEXEC) = 3
+----------------------------------------------------------------------------------------
+
+-rwsr-xr-x 1 root root 27K Oct 15  2018 /bin/umount  --->  BSD/Linux(08-1996)
+-rwsr-xr-x 1 root root 44K Mar 22  2019 /bin/su
+-rwsr-xr-x 1 root root 63K Jun 28  2019 /bin/ping
+-rwsr-xr-x 1 root root 43K Oct 15  2018 /bin/mount  --->  Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8                                                                                                                 
+
+╔══════════╣ SGID
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+-rwxr-sr-x 1 root shadow 34K Feb 27  2019 /sbin/pam_extrausers_chkpwd                                               
+-rwxr-sr-x 1 root shadow 34K Feb 27  2019 /sbin/unix_chkpwd
+-rwxr-sr-x 1 root shadow 23K Mar 22  2019 /usr/bin/expiry
+-rwxr-sr-x 1 root crontab 39K Nov 16  2017 /usr/bin/crontab
+-rwxr-sr-x 1 root ssh 355K Mar  4  2019 /usr/bin/ssh-agent
+-rwxr-sr-x 1 root mlocate 43K Mar  1  2018 /usr/bin/mlocate
+-rwxr-sr-x 1 root tty 14K Jan 17  2018 /usr/bin/bsd-write
+-rwxr-sr-x 1 root tty 31K Oct 15  2018 /usr/bin/wall
+-rwxr-sr-x 1 root shadow 71K Mar 22  2019 /usr/bin/chage
+
+╔══════════╣ Checking misconfigurations of ld.so
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#ld-so                                                 
+/etc/ld.so.conf                                                                                                     
+include /etc/ld.so.conf.d/*.conf
+
+"/etc/ld.so.conf.d
+  "/etc/ld.so.conf.d/*
+cat: '"/etc/ld.so.conf.d/*': No such file or directory
+
+╔══════════╣ Capabilities
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                          
+Current capabilities:                                                                                               
+Current: =
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: 0000003fffffffff
+CapAmb: 0000000000000000
+
+Shell capabilities:
+0x0000000000000000=
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: 0000003fffffffff
+CapAmb: 0000000000000000
+
+Files with capabilities (limited to 50):
+/usr/bin/mtr-packet = cap_net_raw+ep
+
+╔══════════╣ Users with capabilities
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                          
+                                                                                                                    
+╔══════════╣ Files with ACLs (limited to 50)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#acls                                                  
+files with acls in searched folders Not Found                                                                       
+                                                                                                                    
+╔══════════╣ .sh files in path
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#script-binaries-in-path                               
+/usr/bin/gettext.sh                                                                                                 
+
+╔══════════╣ Unexpected in root
+/vmlinuz                                                                                                            
+/.viminfo
+/swapfile
+/vmlinuz.old
+/initrd.img.old
+/webmin-setup.out
+/initrd.img
+
+╔══════════╣ Files (scripts) in /etc/profile.d/
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#profiles-files                                        
+total 20                                                                                                            
+drwxr-xr-x  2 root root 4096 Aug 24  2019 .
+drwxr-xr-x 82 root root 4096 Sep 29  2020 ..
+-rw-r--r--  1 root root   96 Aug 20  2018 01-locale-fix.sh
+-rw-r--r--  1 root root  664 Apr  2  2018 bash_completion.sh
+-rw-r--r--  1 root root 1003 Dec 29  2015 cedilla-portuguese.sh
+
+╔══════════╣ Permissions in init, init.d, systemd, and rc.d
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#init-init-d-systemd-and-rc-d                          
+                                                                                                                    
+═╣ Hashes inside passwd file? ........... No
+═╣ Writable passwd file? ................ No                                                                        
+═╣ Credentials in fstab/mtab? ........... No                                                                        
+═╣ Can I read shadow files? ............. No                                                                        
+═╣ Can I read shadow plists? ............ No                                                                        
+═╣ Can I write shadow plists? ........... No                                                                        
+═╣ Can I read opasswd file? ............. No                                                                        
+═╣ Can I write in network-scripts? ...... No                                                                        
+═╣ Can I read root folder? .............. No                                                                        
+                                                                                                                    
+╔══════════╣ Searching root files in home dirs (limit 30)
+/home/                                                                                                              
+/root/
+/var/lib/redis/6379
+/var/lib/redis/6379/dump.rdb
+
+╔══════════╣ Searching folders owned by me containing others files on it (limit 100)
+/sys/fs/cgroup/systemd/user.slice/user-107.slice/user@107.service                                                   
+/sys/fs/cgroup/unified/user.slice/user-107.slice/user@107.service
+/var/lib/redis
+
+╔══════════╣ Readable files belonging to root and readable by me but not world readable
+                                                                                                                    
+╔══════════╣ Modified interesting files in the last 5mins (limit 100)
+/var/log/wtmp                                                                                                       
+/var/log/syslog
+/var/log/journal/2cb57e052840450f9a54b149b131d24d/system.journal
+/var/log/redis/redis-server.log
+/var/log/lastlog
+/var/log/auth.log
+/var/log/kern.log
+
+╔══════════╣ Writable log files (logrotten) (limit 100)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#logrotate-exploitation                                
+Writable: /var/log/redis/redis-server.log.1.gz                                                                      
+Writable: /var/log/redis/redis-server.log                                                                           
+Writable folder: /var/log/redis_6379.log                                                                            
+
+╔══════════╣ Files inside /var/lib/redis (limit 20)
+total 1124                                                                                                          
+drwxr-x---  7 redis redis   4096 Sep  4 07:16 .
+drwxr-xr-x 38 root  root    4096 Sep 29  2020 ..
+drwxr-xr-x  2 root  root    4096 Oct 25  2019 6379
+-rw-------  1 redis redis    399 Oct 25  2019 .bash_history
+drwx------  2 redis redis   4096 Aug 25  2019 .cache
+-rw-r-----  1 redis redis  46760 Aug 26  2019 dkixshbr.so
+-rw-rw----  1 redis redis     92 Sep 30  2020 dump.rdb
+drwx------  3 redis redis   4096 Sep  4 07:16 .gnupg
+-rw-r-----  1 redis redis  46760 Aug 25  2019 ibortfgq.so
+-rw-rw-r--  1 redis redis 470149 Sep  4 07:14 linpeas.sh
+drwxrwxr-x  3 redis redis   4096 Aug 26  2019 .local
+-rw-r-----  1 redis redis 440656 Aug 25  2019 module.o
+-rw-r-----  1 redis redis  46760 Aug 25  2019 qcbxxlig.so
+-rw-rw----  1 redis redis    123 Sep  4 07:12 redis.php
+drwxr-xr-x  2 redis root    4096 Sep  4 07:14 .ssh
+-rw-r-----  1 redis redis  46760 Aug 25  2019 vlpaulhk.so
+
+╔══════════╣ Files inside others home (limit 20)
+/home/Matt/.bashrc                                                                                                  
+/home/Matt/.bash_history
+/home/Matt/user.txt
+/home/Matt/.selected_editor
+/home/Matt/.profile
+/home/Matt/.wget-hsts
+/home/Matt/.bash_logout
+
+╔══════════╣ Searching installed mail applications
+                                                                                                                    
+╔══════════╣ Mails (limit 50)
+                                                                                                                    
+╔══════════╣ Backup folders
+                                                                                                                    
+╔══════════╣ Backup files (limited 100)
+-rwxr-xr-x 1 Matt Matt 1743 Aug 26  2019 /opt/id_rsa.bak                                                            
+-rw-r--r-- 1 root root 7846 Aug  6  2019 /lib/modules/4.15.0-58-generic/kernel/drivers/power/supply/wm831x_backup.ko
+-rw-r--r-- 1 root root 7894 Aug  6  2019 /lib/modules/4.15.0-58-generic/kernel/drivers/net/team/team_mode_activebackup.ko                                                                                                               
+-rw-r--r-- 1 root root 2543 Apr 13  2018 /usr/share/help-langpack/en_GB/evolution/backup-restore.page
+-rw-r--r-- 1 root root 974 Mar 16  2018 /usr/share/help-langpack/en_GB/org.gnome.DejaDup/backup-auto.page
+-rw-r--r-- 1 root root 755 Mar 16  2018 /usr/share/help-langpack/en_GB/org.gnome.DejaDup/backup-first.page
+-rw-r--r-- 1 root root 974 Mar 16  2018 /usr/share/help-langpack/en_AU/org.gnome.DejaDup/backup-auto.page
+-rw-r--r-- 1 root root 755 Mar 16  2018 /usr/share/help-langpack/en_AU/org.gnome.DejaDup/backup-first.page
+-rw-r--r-- 1 root root 7867 Nov  7  2016 /usr/share/doc/telnet/README.telnet.old.gz
+-rw-r--r-- 1 root root 361345 Feb  2  2018 /usr/share/doc/manpages/Changes.old.gz
+-rwxr--r-- 1 root root 599 May  5  2019 /usr/share/webmin/lvm/backup_config.pl
+-rwxr-xr-x 1 root root 1103 May  5  2019 /usr/share/webmin/init/backup_config.pl
+-rwxr-xr-x 1 root root 749 May  5  2019 /usr/share/webmin/useradmin/backup_config.pl
+-rwxr-xr-x 1 root root 754 May  5  2019 /usr/share/webmin/inetd/backup_config.pl
+-rwxr-xr-x 1 root root 643 May  5  2019 /usr/share/webmin/syslog/backup_config.pl
+-rwxr-xr-x 1 root root 807 May  5  2019 /usr/share/webmin/at/backup_config.pl
+-rwxr-xr-x 1 root root 721 May  5  2019 /usr/share/webmin/raid/backup_config.pl
+-rwxr-xr-x 1 root root 564 May  5  2019 /usr/share/webmin/krb5/backup_config.pl
+-rwxr-xr-x 1 root root 752 May  5  2019 /usr/share/webmin/samba/backup_config.pl
+-rwxr-xr-x 1 root root 722 May  5  2019 /usr/share/webmin/time/backup_config.pl
+-rwxr-xr-x 1 root root 2649 May  5  2019 /usr/share/webmin/acl/backup_config.pl
+-rwxr-xr-x 1 root root 630 May  5  2019 /usr/share/webmin/logrotate/backup_config.pl
+-rwxr-xr-x 1 root root 584 May  5  2019 /usr/share/webmin/sarg/backup_config.pl
+-rwxr-xr-x 1 root root 677 May  5  2019 /usr/share/webmin/burner/backup_config.pl
+-rwxr-xr-x 1 root root 625 May  5  2019 /usr/share/webmin/phpini/backup_config.pl
+-rwxr-xr-x 1 root root 793 May  5  2019 /usr/share/webmin/pap/backup_config.pl
+-rwxr-xr-x 1 root root 732 May  5  2019 /usr/share/webmin/mon/backup_config.pl
+-rwxr-xr-x 1 root root 1078 May  5  2019 /usr/share/webmin/cron/backup_config.pl
+-rwxr-xr-x 1 root root 729 May  5  2019 /usr/share/webmin/xinetd/backup_config.pl
+-rwxr-xr-x 1 root root 797 May  5  2019 /usr/share/webmin/proftpd/backup_config.pl
+-rwxr-xr-x 1 root root 683 May  5  2019 /usr/share/webmin/custom/backup_config.pl
+-rwxr-xr-x 1 root root 735 May  5  2019 /usr/share/webmin/dovecot/backup_config.pl
+-rwxr-xr-x 1 root root 718 May  5  2019 /usr/share/webmin/fail2ban/backup_config.pl
+-rwxr-xr-x 1 root root 923 May  5  2019 /usr/share/webmin/vgetty/backup_config.pl
+-rwxr-xr-x 1 root root 876 May  5  2019 /usr/share/webmin/shorewall6/backup_config.pl
+-rwxr-xr-x 1 root root 2224 May  5  2019 /usr/share/webmin/usermin/backup_config.pl
+-rwxr-xr-x 1 root root 679 May  5  2019 /usr/share/webmin/squid/backup_config.pl
+-rwxr-xr-x 1 root root 838 May  5  2019 /usr/share/webmin/fetchmail/backup_config.pl
+-rwxr-xr-x 1 root root 646 May  5  2019 /usr/share/webmin/openslp/backup_config.pl
+-rwxr-xr-x 1 root root 685 May  5  2019 /usr/share/webmin/inittab/backup_config.pl
+-rwxr-xr-x 1 root root 566 May  5  2019 /usr/share/webmin/idmapd/backup_config.pl
+-rwxr-xr-x 1 root root 787 May  5  2019 /usr/share/webmin/ldap-server/backup_config.pl
+-rwxr-xr-x 1 root root 643 May  5  2019 /usr/share/webmin/exports/backup_config.pl
+-rwxr-xr-x 1 root root 2325 May  5  2019 /usr/share/webmin/fsdump/backup.cgi
+-rwxr-xr-x 1 root root 3202 May  5  2019 /usr/share/webmin/fsdump/backup.pl
+-rwxr-xr-x 1 root root 4585 May  5  2019 /usr/share/webmin/postgresql/backup_form.cgi
+-rwxr-xr-x 1 root root 5152 May  5  2019 /usr/share/webmin/postgresql/backup.cgi
+-rwxr-xr-x 1 root root 643 May  5  2019 /usr/share/webmin/postgresql/backup_config.pl
+-rwxr-xr-x 1 root root 1860 May  5  2019 /usr/share/webmin/postgresql/backup.pl
+-rw-r--r-- 1 root root 703 May  5  2019 /usr/share/webmin/postgresql/help/backup_form.nl.UTF-8.html
+-rw-r--r-- 1 root root 634 May  5  2019 /usr/share/webmin/postgresql/help/backup_form.ca.html
+-rw-r--r-- 1 root root 703 May  5  2019 /usr/share/webmin/postgresql/help/backup_form.nl.html
+-rw-r--r-- 1 root root 644 May  5  2019 /usr/share/webmin/postgresql/help/backup_form.ca.UTF-8.html
+-rw-r--r-- 1 root root 611 May  5  2019 /usr/share/webmin/postgresql/help/backup_form.html
+-rwxr-xr-x 1 root root 6746 May  5  2019 /usr/share/webmin/mysql/backup_form.cgi
+-rwxr-xr-x 1 root root 8068 May  5  2019 /usr/share/webmin/mysql/backup_db.cgi
+-rwxr-xr-x 1 root root 1032 May  5  2019 /usr/share/webmin/mysql/backup_config.pl
+-rwxr-xr-x 1 root root 4224 May  5  2019 /usr/share/webmin/mysql/backup.pl
+-rw-r--r-- 1 root root 566 May  5  2019 /usr/share/webmin/mysql/help/backup_form.no.html
+-rw-r--r-- 1 root root 593 May  5  2019 /usr/share/webmin/mysql/help/backup_form.hu.UTF-8.html
+-rw-r--r-- 1 root root 634 May  5  2019 /usr/share/webmin/mysql/help/backup_form.ca.html
+-rw-r--r-- 1 root root 635 May  5  2019 /usr/share/webmin/mysql/help/backup_form.it.UTF-8.html
+-rw-r--r-- 1 root root 608 May  5  2019 /usr/share/webmin/mysql/help/backup_form.es.html
+-rw-r--r-- 1 root root 641 May  5  2019 /usr/share/webmin/mysql/help/backup_form.ca.UTF-8.html
+-rw-r--r-- 1 root root 573 May  5  2019 /usr/share/webmin/mysql/help/backup_form.no.UTF-8.html
+-rw-r--r-- 1 root root 552 May  5  2019 /usr/share/webmin/mysql/help/backup_form.hu.html
+-rw-r--r-- 1 root root 632 May  5  2019 /usr/share/webmin/mysql/help/backup_form.it.html
+-rw-r--r-- 1 root root 615 May  5  2019 /usr/share/webmin/mysql/help/backup_form.es.UTF-8.html
+-rw-r--r-- 1 root root 504 May  5  2019 /usr/share/webmin/mysql/help/backup_form.html
+-rwxr-xr-x 1 root root 817 May  5  2019 /usr/share/webmin/nis/backup_config.pl
+-rwxr-xr-x 1 root root 953 May  5  2019 /usr/share/webmin/wuftpd/backup_config.pl
+-rwxr-xr-x 1 root root 617 May  5  2019 /usr/share/webmin/syslog-ng/backup_config.pl
+-rwxr-xr-x 1 root root 702 May  5  2019 /usr/share/webmin/pptp-client/backup_config.pl
+-rwxr-xr-x 1 root root 890 May  5  2019 /usr/share/webmin/spam/backup_config.pl
+-rwxr-xr-x 1 root root 1005 May  5  2019 /usr/share/webmin/net/backup_config.pl
+-rwxr-xr-x 1 root root 585 May  5  2019 /usr/share/webmin/mailcap/backup_config.pl
+-rwxr-xr-x 1 root root 743 May  5  2019 /usr/share/webmin/pptp-server/backup_config.pl
+-rwxr-xr-x 1 root root 613 May  5  2019 /usr/share/webmin/tcpwrappers/backup_config.pl
+-rwxr-xr-x 1 root root 917 May  5  2019 /usr/share/webmin/adsl-client/backup_config.pl
+-rwxr-xr-x 1 root root 892 May  5  2019 /usr/share/webmin/sshd/backup_config.pl
+-rwxr-xr-x 1 root root 1235 May  5  2019 /usr/share/webmin/bandwidth/backup_config.pl
+-rwxr-xr-x 1 root root 1516 May  5  2019 /usr/share/webmin/sendmail/backup_config.pl
+-rwxr-xr-x 1 root root 2019 May  5  2019 /usr/share/webmin/webmin/backup_config.pl
+-rwxr-xr-x 1 root root 730 May  5  2019 /usr/share/webmin/postfix/backup_config.pl
+-rwxr-xr-x 1 root root 601 May  5  2019 /usr/share/webmin/grub/backup_config.pl
+-rwxr-xr-x 1 root root 874 May  5  2019 /usr/share/webmin/shorewall/backup_config.pl
+-rwxr-xr-x 1 root root 672 May  5  2019 /usr/share/webmin/iscsi-server/backup_config.pl
+-rwxr-xr-x 1 root root 1426 May  5  2019 /usr/share/webmin/apache/backup_config.pl
+-rwxr-xr-x 1 root root 686 May  5  2019 /usr/share/webmin/mount/backup_config.pl
+-rwxr-xr-x 1 root root 826 May  5  2019 /usr/share/webmin/qmailadmin/backup_config.pl
+-rwxr-xr-x 1 root root 646 May  5  2019 /usr/share/webmin/iscsi-client/backup_config.pl
+-rwxr-xr-x 1 root root 806 May  5  2019 /usr/share/webmin/bacula-backup/backup_form.cgi
+-rwxr-xr-x 1 root root 814 May  5  2019 /usr/share/webmin/bacula-backup/list_gbackup.cgi
+-rwxr-xr-x 1 root root 1803 May  5  2019 /usr/share/webmin/bacula-backup/backup.cgi
+-rw-r--r-- 1 root root 600 May  5  2019 /usr/share/webmin/bacula-backup/backup_config.pl
+-rw-r--r-- 1 root root 300 May  5  2019 /usr/share/webmin/bacula-backup/help/backup.pl.UTF-8.html
+-rw-r--r-- 1 root root 301 May  5  2019 /usr/share/webmin/bacula-backup/help/backup.ca.UTF-8.html
+-rw-r--r-- 1 root root 417 May  5  2019 /usr/share/webmin/bacula-backup/help/gbackup.pl.html
+
+╔══════════╣ Searching tables inside readable .db/.sql/.sqlite files (limit 100)
+Found: "/var/lib/mlocate/mlocate.db": cannot open `"/var/lib/mlocate/mlocate.db"' (No such file or directory)       
+
+╔══════════╣ Web files?(output limit)
+/var/www/:                                                                                                          
+total 20K
+drwxr-xr-x  3 root root 4.0K Aug 25  2019 .
+drwxr-xr-x 13 root root 4.0K Aug 25  2019 ..
+drwxr-xr-x  7 root root 4.0K Aug 26  2019 html
+-rw-r--r--  1 root root   22 Aug 25  2019 nikto-test-pFTYNhZX.html
+-rw-rw-r--  1 Matt Matt  482 Aug 25  2019 SimpleHTTPPutServer.py
+
+/var/www/html:
+total 56K
+
+╔══════════╣ All hidden files (not in /sys/ or the ones listed in the previous check) (limit 70)
+-rw-r--r-- 1 root root 0 Sep  4 06:22 /run/network/.ifstate.lock                                                    
+-rw-rw-r-- 1 Matt Matt 66 Aug 26  2019 /home/Matt/.selected_editor
+-rw-rw-r-- 1 Matt Matt 181 Aug 25  2019 /home/Matt/.wget-hsts
+-rw-r--r-- 1 Matt Matt 220 Aug 25  2019 /home/Matt/.bash_logout
+-rw-r--r-- 1 root root 220 Apr  4  2018 /etc/skel/.bash_logout
+-rw-r--r-- 1 root root 1531 Aug 24  2019 /etc/apparmor.d/cache/.features
+-rw------- 1 root root 0 Aug 24  2019 /etc/.pwd.lock
+-rw-r--r-- 1 root root 118 May  5  2019 /usr/share/webmin/smf/images/.del-left.gif-Dec-05-04
+
+╔══════════╣ Readable files inside /tmp, /var/tmp, /private/tmp, /private/var/at/tmp, /private/var/tmp, and backup folders (limit 70)                                                                                                   
+-rw-r--r-- 1 root root 245 Aug 25  2019 /var/backups/dpkg.statoverride.0                                            
+-rw-r--r-- 1 root root 713 Aug 25  2019 /var/backups/apt.extended_states.3.gz
+-rw-r--r-- 1 root root 11 Aug 24  2019 /var/backups/dpkg.arch.0
+-rw-r--r-- 1 root root 160 Aug 24  2019 /var/backups/dpkg.diversions.1.gz
+-rw-r--r-- 1 root root 1144 Aug 25  2019 /var/backups/apt.extended_states.2.gz
+-rw-r--r-- 1 root root 1166 Oct 25  2019 /var/backups/apt.extended_states.1.gz
+-rw-r--r-- 1 root root 435 Aug 24  2019 /var/backups/apt.extended_states.4.gz
+-rw-r--r-- 1 root root 10229 Sep 29  2020 /var/backups/apt.extended_states.0
+-rw-r--r-- 1 root root 136441 Aug 26  2019 /var/backups/dpkg.status.1.gz
+-rw-r--r-- 1 root root 186 Aug 25  2019 /var/backups/dpkg.statoverride.1.gz
+-rw-r--r-- 1 root root 2441 Oct  2  2019 /var/backups/alternatives.tar.1.gz
+-rw-r--r-- 1 root root 51200 Sep  4 06:25 /var/backups/alternatives.tar.0
+-rw-r--r-- 1 root root 43 Aug 24  2019 /var/backups/dpkg.arch.1.gz
+-rw-r--r-- 1 root root 498992 Sep 29  2020 /var/backups/dpkg.status.0
+-rw-r--r-- 1 root root 450 Oct 25  2019 /var/backups/dpkg.diversions.0
+
+╔══════════╣ Interesting writable files owned by me or writable by everyone (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                        
+/dev/mqueue                                                                                                         
+/dev/shm
+/etc/redis/redis.conf
+/run/lock
+/run/redis
+/run/redis/redis-server.pid
+/run/user/107
+/run/user/107/gnupg
+/run/user/107/systemd
+/tmp
+/tmp/.font-unix
+/tmp/.ICE-unix
+/tmp/.Test-unix
+/tmp/.X11-unix
+/tmp/.XIM-unix
+/var/lib/php/sessions
+/var/lib/redis
+/var/log/redis
+/var/log/redis/redis-server.log
+/var/log/redis/redis-server.log.1.gz
+/var/tmp
+
+╔══════════╣ Interesting GROUP writable files (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                        
+  Group redis:                                                                                                      
+/run/redis/redis-server.pid                                                                                         
+/var/log/redis/redis-server.log.1.gz
+/var/log/redis/redis-server.log
+
+╔══════════╣ Searching passwords in config PHP files
+                                                                                                                    
+╔══════════╣ Checking for TTY (sudo/su) passwords in audit logs
+                                                                                                                    
+╔══════════╣ Finding IPs inside logs (limit 70)
+    100 0.18.04.2                                                                                                   
+     88 0.18.04.1
+     38 2.18.04.1
+     26 7.18.04.2
+     24 192.168.1.4
+     18 3.18.04.1
+     16 18.04.11.10
+     14 0.18.04.4
+     12 6.18.04.1
+      9 10.10.10.1
+      8 0.19.8.1
+      8 0.18.04.5
+      7 018.09.18.1
+      5 1.2.3.3
+      2 10.10.14.24
+      1 8.18.04.2
+      1 18.04.14.12
+      1 10.10.14.3
+
+╔══════════╣ Finding passwords inside logs (limit 70)
+2019-08-24 10:24:56 install base-passwd:amd64 <none> 3.5.44                                                         
+2019-08-24 10:24:56 status half-installed base-passwd:amd64 3.5.44
+2019-08-24 10:24:57 configure base-passwd:amd64 3.5.44 3.5.44
+2019-08-24 10:24:57 status half-configured base-passwd:amd64 3.5.44
+2019-08-24 10:24:57 status installed base-passwd:amd64 3.5.44
+2019-08-24 10:24:57 status unpacked base-passwd:amd64 3.5.44
+2019-08-24 10:25:10 status half-configured base-passwd:amd64 3.5.44
+2019-08-24 10:25:10 status half-installed base-passwd:amd64 3.5.44
+2019-08-24 10:25:10 status unpacked base-passwd:amd64 3.5.44
+2019-08-24 10:25:10 upgrade base-passwd:amd64 3.5.44 3.5.44
+2019-08-24 10:25:36 install passwd:amd64 <none> 1:4.5-1ubuntu1
+2019-08-24 10:25:36 status half-installed passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 10:25:37 status unpacked passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 10:25:38 status unpacked passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 10:25:48 configure base-passwd:amd64 3.5.44 <none>
+2019-08-24 10:25:48 status half-configured base-passwd:amd64 3.5.44
+2019-08-24 10:25:48 status installed base-passwd:amd64 3.5.44
+2019-08-24 10:25:48 status unpacked base-passwd:amd64 3.5.44
+2019-08-24 10:25:54 configure passwd:amd64 1:4.5-1ubuntu1 <none>
+2019-08-24 10:25:54 status half-configured passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 10:25:54 status installed passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 10:25:54 status unpacked passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 11:30:55 status half-configured passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 11:30:55 status half-installed passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 11:30:55 status unpacked passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 11:30:55 upgrade passwd:amd64 1:4.5-1ubuntu1 1:4.5-1ubuntu2
+2019-08-24 11:30:56 configure passwd:amd64 1:4.5-1ubuntu2 <none>
+2019-08-24 11:30:56 status half-configured passwd:amd64 1:4.5-1ubuntu2
+2019-08-24 11:30:56 status half-installed passwd:amd64 1:4.5-1ubuntu1
+2019-08-24 11:30:56 status installed passwd:amd64 1:4.5-1ubuntu2
+2019-08-24 11:30:56 status unpacked passwd:amd64 1:4.5-1ubuntu2
+ Argon2 is a password-hashing function that can be used to hash passwords
+Description: Set up users and passwords
+
+╔══════════╣ Finding emails inside logs (limit 70)
+     50 ubuntu-devel-discuss@lists.ubuntu.com                                                                       
+     30 ubuntu-installer@lists.ubuntu.com
+     17 kernel-team@lists.ubuntu.com
+
+╔══════════╣ Finding *password* or *credential* files in home (limit 70)
+/bin/systemd-ask-password                                                                                           
+/bin/systemd-tty-ask-password-agent
+/etc/pam.d/common-password
+/usr/lib/grub/i386-pc/legacy_password_test.mod
+/usr/lib/grub/i386-pc/password.mod
+/usr/lib/grub/i386-pc/password_pbkdf2.mod
+/usr/share/help-langpack/en_GB/empathy/irc-nick-password.page
+/usr/share/help-langpack/en_GB/evince/password.page
+/usr/share/help-langpack/en_GB/zenity/password.page
+/usr/share/man/man1/systemd-ask-password.1.gz
+/usr/share/man/man1/systemd-tty-ask-password-agent.1.gz
+/usr/share/man/man7/credentials.7.gz
+/usr/share/man/man8/systemd-ask-password-console.path.8.gz
+/usr/share/man/man8/systemd-ask-password-console.service.8.gz
+/usr/share/man/man8/systemd-ask-password-wall.path.8.gz
+/usr/share/man/man8/systemd-ask-password-wall.service.8.gz
+  #)There are more creds/passwds files in the previous parent folder
+
+/usr/share/pam/common-password.md5sums
+/usr/share/ubuntu-advantage-tools/modules/credentials.sh
+/usr/share/webmin/authentic-theme/password_form.cgi
+/usr/share/webmin/ldap-server/server.key
+/usr/share/webmin/password_change.cgi
+/usr/share/webmin/password_form.cgi
+/var/cache/debconf/passwords.dat
+/var/lib/pam/password
+
+╔══════════╣ Finding passwords inside key folders (limit 70) - only PHP files
+                                                                                                                    
+╔══════════╣ Finding passwords inside key folders (limit 70) - no PHP files
+/etc/apache2/sites-available/default-ssl.conf:          #        file needs this password: `xxj31ZMTZzkVA'.         
+/etc/bash_completion.d/grub:__grub_mkpasswd_pbkdf2_program="grub-mkpasswd-pbkdf2"
+/etc/debconf.conf:#BindPasswd: secret
+/etc/nsswitch.conf:passwd:         compat systemd
+/etc/pam.d/common-password:password     [success=1 default=ignore]      pam_unix.so obscure sha512
+/etc/security/namespace.init:                gid=$(echo "$passwd" | cut -f4 -d":")
+/etc/security/namespace.init:        homedir=$(echo "$passwd" | cut -f6 -d":")
+/etc/security/namespace.init:        passwd=$(getent passwd "$user")
+/etc/ssl/openssl.cnf:challengePassword          = A challenge password
+/etc/ssl/openssl.cnf:challengePassword_max              = 20
+/etc/ssl/openssl.cnf:challengePassword_min              = 4
+/etc/ssl/openssl.cnf:# input_password = secret
+/etc/ssl/openssl.cnf:# output_password = secret
+/etc/vmware-tools/vm-support:         sed 's/password[[:space:]]\+\(.*\)[[:space:]]\+\(.*\)$/password \1 xxxxxx/g' > \
+/etc/webmin/config:passwd_cindex=2
+/etc/webmin/config:passwd_file=/etc/shadow
+/etc/webmin/config:passwd_mindex=4
+/etc/webmin/config:passwd_pindex=1
+/etc/webmin/config:passwd_uindex=0
+/etc/webmin/installed.cache:cluster-passwd=1
+/etc/webmin/installed.cache:htaccess-htpasswd=1
+/etc/webmin/installed.cache:passwd=1
+
+╔══════════╣ Finding possible password variables inside key folders (limit 140)
+/var/www/html/js/bootstrap.js:  var DATA_API_KEY = '.data-api';                                                     
+
+╔══════════╣ Finding possible password in config files
+                                                                                                                    
+╔══════════╣ Finding 'username' string inside key folders (limit 70)
+                                                                                                                    
+╔══════════╣ Searching specific hashes inside files - less false positives (limit 70)
