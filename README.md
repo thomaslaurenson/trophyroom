@@ -25,6 +25,7 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [Armageddon](hackthebox/machines/armageddon) | Linux | Easy | No | 2021-03-27 | 2021-07-26 |
 | [Bashed](hackthebox/machines/bashed) | Linux | Easy | Yes | 2017-12-09 | 2021-06-27 |
 | [Beep](hackthebox/machines/beep) | Linux | Easy | Yes | 2017-03-14 | 2021-07-03 |
+| [Blocky](hackthebox/machines/blocky) | Linux | Easy | Yes | 2017-07-21 | 2021-09-04 |
 | [Cronos](hackthebox/machines/cronos) | Linux | Medium | Yes | 2017-03-22 | 2021-07-04 |
 | [Devel](hackthebox/machines/devel) | Windows | Easy | Yes | 2017-03-14 | 2021-07-25 |
 | [Jerry](hackthebox/machines/jerry) | Windows | Easy | Yes | 2018-06-30 | 2021-08-20 |
