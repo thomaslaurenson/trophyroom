@@ -1,0 +1,3 @@
+/images               (Status: 301) [Size: 185] [--> http://10.10.10.222/images/]
+/assets               (Status: 301) [Size: 185] [--> http://10.10.10.222/assets/]
+/error                (Status: 301) [Size: 185] [--> http://10.10.10.222/error/]

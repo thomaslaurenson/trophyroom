@@ -1,0 +1,1677 @@
+
+
+                            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                    ▄▄▄▄▄▄▄             ▄▄▄▄▄▄▄▄
+             ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄
+         ▄▄▄▄     ▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄
+         ▄    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄          ▄▄▄▄▄▄               ▄▄▄▄▄▄ ▄
+         ▄▄▄▄▄▄              ▄▄▄▄▄▄▄▄                 ▄▄▄▄ 
+         ▄▄                  ▄▄▄ ▄▄▄▄▄                  ▄▄▄
+         ▄▄                ▄▄▄▄▄▄▄▄▄▄▄▄                  ▄▄
+         ▄            ▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄   ▄▄
+         ▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                ▄▄▄▄
+         ▄▄▄▄▄  ▄▄▄▄▄                       ▄▄▄▄▄▄     ▄▄▄▄
+         ▄▄▄▄   ▄▄▄▄▄                       ▄▄▄▄▄      ▄ ▄▄
+         ▄▄▄▄▄  ▄▄▄▄▄        ▄▄▄▄▄▄▄        ▄▄▄▄▄     ▄▄▄▄▄
+         ▄▄▄▄▄▄  ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄   ▄▄▄▄▄ 
+          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄        ▄          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄                       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄                         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+          ▀▀▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▀▀▀▀▀▀
+               ▀▀▀▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▀▀
+                     ▀▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀▀▀
+
+      /---------------------------------------------------------------------------\
+      |                             Do you like PEASS?                            |                                 
+      |---------------------------------------------------------------------------|                                 
+      |         Become a Patreon    :     https://www.patreon.com/peass           |                                 
+      |         Follow on Twitter   :     @carlospolopm                           |                                 
+      |         Respect on HTB      :     SirBroccoli & makikvues                 |                                 
+      |---------------------------------------------------------------------------|                                 
+      |                                 Thank you!                                |                                 
+      \---------------------------------------------------------------------------/                                 
+        linpeas-ng by carlospolop                                                                                   
+                                                                                                                    
+ADVISORY: This script should be used for authorized penetration testing and/or educational purposes only. Any misuse of this software will not be the responsibility of the author or of any other collaborator. Use it at your own networks and/or with the network owner's permission.                                                                    
+                                                                                                                    
+Linux Privesc Checklist: https://book.hacktricks.xyz/linux-unix/linux-privilege-escalation-checklist
+ LEGEND:                                                                                                            
+  RED/YELLOW: 95% a PE vector
+  RED: You should take a look to it
+  LightCyan: Users with console
+  Blue: Users without console & mounted devs
+  Green: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs) 
+  LightMagenta: Your username
+
+ Starting linpeas. Caching Writable Folders...
+
+════════════════════════════════════╣ Basic information ╠════════════════════════════════════
+OS: Linux version 4.19.0-13-amd64 (debian-kernel@lists.debian.org) (gcc version 8.3.0 (Debian 8.3.0-6)) #1 SMP Debian 4.19.160-2 (2020-11-28)
+User & Groups: uid=1000(maildeliverer) gid=1000(maildeliverer) groups=1000(maildeliverer)
+Hostname: Delivery
+Writable folder: /dev/shm
+[+] /usr/bin/ping is available for network discovery (linpeas can discover hosts, learn more with -h)
+[+] /usr/bin/nc is available for network discover & port scanning (linpeas can discover hosts and scan ports, learn more with -h)                                                                                                       
+                                                                                                                    
+
+Caching directories . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . DONE
+                                                                                                                    
+════════════════════════════════════╣ System Information ╠════════════════════════════════════
+╔══════════╣ Operative system                                                                                       
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#kernel-exploits                                       
+Linux version 4.19.0-13-amd64 (debian-kernel@lists.debian.org) (gcc version 8.3.0 (Debian 8.3.0-6)) #1 SMP Debian 4.19.160-2 (2020-11-28)
+Distributor ID: Debian
+Description:    Debian GNU/Linux 10 (buster)
+Release:        10
+Codename:       buster
+
+╔══════════╣ Sudo version
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-version                                          
+Sudo version 1.8.27                                                                                                 
+
+╔══════════╣ USBCreator
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/d-bus-enumeration-and-command-injection-privilege-escalation                                                                                                              
+                                                                                                                    
+╔══════════╣ PATH
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-path-abuses                                  
+/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games                                                            
+New path exported: /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/sbin:/usr/sbin:/sbin
+
+╔══════════╣ Date & uptime
+Sat 04 Sep 2021 10:05:56 PM EDT                                                                                     
+ 22:05:56 up 40 min,  1 user,  load average: 0.15, 0.06, 0.04
+
+╔══════════╣ System stats
+Filesystem      Size  Used Avail Use% Mounted on                                                                    
+udev            2.0G     0  2.0G   0% /dev
+tmpfs           395M  5.5M  390M   2% /run
+/dev/sda1       4.8G  3.0G  1.9G  62% /
+tmpfs           2.0G     0  2.0G   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           2.0G     0  2.0G   0% /sys/fs/cgroup
+tmpfs           395M     0  395M   0% /run/user/1000
+              total        used        free      shared  buff/cache   available
+Mem:        4041496      363264     2959608       17180      718624     3421576
+Swap:       1047548           0     1047548
+
+╔══════════╣ CPU info
+Architecture:        x86_64                                                                                         
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+Address sizes:       43 bits physical, 48 bits virtual
+CPU(s):              2
+On-line CPU(s) list: 0,1
+Thread(s) per core:  1
+Core(s) per socket:  1
+Socket(s):           2
+NUMA node(s):        1
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               79
+Model name:          Intel(R) Xeon(R) CPU E5-2683 v4 @ 2.10GHz
+Stepping:            1
+CPU MHz:             2099.998
+BogoMIPS:            4199.99
+Hypervisor vendor:   VMware
+Virtualization type: full
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            256K
+L3 cache:            40960K
+NUMA node0 CPU(s):   0,1
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon nopl xtopology tsc_reliable nonstop_tsc cpuid pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid rdseed adx smap xsaveopt arat md_clear flush_l1d arch_capabilities
+
+╔══════════╣ Environment
+╚ Any private information inside environment variables?                                                             
+SHELL=/bin/bash                                                                                                     
+HISTSIZE=0
+PWD=/home/maildeliverer
+LOGNAME=maildeliverer
+XDG_SESSION_TYPE=tty
+HOME=/home/maildeliverer
+LANG=en_US.UTF-8
+HISTFILE=/dev/null
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SSH_CONNECTION=10.10.14.24 42548 10.10.10.222 22
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+USER=maildeliverer
+SHLVL=2
+XDG_SESSION_ID=32
+XDG_RUNTIME_DIR=/run/user/1000
+SSH_CLIENT=10.10.14.24 42548 22
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/sbin:/usr/sbin:/sbin
+HISTFILESIZE=0
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+MAIL=/var/mail/maildeliverer
+SSH_TTY=/dev/pts/0
+_=/usr/bin/env
+
+╔══════════╣ Searching Signature verification failed in dmseg
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#dmesg-signature-verification-failed                   
+dmesg Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Protections
+═╣ AppArmor enabled? .............. You do not have enough privilege to read the profile set.                       
+apparmor module is loaded.
+═╣ grsecurity present? ............ grsecurity Not Found
+═╣ PaX bins present? .............. PaX Not Found                                                                   
+═╣ Execshield enabled? ............ Execshield Not Found                                                            
+═╣ SELinux enabled? ............... sestatus Not Found                                                              
+═╣ Is ASLR enabled? ............... Yes                                                                             
+═╣ Printer? ....................... No
+═╣ Is this a virtual machine? ..... Yes (vmware)                                                                    
+
+════════════════════════════════════╣ Containers ╠════════════════════════════════════
+╔══════════╣ Container related tools present                                                                        
+╔══════════╣ Container details                                                                                      
+═╣ Is this a container? ........... No                                                                              
+═╣ Any running containers? ........ No                                                                              
+                                                                                                                    
+════════════════════════════════════╣ Devices ╠════════════════════════════════════
+╔══════════╣ Any sd*/disk* disk in /dev? (limit 20)                                                                 
+disk                                                                                                                
+sda
+sda1
+sda2
+sda5
+
+╔══════════╣ Unmounted file-system?
+╚ Check if you can mount umounted devices                                                                           
+UUID=4b4e4d21-fdc4-4e42-bc67-b7ba23d323f0 /               ext4    errors=remount-ro 0       1                       
+/dev/sda5 none            swap    sw              0       0
+
+╔══════════╣ Mounted disks information
+diskutil Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Mounted SMB Shares
+smbutil Not Found                                                                                                   
+                                                                                                                    
+
+════════════════════════════════════╣ Available Software ╠════════════════════════════════════
+╔══════════╣ Useful software                                                                                        
+/usr/bin/nc                                                                                                         
+/usr/bin/netcat
+/usr/bin/nc.traditional
+/usr/bin/wget
+/usr/bin/curl
+/usr/bin/ping
+/usr/bin/gcc
+/usr/bin/g++
+/usr/bin/make
+/usr/bin/base64
+/usr/bin/socat
+/usr/bin/python
+/usr/bin/python2
+/usr/bin/python3
+/usr/bin/python2.7
+/usr/bin/python3.7
+/usr/bin/perl
+/usr/bin/php
+/usr/bin/xterm
+/usr/bin/sudo
+
+╔══════════╣ Installed Compiler
+ii  g++                             4:8.3.0-1                    amd64        GNU C++ compiler                      
+ii  g++-8                           8.3.0-6                      amd64        GNU C++ compiler
+ii  gcc                             4:8.3.0-1                    amd64        GNU C compiler
+ii  gcc-8                           8.3.0-6                      amd64        GNU C compiler
+/usr/bin/gcc
+/usr/bin/g++
+
+
+════════════════════════════════════╣ Processes, Cron, Services, Timers & Sockets ╠════════════════════════════════════                                                                                                                 
+╔══════════╣ Cleaned processes                                                                                      
+╚ Check weird & unexpected proceses run by root: https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                                                                                                  
+root         1  0.0  0.2 169404 10136 ?        Ss   21:25   0:02 /sbin/init                                         
+root       258  0.0  0.2  26528  8384 ?        Ss   21:25   0:00 /lib/systemd/systemd-journald
+root       281  0.0  0.1  22448  4964 ?        Ss   21:25   0:00 /lib/systemd/systemd-udevd
+root       410  0.0  0.2  48228 10744 ?        Ss   21:25   0:00 /usr/bin/VGAuthService
+systemd+   413  0.0  0.1  95148  6540 ?        Ssl  21:25   0:00 /lib/systemd/systemd-timesyncd
+root       417  0.1  0.2 122852 12048 ?        Ssl  21:25   0:03 /usr/bin/vmtoolsd
+root       447  0.0  0.0   8504  2788 ?        Ss   21:25   0:00 /usr/sbin/cron -f
+root       451  0.0  0.8 266500 33524 ?        Ss   21:25   0:00 php-fpm: master process (/etc/php/7.3/fpm/php-fpm.conf)
+www-data   541  0.0  0.9 269604 39292 ?        S    21:25   0:01  _ php-fpm: pool www
+www-data   542  0.0  0.9 269568 39068 ?        S    21:25   0:00  _ php-fpm: pool www
+avahi      467  0.0  0.0   8156   320 ?        S    21:25   0:00  _ avahi-daemon: chroot helper
+root       455  0.0  0.1  19392  7264 ?        Ss   21:25   0:00 /lib/systemd/systemd-logind
+root       456  0.0  0.1 225824  4344 ?        Ssl  21:25   0:00 /usr/sbin/rsyslogd -n -iNONE
+message+   457  0.0  0.1   9148  4332 ?        Ss   21:25   0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root       465  0.0  0.0   5612  1676 tty1     Ss+  21:25   0:00 /sbin/agetty -o -p -- u --noclear tty1 linux
+root       466  0.0  0.1  15852  7204 ?        Ss   21:25   0:00 /usr/sbin/sshd -D
+maildel+  1237  0.0  0.1  16916  5932 ?        S    21:55   0:00      _ sshd: maildeliverer@pts/0
+maildel+  1238  0.0  0.1   8500  5132 pts/0    Ss   21:55   0:00          _ -bash
+maildel+  1316  1.8  0.1   7712  4316 pts/0    S+   22:05   0:00              _ bash linpeas.sh
+maildel+  2393  0.0  0.0   7712  2624 pts/0    S+   22:05   0:00                  _ bash linpeas.sh
+maildel+  2396  0.0  0.0  10784  3108 pts/0    R+   22:05   0:00                  |   _ ps fauxwww
+maildel+  2397  0.0  0.0   7712  1348 pts/0    S+   22:05   0:00                  _ bash linpeas.sh
+root       472  0.0  0.3 182936 12640 ?        Ssl  21:25   0:00 /usr/sbin/cups-browsed
+root       523  0.0  0.0  67848  1812 ?        Ss   21:25   0:00 nginx: master process /usr/sbin/nginx -g daemon[0m on; master_process on;
+www-data   527  1.8  0.1  68740  7136 ?        S    21:25   0:43  _ nginx: worker process
+www-data   528  0.8  0.1  68468  6788 ?        S    21:25   0:20  _ nginx: worker process
+mysql      605  0.1  2.6 1718120 107636 ?      Ssl  21:25   0:03 /usr/sbin/mysqld
+root       633  0.0  0.1  29212  7916 ?        Ss   21:25   0:00 /usr/sbin/cupsd -l
+matterm+   691  0.4  3.6 1649596 145988 ?      Ssl  21:25   0:12 /opt/mattermost/bin/mattermost
+matterm+  1025  0.0  0.4 1161840 18508 ?       Sl   21:30   0:00  _ plugins/com.mattermost.plugin-channel-export/server/dist/plugin-linux-amd64
+matterm+  1032  0.0  0.6 1239060 25876 ?       Sl   21:30   0:00  _ plugins/com.mattermost.nps/server/dist/plugin-linux-amd64
+root       988  0.0  0.4  29540 18192 ?        S    21:26   0:00 python3 /root/py-smtp.py
+maildel+  1222  0.0  0.2  21148  8976 ?        Ss   21:55   0:00 /lib/systemd/systemd --user
+maildel+  1223  0.0  0.0 170652  2340 ?        S    21:55   0:00  _ (sd-pam)
+
+╔══════════╣ Binary processes permissions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                             
+1.5M -rwxr-xr-x 1 root       root       1.5M Oct 24  2020 /lib/systemd/systemd                                      
+144K -rwxr-xr-x 1 root       root       143K Oct 24  2020 /lib/systemd/systemd-journald
+228K -rwxr-xr-x 1 root       root       227K Oct 24  2020 /lib/systemd/systemd-logind
+ 56K -rwxr-xr-x 1 root       root        55K Oct 24  2020 /lib/systemd/systemd-timesyncd
+664K -rwxr-xr-x 1 root       root       663K Oct 24  2020 /lib/systemd/systemd-udevd
+ 85M -rwxrwxr-x 1 mattermost mattermost  85M Dec 18  2020 /opt/mattermost/bin/mattermost
+ 64K -rwxr-xr-x 1 root       root        64K Jan 10  2019 /sbin/agetty
+   0 lrwxrwxrwx 1 root       root         20 Oct 24  2020 /sbin/init -> /lib/systemd/systemd
+236K -rwxr-xr-x 1 root       root       236K Jul  5  2020 /usr/bin/dbus-daemon[0m
+132K -rwxr-xr-x 1 root       root       129K Oct  9  2019 /usr/bin/VGAuthService
+ 56K -rwxr-xr-x 1 root       root        56K Oct  9  2019 /usr/bin/vmtoolsd
+ 56K -rwxr-xr-x 1 root       root        55K Oct 11  2019 /usr/sbin/cron
+184K -rwxr-xr-x 1 root       root       183K Apr 10  2019 /usr/sbin/cups-browsed
+448K -rwxr-xr-x 1 root       root       447K Nov 28  2020 /usr/sbin/cupsd
+ 20M -rwxr-xr-x 1 root       root        20M Nov 25  2020 /usr/sbin/mysqld
+688K -rwxr-xr-x 1 root       root       686K Feb 26  2019 /usr/sbin/rsyslogd
+792K -rwxr-xr-x 1 root       root       789K Jan 31  2020 /usr/sbin/sshd
+
+╔══════════╣ Files opened by processes belonging to other users
+╚ This is usually empty because of the lack of privileges to read other user processes information                  
+COMMAND    PID  TID TASKCMD               USER   FD      TYPE             DEVICE SIZE/OFF       NODE NAME           
+
+╔══════════╣ Processes with credentials in memory (root req)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#credentials-from-process-memory                       
+gdm-password Not Found                                                                                              
+gnome-keyring-daemon Not Found                                                                                      
+lightdm Not Found                                                                                                   
+vsftpd Not Found                                                                                                    
+apache2 Not Found                                                                                                   
+sshd: process found (dump creds from memory as root)                                                                
+
+╔══════════╣ Cron jobs
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#scheduled-cron-jobs                                   
+/usr/bin/crontab                                                                                                    
+incrontab Not Found
+-rw-r--r-- 1 root root    1071 Dec 26  2020 /etc/crontab                                                            
+
+/etc/cron.d:
+total 16
+drwxr-xr-x  2 root root 4096 Dec 26  2020 .
+drwxr-xr-x 91 root root 4096 Jul 14 11:35 ..
+-rw-r--r--  1 root root  712 Dec 17  2018 php
+-rw-r--r--  1 root root  102 Oct 11  2019 .placeholder
+
+/etc/cron.daily:
+total 36
+drwxr-xr-x  2 root root 4096 Dec 26  2020 .
+drwxr-xr-x 91 root root 4096 Jul 14 11:35 ..
+-rwxr-xr-x  1 root root 1478 May 12  2020 apt-compat
+-rwxr-xr-x  1 root root  355 Dec 29  2017 bsdmainutils
+-rwxr-xr-x  1 root root 1187 Apr 18  2019 dpkg
+-rwxr-xr-x  1 root root  377 Aug 28  2018 logrotate
+-rwxr-xr-x  1 root root 1123 Feb 10  2019 man-db
+-rwxr-xr-x  1 root root  249 Sep 27  2017 passwd
+-rw-r--r--  1 root root  102 Oct 11  2019 .placeholder
+
+/etc/cron.hourly:
+total 12
+drwxr-xr-x  2 root root 4096 Dec 26  2020 .
+drwxr-xr-x 91 root root 4096 Jul 14 11:35 ..
+-rw-r--r--  1 root root  102 Oct 11  2019 .placeholder
+
+/etc/cron.monthly:
+total 12
+drwxr-xr-x  2 root root 4096 Dec 26  2020 .
+drwxr-xr-x 91 root root 4096 Jul 14 11:35 ..
+-rw-r--r--  1 root root  102 Oct 11  2019 .placeholder
+
+/etc/cron.weekly:
+total 16
+drwxr-xr-x  2 root root 4096 Dec 26  2020 .
+drwxr-xr-x 91 root root 4096 Jul 14 11:35 ..
+-rwxr-xr-x  1 root root  813 Feb 10  2019 man-db
+-rw-r--r--  1 root root  102 Oct 11  2019 .placeholder
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+* * * * *       root    /root/mail.sh
+
+╔══════════╣ Services
+╚ Search for outdated versions                                                                                      
+ [ + ]  apparmor                                                                                                    
+ [ + ]  avahi-daemon
+ [ - ]  console-setup.sh
+ [ + ]  cron
+ [ + ]  cups
+ [ + ]  cups-browsed
+ [ + ]  dbus
+ [ - ]  hwclock.sh
+ [ - ]  keyboard-setup.sh
+ [ + ]  kmod
+ [ + ]  mysql
+ [ + ]  networking
+ [ + ]  nginx
+ [ + ]  open-vm-tools
+ [ + ]  php7.3-fpm
+ [ + ]  procps
+ [ - ]  rsync
+ [ + ]  rsyslog
+ [ - ]  saned
+ [ + ]  ssh
+ [ - ]  sudo
+ [ + ]  udev
+ [ - ]  x11-common
+
+╔══════════╣ Systemd PATH
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#systemd-path-relative-paths                           
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin                                                   
+
+╔══════════╣ Analyzing .service files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#services                                              
+You can't write on systemd PATH                                                                                     
+
+╔══════════╣ System timers
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                                
+NEXT                         LEFT          LAST                         PASSED    UNIT                         ACTIVATES
+Sat 2021-09-04 22:09:00 EDT  2min 59s left Sat 2021-09-04 21:39:01 EDT  26min ago phpsessionclean.timer        phpsessionclean.service
+Sun 2021-09-05 00:00:00 EDT  1h 53min left Sat 2021-09-04 21:25:38 EDT  40min ago logrotate.timer              logrotate.service
+Sun 2021-09-05 00:00:00 EDT  1h 53min left Sat 2021-09-04 21:25:38 EDT  40min ago man-db.timer                 man-db.service
+Sun 2021-09-05 06:52:06 EDT  8h left       Sat 2021-09-04 21:25:38 EDT  40min ago apt-daily-upgrade.timer      apt-daily-upgrade.service
+Sun 2021-09-05 09:43:38 EDT  11h left      Sat 2021-09-04 21:25:38 EDT  40min ago apt-daily.timer              apt-daily.service
+Sun 2021-09-05 21:40:38 EDT  23h left      Sat 2021-09-04 21:40:38 EDT  25min ago systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
+
+╔══════════╣ Analyzing .timer files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                                
+                                                                                                                    
+╔══════════╣ Analyzing .socket files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                               
+                                                                                                                    
+╔══════════╣ HTTP sockets
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                               
+                                                                                                                    
+╔══════════╣ D-Bus config files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                                 
+Possible weak user policy found on /etc/dbus-1/system.d/avahi-dbus.conf (  <policy user="avahi">)                   
+Possible weak user policy found on /etc/dbus-1/system.d/avahi-dbus.conf (  <policy group="netdev">)
+
+╔══════════╣ D-Bus Service Objects list
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                                 
+NAME                                PID PROCESS         USER             CONNECTION    UNIT                      SESSION    DESCRIPTION
+:1.0                                413 systemd-timesyn systemd-timesync :1.0          systemd-timesyncd.service -          -
+:1.105                             1222 systemd         maildeliverer    :1.105        user@1000.service         -          -
+:1.17                               633 cupsd           root             :1.17         cups.service              -          -
+:1.197                             4790 busctl          maildeliverer    :1.197        session-32.scope          32         -
+:1.3                                  1 systemd         root             :1.3          init.scope                -          -
+:1.45                               472 cups-browsed    root             :1.45         cups-browsed.service      -          -
+:1.46                               472 cups-browsed    root             :1.46         cups-browsed.service      -          -
+:1.5                                453 avahi-daemon    avahi            :1.5          avahi-daemon.service      -          -
+:1.9                                455 systemd-logind  root             :1.9          systemd-logind.service    -          -
+com.hp.hplip                          - -               -                (activatable) -                         -
+org.freedesktop.Avahi               453 avahi-daemon    avahi            :1.5          avahi-daemon.service      -          -
+org.freedesktop.ColorManager          - -               -                (activatable) -                         -
+org.freedesktop.DBus                  1 systemd         root             -             init.scope                -          -
+org.freedesktop.PolicyKit1            - -               -                (activatable) -                         -
+org.freedesktop.hostname1             - -               -                (activatable) -                         -
+org.freedesktop.locale1               - -               -                (activatable) -                         -
+org.freedesktop.login1              455 systemd-logind  root             :1.9          systemd-logind.service    -          -
+org.freedesktop.network1              - -               -                (activatable) -                         -
+org.freedesktop.resolve1              - -               -                (activatable) -                         -
+org.freedesktop.systemd1              1 systemd         root             :1.3          init.scope                -          -
+org.freedesktop.timedate1             - -               -                (activatable) -                         -
+org.freedesktop.timesync1           413 systemd-timesyn systemd-timesync :1.0          systemd-timesyncd.service -          -
+
+
+════════════════════════════════════╣ Network Information ╠════════════════════════════════════
+╔══════════╣ Hostname, hosts and DNS                                                                                
+Delivery                                                                                                            
+127.0.0.1       localhost
+127.0.1.1       Delivery
+
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+domain localdomain
+search localdomain.
+nameserver 8.8.8.8
+
+╔══════════╣ Content of /etc/inetd.conf & /etc/xinetd.conf
+/etc/inetd.conf Not Found                                                                                           
+                                                                                                                    
+╔══════════╣ Interfaces
+default         0.0.0.0                                                                                             
+loopback        127.0.0.0
+link-local      169.254.0.0
+
+ens192: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.10.10.222  netmask 255.255.255.0  broadcast 10.10.10.255
+        inet6 fe80::250:56ff:feb9:c26f  prefixlen 64  scopeid 0x20<link>
+        ether 00:50:56:b9:c2:6f  txqueuelen 1000  (Ethernet)
+        RX packets 543138  bytes 80795665 (77.0 MiB)
+        RX errors 0  dropped 19  overruns 0  frame 0
+        TX packets 531856  bytes 184217352 (175.6 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 6082  bytes 1045653 (1021.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 6082  bytes 1045653 (1021.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+╔══════════╣ Networks and neighbours
+Kernel IP routing table                                                                                             
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         10.10.10.2      0.0.0.0         UG    0      0        0 ens192
+10.10.10.0      0.0.0.0         255.255.255.0   U     0      0        0 ens192
+Address                  HWtype  HWaddress           Flags Mask            Iface
+10.10.10.2               ether   00:50:56:b9:c8:08   C                     ens192
+
+╔══════════╣ Iptables rules
+iptables rules Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Active Ports
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-ports                                            
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                                   
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:1025          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+tcp6       0      0 ::1:631                 :::*                    LISTEN      -                   
+tcp6       0      0 :::8065                 :::*                    LISTEN      -                   
+tcp6       0      0 :::80                   :::*                    LISTEN      -                   
+
+╔══════════╣ Can I sniff with tcpdump?
+No                                                                                                                  
+                                                                                                                    
+
+════════════════════════════════════╣ Users Information ╠════════════════════════════════════
+╔══════════╣ My user                                                                                                
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#users                                                 
+uid=1000(maildeliverer) gid=1000(maildeliverer) groups=1000(maildeliverer)                                          
+
+╔══════════╣ Do I have PGP keys?
+/usr/bin/gpg                                                                                                        
+netpgpkeys Not Found
+netpgp Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Clipboard or highlighted text?
+xsel and xclip Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Checking 'sudo -l', /etc/sudoers, and /etc/sudoers.d
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+                                                                                                                    
+╔══════════╣ Checking sudo tokens
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#reusing-sudo-tokens                                   
+/proc/sys/kernel/yama/ptrace_scope is enabled (0)                                                                   
+gdb wasn't found in PATH
+
+╔══════════╣ Checking doas.conf
+doas.conf Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Checking Pkexec policy
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/interesting-groups-linux-pe#pe-method-2               
+                                                                                                                    
+[Configuration]
+AdminIdentities=unix-user:0
+[Configuration]
+AdminIdentities=unix-group:sudo
+
+╔══════════╣ Superusers
+root:x:0:0:root:/root:/bin/bash                                                                                     
+
+╔══════════╣ Users with console
+maildeliverer:x:1000:1000:MailDeliverer,,,:/home/maildeliverer:/bin/bash                                            
+mattermost:x:998:998::/home/mattermost:/bin/sh
+root:x:0:0:root:/root:/bin/bash
+
+╔══════════╣ All users & groups
+uid=0(root) gid=0(root) groups=0(root)                                                                              
+uid=1000(maildeliverer) gid=1000(maildeliverer) groups=1000(maildeliverer)
+uid=100(_apt) gid=65534(nogroup) groups=65534(nogroup)
+uid=101(systemd-timesync) gid=102(systemd-timesync) groups=102(systemd-timesync)
+uid=102(systemd-network) gid=103(systemd-network) groups=103(systemd-network)
+uid=103(systemd-resolve) gid=104(systemd-resolve) groups=104(systemd-resolve)
+uid=104(messagebus) gid=110(messagebus) groups=110(messagebus)
+uid=105(sshd) gid=65534(nogroup) groups=65534(nogroup)
+uid=106(avahi) gid=115(avahi) groups=115(avahi)
+uid=107(saned) gid=116(saned) groups=116(saned),114(scanner)
+uid=108(colord) gid=117(colord) groups=117(colord)
+uid=109(hplip) gid=7(lp) groups=7(lp)
+uid=10(uucp) gid=10(uucp) groups=10(uucp)
+uid=110(mysql) gid=118(mysql) groups=118(mysql)
+uid=13(proxy) gid=13(proxy) groups=13(proxy)
+uid=1(daemon[0m) gid=1(daemon[0m) groups=1(daemon[0m)
+uid=2(bin) gid=2(bin) groups=2(bin)
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+uid=34(backup) gid=34(backup) groups=34(backup)
+uid=38(list) gid=38(list) groups=38(list)
+uid=39(irc) gid=39(irc) groups=39(irc)
+uid=3(sys) gid=3(sys) groups=3(sys)
+uid=41(gnats) gid=41(gnats) groups=41(gnats)
+uid=4(sync) gid=65534(nogroup) groups=65534(nogroup)
+uid=5(games) gid=60(games) groups=60(games)
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+uid=6(man) gid=12(man) groups=12(man)
+uid=7(lp) gid=7(lp) groups=7(lp)
+uid=8(mail) gid=8(mail) groups=8(mail)
+uid=998(mattermost) gid=998(mattermost) groups=998(mattermost)
+uid=999(systemd-coredump) gid=999(systemd-coredump) groups=999(systemd-coredump)
+uid=9(news) gid=9(news) groups=9(news)
+
+╔══════════╣ Login now
+ 22:06:24 up 40 min,  1 user,  load average: 0.22, 0.08, 0.05                                                       
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+maildeli pts/0    10.10.14.24      21:55   40.00s  0.35s  0.00s sed -E s,_amavisd|_analyticsd|_appinstalld|_appleevents|_applepay|_appowner|_appserver|_appstore|_ard|_assetcache|_astris|_atsserver|_avbdeviced|_calendar|_captiveagent|_ces|_clamav|_cmiodalassistants|_coreaudiod|_coremediaiod|_coreml|_ctkd|_cvmsroot|_cvs|_cyrus|_datadetectors|_demod|_devdocs|_devicemgr|_diskimagesiod|_displaypolicyd|_distnote|_dovecot|_dovenull|_dpaudio|_driverkit|_eppc|_findmydevice|_fpsd|_ftp|_fud|_gamecontrollerd|_geod|_hi
+
+╔══════════╣ Last logons
+root     tty1         Sun Jan  3 23:11:00 2021 - down                      (00:02)     0.0.0.0                      
+reboot   system boot  Sun Jan  3 23:10:44 2021 - Sun Jan  3 23:13:51 2021  (00:03)     0.0.0.0
+root     tty1         Mon Dec 28 11:17:09 2020 - down                      (00:01)     0.0.0.0
+reboot   system boot  Mon Dec 28 11:17:00 2020 - Mon Dec 28 11:18:09 2020  (00:01)     0.0.0.0
+root     tty1         Mon Dec 28 11:13:12 2020 - down                      (00:00)     0.0.0.0
+reboot   system boot  Mon Dec 28 11:13:00 2020 - Mon Dec 28 11:13:46 2020  (00:00)     0.0.0.0
+root     tty1         Mon Dec 28 07:16:17 2020 - down                      (00:03)     0.0.0.0
+reboot   system boot  Mon Dec 28 07:15:48 2020 - Mon Dec 28 07:19:57 2020  (00:04)     0.0.0.0
+
+wtmp begins Mon Dec 28 07:05:58 2020
+
+╔══════════╣ Last time logon each user
+Username         Port     From             Latest                                                                   
+root             tty1                      Thu Feb 11 09:22:05 -0500 2021
+maildeliverer    pts/0    10.10.14.24      Sat Sep  4 21:55:34 -0400 2021
+
+╔══════════╣ Password policy
+PASS_MAX_DAYS   99999                                                                                               
+PASS_MIN_DAYS   0
+PASS_WARN_AGE   7
+ENCRYPT_METHOD SHA512
+
+╔══════════╣ Do not forget to test 'su' as any other user with shell: without password and with their names as password (I can't do it...)                                                                                              
+                                                                                                                    
+╔══════════╣ Do not forget to execute 'sudo -l' without password or with valid password (if you know it)!!
+                                                                                                                    
+
+
+════════════════════════════════════╣ Software Information ╠════════════════════════════════════
+╔══════════╣ MySQL version                                                                                          
+mysql  Ver 15.1 Distrib 10.3.27-MariaDB, for debian-linux-gnu (x86_64) using readline 5.2                           
+
+═╣ MySQL connection using default root/root ........... No
+═╣ MySQL connection using root/toor ................... No                                                          
+═╣ MySQL connection using root/NOPASS ................. No                                                          
+╔══════════╣ Searching mysql credentials and exec                                                                   
+From '/etc/mysql/mariadb.conf.d/50-server.cnf' Mysql user: user                    = mysql                          
+Found readable /etc/mysql/my.cnf
+[client-server]
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mariadb.conf.d/
+
+╔══════════╣ Analyzing MariaDB Files (limit 70)
+-rw-r--r-- 1 root root 869 Oct 12  2020 /etc/mysql/mariadb.cnf                                                      
+[client-server]
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mariadb.conf.d/
+
+-rw------- 1 root root 277 Dec 26  2020 /etc/mysql/debian.cnf
+
+╔══════════╣ Analyzing PostgreSQL Files (limit 70)
+Version: psql Not Found                                                                                             
+                                                                                                                    
+pgadmin*.db Not Found
+                                                                                                                    
+pg_hba.conf Not Found
+                                                                                                                    
+postgresql.conf Not Found
+                                                                                                                    
+pgsql.conf Not Found
+                                                                                                                    
+═╣ PostgreSQL connection to template0 using postgres/NOPASS ........ No
+═╣ PostgreSQL connection to template1 using postgres/NOPASS ........ No                                             
+═╣ PostgreSQL connection to template0 using pgsql/NOPASS ........... No                                             
+═╣ PostgreSQL connection to template1 using pgsql/NOPASS ........... No                                             
+                                                                                                                    
+╔══════════╣ Analyzing Mongo Files (limit 70)
+Version: mongo Not Found                                                                                            
+mongod Not Found                                                                                                    
+                                                                                                                    
+mongod*.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Apache Files (limit 70)
+Version: apache2 Not Found                                                                                          
+httpd Not Found                                                                                                     
+                                                                                                                    
+══╣ PHP exec extensions
+drwxr-xr-x 2 root root 4096 Dec 26  2020 /etc/nginx/sites-enabled                                                   
+drwxr-xr-x 2 root root 4096 Dec 26  2020 /etc/nginx/sites-enabled
+lrwxrwxrwx 1 root root 40 Dec 26  2020 /etc/nginx/sites-enabled/osticket.conf -> /etc/nginx/sites-available/osticket.conf                                                                                                               
+lrwxrwxrwx 1 root root 34 Dec 26  2020 /etc/nginx/sites-enabled/default -> /etc/nginx/sites-available/default
+
+
+000-default.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Tomcat Files (limit 70)
+tomcat-users.xml Not Found                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing FastCGI Files (limit 70)
+-rw-r--r-- 1 root root 1007 Aug 24  2020 /etc/nginx/fastcgi_params                                                  
+
+╔══════════╣ Analyzing Http conf Files (limit 70)
+httpd.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Htpasswd Files (limit 70)
+.htpasswd Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing PHP Sessions Files (limit 70)
+/var/lib/php/sessions Not Found                                                                                     
+sess_* Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Wordpress Files (limit 70)
+wp-config.php Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Analyzing Drupal Files (limit 70)
+settings.php Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Moodle Files (limit 70)
+config.php Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Supervisord Files (limit 70)
+supervisord.conf Not Found                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing Cesi Files (limit 70)
+cesi.conf Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing Rsync Files (limit 70)
+-rw-r--r-- 1 root root 1044 Mar 15  2019 /usr/share/doc/rsync/examples/rsyncd.conf                                  
+[ftp]
+        comment = public archive
+        path = /var/www/pub
+        use chroot = yes
+        lock file = /var/lock/rsyncd
+        read only = yes
+        list = yes
+        uid = nobody
+        gid = nogroup
+        strict modes = yes
+        ignore errors = no
+        ignore nonreadable = yes
+        transfer logging = no
+        timeout = 600
+        refuse options = checksum dry-run
+        dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz
+
+rsyncd.secrets Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Hostapd Files (limit 70)
+hostapd.conf Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Searching wifi conns file
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing Anaconda ks Files (limit 70)
+anaconda-ks.cfg Not Found                                                                                           
+                                                                                                                    
+╔══════════╣ Analyzing VNC Files (limit 70)
+.vnc Not Found                                                                                                      
+                                                                                                                    
+*vnc*.c*nf* Not Found
+                                                                                                                    
+*vnc*.ini Not Found
+                                                                                                                    
+*vnc*.txt Not Found
+                                                                                                                    
+*vnc*.xml Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Ldap Files (limit 70)
+The password hash is from the {SSHA} to 'structural'                                                                
+drwxr-xr-x 2 root root 4096 Dec 26  2020 /etc/ldap
+
+
+╔══════════╣ Analyzing OpenVPN Files (limit 70)
+*.ovpn Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Searching ssl/ssh files
+╔══════════╣ Analyzing SSH Files (limit 70)                                                                         
+id_dsa* Not Found                                                                                                   
+                                                                                                                    
+id_rsa* Not Found
+                                                                                                                    
+known_hosts Not Found
+                                                                                                                    
+authorized_hosts Not Found
+                                                                                                                    
+authorized_keys Not Found
+                                                                                                                    
+PermitRootLogin no
+ChallengeResponseAuthentication no
+UsePAM yes
+══╣ Some certificates were found (out limited):
+/var/www/osticket/upload/include/plugins/updates.pem                                                                
+1316PSTORAGE_CERTSBIN
+
+══╣ Some home ssh config file was found
+/usr/share/openssh/sshd_config                                                                                      
+ChallengeResponseAuthentication no
+UsePAM yes
+X11Forwarding yes
+PrintMotd no
+AcceptEnv LANG LC_*
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+
+══╣ /etc/hosts.allow file found, trying to read the rules:
+/etc/hosts.allow                                                                                                    
+
+
+Searching inside /etc/ssh/ssh_config for interesting info
+Host *
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+
+╔══════════╣ Searching unexpected auth lines in /etc/pam.d/sshd
+No                                                                                                                  
+                                                                                                                    
+╔══════════╣ NFS exports?
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe                
+/etc/exports Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Searching kerberos conf files and tickets
+╚ https://book.hacktricks.xyz/pentesting/pentesting-kerberos-88#pass-the-ticket-ptt                                 
+tickets kerberos Not Found                                                                                          
+klist Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Knockd Files (limit 70)
+*knockd* Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Kibana Files (limit 70)
+kibana.y*ml Not Found                                                                                               
+                                                                                                                    
+╔══════════╣ Analyzing Elasticsearch Files (limit 70)
+The version is                                                                                                      
+elasticsearch.y*ml Not Found
+                                                                                                                    
+╔══════════╣ Searching logstash files
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Searching Vault-ssh files
+vault-ssh-helper.hcl Not Found                                                                                      
+                                                                                                                    
+╔══════════╣ Searching AD cached hashes
+cached hashes Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Searching screen sessions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                   
+screen Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Searching tmux sessions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                   
+tmux Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing CouchDB Files (limit 70)
+couchdb Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Redis Files (limit 70)
+redis.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Searching dovecot files
+dovecot credentials Not Found                                                                                       
+                                                                                                                    
+╔══════════╣ Analyzing Mosquitto Files (limit 70)
+mosquitto.conf Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing Neo4j Files (limit 70)
+neo4j Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Cloud Credentials Files (limit 70)
+credentials Not Found                                                                                               
+                                                                                                                    
+credentials.db Not Found
+                                                                                                                    
+legacy_credentials.db Not Found
+                                                                                                                    
+access_tokens.db Not Found
+                                                                                                                    
+access_tokens.json Not Found
+                                                                                                                    
+accessTokens.json Not Found
+                                                                                                                    
+azureProfile.json Not Found
+                                                                                                                    
+TokenCache.dat Not Found
+                                                                                                                    
+AzureRMContext.json Not Found
+                                                                                                                    
+.bluemix Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Cloud Init Files (limit 70)
+cloud.cfg Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing CloudFlare Files (limit 70)
+.cloudflared Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Erlang Files (limit 70)
+.erlang.cookie Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing GMV Auth Files (limit 70)
+gvm-tools.conf Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing IPSec Files (limit 70)
+ipsec.secrets Not Found                                                                                             
+                                                                                                                    
+ipsec.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing IRSSI Files (limit 70)
+.irssi Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Keyring Files (limit 70)
+drwxr-xr-x 3 root root 4096 Jul 14 11:35 /usr/lib/python3/dist-packages/keyrings                                    
+drwxr-xr-x 2 root root 4096 Jul 14 11:35 /usr/share/keyrings
+
+*.keyring Not Found
+                                                                                                                    
+*.keystore Not Found
+                                                                                                                    
+*.jks Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Filezilla Files (limit 70)
+filezilla Not Found                                                                                                 
+                                                                                                                    
+filezilla.xml Not Found
+                                                                                                                    
+recentservers.xml Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Backup Manager Files (limit 70)
+storage.php Not Found                                                                                               
+                                                                                                                    
+database.php Not Found
+                                                                                                                    
+╔══════════╣ Searching uncommon passwd files (splunk)
+passwd file: /etc/pam.d/passwd                                                                                      
+passwd file: /etc/passwd
+passwd file: /usr/share/bash-completion/completions/passwd
+passwd file: /usr/share/lintian/overrides/passwd
+
+╔══════════╣ Analyzing kcpassword files
+╚ https://book.hacktricks.xyz/macos/macos-security-and-privilege-escalation#kcpassword                              
+n                                                                                                                   
+
+╔══════════╣ Searching GitLab related files
+                                                                                                                    
+
+╔══════════╣ Analyzing Github Files (limit 70)
+drwxr-xr-x 2 www-data www-data 4096 Jul 14 11:35 /var/www/osticket/upload/include/mpdf/vendor/mpdf/mpdf/.github     
+
+.gitconfig Not Found
+                                                                                                                    
+.git-credentials Not Found
+                                                                                                                    
+.git Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Svn Files (limit 70)
+.svn Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing PGP-GPG Files (limit 70)
+/usr/bin/gpg                                                                                                        
+netpgpkeys Not Found
+netpgp Not Found                                                                                                    
+*.pgp Not Found                                                                                                     
+                                                                                                                    
+-rw-r--r-- 1 root root 20473 Dec 26  2020 /etc/apt/trusted.gpg
+-rw-r--r-- 1 root root 8132 Apr 23  2019 /etc/apt/trusted.gpg.d/debian-archive-buster-automatic.gpg
+-rw-r--r-- 1 root root 8141 Apr 23  2019 /etc/apt/trusted.gpg.d/debian-archive-buster-security-automatic.gpg
+-rw-r--r-- 1 root root 2332 Apr 23  2019 /etc/apt/trusted.gpg.d/debian-archive-buster-stable.gpg
+-rw-r--r-- 1 root root 5106 Apr 23  2019 /etc/apt/trusted.gpg.d/debian-archive-jessie-automatic.gpg
+-rw-r--r-- 1 root root 5115 Apr 23  2019 /etc/apt/trusted.gpg.d/debian-archive-jessie-security-automatic.gpg
+-rw-r--r-- 1 root root 2763 Apr 23  2019 /etc/apt/trusted.gpg.d/debian-archive-jessie-stable.gpg
+-rw-r--r-- 1 root root 7443 Apr 23  2019 /etc/apt/trusted.gpg.d/debian-archive-stretch-automatic.gpg
+-rw-r--r-- 1 root root 7452 Apr 23  2019 /etc/apt/trusted.gpg.d/debian-archive-stretch-security-automatic.gpg
+-rw-r--r-- 1 root root 2263 Apr 23  2019 /etc/apt/trusted.gpg.d/debian-archive-stretch-stable.gpg
+-rw-r--r-- 1 root root 3267 Aug 22  2019 /usr/share/gnupg/distsigkey.gpg
+-rw-r--r-- 1 root root 8132 Apr 23  2019 /usr/share/keyrings/debian-archive-buster-automatic.gpg
+-rw-r--r-- 1 root root 8141 Apr 23  2019 /usr/share/keyrings/debian-archive-buster-security-automatic.gpg
+-rw-r--r-- 1 root root 2332 Apr 23  2019 /usr/share/keyrings/debian-archive-buster-stable.gpg
+-rw-r--r-- 1 root root 5106 Apr 23  2019 /usr/share/keyrings/debian-archive-jessie-automatic.gpg
+-rw-r--r-- 1 root root 5115 Apr 23  2019 /usr/share/keyrings/debian-archive-jessie-security-automatic.gpg
+-rw-r--r-- 1 root root 2763 Apr 23  2019 /usr/share/keyrings/debian-archive-jessie-stable.gpg
+-rw-r--r-- 1 root root 48747 Apr 23  2019 /usr/share/keyrings/debian-archive-keyring.gpg
+-rw-r--r-- 1 root root 23889 Apr 23  2019 /usr/share/keyrings/debian-archive-removed-keys.gpg
+-rw-r--r-- 1 root root 7443 Apr 23  2019 /usr/share/keyrings/debian-archive-stretch-automatic.gpg
+-rw-r--r-- 1 root root 7452 Apr 23  2019 /usr/share/keyrings/debian-archive-stretch-security-automatic.gpg
+-rw-r--r-- 1 root root 2263 Apr 23  2019 /usr/share/keyrings/debian-archive-stretch-stable.gpg
+
+drwx------ 3 maildeliverer maildeliverer 4096 Sep  4 22:06 /home/maildeliverer/.gnupg
+
+╔══════════╣ Analyzing Cache Vi Files (limit 70)
+*.swp Not Found                                                                                                     
+                                                                                                                    
+*.viminfo Not Found
+                                                                                                                    
+╔══════════╣ Checking if containerd(ctr) is available
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/containerd-ctr-privilege-escalation                   
+                                                                                                                    
+╔══════════╣ Checking if runc is available
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/runc-privilege-escalation                             
+                                                                                                                    
+╔══════════╣ Searching docker files (limit 70)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-docker-socket                                
+                                                                                                                    
+╔══════════╣ Analyzing Firefox Files (limit 70)
+.mozilla Not Found                                                                                                  
+                                                                                                                    
+Firefox Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Chrome Files (limit 70)
+google-chrome Not Found                                                                                             
+                                                                                                                    
+Chrome Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Autologin Files (limit 70)
+autologin Not Found                                                                                                 
+                                                                                                                    
+autologin.conf Not Found
+                                                                                                                    
+╔══════════╣ S/Key authentication
+                                                                                                                    
+╔══════════╣ YubiKey authentication
+                                                                                                                    
+╔══════════╣ Passwords inside pam.d
+                                                                                                                    
+╔══════════╣ Analyzing SNMP Files (limit 70)
+snmpd.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Pypirc Files (limit 70)
+.pypirc Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Postfix Files (limit 70)
+-rw-r--r-- 1 root root 675 Mar  1  2019 /usr/share/bash-completion/completions/postfix                              
+
+
+╔══════════╣ Analyzing Ldaprc Files (limit 70)
+.ldaprc Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Env Files (limit 70)
+.env Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing Msmtprc Files (limit 70)
+.msmtprc Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Keepass Files (limit 70)
+*.kdbx Not Found                                                                                                    
+                                                                                                                    
+KeePass.config* Not Found
+                                                                                                                    
+KeePass.ini Not Found
+                                                                                                                    
+KeePass.enforced* Not Found
+                                                                                                                    
+╔══════════╣ Analyzing FTP Files (limit 70)
+*.ftpconfig Not Found                                                                                               
+                                                                                                                    
+ffftp.ini Not Found
+                                                                                                                    
+-rw-r--r-- 1 root root 69 Jul  5  2020 /etc/php/7.3/mods-available/ftp.ini
+-rw-r--r-- 1 root root 69 Jul  5  2020 /usr/share/php7.3-common/common/ftp.ini
+
+ftp.config Not Found
+                                                                                                                    
+sites.ini Not Found
+                                                                                                                    
+wcx_ftp.ini Not Found
+                                                                                                                    
+winscp.ini Not Found
+                                                                                                                    
+ws_ftp.ini Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Racoon Files (limit 70)
+racoon.conf Not Found                                                                                               
+                                                                                                                    
+psk.txt Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Opera Files (limit 70)
+com.operasoftware.Opera Not Found                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Safari Files (limit 70)
+Safari Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Bind Files (limit 70)
+-rw-r--r-- 1 root root 856 Mar  1  2019 /usr/share/bash-completion/completions/bind                                 
+-rw-r--r-- 1 root root 856 Mar  1  2019 /usr/share/bash-completion/completions/bind
+
+
+
+╔══════════╣ Analyzing SeedDMS Files (limit 70)
+seeddms* Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Ddclient Files (limit 70)
+ddclient.conf Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Analyzing Sentry Files (limit 70)
+sentry Not Found                                                                                                    
+                                                                                                                    
+sentry.conf.py Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Strapi Files (limit 70)
+environments Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Cacti Files (limit 70)
+cacti Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Interesting logs Files (limit 70)
+-rw-r----- 1 www-data adm 44606747 Sep  4 21:55 /var/log/nginx/access.log                                           
+
+-rw-r----- 1 www-data adm 1770 Sep  4 21:44 /var/log/nginx/error.log
+
+╔══════════╣ Analyzing Windows Files Files (limit 70)
+unattend.inf Not Found                                                                                              
+                                                                                                                    
+*.rdg Not Found
+                                                                                                                    
+AppEvent.Evt Not Found
+                                                                                                                    
+ConsoleHost_history.txt Not Found
+                                                                                                                    
+FreeSSHDservice.ini Not Found
+                                                                                                                    
+NetSetup.log Not Found
+                                                                                                                    
+Ntds.dit Not Found
+                                                                                                                    
+protecteduserkey.bin Not Found
+                                                                                                                    
+RDCMan.settings Not Found
+                                                                                                                    
+SAM Not Found
+                                                                                                                    
+SYSTEM Not Found
+                                                                                                                    
+SecEvent.Evt Not Found
+                                                                                                                    
+appcmd.exe Not Found
+                                                                                                                    
+bash.exe Not Found
+                                                                                                                    
+datasources.xml Not Found
+                                                                                                                    
+default.sav Not Found
+                                                                                                                    
+drives.xml Not Found
+                                                                                                                    
+groups.xml Not Found
+                                                                                                                    
+https-xampp.conf Not Found
+                                                                                                                    
+https.conf Not Found
+                                                                                                                    
+iis6.log Not Found
+                                                                                                                    
+index.dat Not Found
+                                                                                                                    
+lrwxrwxrwx 1 root root 22 Dec 26  2020 /etc/alternatives/my.cnf -> /etc/mysql/mariadb.cnf
+lrwxrwxrwx 1 root root 24 Dec 26  2020 /etc/mysql/my.cnf -> /etc/alternatives/my.cnf
+-rw-r--r-- 1 root root 83 Dec 26  2020 /var/lib/dpkg/alternatives/my.cnf
+
+my.ini Not Found
+                                                                                                                    
+ntuser.dat Not Found
+                                                                                                                    
+pagefile.sys Not Found
+                                                                                                                    
+-rw-r--r-- 1 root root 71570 Jul  5  2020 /etc/php/7.3/cli/php.ini
+-rw-r--r-- 1 root root 71958 Jul  5  2020 /etc/php/7.3/fpm/php.ini
+
+printers.xml Not Found
+                                                                                                                    
+recentservers.xml Not Found
+                                                                                                                    
+scclient.exe Not Found
+                                                                                                                    
+scheduledtasks.xml Not Found
+                                                                                                                    
+security.sav Not Found
+                                                                                                                    
+server.xml Not Found
+                                                                                                                    
+setupinfo Not Found
+                                                                                                                    
+setupinfo.bak Not Found
+                                                                                                                    
+sitemanager.xml Not Found
+                                                                                                                    
+sites.ini Not Found
+                                                                                                                    
+software Not Found
+                                                                                                                    
+software.sav Not Found
+                                                                                                                    
+sysprep.inf Not Found
+                                                                                                                    
+sysprep.xml Not Found
+                                                                                                                    
+system.sav Not Found
+                                                                                                                    
+unattend.txt Not Found
+                                                                                                                    
+unattend.xml Not Found
+                                                                                                                    
+unattended.xml Not Found
+                                                                                                                    
+wcx_ftp.ini Not Found
+                                                                                                                    
+ws_ftp.ini Not Found
+                                                                                                                    
+-rw-r--r-- 1 www-data www-data 2197 Dec  7  2020 /var/www/osticket/upload/web.config
+
+winscp.ini Not Found
+                                                                                                                    
+wsl.exe Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Other Interesting Files Files (limit 70)
+-rw-r--r-- 1 root root 3526 Apr 18  2019 /etc/skel/.bashrc                                                          
+-rw-r--r-- 1 maildeliverer maildeliverer 3526 Dec 26  2020 /home/maildeliverer/.bashrc
+
+.google_authenticator Not Found
+                                                                                                                    
+hosts.equiv Not Found
+                                                                                                                    
+.lesshst Not Found
+                                                                                                                    
+.plan Not Found
+                                                                                                                    
+-rw-r--r-- 1 root root 807 Apr 18  2019 /etc/skel/.profile
+-rw-r--r-- 1 maildeliverer maildeliverer 807 Dec 26  2020 /home/maildeliverer/.profile
+
+.recently-used.xbel Not Found
+                                                                                                                    
+.rhosts Not Found
+                                                                                                                    
+.sudo_as_admin_successful Not Found
+                                                                                                                    
+
+════════════════════════════════════╣ Interesting Files ╠════════════════════════════════════
+╔══════════╣ SUID - Check easy privesc, exploits and write perms                                                    
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+strace Not Found                                                                                                    
+-rwsr-xr-- 1 root messagebus 50K Jul  5  2020 /usr/lib/dbus-1.0/dbus-daemon-launch-helper (Unknown SUID binary)     
+-rwsr-xr-x 1 root root 19K Jan 15  2019 /usr/lib/policykit-1/polkit-agent-helper-1
+-rwsr-xr-x 1 root root 10K Mar 28  2017 /usr/lib/eject/dmcrypt-get-device (Unknown SUID binary)
+-rwsr-xr-x 1 root root 427K Jan 31  2020 /usr/lib/openssh/ssh-keysign
+-rwsr-xr-x 1 root root 23K Jan 15  2019 /usr/bin/pkexec  --->  Linux4.10_to_5.1.17(CVE-2019-13272)/rhel_6(CVE-2011-1485)                                                                                                                
+-rwsr-xr-x 1 root root 44K Jul 27  2018 /usr/bin/newgrp  --->  HP-UX_10.20
+-rwsr-xr-x 1 root root 154K Jan 20  2021 /usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable
+-rwsr-xr-x 1 root root 83K Jul 27  2018 /usr/bin/gpasswd
+-rwsr-xr-x 1 root root 63K Jan 10  2019 /usr/bin/su
+-rwsr-xr-x 1 root root 53K Jul 27  2018 /usr/bin/chfn  --->  SuSE_9.3/10
+-rwsr-xr-x 1 root root 51K Jan 10  2019 /usr/bin/mount  --->  Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8                                                                                                             
+-rwsr-xr-x 1 root root 63K Jul 27  2018 /usr/bin/passwd  --->  Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)                                                                                  
+-rwsr-xr-x 1 root root 44K Jul 27  2018 /usr/bin/chsh (Unknown SUID binary)
+-rwsr-xr-x 1 root root 35K Jan 10  2019 /usr/bin/umount  --->  BSD/Linux(08-1996)
+-rwsr-xr-x 1 root root 35K Apr 22  2020 /usr/bin/fusermount (Unknown SUID binary)
+
+╔══════════╣ SGID
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+-rwxr-sr-x 1 root shadow 39K Feb 14  2019 /usr/sbin/unix_chkpwd                                                     
+-rwxr-sr-x 1 root utmp 10K Feb 18  2016 /usr/lib/x86_64-linux-gnu/utempter/utempter
+-rwxr-sr-x 1 root tty 15K May  4  2018 /usr/bin/bsd-write
+-rwxr-sr-x 1 root tty 35K Jan 10  2019 /usr/bin/wall
+-rwxr-sr-x 1 root mail 19K Dec  3  2017 /usr/bin/dotlockfile
+-rwxr-sr-x 1 root shadow 71K Jul 27  2018 /usr/bin/chage
+-rwxr-sr-x 1 root shadow 31K Jul 27  2018 /usr/bin/expiry
+-rwxr-sr-x 1 root ssh 315K Jan 31  2020 /usr/bin/ssh-agent
+-rwxr-sr-x 1 root crontab 43K Oct 11  2019 /usr/bin/crontab
+-rwxr-sr-x 1 root mail 15K Feb 26  2019 /usr/bin/mlock
+
+╔══════════╣ Checking misconfigurations of ld.so
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#ld-so                                                 
+/etc/ld.so.conf                                                                                                     
+include /etc/ld.so.conf.d/*.conf
+
+"/etc/ld.so.conf.d
+  "/etc/ld.so.conf.d/*
+cat: '"/etc/ld.so.conf.d/*': No such file or directory
+
+╔══════════╣ Capabilities
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                          
+Current capabilities:                                                                                               
+Current: =
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: 0000003fffffffff
+CapAmb: 0000000000000000
+
+Shell capabilities:
+0x0000000000000000=
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: 0000003fffffffff
+CapAmb: 0000000000000000
+
+Files with capabilities (limited to 50):
+/usr/bin/ping = cap_net_raw+ep
+
+╔══════════╣ Users with capabilities
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                          
+/etc/security/capability.conf Not Found                                                                             
+                                                                                                                    
+╔══════════╣ Files with ACLs (limited to 50)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#acls                                                  
+files with acls in searched folders Not Found                                                                       
+                                                                                                                    
+╔══════════╣ .sh files in path
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#script-binaries-in-path                               
+/usr/bin/gettext.sh                                                                                                 
+
+╔══════════╣ Unexpected in root
+/initrd.img                                                                                                         
+/grub
+/initrd.img.old
+/vmlinuz.old
+/vmlinuz
+
+╔══════════╣ Files (scripts) in /etc/profile.d/
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#profiles-files                                        
+total 20                                                                                                            
+drwxr-xr-x  2 root root 4096 Dec 26  2020 .
+drwxr-xr-x 91 root root 4096 Jul 14 11:35 ..
+-rw-r--r--  1 root root  664 Mar  1  2019 bash_completion.sh
+-rw-r--r--  1 root root 1107 Sep 14  2018 gawk.csh
+-rw-r--r--  1 root root  757 Sep 14  2018 gawk.sh
+
+╔══════════╣ Permissions in init, init.d, systemd, and rc.d
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#init-init-d-systemd-and-rc-d                          
+                                                                                                                    
+═╣ Hashes inside passwd file? ........... No
+═╣ Writable passwd file? ................ No                                                                        
+═╣ Credentials in fstab/mtab? ........... No                                                                        
+═╣ Can I read shadow files? ............. No                                                                        
+═╣ Can I read shadow plists? ............ No                                                                        
+═╣ Can I write shadow plists? ........... No                                                                        
+═╣ Can I read opasswd file? ............. No                                                                        
+═╣ Can I write in network-scripts? ...... No                                                                        
+═╣ Can I read root folder? .............. No                                                                        
+                                                                                                                    
+╔══════════╣ Searching root files in home dirs (limit 30)
+/home/                                                                                                              
+/home/maildeliverer/.bash_history
+/root/
+
+╔══════════╣ Searching folders owned by me containing others files on it (limit 100)
+/sys/fs/cgroup/systemd/user.slice/user-1000.slice/user@1000.service                                                 
+/sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service
+
+╔══════════╣ Readable files belonging to root and readable by me but not world readable
+                                                                                                                    
+╔══════════╣ Modified interesting files in the last 5mins (limit 100)
+/home/maildeliverer/.gnupg/pubring.kbx                                                                              
+/home/maildeliverer/.gnupg/trustdb.gpg
+/home/maildeliverer/.mysql_history
+/var/log/auth.log
+/var/log/syslog
+/var/log/daemon.log
+
+╔══════════╣ Writable log files (logrotten) (limit 100)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#logrotate-exploitation                                
+logrotate 3.14.0                                                                                                    
+
+    Default mail command:       /usr/bin/mail
+    Default compress command:   /bin/gzip
+    Default uncompress command: /bin/gunzip
+    Default compress extension: .gz
+    Default state file path:    /var/lib/logrotate/status
+    ACL support:                yes
+    SELinux support:            yes
+
+╔══════════╣ Files inside /home/maildeliverer (limit 20)
+total 492                                                                                                           
+drwxr-xr-x 3 maildeliverer maildeliverer   4096 Sep  4 22:05 .
+drwxr-xr-x 3 root          root            4096 Dec 26  2020 ..
+lrwxrwxrwx 1 root          root               9 Dec 28  2020 .bash_history -> /dev/null
+-rw-r--r-- 1 maildeliverer maildeliverer    220 Dec 26  2020 .bash_logout
+-rw-r--r-- 1 maildeliverer maildeliverer   3526 Dec 26  2020 .bashrc
+drwx------ 3 maildeliverer maildeliverer   4096 Sep  4 22:06 .gnupg
+-rw-r--r-- 1 maildeliverer maildeliverer 470149 Sep  4 21:59 linpeas.sh
+-rw------- 1 maildeliverer maildeliverer    140 Sep  4 22:05 .mysql_history
+-rw-r--r-- 1 maildeliverer maildeliverer    807 Dec 26  2020 .profile
+-r-------- 1 maildeliverer maildeliverer     33 Sep  4 21:25 user.txt
+
+╔══════════╣ Files inside others home (limit 20)
+                                                                                                                    
+╔══════════╣ Searching installed mail applications
+                                                                                                                    
+╔══════════╣ Mails (limit 50)
+                                                                                                                    
+╔══════════╣ Backup folders
+                                                                                                                    
+╔══════════╣ Backup files (limited 100)
+-rw-r--r-- 1 root root 7867 Jul 16  1996 /usr/share/doc/telnet/README.old.gz                                        
+-rw-r--r-- 1 root root 303 Oct 26  2018 /usr/share/doc/hdparm/changelog.old.gz
+-rw-r--r-- 1 root root 194817 Nov 23  2016 /usr/share/doc/x11-common/changelog.Debian.old.gz
+-rw-r--r-- 1 root root 363752 Apr 30  2018 /usr/share/doc/manpages/Changes.old.gz
+-rw-r--r-- 1 root root 348 Nov 25  2020 /usr/share/man/man1/wsrep_sst_mariabackup.1.gz
+-rw-r--r-- 1 root root 43736 Oct  9  2019 /usr/lib/open-vm-tools/plugins/vmsvc/libvmbackup.so
+-rw-r--r-- 1 root root 9716 Jul 24  2020 /usr/lib/modules/4.19.0-10-amd64/kernel/drivers/net/team/team_mode_activebackup.ko                                                                                                             
+-rw-r--r-- 1 root root 9716 Nov 28  2020 /usr/lib/modules/4.19.0-13-amd64/kernel/drivers/net/team/team_mode_activebackup.ko                                                                                                             
+-rwxr-xr-x 1 root root 38412 Nov 25  2020 /usr/bin/wsrep_sst_mariabackup
+
+╔══════════╣ Searching tables inside readable .db/.sql/.sqlite files (limit 100)
+Found: "/var/lib/apt/listchanges.db": cannot open `"/var/lib/apt/listchanges.db"' (No such file or directory)       
+
+╔══════════╣ Web files?(output limit)
+/var/www/:                                                                                                          
+total 16K
+drwxr-xr-x  4 root     root     4.0K Jul 14 11:35 .
+drwxr-xr-x 12 root     root     4.0K Jul 14 11:35 ..
+drwxr-xr-x  5 root     root     4.0K Jul 14 11:35 html
+drwxr-xr-x  4 www-data www-data 4.0K Jul 14 11:35 osticket
+
+/var/www/html:
+total 56K
+drwxr-xr-x 5 root root 4.0K Jul 14 11:35 .
+
+╔══════════╣ All hidden files (not in /sys/ or the ones listed in the previous check) (limit 70)
+-rw------- 1 root root 0 Dec 26  2020 /etc/.pwd.lock                                                                
+-rw-r--r-- 1 root root 220 Apr 18  2019 /etc/skel/.bash_logout
+-rw-r--r-- 1 root root 0 Nov 15  2018 /usr/share/dictionaries-common/site-elisp/.nosearch
+-rwxr-xr-x 1 root root 14336 Jan  9  2020 /usr/bin/.chattr
+-rw-r--r-- 1 maildeliverer maildeliverer 220 Dec 26  2020 /home/maildeliverer/.bash_logout
+-rw-rw-r-- 1 www-data www-data 169122 Dec  7  2020 /var/www/osticket/upload/include/.MANIFEST
+-rw-r--r-- 1 www-data www-data 618 Dec  7  2020 /var/www/osticket/upload/include/mpdf/vendor/mpdf/mpdf/.travis.yml
+-rwxr-xr-x 1 www-data www-data 691 Dec  7  2020 /var/www/osticket/upload/include/mpdf/vendor/myclabs/deep-copy/.travis.yml
+-rw-r--r-- 1 www-data www-data 86 Dec  7  2020 /var/www/osticket/upload/include/mpdf/vendor/myclabs/deep-copy/.scrutinizer.yml
+-rw-r--r-- 1 www-data www-data 14 Dec  7  2020 /var/www/osticket/upload/include/.htaccess
+-rw-r--r-- 1 www-data www-data 207 Dec  7  2020 /var/www/osticket/upload/pages/.htaccess
+-rw-r--r-- 1 www-data www-data 211 Dec  7  2020 /var/www/osticket/upload/apps/.htaccess
+-rw-r--r-- 1 www-data www-data 204 Dec  7  2020 /var/www/osticket/upload/api/.htaccess
+-rw-r--r-- 1 www-data www-data 211 Dec  7  2020 /var/www/osticket/upload/scp/apps/.htaccess
+-rw-r--r-- 1 root root 0 Sep  4 21:25 /run/network/.ifstate.lock
+
+╔══════════╣ Readable files inside /tmp, /var/tmp, /private/tmp, /private/var/at/tmp, /private/var/tmp, and backup folders (limit 70)                                                                                                   
+-rw-r--r-- 1 root root 3134 Dec 27  2020 /var/backups/apt.extended_states.1.gz                                      
+-rw-r--r-- 1 root root 29157 Jan  5  2021 /var/backups/apt.extended_states.0
+-rw-r--r-- 1 root root 3091 Dec 26  2020 /var/backups/apt.extended_states.2.gz
+
+╔══════════╣ Interesting writable files owned by me or writable by everyone (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                        
+/dev/mqueue                                                                                                         
+/dev/shm
+/home/maildeliverer
+/run/lock
+/run/user/1000
+/run/user/1000/gnupg
+/run/user/1000/systemd
+/tmp
+/tmp/.font-unix
+/tmp/.ICE-unix
+/tmp/.Test-unix
+/tmp/.X11-unix
+/tmp/.XIM-unix
+/var/lib/php/sessions
+/var/tmp
+
+╔══════════╣ Interesting GROUP writable files (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                        
+  Group maildeliverer:                                                                                              
+                                                                                                                    
+
+╔══════════╣ Searching passwords in config PHP files
+            'agent_passwd_policy'=>$vars['agent_passwd_policy'],                                                    
+            'client_passwd_policy'=>$vars['client_passwd_policy'],
+define('DBUSER','ost_user');
+define('DBUSER','%CONFIG-DBUSER');
+
+╔══════════╣ Checking for TTY (sudo/su) passwords in audit logs
+                                                                                                                    
+╔══════════╣ Finding IPs inside logs (limit 70)
+      2 10.10.14.5                                                                                                  
+      2 10.10.14.24
+      1 10.10.14.3
+
+╔══════════╣ Finding passwords inside logs (limit 70)
+                                                                                                                    
+╔══════════╣ Finding emails inside logs (limit 70)
+                                                                                                                    
+╔══════════╣ Finding *password* or *credential* files in home (limit 70)
+/etc/pam.d/common-password                                                                                          
+/opt/mattermost/templates/password_change_body.html
+/usr/bin/systemd-ask-password
+/usr/bin/systemd-tty-ask-password-agent
+/usr/lib/git-core/git-credential
+/usr/lib/git-core/git-credential-cache
+/usr/lib/git-core/git-credential-cache--daemon
+/usr/lib/git-core/git-credential-store
+  #)There are more creds/passwds files in the previous parent folder
+
+/usr/lib/grub/i386-pc/password.mod
+/usr/lib/grub/i386-pc/password_pbkdf2.mod
+/usr/lib/python3/dist-packages/keyring/credentials.py
+/usr/lib/python3/dist-packages/keyring/__pycache__/credentials.cpython-37.pyc
+/usr/lib/systemd/systemd-reply-password
+/usr/lib/systemd/system/multi-user.target.wants/systemd-ask-password-wall.path
+/usr/lib/systemd/system/sysinit.target.wants/systemd-ask-password-console.path
+/usr/lib/systemd/system/systemd-ask-password-console.path
+/usr/lib/systemd/system/systemd-ask-password-console.service
+/usr/lib/systemd/system/systemd-ask-password-wall.path
+/usr/lib/systemd/system/systemd-ask-password-wall.service
+  #)There are more creds/passwds files in the previous parent folder
+
+/usr/lib/x86_64-linux-gnu/mariadb19/plugin/simple_password_check.so
+/usr/share/doc/git/contrib/credential
+/usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring.c
+/usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret.c
+/usr/share/doc/git/contrib/credential/netrc/git-credential-netrc
+/usr/share/doc/git/contrib/credential/netrc/t-git-credential-netrc.sh
+/usr/share/doc/git/contrib/credential/osxkeychain/git-credential-osxkeychain.c
+/usr/share/doc/git/contrib/credential/wincred/git-credential-wincred.c
+/usr/share/hplip/base/password.py
+/usr/share/hplip/base/__pycache__/password.cpython-37.pyc
+/usr/share/man/man1/git-credential.1.gz
+/usr/share/man/man1/git-credential-cache.1.gz
+/usr/share/man/man1/git-credential-cache--daemon.1.gz
+/usr/share/man/man1/git-credential-store.1.gz
+  #)There are more creds/passwds files in the previous parent folder
+
+/usr/share/man/man7/gitcredentials.7.gz
+/usr/share/man/man8/systemd-ask-password-console.path.8.gz
+/usr/share/man/man8/systemd-ask-password-console.service.8.gz
+/usr/share/man/man8/systemd-ask-password-wall.path.8.gz
+/usr/share/man/man8/systemd-ask-password-wall.service.8.gz
+  #)There are more creds/passwds files in the previous parent folder
+
+/usr/share/pam/common-password.md5sums
+/var/cache/debconf/passwords.dat
+/var/lib/pam/password
+/var/www/osticket/upload/include/staff/templates/set-password.tmpl.php
+/var/www/osticket/upload/scp/images/icons/change_password.gif
+
+╔══════════╣ Finding passwords inside key folders (limit 70) - only PHP files
+/var/www/osticket/upload/account.php:             $errors['passwd1'] = $ex->getMessage();                           
+/var/www/osticket/upload/account.php:        $errors['passwd1'] = __('New password is required');
+/var/www/osticket/upload/account.php:        $errors['passwd1'] = __('Passwords do not match');
+/var/www/osticket/upload/account.php:    elseif (!$_POST['backend'] && $_POST['passwd2'] != $_POST['passwd1'])
+/var/www/osticket/upload/bootstrap.php:        define('USER_ACCOUNT_TABLE',$prefix.'user_account');
+/var/www/osticket/upload/bootstrap.php:        define('USER_CDATA_TABLE', $prefix.'user__cdata');
+/var/www/osticket/upload/bootstrap.php:        define('USER_EMAIL_TABLE',$prefix.'user_email');
+/var/www/osticket/upload/bootstrap.php:        define('USER_TABLE',$prefix.'user');
+/var/www/osticket/upload/include/ajax.staff.php:                    $errors['err'] = __('Password update failed:').' '.$ex->getMessage();
+/var/www/osticket/upload/include/ajax.staff.php:              $errors['err'] = __('Password update failed:').' '.$ex->getMessage();
+/var/www/osticket/upload/include/ajax.staff.php:                  $_SESSION['new-agent-passwd'] = $clean;
+/var/www/osticket/upload/include/ajax.staff.php:                      $staff->change_passwd = 1;
+/var/www/osticket/upload/include/ajax.staff.php:                    if ($passwd1 = $form->getField('passwd1'))
+/var/www/osticket/upload/include/ajax.staff.php:              if ($passwd1 = $form->getField('passwd1'))
+/var/www/osticket/upload/include/class.auth.php:            $info = array('password' => $password, 'current' => $current);
+/var/www/osticket/upload/include/class.auth.php:        $info = array('username' => $username, 'password' => $password);
+/var/www/osticket/upload/include/class.auth.php:        $password = $credentials['password'];
+/var/www/osticket/upload/include/class.auth.php:        $policies = PasswordPolicy::allActivePolicies();
+/var/www/osticket/upload/include/class.auth.php:        $staff->passwd = Passwd::hash($password);
+/var/www/osticket/upload/include/class.auth.php:                $user->change_passwd = 1;
+/var/www/osticket/upload/include/class.auth.php:    function authenticate($username, $password=null) {
+/var/www/osticket/upload/include/class.auth.php:    function getPasswordPolicies($user=null) {
+/var/www/osticket/upload/include/class.auth.php:    function setPassword($user, $password, $current=false) {
+/var/www/osticket/upload/include/class.auth.php:        PasswordPolicy::checkPassword($new, $current, new self());
+/var/www/osticket/upload/include/class.auth.php:PasswordPolicy::register('osTicketPasswordPolicy');
+/var/www/osticket/upload/include/class.auth.php:        return PasswordPolicy::allActivePolicies();
+/var/www/osticket/upload/include/class.auth.php:    static function checkPassword($new, $current, $bk=null) {
+/var/www/osticket/upload/include/class.auth.php:    static function process($username, $password=null, &$errors=array()) {
+/var/www/osticket/upload/include/class.client.php:                    $errors['cpasswd']=__('Current password is required');
+/var/www/osticket/upload/include/class.client.php:                    $errors['cpasswd']=__('Invalid current password!');
+/var/www/osticket/upload/include/class.client.php:                    $errors['passwd1'] = $ex->getMessage();
+/var/www/osticket/upload/include/class.client.php:                $errors['passwd1']=__('New password is required');
+/var/www/osticket/upload/include/class.client.php:                $errors['passwd2']=__('Passwords do not match');
+/var/www/osticket/upload/include/class.client.php:            $info = array('password' => $vars['passwd1']);
+/var/www/osticket/upload/include/class.client.php:            $this->set('passwd', Passwd::hash($password));
+/var/www/osticket/upload/include/class.client.php:            $this->set('passwd', Passwd::hash($vars['passwd1']));
+/var/www/osticket/upload/include/class.client.php:    function check_passwd($password, $autoupdate=true) {
+/var/www/osticket/upload/include/class.client.php:        if(Passwd::cmp($password, $this->get('passwd')))
+/var/www/osticket/upload/include/class.client.php:        //Password is a MD5 hash: rehash it (if enabled) otherwise force passwd change.
+/var/www/osticket/upload/include/class.config.php:            'agent_passwd_policy'=>$vars['agent_passwd_policy'],
+/var/www/osticket/upload/include/class.config.php:            'client_passwd_policy'=>$vars['client_passwd_policy'],
+/var/www/osticket/upload/include/class.email.php:            $errors[$smtp ? 'smtp_passwd' : 'passwd'] = __('Password Required');
+/var/www/osticket/upload/include/class.email.php:        $passwd = $smtpcreds ? $this->smtp_userpass : $this->userpass;
+/var/www/osticket/upload/include/class.email.php:        $passwd = $vars['passwd'] ?: $vars['cpasswd'];
+/var/www/osticket/upload/include/class.email.php:        $smtppasswd = $vars['smtp_passwd'] ?: $vars['smtp_cpasswd'];
+/var/www/osticket/upload/include/class.email.php:        $vars['cpasswd']=$this->getPasswd(); //Current decrypted password.                                                                                                             
+/var/www/osticket/upload/include/class.email.php:        $vars['smtp_cpasswd']=$this->getSMTPPasswd(); // Current decrypted SMTP password.
+/var/www/osticket/upload/include/class.email.php:                        'password'  => $passwd,
+/var/www/osticket/upload/include/class.email.php:                           'password' => $smtpcreds ? $smtppasswd : $passwd,
+/var/www/osticket/upload/include/class.email.php:                'password' => Crypto::decrypt($passwd, SECRET_SALT, $username)
+/var/www/osticket/upload/include/class.email.php:                'password' => Crypto::decrypt($this->userpass, SECRET_SALT, $this->userid),
+/var/www/osticket/upload/include/class.forms.php:            'password' => array(array('Validator', 'check_passwd'),
+/var/www/osticket/upload/include/class.mailer.php:                    'password' => $smtp['password'],
+/var/www/osticket/upload/include/class.passwd.php:    function cmp($passwd,$hash,$work_factor=0){
+/var/www/osticket/upload/include/class.passwd.php:    function hash($passwd, $work_factor=0){
+/var/www/osticket/upload/include/class.passwd.php:        return ($hasher && ($hash=$hasher->HashPassword($passwd)))?$hash:null;
+/var/www/osticket/upload/include/class.staff.php:                $errors['passwd1'] = $ex->getMessage();
+/var/www/osticket/upload/include/class.staff.php:            $fields['passwd1']->set('configuration', array('autofocus' => true));
+/var/www/osticket/upload/include/class.staff.php:            $this->change_passwd = $vars['change_passwd'] ? 1 : 0;
+/var/www/osticket/upload/include/class.staff.php:        $this->change_passwd = 0;
+/var/www/osticket/upload/include/class.staff.php:        $this->change_passwd = 1;
+/var/www/osticket/upload/include/class.staff.php:                $this->passwd_change = strtotime($this->added);
+/var/www/osticket/upload/include/class.staff.php:                $this->passwd_change = strtotime($this->created);
+/var/www/osticket/upload/include/class.staff.php:                $this->passwd_change = strtotime($this->passwdreset);
+/var/www/osticket/upload/include/class.staff.php:        $this->passwd = Passwd::hash($password);
+/var/www/osticket/upload/include/class.staff.php:        $this->passwdreset = SqlFunction::NOW();
+/var/www/osticket/upload/include/class.staff.php:            'change_passwd' => new BooleanField(array(
+/var/www/osticket/upload/include/class.staff.php:    function check_passwd($password, $autoupdate=true) {
+/var/www/osticket/upload/include/class.staff.php:    function setPassword($new, $current=false) {
+/var/www/osticket/upload/include/class.staff.php:        if ($clean['passwd1'] != $clean['passwd2'])
+
+╔══════════╣ Finding passwords inside key folders (limit 70) - no PHP files
+/etc/debconf.conf:#BindPasswd: secret                                                                               
+/etc/nsswitch.conf:passwd:         files systemd
+/etc/pam.d/common-password:password     [success=1 default=ignore]      pam_unix.so obscure sha512
+/etc/security/namespace.init:                gid=$(echo "$passwd" | cut -f4 -d":")
+/etc/security/namespace.init:        homedir=$(echo "$passwd" | cut -f6 -d":")
+/etc/security/namespace.init:        passwd=$(getent passwd "$user")
+/etc/ssl/openssl.cnf:challengePassword          = A challenge password
+/etc/ssl/openssl.cnf:challengePassword_max              = 20
+/etc/ssl/openssl.cnf:challengePassword_min              = 4
+/etc/ssl/openssl.cnf:# input_password = secret
+/etc/ssl/openssl.cnf:# output_password = secret
+/etc/vmware-tools/vm-support:         sed 's/password[[:space:]]\+\(.*\)[[:space:]]\+\(.*\)$/password \1 xxxxxx/g' > \
+/var/www/html/assets/css/main.css:              input[type="password"]:focus,
+/var/www/html/assets/css/main.css:              input[type="password"]:invalid,
+/var/www/html/assets/js/util.js:                                                                case 'password':
+/var/www/html/assets/js/util.js:                                                                        .replace(/type="password"/i, 'type="text"')
+/var/www/html/assets/js/util.js:                                                                        .replace(/type=password/i, 'type=text')
+/var/www/osticket/upload/include/i18n/en_US/config.yaml:    passwd_reset_period: 0
+/var/www/osticket/upload/scp/css/scp.css:a.userPasswd { background:url(../images/icons/change_password.gif) }
+
+╔══════════╣ Finding possible password variables inside key folders (limit 140)
+/var/www/osticket/upload/include/class.api.php:        $sql='DELETE FROM '.API_KEY_TABLE.' WHERE id='.db_input($this->getId()).' LIMIT 1';
+/var/www/osticket/upload/include/class.api.php:        $sql='SELECT * FROM '.API_KEY_TABLE.' WHERE id='.db_input($id);
+/var/www/osticket/upload/include/class.api.php:        $sql='SELECT id FROM '.API_KEY_TABLE.' WHERE apikey='.db_input($key);
+/var/www/osticket/upload/include/class.api.php:            $sql='UPDATE '.API_KEY_TABLE.' SET '.$sql.' WHERE id='.db_input($id);
+/var/www/osticket/upload/include/class.config.php:            $errors['admin_email']=__('Email already setup as system email');
+/var/www/osticket/upload/include/class.config.php:            'admin_email'=>$vars['admin_email'],
+/var/www/osticket/upload/include/class.config.php:        'allow_auth_tokens' => 1,
+/var/www/osticket/upload/include/class.config.php:            'allow_auth_tokens' => isset($vars['allow_auth_tokens']) ? 1 : 0,
+/var/www/osticket/upload/scp/apikeys.php:                        $sql='UPDATE '.API_KEY_TABLE.' SET isactive=0 '
+/var/www/osticket/upload/scp/apikeys.php:                        $sql='UPDATE '.API_KEY_TABLE.' SET isactive=1 '
+
+╔══════════╣ Finding possible password in config files
+                                                                                                                    
+╔══════════╣ Finding 'username' string inside key folders (limit 70)
+/var/www/osticket/upload/include/ajax.users.php:                    'account__username__contains' => $q,            
+/var/www/osticket/upload/include/class.auth.php:            $alert=_S('Username').": {$username}\n"
+/var/www/osticket/upload/include/class.auth.php:            $alert=_S('Username').": {$username}\n".
+/var/www/osticket/upload/include/class.auth.php:        $info = array('username' => $username, 'password' => $password);
+/var/www/osticket/upload/include/class.auth.php:            $sql.= ' AND (username='.db_input($userid) .' OR email='.db_input($userid).')';
+/var/www/osticket/upload/include/class.auth.php:        $this->username = $username;
+/var/www/osticket/upload/include/class.auth.php:        $username = $credentials['username'];
+/var/www/osticket/upload/include/class.auth.php:              .' AND (A1.username='.db_input($userid)
+/var/www/osticket/upload/include/class.auth.php:    function authenticate($username, $password=null) {
+/var/www/osticket/upload/include/class.auth.php:    function __construct($backend, $username, $info=array()) {
+/var/www/osticket/upload/include/class.auth.php:    static function process($username, $password=null, &$errors=array()) {
+/var/www/osticket/upload/include/class.auth.php:                    _S('Username').": {$username}\n".
+/var/www/osticket/upload/include/class.auth.php:                   ._S('Username').": $username\n"
+/var/www/osticket/upload/include/class.auth.php:            'username' => $this->getUsername(),
+/var/www/osticket/upload/include/class.email.php:        $username = $smtpcreds ? $this->smtp_userid : $this->userid;
+/var/www/osticket/upload/include/class.email.php:                           'username' => $smtpcreds ? $vars['smtp_userid'] : $vars['userid'],
+/var/www/osticket/upload/include/class.email.php:                'username'  => $this->userid,
+/var/www/osticket/upload/include/class.email.php:                'username' => $username,
+/var/www/osticket/upload/include/class.email.php:                        'username'  => $vars['userid'],
+/var/www/osticket/upload/include/class.export.php:                    '::getUsername' => 'Username',
+/var/www/osticket/upload/include/class.export.php:                '::getUsername' => 'Username',
+/var/www/osticket/upload/include/class.mailer.php:                    'username' => $smtp['username'],
+/var/www/osticket/upload/include/class.mailfetch.php:                $this->username = $this->ht['username'];
+/var/www/osticket/upload/include/class.mailfetch.php:                    $this->username = $usernames[0].'\\'.$usernames[1];                                                                                                            
+/var/www/osticket/upload/include/class.mailfetch.php:                    $this->username = $usernames[1];
+/var/www/osticket/upload/include/class.mailfetch.php:                $this->username = $usernames[2];
+/var/www/osticket/upload/include/class.mailfetch.php:            $usernames = explode('\\', $this->ht['username']);
+/var/www/osticket/upload/include/class.mailfetch.php:                if (strpos($usernames[0], '@') !== false) {
+/var/www/osticket/upload/include/class.signal.php:     * Signal::send('user.login', $this, array('username'=>'blah'));
+/var/www/osticket/upload/include/class.staff.php:            $clean['username'] = mb_strtolower($clean['firstname']);
+/var/www/osticket/upload/include/class.staff.php:            $errors['username']=($error) ? $error : __('Username is required');
+/var/www/osticket/upload/include/class.staff.php:            $errors['username']=__('Username already in use');
+/var/www/osticket/upload/include/class.staff.php:        $row = static::objects()->filter(array('username' => $username))                                                                                                               
+/var/www/osticket/upload/include/class.staff.php:        $this->username = $vars['username'];
+/var/www/osticket/upload/include/class.staff.php:        $vars['username']=Format::striptags($vars['username']);
+/var/www/osticket/upload/include/class.staff.php:                if ($agent = self::lookup(array('username' => $data['username']))) {
+/var/www/osticket/upload/include/class.staff.php:        if(!$vars['username'] || !Validator::is_username($vars['username'], $error))                                                                                                   
+/var/www/osticket/upload/include/class.staff.php:        if (mb_strlen($clean['username']) < 3 || Staff::lookup($clean['username']))
+/var/www/osticket/upload/include/class.staff.php:        list($clean['username'],) = preg_split('/[^\w.-]/u', $clean['email'], 2);
+/var/www/osticket/upload/include/class.staff.php:            return parent::lookup(array('username'=>$var));
+/var/www/osticket/upload/include/class.staff.php:        'username' => 'Access username',
+/var/www/osticket/upload/include/class.staff.php:            'username' => new TextboxField(array(
+/var/www/osticket/upload/include/class.thread.php:        $event->username = $username;
+/var/www/osticket/upload/include/class.thread.php:                    $username = $thisclient->getEmail();
+/var/www/osticket/upload/include/class.thread.php:                    $username = $thisclient->getFullName();
+/var/www/osticket/upload/include/class.thread.php:        $username = $user;
+/var/www/osticket/upload/include/class.thread.php:                $username = $user->getUserName();
+/var/www/osticket/upload/include/class.thread.php:                $username = 'SYSTEM';
+/var/www/osticket/upload/include/class.ticket.php:                $username = __('Ticket Filter');
+/var/www/osticket/upload/include/class.user.php:            $user = static::lookup(array('username'=>$username));
+/var/www/osticket/upload/include/class.user.php:        if ($vars['username'] && Validator::is_email($vars['username']))
+/var/www/osticket/upload/include/class.user.php:        if (strpos($username, '@') !== false)
+/var/www/osticket/upload/include/class.validator.php:    static function is_username($username, &$error='') {
+/var/www/osticket/upload/include/client/pwreset.login.php:        <label for="username"><?php echo __('Username'); ?>:</label>
+/var/www/osticket/upload/include/client/pwreset.request.php:        <label for="username"><?php echo __('Username'); ?>:</label>
+/var/www/osticket/upload/include/client/register.inc.php:        <input type="hidden" name="username" value="<?php echo $info['username']; ?>"/>
+/var/www/osticket/upload/include/client/register.inc.php:        'username' => $user->getUsername(),
+/var/www/osticket/upload/include/cli/modules/agent.php:            $agents->filter(array('username__contains' => $options['username']));
+/var/www/osticket/upload/include/cli/modules/agent.php:            $this->stderr->write('Username: ');
+/var/www/osticket/upload/include/cli/modules/agent.php:            $username = trim(fgets(STDIN));
+/var/www/osticket/upload/include/cli/modules/agent.php:        'username' => array('-U', '--username',
+/var/www/osticket/upload/include/pear/Auth/SASL/DigestMD5.php:                return sprintf('username="%s",realm="%s"' . $authzid_string  .
+/var/www/osticket/upload/include/pear/Auth/SASL/SCRAM.php:        $username = str_replace(',', '=2C', $username);
+/var/www/osticket/upload/include/pear/Auth/SASL/SCRAM.php:        $username = str_replace('=', '=3D', $username);
+/var/www/osticket/upload/include/pear/Mail/smtp.php:        if (isset($params['username'])) $this->username = $params['username'];
+/var/www/osticket/upload/include/pear/Mail/smtp.php:    var $username = '';
+/var/www/osticket/upload/include/staff/staff.inc.php:              name="username" value="<?php echo Format::htmlchars($staff->username); ?>" />
+/var/www/osticket/upload/include/staff/staffmembers.inc.php:        'username' => 'username',
+/var/www/osticket/upload/include/upgrader/streams/core/9143a511-0d6099a6.patch.sql:    WHERE A1.`username` != 'SYSTEM';
+/var/www/osticket/upload/scp/login.php:    $username = trim($_POST['userid']);
+
+╔══════════╣ Searching specific hashes inside files - less false positives (limit 70)

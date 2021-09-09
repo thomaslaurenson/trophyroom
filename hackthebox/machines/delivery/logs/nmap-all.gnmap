@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Sun Sep  5 13:29:12 2021 as: nmap -p- -oA logs/nmap-all 10.10.10.222
+Host: 10.10.10.222 (delivery.htb)	Status: Up
+Host: 10.10.10.222 (delivery.htb)	Ports: 22/open/tcp//ssh///, 80/open/tcp//http///, 8065/open/tcp/////	Ignored State: closed (65532)
+# Nmap done at Sun Sep  5 13:29:26 2021 -- 1 IP address (1 host up) scanned in 14.43 seconds
