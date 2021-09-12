@@ -14,9 +14,8 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | ---- |--------|------------|-------------|--------------|----------------|
 | [Archetype](hackthebox/startingpoint/1_archetype) | Windows | Very Easy | No | 2020-12-01 | 2021-07-08 |
 | [Oopsie](hackthebox/startingpoint/2_oopsie) | Linux | Very Easy | No | 2020-12-01 | 2021-07-10 |
-| [Vaccine](hackthebox/startingpoint/3_vaccine) | Linux | Very Easy | No | 2020-12-01 | 2021-07-11 |
-| [Shield](hackthebox/startingpoint/4_shield) | Windows | Very Easy | No | 2020-12-01 | 2021-07-29 |
-
+| [Shield](hackthebox/startingpoint/3_shield) | Windows | Very Easy | No | 2020-12-01 | 2021-07-29 |
+| [Vaccine](hackthebox/startingpoint/4_vaccine) | Linux | Very Easy | No | 2020-12-01 | 2021-07-11 |
 
 ### Machines
 
@@ -43,6 +42,6 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [Sense](hackthebox/machines/sense) | FreeBSD | Easy | Yes | 2017-10-21 | 2021-07-16 |
 | [Shocker](hackthebox/machines/shocker) | Linux | Easy | Yes | 2017-09-30 | 2021-06-27 |
 | [Spectra](hackthebox/machines/spectra) | Other | Easy | No | 2021-02-27 | 2021-07-21 |
+| [SwagShop](hackthebox/machines/swagshop) | Linux | Easy | Yes | 2019-05-11 | 2021-09-13 |
 | [Tabby](hackthebox/machines/tabby) | Linux | Easy | Yes | 2020-06-20 | 2021-08-18 |
 | [TheNotebook](hackthebox/machines/thenotebook) | Linux | Medium | No | 2021-03-06 | 2021-07-03 |
-| [Writeup](hackthebox/machines/writeup) | Linux | Easy | No | 2019-06-08 | 2021-08-04 |
