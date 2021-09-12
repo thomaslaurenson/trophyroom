@@ -14,8 +14,8 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | ---- |--------|------------|-------------|--------------|----------------|
 | [Archetype](hackthebox/startingpoint/1_archetype) | Windows | Very Easy | No | 2020-12-01 | 2021-07-08 |
 | [Oopsie](hackthebox/startingpoint/2_oopsie) | Linux | Very Easy | No | 2020-12-01 | 2021-07-10 |
-| [Shield](hackthebox/startingpoint/3_shield) | Windows | Very Easy | No | 2020-12-01 | 2021-07-29 |
-| [Vaccine](hackthebox/startingpoint/4_vaccine) | Linux | Very Easy | No | 2020-12-01 | 2021-07-11 |
+| [Vaccine](hackthebox/startingpoint/3_vaccine) | Linux | Very Easy | No | 2020-12-01 | 2021-07-11 |
+| [Shield](hackthebox/startingpoint/4_shield) | Windows | Very Easy | No | 2020-12-01 | 2021-07-29 |
 
 ### Machines
 
