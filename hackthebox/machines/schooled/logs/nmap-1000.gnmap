@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Fri Sep 10 17:21:11 2021 as: nmap -sC -sV -oA logs/nmap-1000 10.10.10.234
+Host: 10.10.10.234 ()	Status: Up
+Host: 10.10.10.234 ()	Ports: 22/open/tcp//ssh//OpenSSH 7.9 (FreeBSD 20200214; protocol 2.0)/, 80/open/tcp//http//Apache httpd 2.4.46 ((FreeBSD) PHP|7.4.15)/	Ignored State: closed (998)
+# Nmap done at Fri Sep 10 17:21:26 2021 -- 1 IP address (1 host up) scanned in 14.90 seconds

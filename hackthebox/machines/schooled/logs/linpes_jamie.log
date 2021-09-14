@@ -1,0 +1,1787 @@
+
+
+                            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                    ▄▄▄▄▄▄▄             ▄▄▄▄▄▄▄▄
+             ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄
+         ▄▄▄▄     ▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄
+         ▄    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄          ▄▄▄▄▄▄               ▄▄▄▄▄▄ ▄
+         ▄▄▄▄▄▄              ▄▄▄▄▄▄▄▄                 ▄▄▄▄ 
+         ▄▄                  ▄▄▄ ▄▄▄▄▄                  ▄▄▄
+         ▄▄                ▄▄▄▄▄▄▄▄▄▄▄▄                  ▄▄
+         ▄            ▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄   ▄▄
+         ▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                ▄▄▄▄
+         ▄▄▄▄▄  ▄▄▄▄▄                       ▄▄▄▄▄▄     ▄▄▄▄
+         ▄▄▄▄   ▄▄▄▄▄                       ▄▄▄▄▄      ▄ ▄▄
+         ▄▄▄▄▄  ▄▄▄▄▄        ▄▄▄▄▄▄▄        ▄▄▄▄▄     ▄▄▄▄▄
+         ▄▄▄▄▄▄  ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄   ▄▄▄▄▄ 
+          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄        ▄          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄                       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄                         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+          ▀▀▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▀▀▀▀▀▀
+               ▀▀▀▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▀▀
+                     ▀▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀▀▀
+
+      /---------------------------------------------------------------------------\
+      |                             Do you like PEASS?                            |                                 
+      |---------------------------------------------------------------------------|                                 
+      |         Become a Patreon    :     https://www.patreon.com/peass           |                                 
+      |         Follow on Twitter   :     @carlospolopm                           |                                 
+      |         Respect on HTB      :     SirBroccoli & makikvues                 |                                 
+      |---------------------------------------------------------------------------|                                 
+      |                                 Thank you!                                |                                 
+      \---------------------------------------------------------------------------/                                 
+        linpeas-ng by carlospolop                                                                                   
+                                                                                                                    
+ADVISORY: This script should be used for authorized penetration testing and/or educational purposes only. Any misuse of this software will not be the responsibility of the author or of any other collaborator. Use it at your own networks and/or with the network owner's permission.                                                                    
+                                                                                                                    
+Linux Privesc Checklist: https://book.hacktricks.xyz/linux-unix/linux-privilege-escalation-checklist
+ LEGEND:                                                                                                            
+  RED/YELLOW: 95% a PE vector
+  RED: You should take a look to it
+  LightCyan: Users with console
+  Blue: Users without console & mounted devs
+  Green: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs) 
+  LightMagenta: Your username
+
+ Starting linpeas. Caching Writable Folders...
+
+════════════════════════════════════╣ Basic information ╠════════════════════════════════════
+OS: FreeBSD Schooled 13.0-BETA3 FreeBSD 13.0-BETA3 #0 releng/13.0-n244525-150b4388d3b: Fri Feb 19 04:04:34 UTC 2021     root@releng1.nyi.freebsd.org:/usr/obj/usr/src/amd64.amd64/sys/GENERIC  amd64
+User & Groups: sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)
+Hostname: Schooled
+Writable folder: /tmp
+[+] /sbin/ping is available for network discovery (linpeas can discover hosts, learn more with -h)
+[+] /usr/bin/nc is available for network discover & port scanning (linpeas can discover hosts and scan ports, learn more with -h)                                                                                                       
+                                                                                                                    
+
+Caching directories . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . DONE
+                                                                                                                    
+════════════════════════════════════╣ System Information ╠════════════════════════════════════
+╔══════════╣ Operative system                                                                                       
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#kernel-exploits                                       
+FreeBSD Schooled 13.0-BETA3 FreeBSD 13.0-BETA3 #0 releng/13.0-n244525-150b4388d3b: Fri Feb 19 04:04:34 UTC 2021     root@releng1.nyi.freebsd.org:/usr/obj/usr/src/amd64.amd64/sys/GENERIC  amd64
+lsb_release Not Found
+                                                                                                                    
+╔══════════╣ Sudo version
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-version                                          
+Sudo version 1.9.5p2                                                                                                
+
+╔══════════╣ USBCreator
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/d-bus-enumeration-and-command-injection-privilege-escalation                                                                                                              
+                                                                                                                    
+╔══════════╣ PATH
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-path-abuses                                  
+/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/jamie/bin                                        
+New path exported: /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/jamie/bin
+
+╔══════════╣ Date & uptime
+Sat Sep 11 03:33:29 BST 2021                                                                                        
+ 3:33AM  up  1:54, 1 user, load averages: 0.96, 1.07, 0.90
+
+╔══════════╣ System stats
+Filesystem            Size    Used   Avail Capacity  Mounted on                                                     
+zroot/ROOT/default     12G    2.3G    9.8G    19%    /
+devfs                 1.0K    1.0K      0B   100%    /dev
+zroot/tmp             9.8G    300K    9.8G     0%    /tmp
+zroot/usr/home        9.8G     13M    9.8G     0%    /usr/home
+zroot/var/log         9.8G    456K    9.8G     0%    /var/log
+zroot                 9.8G     96K    9.8G     0%    /zroot
+zroot/var/audit       9.8G     96K    9.8G     0%    /var/audit
+zroot/var/tmp         9.8G     96K    9.8G     0%    /var/tmp
+zroot/var/crash       9.8G     96K    9.8G     0%    /var/crash
+zroot/var/mail        9.8G    120K    9.8G     0%    /var/mail
+zroot/usr/ports       9.8G     96K    9.8G     0%    /usr/ports
+zroot/usr/src         9.8G     96K    9.8G     0%    /usr/src
+free Not Found
+                                                                                                                    
+╔══════════╣ CPU info
+lscpu Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Environment
+╚ Any private information inside environment variables?                                                             
+SHELL=/bin/sh                                                                                                       
+HISTSIZE=0
+EDITOR=vi
+ENV=/home/jamie/.shrc
+PWD=/tmp
+LOGNAME=jamie
+HOME=/home/jamie
+LANG=C.UTF-8
+HISTFILE=/dev/null
+SSH_CONNECTION=10.10.14.15 47616 10.10.10.234 22
+TERM=xterm-256color
+USER=jamie
+SHLVL=1
+PAGER=less
+MM_CHARSET=UTF-8
+SSH_CLIENT=10.10.14.15 47616 22
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/jamie/bin
+BLOCKSIZE=K
+HISTFILESIZE=0
+MAIL=/var/mail/jamie
+SSH_TTY=/dev/pts/1
+OLDPWD=/home/jamie
+_=/usr/bin/env
+
+╔══════════╣ Searching Signature verification failed in dmseg
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#dmesg-signature-verification-failed                   
+dmesg Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Protections
+═╣ AppArmor enabled? .............. AppArmor Not Found                                                              
+═╣ grsecurity present? ............ grsecurity Not Found                                                            
+═╣ PaX bins present? .............. PaX Not Found                                                                   
+═╣ Execshield enabled? ............ Execshield Not Found                                                            
+═╣ SELinux enabled? ............... sestatus Not Found                                                              
+═╣ Is ASLR enabled? ............... /proc/sys/kernel/randomize_va_space Not Found                                   
+═╣ Printer? ....................... No                                                                              
+═╣ Is this a virtual machine? ..... No                                                                              
+
+════════════════════════════════════╣ Containers ╠════════════════════════════════════
+╔══════════╣ Container related tools present                                                                        
+╔══════════╣ Container details                                                                                      
+═╣ Is this a container? ........... No                                                                              
+═╣ Any running containers? ........ No                                                                              
+                                                                                                                    
+════════════════════════════════════╣ Devices ╠════════════════════════════════════
+╔══════════╣ Any sd*/disk* disk in /dev? (limit 20)                                                                 
+                                                                                                                    
+╔══════════╣ Unmounted file-system?
+╚ Check if you can mount umounted devices                                                                           
+sed: 1: "s,\Wsuid|\Wuser|\Wexec, ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Mounted disks information
+diskutil Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Mounted SMB Shares
+smbutil Not Found                                                                                                   
+                                                                                                                    
+
+════════════════════════════════════╣ Available Software ╠════════════════════════════════════
+╔══════════╣ Useful software                                                                                        
+/usr/bin/nc                                                                                                         
+/usr/local/bin/curl
+/sbin/ping
+/usr/bin/make
+/usr/local/bin/python3
+/usr/local/bin/python3.7
+/usr/local/bin/perl
+/usr/local/bin/php
+/usr/local/bin/sudo
+/usr/bin/fetch
+
+╔══════════╣ Installed Compiler
+                                                                                                                    
+╔══════════╣ Vulnerable Packages
+pkg: http://vuxml.freebsd.org/freebsd/vuln.xml.bz2: No address record                                               
+pkg: cannot fetch vulnxml file
+
+
+════════════════════════════════════╣ Processes, Cron, Services, Timers & Sockets ╠════════════════════════════════════                                                                                                                 
+╔══════════╣ Cleaned processes                                                                                      
+[i] Looks like ps is not finding processes, going to read from /proc/ and not going to monitor 1min of processes    
+╚ Check weird & unexpected proceses run by root: https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                                                                                                  
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Files opened by processes belonging to other users
+╚ This is usually empty because of the lack of privileges to read other user processes information                  
+                                                                                                                    
+╔══════════╣ Processes with credentials in memory (root req)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#credentials-from-process-memory                       
+gdm-password Not Found                                                                                              
+gnome-keyring-daemon Not Found                                                                                      
+lightdm Not Found                                                                                                   
+vsftpd Not Found                                                                                                    
+apache2 Not Found                                                                                                   
+sshd Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Cron jobs
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#scheduled-cron-jobs                                   
+/usr/bin/crontab                                                                                                    
+incrontab Not Found
+sed: 1: "s,.placeholder|0anacron ...": RE error: empty (sub)expression                                              
+SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+*/11    *       *       *       *       operator /usr/libexec/save-entropy
+0       *       *       *       *       root    newsyslog
+1       3       *       *       *       root    periodic daily
+15      4       *       *       6       root    periodic weekly
+30      5       1       *       *       root    periodic monthly
+1,31    0-5     *       *       *       root    adjkerntz -a
+sed: 1: "s,.placeholder|0anacron ...": RE error: empty (sub)expression
+
+╔══════════╣ Services
+╚ Search for outdated versions                                                                                      
+                                                                                                                    
+Usage:
+service [-j <jail name or id>] -e
+service [-j <jail name or id>] -R
+service [-j <jail name or id>] [-v] -l | -r
+service [-j <jail name or id>] [-v] <rc.d script> start|stop|etc.
+service -h
+
+-j      Perform actions within the named jail
+-e      Show services that are enabled
+-R      Stop and start enabled /usr/local/etc/rc.d services
+-l      List all scripts in /etc/rc.d and /usr/local/etc/rc.d
+-r      Show the results of boot time rcorder
+-v      Verbose
+
+/etc/rc.d/rctl
+/etc/rc.d/hostid
+/etc/rc.d/zpool
+/etc/rc.d/zvol
+/etc/rc.d/hostid_save
+/etc/rc.d/zfsbe
+/etc/rc.d/zfs
+/etc/rc.d/cleanvar
+/etc/rc.d/kldxref
+/etc/rc.d/ip6addrctl
+/etc/rc.d/mixer
+/etc/rc.d/devmatch
+/etc/rc.d/netif
+/etc/rc.d/resolv
+/etc/rc.d/devd
+/etc/rc.d/newsyslog
+/etc/rc.d/motd
+/etc/rc.d/cleartmp
+/etc/rc.d/dmesg
+/etc/rc.d/gptboot
+/etc/rc.d/virecover
+/etc/rc.d/os-release
+/etc/rc.d/syslogd
+/etc/rc.d/savecore
+/etc/rc.d/sendmail
+/etc/rc.d/sshd
+/etc/rc.d/cron
+/usr/local/etc/rc.d/mysql-server
+/etc/rc.d/bgfsck
+/usr/local/etc/rc.d/apache24
+
+╔══════════╣ Systemd PATH
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#systemd-path-relative-paths                           
+                                                                                                                    
+╔══════════╣ Analyzing .service files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#services                                              
+You can't write on systemd PATH                                                                                     
+
+╔══════════╣ System timers
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                                
+                                                                                                                    
+╔══════════╣ Analyzing .timer files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers                                                
+                                                                                                                    
+╔══════════╣ Analyzing .socket files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                               
+                                                                                                                    
+╔══════════╣ HTTP sockets
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets                                               
+                                                                                                                    
+╔══════════╣ D-Bus config files
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                                 
+                                                                                                                    
+╔══════════╣ D-Bus Service Objects list
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus                                                 
+busctl Not Found                                                                                                    
+                                                                                                                    
+
+════════════════════════════════════╣ Network Information ╠════════════════════════════════════
+╔══════════╣ Hostname, hosts and DNS                                                                                
+::1                     localhost localhost.my.domain                                                               
+127.0.0.1               localhost localhost.my.domain Schooled schooled.htb moodle.schooled.htb
+192.168.1.14            devops.htb
+dnsdomainname Not Found
+                                                                                                                    
+╔══════════╣ Content of /etc/inetd.conf & /etc/xinetd.conf
+/etc/inetd.conf Not Found                                                                                           
+                                                                                                                    
+╔══════════╣ Interfaces
+# $FreeBSD$                                                                                                         
+#       @(#)networks    5.1 (Berkeley) 6/30/90
+#
+# Your Local Networks Database
+#
+your-net        127                             # your comment
+your-netmask    255.255.255                     # subnet mask for your-net
+
+#
+# Your subnets
+#
+subnet1         127.0.1         alias1          # comment 1
+subnet2         127.0.2         alias2          # comment 2
+
+#
+# Internet networks (from nic.ddn.mil)
+#
+vmx0: flags=8863<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST> metric 0 mtu 1500
+        options=4e403bb<RXCSUM,TXCSUM,VLAN_MTU,VLAN_HWTAGGING,JUMBO_MTU,VLAN_HWCSUM,TSO4,TSO6,VLAN_HWTSO,RXCSUM_IPV6,TXCSUM_IPV6,NOMAP>
+        ether 00:50:56:b9:32:f2
+        inet 10.10.10.234 netmask 0xffffff00 broadcast 10.10.10.255
+        media: Ethernet autoselect
+        status: active
+        nd6 options=29<PERFORMNUD,IFDISABLED,AUTO_LINKLOCAL>
+lo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> metric 0 mtu 16384
+        options=680003<RXCSUM,TXCSUM,LINKSTATE,RXCSUM_IPV6,TXCSUM_IPV6>
+        inet6 ::1 prefixlen 128
+        inet6 fe80::1%lo0 prefixlen 64 scopeid 0x2
+        inet 127.0.0.1 netmask 0xff000000
+        groups: lo
+        nd6 options=21<PERFORMNUD,AUTO_LINKLOCAL>
+
+╔══════════╣ Networks and neighbours
+? (10.10.10.234) at 00:50:56:b9:32:f2 on vmx0 permanent [ethernet]                                                  
+? (10.10.10.2) at 00:50:56:b9:c8:08 on vmx0 expires in 1196 seconds [ethernet]
+
+╔══════════╣ Iptables rules
+iptables rules Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Active Ports
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-ports                                            
+                                                                                                                    
+╔══════════╣ Can I sniff with tcpdump?
+No                                                                                                                  
+                                                                                                                    
+
+════════════════════════════════════╣ Users Information ╠════════════════════════════════════
+╔══════════╣ My user                                                                                                
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#users                                                 
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Do I have PGP keys?
+gpg Not Found                                                                                                       
+netpgpkeys Not Found                                                                                                
+netpgp Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Clipboard or highlighted text?
+xsel and xclip Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Checking 'sudo -l', /etc/sudoers, and /etc/sudoers.d
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+User jamie may run the following commands on Schooled:                                                              
+    (ALL) NOPASSWD: /usr/sbin/pkg update
+    (ALL) NOPASSWD: /usr/sbin/pkg install *
+
+╔══════════╣ Checking sudo tokens
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#reusing-sudo-tokens                                   
+/proc/sys/kernel/yama/ptrace_scope is not enabled ()                                                                
+gdb wasn't found in PATH
+
+╔══════════╣ Checking doas.conf
+doas.conf Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Checking Pkexec policy
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/interesting-groups-linux-pe#pe-method-2               
+                                                                                                                    
+╔══════════╣ Superusers
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Users with console
+jamie:*:1001:1001:Jamie:/home/jamie:/bin/sh                                                                         
+root:*:0:0:Charlie &:/root:/bin/csh
+steve:*:1002:1002:User &:/home/steve:/bin/csh
+
+╔══════════╣ All users & groups
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Login now
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Last logons
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Last time logon each user
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Password policy
+/etc/login.defs Not Found                                                                                           
+                                                                                                                    
+╔══════════╣ Do not forget to test 'su' as any other user with shell: without password and with their names as password (I can't do it...)                                                                                              
+                                                                                                                    
+╔══════════╣ Do not forget to execute 'sudo -l' without password or with valid password (if you know it)!!
+                                                                                                                    
+
+
+════════════════════════════════════╣ Software Information ╠════════════════════════════════════
+╔══════════╣ MySQL version                                                                                          
+mysql  Ver 8.0.23 for FreeBSD13.0 on amd64 (Source distribution)                                                    
+
+═╣ MySQL connection using default root/root ........... No
+═╣ MySQL connection using root/toor ................... No                                                          
+═╣ MySQL connection using root/NOPASS ................. No                                                          
+╔══════════╣ Searching mysql credentials and exec                                                                   
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing MariaDB Files (limit 70)
+mariadb.cnf Not Found                                                                                               
+                                                                                                                    
+debian.cnf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing PostgreSQL Files (limit 70)
+Version: psql Not Found                                                                                             
+                                                                                                                    
+pgadmin*.db Not Found
+                                                                                                                    
+pg_hba.conf Not Found
+                                                                                                                    
+postgresql.conf Not Found
+                                                                                                                    
+pgsql.conf Not Found
+                                                                                                                    
+═╣ PostgreSQL connection to template0 using postgres/NOPASS ........ No
+═╣ PostgreSQL connection to template1 using postgres/NOPASS ........ No                                             
+═╣ PostgreSQL connection to template0 using pgsql/NOPASS ........... No                                             
+═╣ PostgreSQL connection to template1 using pgsql/NOPASS ........... No                                             
+                                                                                                                    
+╔══════════╣ Analyzing Mongo Files (limit 70)
+Version: mongo Not Found                                                                                            
+mongod Not Found                                                                                                    
+                                                                                                                    
+mongod*.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Apache Files (limit 70)
+Version: apache2 Not Found                                                                                          
+Server version: Apache/2.4.46 (FreeBSD)                                                                             
+Server built:   unknown
+══╣ PHP exec extensions
+sites-enabled Not Found                                                                                             
+                                                                                                                    
+000-default.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Tomcat Files (limit 70)
+tomcat-users.xml Not Found                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing FastCGI Files (limit 70)
+fastcgi_params Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing Http conf Files (limit 70)
+-rw-r--r--  1 root  wheel  21145 Feb 27  2021 /usr/local/etc/apache24/httpd.conf                                    
+
+╔══════════╣ Analyzing Htpasswd Files (limit 70)
+.htpasswd Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing PHP Sessions Files (limit 70)
+/var/lib/php/sessions Not Found                                                                                     
+sess_* Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Wordpress Files (limit 70)
+wp-config.php Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Analyzing Drupal Files (limit 70)
+settings.php Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Moodle Files (limit 70)
+-rwxr-xr-x  1 www  www  758 Dec 19  2020 /usr/local/www/apache24/data/moodle/config.php                             
+$CFG->dbtype    = 'mysqli';
+$CFG->dbhost    = 'localhost';
+$CFG->dbuser    = 'moodle';
+$CFG->dbpass    = 'PlaybookMaster2020';
+  'dbport' => 3306,
+
+╔══════════╣ Analyzing Supervisord Files (limit 70)
+supervisord.conf Not Found                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing Cesi Files (limit 70)
+cesi.conf Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing Rsync Files (limit 70)
+rsyncd.conf Not Found                                                                                               
+                                                                                                                    
+rsyncd.secrets Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Hostapd Files (limit 70)
+-r--r--r--  1 root  wheel  113611 Feb 19  2021 /usr/share/examples/hostapd/hostapd.conf                             
+interface=wlan0
+logger_syslog=-1
+logger_syslog_level=2
+logger_stdout=-1
+logger_stdout_level=2
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0
+ssid=test
+hw_mode=g
+channel=1
+beacon_int=100
+dtim_period=2
+max_num_sta=255
+rts_threshold=-1
+fragm_threshold=-1
+macaddr_acl=0
+auth_algs=3
+ignore_broadcast_ssid=0
+wmm_enabled=1
+wmm_ac_bk_cwmin=4
+wmm_ac_bk_cwmax=10
+wmm_ac_bk_aifs=7
+wmm_ac_bk_txop_limit=0
+wmm_ac_bk_acm=0
+wmm_ac_be_aifs=3
+wmm_ac_be_cwmin=4
+wmm_ac_be_cwmax=10
+wmm_ac_be_txop_limit=0
+wmm_ac_be_acm=0
+wmm_ac_vi_aifs=2
+wmm_ac_vi_cwmin=3
+wmm_ac_vi_cwmax=4
+wmm_ac_vi_txop_limit=94
+wmm_ac_vi_acm=0
+wmm_ac_vo_aifs=2
+wmm_ac_vo_cwmin=2
+wmm_ac_vo_cwmax=3
+wmm_ac_vo_txop_limit=47
+wmm_ac_vo_acm=0
+eapol_key_index_workaround=0
+eap_server=0
+own_ip_addr=127.0.0.1
+
+╔══════════╣ Searching wifi conns file
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Analyzing Anaconda ks Files (limit 70)
+anaconda-ks.cfg Not Found                                                                                           
+                                                                                                                    
+╔══════════╣ Analyzing VNC Files (limit 70)
+.vnc Not Found                                                                                                      
+                                                                                                                    
+*vnc*.c*nf* Not Found
+                                                                                                                    
+*vnc*.ini Not Found
+                                                                                                                    
+*vnc*.txt Not Found
+                                                                                                                    
+*vnc*.xml Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Ldap Files (limit 70)
+The password hash is from the {SSHA} to 'structural'                                                                
+drwxr-xr-x  7 www  www  16 Feb 27  2021 /usr/local/www/apache24/data/moodle/auth/ldap
+
+drwxr-xr-x  6 www  www  11 Feb 27  2021 /usr/local/www/apache24/data/moodle/enrol/ldap
+
+
+╔══════════╣ Analyzing OpenVPN Files (limit 70)
+*.ovpn Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Searching ssl/ssh files
+╔══════════╣ Analyzing SSH Files (limit 70)                                                                         
+id_dsa* Not Found                                                                                                   
+                                                                                                                    
+id_rsa* Not Found
+                                                                                                                    
+known_hosts Not Found
+                                                                                                                    
+authorized_hosts Not Found
+                                                                                                                    
+authorized_keys Not Found
+                                                                                                                    
+Port 22
+══╣ Some certificates were found (out limited):
+/var/db/mysql/ca.pem                                                                                                
+/var/db/mysql/client-cert.pem
+/var/db/mysql/public_key.pem
+/var/db/mysql/server-cert.pem
+41693PSTORAGE_CERTSBIN
+
+══╣ /etc/hosts.allow file found, trying to read the rules:
+/etc/hosts.allow                                                                                                    
+ALL : ALL : allow
+ALL : PARANOID : RFC931 20 : deny
+ALL : localhost 127.0.0.1 : allow
+ALL : [::1] : allow
+sendmail : localhost : allow
+sendmail : ALL : allow
+exim : localhost : allow
+exim : ALL : allow
+rpcbind : ALL : deny
+ypserv : localhost : allow
+ypserv : ALL : deny
+ftpd : localhost : allow
+ftpd : ALL : allow
+fingerd : ALL \
+        : spawn (echo Finger. | \
+         /usr/bin/mail -s "tcpd\: %u@%h[%a] fingered me!" root) & \
+        : deny
+ALL : ALL \
+        : severity auth.info \
+        : twist /bin/echo "You are not welcome to use %d from %h."
+
+
+Searching inside /etc/ssh/ssh_config for interesting info
+
+╔══════════╣ Searching unexpected auth lines in /etc/pam.d/sshd
+auth            sufficient      pam_opie.so             no_warn no_fake_prompts                                     
+auth            requisite       pam_opieaccess.so       no_warn allow_local
+auth            required        pam_unix.so             no_warn try_first_pass
+
+╔══════════╣ NFS exports?
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe                
+/etc/exports Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Searching kerberos conf files and tickets
+╚ https://book.hacktricks.xyz/pentesting/pentesting-kerberos-88#pass-the-ticket-ptt                                 
+kadmin was found on /usr/bin/kadmin                                                                                 
+klist execution
+klist: No ticket file: /tmp/krb5cc_1001
+.k5login file (users with access to the user who has this file in his home)
+# $FreeBSD$
+#
+# user1/root@YOUR.REALM.WHEREVER
+# user2/root@YOUR.REALM.WHEREVER
+.k5login file (users with access to the user who has this file in his home)
+# $FreeBSD$
+#
+# user1/root@YOUR.REALM.WHEREVER
+# user2/root@YOUR.REALM.WHEREVER
+tickets kerberos Not Found
+klist Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Knockd Files (limit 70)
+*knockd* Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Kibana Files (limit 70)
+kibana.y*ml Not Found                                                                                               
+                                                                                                                    
+╔══════════╣ Analyzing Elasticsearch Files (limit 70)
+The version is                                                                                                      
+elasticsearch.y*ml Not Found
+                                                                                                                    
+╔══════════╣ Searching logstash files
+ Not Found                                                                                                          
+                                                                                                                    
+╔══════════╣ Searching Vault-ssh files
+vault-ssh-helper.hcl Not Found                                                                                      
+                                                                                                                    
+╔══════════╣ Searching AD cached hashes
+cached hashes Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Searching screen sessions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                   
+screen Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Searching tmux sessions
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-shell-sessions                                   
+tmux Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing CouchDB Files (limit 70)
+couchdb Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Redis Files (limit 70)
+redis.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Searching dovecot files
+dovecot credentials Not Found                                                                                       
+                                                                                                                    
+╔══════════╣ Analyzing Mosquitto Files (limit 70)
+mosquitto.conf Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing Neo4j Files (limit 70)
+neo4j Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Cloud Credentials Files (limit 70)
+credentials Not Found                                                                                               
+                                                                                                                    
+credentials.db Not Found
+                                                                                                                    
+legacy_credentials.db Not Found
+                                                                                                                    
+access_tokens.db Not Found
+                                                                                                                    
+access_tokens.json Not Found
+                                                                                                                    
+accessTokens.json Not Found
+                                                                                                                    
+azureProfile.json Not Found
+                                                                                                                    
+TokenCache.dat Not Found
+                                                                                                                    
+AzureRMContext.json Not Found
+                                                                                                                    
+.bluemix Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Cloud Init Files (limit 70)
+cloud.cfg Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Analyzing CloudFlare Files (limit 70)
+.cloudflared Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Erlang Files (limit 70)
+.erlang.cookie Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing GMV Auth Files (limit 70)
+gvm-tools.conf Not Found                                                                                            
+                                                                                                                    
+╔══════════╣ Analyzing IPSec Files (limit 70)
+ipsec.secrets Not Found                                                                                             
+                                                                                                                    
+ipsec.conf Not Found
+                                                                                                                    
+╔══════════╣ Analyzing IRSSI Files (limit 70)
+.irssi Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Keyring Files (limit 70)
+keyrings Not Found                                                                                                  
+                                                                                                                    
+*.keyring Not Found
+                                                                                                                    
+*.keystore Not Found
+                                                                                                                    
+*.jks Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Filezilla Files (limit 70)
+filezilla Not Found                                                                                                 
+                                                                                                                    
+filezilla.xml Not Found
+                                                                                                                    
+recentservers.xml Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Backup Manager Files (limit 70)
+storage.php Not Found                                                                                               
+                                                                                                                    
+-rwxr-xr-x  1 www  www  10262 Jun 13  2020 /usr/local/www/apache24/data/moodle/lib/classes/session/database.php
+
+╔══════════╣ Searching uncommon passwd files (splunk)
+passwd file: /etc/pam.d/passwd                                                                                      
+passwd file: /etc/passwd
+passwd file: /usr/local/etc/passwd
+passwd file: /usr/local/share/bash-completion/completions/passwd
+passwd file: /var/db/etcupdate/current/etc/pam.d/passwd
+
+╔══════════╣ Analyzing kcpassword files
+╚ https://book.hacktricks.xyz/macos/macos-security-and-privilege-escalation#kcpassword                              
+n                                                                                                                   
+
+╔══════════╣ Searching GitLab related files
+                                                                                                                    
+
+╔══════════╣ Analyzing Github Files (limit 70)
+drwxr-xr-x  2 www  www  3 Feb 27  2021 /usr/local/www/apache24/data/moodle/.github                                  
+
+.gitconfig Not Found
+                                                                                                                    
+.git-credentials Not Found
+                                                                                                                    
+.git Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Svn Files (limit 70)
+.svn Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing PGP-GPG Files (limit 70)
+gpg Not Found                                                                                                       
+netpgpkeys Not Found                                                                                                
+netpgp Not Found                                                                                                    
+*.pgp Not Found                                                                                                     
+                                                                                                                    
+*.gpg Not Found
+                                                                                                                    
+*.gnupg Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Cache Vi Files (limit 70)
+*.swp Not Found                                                                                                     
+                                                                                                                    
+*.viminfo Not Found
+                                                                                                                    
+╔══════════╣ Checking if containerd(ctr) is available
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/containerd-ctr-privilege-escalation                   
+                                                                                                                    
+╔══════════╣ Checking if runc is available
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation/runc-privilege-escalation                             
+                                                                                                                    
+╔══════════╣ Searching docker files (limit 70)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-docker-socket                                
+                                                                                                                    
+╔══════════╣ Analyzing Firefox Files (limit 70)
+.mozilla Not Found                                                                                                  
+                                                                                                                    
+Firefox Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Chrome Files (limit 70)
+google-chrome Not Found                                                                                             
+                                                                                                                    
+Chrome Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Autologin Files (limit 70)
+autologin Not Found                                                                                                 
+                                                                                                                    
+autologin.conf Not Found
+                                                                                                                    
+╔══════════╣ S/Key authentication
+                                                                                                                    
+╔══════════╣ YubiKey authentication
+                                                                                                                    
+╔══════════╣ Passwords inside pam.d
+                                                                                                                    
+╔══════════╣ Analyzing SNMP Files (limit 70)
+snmpd.conf Not Found                                                                                                
+                                                                                                                    
+╔══════════╣ Analyzing Pypirc Files (limit 70)
+.pypirc Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Postfix Files (limit 70)
+-rw-r--r--  1 root  wheel  761 Feb 20  2021 /usr/local/share/bash-completion/completions/postfix                    
+
+
+╔══════════╣ Analyzing Ldaprc Files (limit 70)
+.ldaprc Not Found                                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Env Files (limit 70)
+.env Not Found                                                                                                      
+                                                                                                                    
+╔══════════╣ Analyzing Msmtprc Files (limit 70)
+.msmtprc Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Keepass Files (limit 70)
+*.kdbx Not Found                                                                                                    
+                                                                                                                    
+KeePass.config* Not Found
+                                                                                                                    
+KeePass.ini Not Found
+                                                                                                                    
+KeePass.enforced* Not Found
+                                                                                                                    
+╔══════════╣ Analyzing FTP Files (limit 70)
+*.ftpconfig Not Found                                                                                               
+                                                                                                                    
+ffftp.ini Not Found
+                                                                                                                    
+ftp.ini Not Found
+                                                                                                                    
+ftp.config Not Found
+                                                                                                                    
+sites.ini Not Found
+                                                                                                                    
+wcx_ftp.ini Not Found
+                                                                                                                    
+winscp.ini Not Found
+                                                                                                                    
+ws_ftp.ini Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Racoon Files (limit 70)
+racoon.conf Not Found                                                                                               
+                                                                                                                    
+psk.txt Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Opera Files (limit 70)
+com.operasoftware.Opera Not Found                                                                                   
+                                                                                                                    
+╔══════════╣ Analyzing Safari Files (limit 70)
+Safari Not Found                                                                                                    
+                                                                                                                    
+╔══════════╣ Analyzing Bind Files (limit 70)
+-rw-r--r--  1 root  wheel  826 Feb 20  2021 /usr/local/share/bash-completion/completions/bind                       
+-rw-r--r--  1 root  wheel  826 Feb 20  2021 /usr/local/share/bash-completion/completions/bind
+
+
+
+╔══════════╣ Analyzing SeedDMS Files (limit 70)
+seeddms* Not Found                                                                                                  
+                                                                                                                    
+╔══════════╣ Analyzing Ddclient Files (limit 70)
+ddclient.conf Not Found                                                                                             
+                                                                                                                    
+╔══════════╣ Analyzing Sentry Files (limit 70)
+sentry Not Found                                                                                                    
+                                                                                                                    
+sentry.conf.py Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Strapi Files (limit 70)
+environments Not Found                                                                                              
+                                                                                                                    
+╔══════════╣ Analyzing Cacti Files (limit 70)
+cacti Not Found                                                                                                     
+                                                                                                                    
+╔══════════╣ Analyzing Interesting logs Files (limit 70)
+access.log Not Found                                                                                                
+                                                                                                                    
+error.log Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Windows Files Files (limit 70)
+unattend.inf Not Found                                                                                              
+                                                                                                                    
+*.rdg Not Found
+                                                                                                                    
+AppEvent.Evt Not Found
+                                                                                                                    
+ConsoleHost_history.txt Not Found
+                                                                                                                    
+FreeSSHDservice.ini Not Found
+                                                                                                                    
+NetSetup.log Not Found
+                                                                                                                    
+Ntds.dit Not Found
+                                                                                                                    
+protecteduserkey.bin Not Found
+                                                                                                                    
+RDCMan.settings Not Found
+                                                                                                                    
+SAM Not Found
+                                                                                                                    
+SYSTEM Not Found
+                                                                                                                    
+SecEvent.Evt Not Found
+                                                                                                                    
+appcmd.exe Not Found
+                                                                                                                    
+bash.exe Not Found
+                                                                                                                    
+datasources.xml Not Found
+                                                                                                                    
+default.sav Not Found
+                                                                                                                    
+drives.xml Not Found
+                                                                                                                    
+groups.xml Not Found
+                                                                                                                    
+https-xampp.conf Not Found
+                                                                                                                    
+https.conf Not Found
+                                                                                                                    
+iis6.log Not Found
+                                                                                                                    
+index.dat Not Found
+                                                                                                                    
+-rw-r--r--  1 root  wheel  2248 Feb 21  2021 /usr/local/etc/mysql/my.cnf
+
+my.ini Not Found
+                                                                                                                    
+ntuser.dat Not Found
+                                                                                                                    
+pagefile.sys Not Found
+                                                                                                                    
+-rw-r--r--  1 root  wheel  72584 Feb 27  2021 /usr/local/etc/php.ini
+
+printers.xml Not Found
+                                                                                                                    
+recentservers.xml Not Found
+                                                                                                                    
+scclient.exe Not Found
+                                                                                                                    
+scheduledtasks.xml Not Found
+                                                                                                                    
+security.sav Not Found
+                                                                                                                    
+server.xml Not Found
+                                                                                                                    
+setupinfo Not Found
+                                                                                                                    
+setupinfo.bak Not Found
+                                                                                                                    
+sitemanager.xml Not Found
+                                                                                                                    
+sites.ini Not Found
+                                                                                                                    
+software Not Found
+                                                                                                                    
+software.sav Not Found
+                                                                                                                    
+sysprep.inf Not Found
+                                                                                                                    
+sysprep.xml Not Found
+                                                                                                                    
+system.sav Not Found
+                                                                                                                    
+unattend.txt Not Found
+                                                                                                                    
+unattend.xml Not Found
+                                                                                                                    
+unattended.xml Not Found
+                                                                                                                    
+wcx_ftp.ini Not Found
+                                                                                                                    
+ws_ftp.ini Not Found
+                                                                                                                    
+web*.config Not Found
+                                                                                                                    
+winscp.ini Not Found
+                                                                                                                    
+wsl.exe Not Found
+                                                                                                                    
+╔══════════╣ Analyzing Other Interesting Files Files (limit 70)
+.bashrc Not Found                                                                                                   
+                                                                                                                    
+.google_authenticator Not Found
+                                                                                                                    
+-rw-r--r--  1 root  wheel  53 Feb 19  2021 /etc/hosts.equiv
+-rw-r--r--  1 root  wheel  53 Feb 19  2021 /var/db/etcupdate/current/etc/hosts.equiv
+
+lrwxr-xr-x  1 root  wheel  9 Mar 18 08:45 /root/.lesshst -> /dev/null
+
+.plan Not Found
+                                                                                                                    
+-rw-r--r--  1 jamie  jamie  978 Feb 26  2021 /home/jamie/.profile
+-rw-r--r--  2 root  wheel  507 Feb 19  2021 /root/.profile
+-rw-r--r--  1 jamie  jamie  978 Feb 26  2021 /usr/home/jamie/.profile
+-rw-r--r--  2 root  wheel  507 Feb 19  2021 /var/db/etcupdate/current/.profile
+-rw-r--r--  2 root  wheel  507 Feb 19  2021 /var/db/etcupdate/current/root/.profile
+
+.recently-used.xbel Not Found
+                                                                                                                    
+.rhosts Not Found
+                                                                                                                    
+.sudo_as_admin_successful Not Found
+                                                                                                                    
+
+════════════════════════════════════╣ Interesting Files ╠════════════════════════════════════
+╔══════════╣ SUID - Check easy privesc, exploits and write perms                                                    
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+strace Not Found                                                                                                    
+-r-sr-xr-x  1 root  wheel    33K Feb 19  2021 /usr/bin/crontab (Unknown SUID binary)                                
+-r-sr-xr-x  1 root  wheel    14K Feb 19  2021 /usr/bin/opiepasswd
+-r-sr-xr-x  4 root  wheel    28K Feb 19  2021 /usr/bin/batch (Unknown SUID binary)
+-r-sr-xr-x  1 root  wheel   6.7K Feb 19  2021 /usr/bin/opieinfo
+-r-sr-xr-x  1 root  wheel    25K Feb 19  2021 /usr/bin/login  --->  IBM_AIX_3.2.5/SGI_IRIX_6.4
+-r-sr-xr-x  4 root  wheel    28K Feb 19  2021 /usr/bin/atq (Unknown SUID binary)
+-r-sr-xr-x  1 root  wheel    22K Feb 19  2021 /usr/bin/chpass  --->  2Vulns:OpenBSD_6.1_to_OpenBSD
+-r-sr-sr-x  1 root  daemon    39K Feb 19  2021 /usr/bin/lpr  --->  BSD/OS2.1/FreeBSD2.1.5/NeXTstep4.x/IRIX6.4/SunOS4.1.3/4.1.4(09-1996)                                                                                                 
+-r-sr-xr-x  4 root  wheel    28K Feb 19  2021 /usr/bin/atrm (Unknown SUID binary)
+-r-sr-sr-x  1 root  daemon    32K Feb 19  2021 /usr/bin/lprm
+-r-sr-sr-x  1 root  daemon    34K Feb 19  2021 /usr/bin/lpq
+-r-sr-xr-x  1 root  wheel    11K Feb 19  2021 /usr/bin/lock
+-r-sr-xr-x  4 root  wheel    28K Feb 19  2021 /usr/bin/at  --->  RTru64_UNIX_4.0g(CVE-2002-1614)
+-r-sr-xr-x  1 root  wheel   9.3K Feb 19  2021 /usr/bin/passwd  --->  Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)                                                                            
+-r-sr-xr-x  1 root  wheel    16K Feb 19  2021 /usr/bin/quota
+-r-sr-xr-x  1 root  wheel    17K Feb 19  2021 /usr/bin/su
+-rwsr-x---  1 root  messagebus    51K Feb 20  2021 /usr/local/libexec/dbus-daemon-launch-helper (Unknown SUID binary)                                                                                                                   
+-rwsr-xr-x  1 root  wheel   142K Feb 20  2021 /usr/local/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable
+-rwsr-xr-x  1 root  wheel    22K Feb 20  2021 /usr/local/bin/pkexec  --->  Linux4.10_to_5.1.17(CVE-2019-13272)/rhel_6(CVE-2011-1485)                                                                                                    
+-rwsr-xr-x  1 root  wheel    13K Feb 20  2021 /usr/local/lib/polkit-1/polkit-agent-helper-1
+-r-sr-xr--  1 root  mail   8.3K Feb 19  2021 /usr/libexec/dma-mbox-create (Unknown SUID binary)
+-r-sr-xr-x  1 root  wheel    57K Feb 19  2021 /usr/libexec/ssh-keysign
+-r-sr-xr-x  1 root  wheel   5.9K Feb 19  2021 /usr/libexec/ulog-helper
+-r-sr-xr-x  1 root  wheel    33K Feb 19  2021 /usr/sbin/traceroute  --->  LBL_Traceroute_[2000-11-15]
+-r-sr-sr-x  2 root  authpf    21K Feb 19  2021 /usr/sbin/authpf-noip (Unknown SUID binary)
+-r-sr-xr-x  1 root  wheel    30K Feb 19  2021 /usr/sbin/traceroute6
+-r-sr-sr-x  2 root  authpf    21K Feb 19  2021 /usr/sbin/authpf (Unknown SUID binary)
+-r-sr-xr--  1 root  network   427K Feb 19  2021 /usr/sbin/ppp
+-r-sr-xr--  2 root  operator    15K Feb 19  2021 /sbin/poweroff
+-r-sr-xr-x  2 root  wheel    61K Feb 19  2021 /sbin/ping6
+-r-sr-xr--  2 root  operator    15K Feb 19  2021 /sbin/shutdown
+-r-sr-xr-x  2 root  wheel    61K Feb 19  2021 /sbin/ping
+-r-sr-xr--  1 root  operator    10K Feb 19  2021 /sbin/mksnap_ffs
+
+╔══════════╣ SGID
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                         
+-r-xr-sr-x  1 root  tty    13K Feb 19  2021 /usr/bin/write                                                          
+-r-sr-sr-x  1 root  daemon    39K Feb 19  2021 /usr/bin/lpr
+-r-sr-sr-x  1 root  daemon    32K Feb 19  2021 /usr/bin/lprm
+-r-sr-sr-x  1 root  daemon    34K Feb 19  2021 /usr/bin/lpq
+-r-xr-sr-x  1 root  tty    14K Feb 19  2021 /usr/bin/wall
+-r-xr-sr-x  1 root  kmem    13K Feb 19  2021 /usr/bin/btsockstat
+-r-xr-sr-x  1 root  kmem   156K Feb 19  2021 /usr/bin/netstat
+-r-xr-sr-x  1 root  smmsp   735K Feb 19  2021 /usr/libexec/sendmail/sendmail
+-r-xr-sr-x  1 root  mail    61K Feb 19  2021 /usr/libexec/dma
+-r-sr-sr-x  2 root  authpf    21K Feb 19  2021 /usr/sbin/authpf-noip
+-r-xr-sr-x  1 root  daemon    56K Feb 19  2021 /usr/sbin/lpc
+-r-xr-sr-x  1 root  kmem    11K Feb 19  2021 /usr/sbin/trpt
+-r-sr-sr-x  2 root  authpf    21K Feb 19  2021 /usr/sbin/authpf
+
+╔══════════╣ Checking misconfigurations of ld.so
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#ld-so                                                 
+/etc/ld.so.conf                                                                                                     
+
+╔══════════╣ Capabilities
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                          
+Current capabilities:                                                                                               
+
+Shell capabilities:
+capsh Not Found
+                                                                                                                    
+Files with capabilities (limited to 50):
+
+╔══════════╣ Users with capabilities
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities                                          
+/etc/security/capability.conf Not Found                                                                             
+                                                                                                                    
+╔══════════╣ Files with ACLs (limited to 50)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#acls                                                  
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ .sh files in path
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#script-binaries-in-path                               
+/usr/bin/lesspipe.sh                                                                                                
+/usr/local/bin/gettext.sh
+
+╔══════════╣ Unexpected in root
+/entropy                                                                                                            
+/libexec
+/net
+/.profile
+/.cshrc
+/zroot
+/rescue
+
+╔══════════╣ Files (scripts) in /etc/profile.d/
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#profiles-files                                        
+                                                                                                                    
+╔══════════╣ Permissions in init, init.d, systemd, and rc.d
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#init-init-d-systemd-and-rc-d                          
+                                                                                                                    
+═╣ Hashes inside passwd file? ........... No
+═╣ Writable passwd file? ................ No                                                                        
+═╣ Credentials in fstab/mtab? ........... No                                                                        
+═╣ Can I read shadow files? ............. No                                                                        
+═╣ Can I read shadow plists? ............ No                                                                        
+═╣ Can I write shadow plists? ........... No                                                                        
+═╣ Can I read opasswd file? ............. No                                                                        
+═╣ Can I write in network-scripts? ...... No                                                                        
+═╣ Can I read root folder? .............. total 39                                                                  
+drwxr-x---   5 root  wheel    13 Mar 18 08:45 .
+drwxr-xr-x  19 root  wheel    24 Sep 11 01:39 ..
+drwxr-xr-x   3 root  wheel     3 Feb 27  2021 .cache
+-rw-r--r--   2 root  wheel  1023 Feb 19  2021 .cshrc
+lrwxr-xr-x   1 root  wheel     9 Mar 18 08:45 .history -> /dev/null
+-rw-r--r--   1 root  wheel    80 Feb 19  2021 .k5login
+lrwxr-xr-x   1 root  wheel     9 Mar 18 08:45 .lesshst -> /dev/null
+-rw-r--r--   1 root  wheel   328 Feb 19  2021 .login
+-rw-r--r--   2 root  wheel   507 Feb 19  2021 .profile
+-rw-r--r--   1 root  wheel   865 Feb 19  2021 .shrc
+drwx------   2 root  wheel     3 Feb 27  2021 .ssh
+-r--------   1 root  wheel    33 Sep 11 01:40 root.txt
+dr-x------   2 root  wheel     5 Mar 17 15:47 scripts
+
+╔══════════╣ Searching root files in home dirs (limit 30)
+/home/                                                                                                              
+/home/jamie/.history
+/root/
+/root/.lesshst
+/root/.ssh
+/root/.login
+/root/.history
+/root/scripts
+/root/root.txt
+/root/.k5login
+/root/.profile
+/root/.shrc
+/root/.cshrc
+/root/.cache
+/root/.cache/pip
+/root/.cache/pip/selfcheck
+/root/.cache/pip/selfcheck/fe300af6f7d708c14827daac3afc81fbb8306b73de8dd6e3f1f8ea3b
+/root/.cache/pip/http
+/root/.cache/pip/http/8
+/root/.cache/pip/http/8/d
+/root/.cache/pip/http/8/d/0
+/root/.cache/pip/http/8/d/0/e
+/root/.cache/pip/http/8/d/0/e/1
+/root/.cache/pip/http/8/d/0/e/1/8d0e104919449355aedb55b5b546bb9fd53f0e1a8ca1b082109464e9
+/root/.cache/pip/http/b
+/root/.cache/pip/http/b/3
+/root/.cache/pip/http/b/3/0
+/root/.cache/pip/http/b/3/0/2
+/root/.cache/pip/http/b/3/0/2/5
+/root/.cache/pip/http/b/3/0/2/5/b3025a26893a7657747ef91c7e8a7d138021b8a645639c56cd0046c5
+
+╔══════════╣ Searching folders owned by me containing others files on it (limit 100)
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Readable files belonging to root and readable by me but not world readable
+-r--r-----  1 root  wheel  3634 Feb 20  2021 /usr/local/etc/sudoers.dist                                            
+-r--r-----  1 root  wheel  3732 Sep 11 03:34 /usr/local/etc/sudoers
+-rw-r-----  1 root  wheel  131072 Feb 26  2021 /etc/mail/aliases.db
+-rw-r-----  1 root  wheel  693239 Sep 11 03:34 /var/log/maillog
+
+╔══════════╣ Modified interesting files in the last 5mins (limit 100)
+/usr/local/etc/sudoers                                                                                              
+/usr/local/www/apache24/moodledata/sessions/sess_n4ka5km1pf0mkdcge6ifo6h74c
+/usr/local/www/apache24/moodledata/sessions/sess_rflku85da85jmugn78a7ck2s01
+/usr/local/www/apache24/moodledata/sessions/sess_3sugekaa1mjmm57mn22mr4avl5
+/etc/passwd
+/var/db/mysql/ibdata1
+/var/db/mysql/ib_logfile0
+/var/db/mysql/#ib_16384_0.dblwr
+/var/db/mysql/undo_001
+/var/db/mysql/mysql.ibd
+/var/db/mysql/undo_002
+/var/db/mysql/mysql-bin.000044
+/var/log/moodle.schooled.htb-error_log
+/var/log/auth.log
+/var/log/moodle.schooled.htb-access_log
+/var/log/cron
+/var/log/messages
+/var/log/maillog
+
+╔══════════╣ Writable log files (logrotten) (limit 100)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#logrotate-exploitation                                
+logrotate Not Found                                                                                                 
+                                                                                                                    
+╔══════════╣ Files inside /home/jamie (limit 20)
+total 38                                                                                                            
+drwx------  2 jamie  jamie   11 Feb 28  2021 .
+drwxr-xr-x  4 root   wheel    4 Mar 16 06:33 ..
+-rw-r--r--  1 jamie  jamie  962 Feb 26  2021 .cshrc
+lrwxr-xr-x  1 root   jamie    9 Feb 28  2021 .history -> /dev/null
+-rw-r--r--  1 jamie  jamie  323 Feb 26  2021 .login
+-rw-r--r--  1 jamie  jamie   91 Feb 26  2021 .login_conf
+-rw-------  1 jamie  jamie  301 Feb 26  2021 .mail_aliases
+-rw-r--r--  1 jamie  jamie  267 Feb 26  2021 .mailrc
+-rw-r--r--  1 jamie  jamie  978 Feb 26  2021 .profile
+-rw-r--r--  1 jamie  jamie  695 Feb 26  2021 .shrc
+-r--------  1 jamie  jamie   33 Sep 11 01:40 user.txt
+
+╔══════════╣ Files inside others home (limit 20)
+/root/.login                                                                                                        
+/root/root.txt
+/root/.k5login
+/root/.profile
+/root/.shrc
+/root/.cshrc
+/root/.cache/pip/selfcheck/fe300af6f7d708c14827daac3afc81fbb8306b73de8dd6e3f1f8ea3b
+/root/.cache/pip/http/8/d/0/e/1/8d0e104919449355aedb55b5b546bb9fd53f0e1a8ca1b082109464e9
+/root/.cache/pip/http/b/3/0/2/5/b3025a26893a7657747ef91c7e8a7d138021b8a645639c56cd0046c5
+/root/.cache/pip/http/e/1/b/1/8/e1b1887cbceb642b4b014831819ae0405dc652d5be72bbf613391685
+/root/.cache/pip/http/5/2/9/4/6/529461695e5926aae711da727d4aaaf41e72d98b1745515678a31de1
+/root/.cache/pip/http/a/1/9/5/3/a19537d3cf37c122db841d6fe4cd322bc10d1a558bb00d146b85cb9a
+/root/.cache/pip/http/d/1/0/a/8/d10a8eae5effde2f5e2f8949a03b4309df5dd703542ad0701ac06c39
+/root/.cache/pip/http/7/e/3/a/0/7e3a03e55e7102af79bcd0dfcf9c65b27d5f3f021a315ec84b9ee02a
+
+╔══════════╣ Searching installed mail applications
+rc.sendmail                                                                                                         
+sendmail
+
+╔══════════╣ Mails (limit 50)
+sed: 1: "s,_amavisd|_analyticsd| ...": RE error: trailing backslash (\)                                             
+
+╔══════════╣ Backup folders
+                                                                                                                    
+╔══════════╣ Backup files (limited 100)
+-rw-r--r--  1 root  wheel  960 Feb 20  2021 /usr/local/man/man8/pkg-backup.8.gz                                     
+-rw-r--r--  1 root  wheel  6395 Feb 21  2021 /usr/local/share/doc/open-vm-tools/api/html/vmbackup_8h_source.html
+-rw-r--r--  1 root  wheel  4752 Feb 21  2021 /usr/local/share/doc/open-vm-tools/api/html/vmbackup_8h.html
+-rw-r--r--  1 root  wheel  18791 Sep  9  2013 /usr/local/share/doc/db5/gsg_txn/CXX/backuprestore.html
+-rw-r--r--  1 root  wheel  18807 Sep  9  2013 /usr/local/share/doc/db5/gsg_txn/C/backuprestore.html
+-rw-r--r--  1 root  wheel  7711 Sep  9  2013 /usr/local/share/doc/db5/api_reference/C/envget_backup_config.html
+-rw-r--r--  1 root  wheel  13813 Sep  9  2013 /usr/local/share/doc/db5/api_reference/C/envset_backup_callbacks.html
+-rw-r--r--  1 root  wheel  8878 Sep  9  2013 /usr/local/share/doc/db5/api_reference/C/envdbbackup.html
+-rw-r--r--  1 root  wheel  7008 Sep  9  2013 /usr/local/share/doc/db5/api_reference/C/envget_backup_callbacks.html
+-rw-r--r--  1 root  wheel  17707 Sep  9  2013 /usr/local/share/doc/db5/api_reference/C/db_hotbackup.html
+-rw-r--r--  1 root  wheel  9538 Sep  9  2013 /usr/local/share/doc/db5/api_reference/C/envset_backup_config.html
+-rw-r--r--  1 root  wheel  13425 Sep  9  2013 /usr/local/share/doc/db5/api_reference/C/envbackup.html
+-rw-r--r--  1 root  wheel  7017 Sep  9  2013 /usr/local/share/doc/db5/api_reference/CXX/envget_backup_callbacks.html
+-rw-r--r--  1 root  wheel  17661 Sep  9  2013 /usr/local/share/doc/db5/api_reference/CXX/db_hotbackup.html
+-rw-r--r--  1 root  wheel  9522 Sep  9  2013 /usr/local/share/doc/db5/api_reference/CXX/envset_backup_config.html
+-rw-r--r--  1 root  wheel  13638 Sep  9  2013 /usr/local/share/doc/db5/api_reference/CXX/envbackup.html
+-rw-r--r--  1 root  wheel  13808 Sep  9  2013 /usr/local/share/doc/db5/api_reference/CXX/envset_backup_callbacks.html
+-rw-r--r--  1 root  wheel  7694 Sep  9  2013 /usr/local/share/doc/db5/api_reference/CXX/envget_backup_config.html
+-rw-r--r--  1 root  wheel  9089 Sep  9  2013 /usr/local/share/doc/db5/api_reference/CXX/envdbbackup.html
+-rw-r--r--  1 root  wheel  8159 Sep  9  2013 /usr/local/share/doc/db5/installation/upgrade_11gr2_53_hotbackup.html
+-rw-r--r--  1 root  wheel  3494 Sep  9  2013 /usr/local/share/doc/db5/installation/upgrade_11gr2_52_hot_backup.html
+-rwxr-xr-x  1 root  wheel  2468 Feb 20  2021 /usr/local/etc/periodic/daily/411.pkg-backup
+-rwxr-xr-x  1 root  wheel  35656 Feb 21  2021 /usr/local/lib/mysql/plugin/component_mysqlbackup.so
+-rwxr-xr-x  1 root  wheel  14688 Feb 21  2021 /usr/local/lib/mysql/plugin/component_test_backup_lock_service.so
+-rw-r--r--  1 root  wheel  5671 Feb 20  2021 /usr/local/lib/python3.7/sqlite3/test/backup.py
+-rw-r--r--  1 root  wheel  7206 Feb 20  2021 /usr/local/lib/python3.7/sqlite3/test/__pycache__/backup.cpython-37.pyc
+-rw-r--r--  1 root  wheel  7206 Feb 20  2021 /usr/local/lib/python3.7/sqlite3/test/__pycache__/backup.cpython-37.opt-2.pyc
+-rw-r--r--  1 root  wheel  7206 Feb 20  2021 /usr/local/lib/python3.7/sqlite3/test/__pycache__/backup.cpython-37.opt-1.pyc
+-rwxr-xr-x  1 root  wheel  29536 Feb 21  2021 /usr/local/lib/open-vm-tools/plugins/vmsvc/libvmbackup.so
+-rwxrwxr-x  1 www  www  460 Dec 19  2020 /usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_string/en_-cache/en_report_backups_1608386799-47007ad314d0e2cadbc57c4c0005112b.cache
+-rwxrwxr-x  1 www  www  29267 Dec 19  2020 /usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_string/en_-cache/en_core_backup_1608386799-47007ad314d0e2cadbc57c4c0005112b.cache
+-rwxr-xr-x  1 www  www  1412 Jun 13  2020 /usr/local/www/apache24/data/moodle/report/backups/lang/en/report_backups.php
+-rwxr-xr-x  1 www  www  4367 Jun 13  2020 /usr/local/www/apache24/data/moodle/grade/grading/form/guide/backup/moodle2/backup_gradingform_guide_plugin.class.php
+-rwxr-xr-x  1 www  www  4465 Jun 13  2020 /usr/local/www/apache24/data/moodle/grade/grading/form/rubric/backup/moodle2/backup_gradingform_rubric_plugin.class.php
+-rwxr-xr-x  1 www  www  5925 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/lti/service/gradebookservices/backup/moodle2/backup_ltiservice_gradebookservices_subplugin.class.php                                                  
+-rwxr-xr-x  1 www  www  4392 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/lti/tests/behat/backup_restore.feature
+-rwxr-xr-x  1 www  www  9485 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/lti/backup/moodle2/backup_lti_stepslib.php
+-rwxr-xr-x  1 www  www  3741 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/lti/backup/moodle2/backup_lti_activity_task.class.php
+-rwxr-xr-x  1 www  www  4629 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/workshop/form/rubric/backup/moodle2/backup_workshopform_rubric_subplugin.class.php
+-rwxr-xr-x  1 www  www  4463 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/workshop/form/numerrors/backup/moodle2/backup_workshopform_numerrors_subplugin.class.php
+-rwxr-xr-x  1 www  www  4253 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/workshop/form/accumulative/backup/moodle2/backup_workshopform_accumulative_subplugin.class.php
+-rwxr-xr-x  1 www  www  4090 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/workshop/form/comments/backup/moodle2/backup_workshopform_comments_subplugin.class.php
+-rwxr-xr-x  1 www  www  1062 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/workshop/backup/moodle2/backup_workshop_settingslib.php
+-rwxr-xr-x  1 www  www  10520 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/workshop/backup/moodle2/backup_workshop_stepslib.php
+-rwxr-xr-x  1 www  www  2509 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/workshop/backup/moodle2/backup_workshop_activity_task.class.php
+-rwxr-xr-x  1 www  www  2080 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/workshop/eval/best/backup/moodle2/backup_workshopeval_best_subplugin.class.php                                                                        
+-rwxr-xr-x  1 www  www  5537 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/feedback/backup/moodle2/backup_feedback_stepslib.php
+-rwxr-xr-x  1 www  www  2967 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/feedback/backup/moodle2/backup_feedback_activity_task.class.php
+-rwxr-xr-x  1 www  www  1144 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/feedback/backup/moodle2/backup_feedback_settingslib.php
+-rwxr-xr-x  1 www  www  1908 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/label/backup/moodle2/backup_label_activity_task.class.php
+-rwxr-xr-x  1 www  www  1956 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/label/backup/moodle2/backup_label_stepslib.php
+-rwxr-xr-x  1 www  www  8483 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/forum/backup/moodle2/backup_forum_stepslib.php
+-rwxr-xr-x  1 www  www  1144 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/forum/backup/moodle2/backup_forum_settingslib.php
+-rwxr-xr-x  1 www  www  3314 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/forum/backup/moodle2/backup_forum_activity_task.class.php
+-rwxr-xr-x  1 www  www  5407 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/forum/tests/backup_forum_activity_test.php
+-rwxr-xr-x  1 www  www  5531 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/assignment/type/offline/backup/moodle2/backup_assignment_offline_subplugin.class.php
+-rwxr-xr-x  1 www  www  3600 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/assignment/backup/moodle2/backup_assignment_stepslib.php
+-rwxr-xr-x  1 www  www  2433 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/assignment/backup/moodle2/backup_assignment_activity_task.class.php
+-rwxr-xr-x  1 www  www  1969 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/url/backup/moodle2/backup_url_stepslib.php
+-rwxr-xr-x  1 www  www  2618 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/url/backup/moodle2/backup_url_activity_task.class.php
+-rwxr-xr-x  1 www  www  2259 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/resource/backup/moodle2/backup_resource_stepslib.php
+-rwxr-xr-x  1 www  www  5051 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/resource/backup/moodle2/backup_resource_activity_task.class.php
+-rwxr-xr-x  1 www  www  5119 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/wiki/backup/moodle2/backup_wiki_stepslib.php
+-rwxr-xr-x  1 www  www  2623 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/wiki/backup/moodle2/backup_wiki_activity_task.class.php
+-rwxr-xr-x  1 www  www  1141 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/wiki/backup/moodle2/backup_wiki_settingslib.php
+-rwxr-xr-x  1 www  www  2482 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/imscp/backup/moodle2/backup_imscp_stepslib.php
+-rwxr-xr-x  1 www  www  2523 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/imscp/backup/moodle2/backup_imscp_activity_task.class.php
+-rwxr-xr-x  1 www  www  2329 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/page/backup/moodle2/backup_page_activity_task.class.php
+-rwxr-xr-x  1 www  www  2224 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/page/backup/moodle2/backup_page_stepslib.php
+-rwxr-xr-x  1 www  www  2093 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/folder/backup/moodle2/backup_folder_stepslib.php
+-rwxr-xr-x  1 www  www  2362 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/folder/backup/moodle2/backup_folder_activity_task.class.php
+-rwxr-xr-x  1 www  www  6249 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/glossary/backup/moodle2/backup_glossary_stepslib.php
+-rwxr-xr-x  1 www  www  2625 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/glossary/backup/moodle2/backup_glossary_activity_task.class.php
+-rwxr-xr-x  1 www  www  2440 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/h5pactivity/backup/moodle2/backup_h5pactivity_activity_task.class.php
+-rwxr-xr-x  1 www  www  3557 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/h5pactivity/backup/moodle2/backup_h5pactivity_stepslib.php
+-rwxr-xr-x  1 www  www  3239 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/quiz/tests/behat/backup.feature
+-rwxr-xr-x  1 www  www  1839 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/quiz/backup/moodle2/backup_mod_quiz_access_subplugin.class.php
+-rwxr-xr-x  1 www  www  3565 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/quiz/backup/moodle2/backup_quiz_activity_task.class.php
+-rwxr-xr-x  1 www  www  7508 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/quiz/backup/moodle2/backup_quiz_stepslib.php
+-rwxr-xr-x  1 www  www  3764 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/quiz/accessrule/seb/backup/moodle2/backup_quizaccess_seb_subplugin.class.php
+-rwxr-xr-x  1 www  www  11495 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/quiz/accessrule/seb/tests/backup_restore_test.php
+-rwxr-xr-x  1 www  www  1168 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/book/backup/moodle2/backup_book_settingslib.php
+-rwxr-xr-x  1 www  www  3207 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/book/backup/moodle2/backup_book_stepslib.php
+-rwxr-xr-x  1 www  www  2980 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/book/backup/moodle2/backup_book_activity_task.class.php
+-rwxr-xr-x  1 www  www  4047 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/lesson/backup/moodle2/backup_lesson_activity_task.class.php
+-rwxr-xr-x  1 www  www  10005 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/lesson/backup/moodle2/backup_lesson_stepslib.php
+-rwxr-xr-x  1 www  www  1143 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/choice/backup/moodle2/backup_choice_settingslib.php
+-rwxr-xr-x  1 www  www  2461 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/choice/backup/moodle2/backup_choice_activity_task.class.php
+-rwxr-xr-x  1 www  www  3059 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/choice/backup/moodle2/backup_choice_stepslib.php
+-rwxr-xr-x  1 www  www  6013 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/data/backup/moodle2/backup_data_stepslib.php
+-rwxr-xr-x  1 www  www  2741 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/data/backup/moodle2/backup_data_activity_task.class.php
+-rwxr-xr-x  1 www  www  2329 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/chat/backup/moodle2/backup_chat_activity_task.class.php
+-rwxr-xr-x  1 www  www  2830 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/chat/backup/moodle2/backup_chat_stepslib.php
+-rwxr-xr-x  1 www  www  2444 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/assign/backup/moodle2/backup_assign_activity_task.class.php
+-rwxr-xr-x  1 www  www  9931 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/assign/backup/moodle2/backup_assign_stepslib.php
+-rwxr-xr-x  1 www  www  4340 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/assign/feedback/editpdf/backup/moodle2/backup_assignfeedback_editpdf_subplugin.class.php
+-rwxr-xr-x  1 www  www  2465 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/assign/feedback/comments/backup/moodle2/backup_assignfeedback_comments_subplugin.class.php
+-rwxr-xr-x  1 www  www  2301 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/assign/feedback/file/backup/moodle2/backup_assignfeedback_file_subplugin.class.php
+-rwxr-xr-x  1 www  www  2575 Jun 13  2020 /usr/local/www/apache24/data/moodle/mod/assign/submission/file/backup/moodle2/backup_assignsubmission_file_subplugin.class.php
+
+╔══════════╣ Searching tables inside readable .db/.sql/.sqlite files (limit 100)
+Found: "/etc/login.conf.db": cannot open `"/etc/login.conf.db"' (No such file or directory)                         
+Found: "/etc/mail/aliases.db": cannot open `"/etc/mail/aliases.db"' (No such file or directory)
+Found: "/etc/pwd.db": cannot open `"/etc/pwd.db"' (No such file or directory)
+Found: "/etc/spwd.db": cannot open `"/etc/spwd.db"' (No such file or directory)
+Found: "/var/db/pkg/local.sqlite": cannot open `"/var/db/pkg/local.sqlite"' (No such file or directory)
+Found: "/var/db/pkg/repo-FreeBSD.sqlite": cannot open `"/var/db/pkg/repo-FreeBSD.sqlite"' (No such file or directory)
+Found: "/var/db/services.db": cannot open `"/var/db/services.db"' (No such file or directory)
+ -> Extracting tables from /var/db/pkg/local.sqlite (limit 20)
+                                                                                                                    
+ -> Extracting tables from /var/db/pkg/repo-FreeBSD.sqlite (limit 20)
+                                                                                                                    
+
+╔══════════╣ Web files?(output limit)
+                                                                                                                    
+╔══════════╣ All hidden files (not in /sys/ or the ones listed in the previous check) (limit 70)
+-rw-r--r--  1 root  wheel  328 Feb 19  2021 /root/.login                                                            
+-rw-r--r--  1 root  wheel  865 Feb 19  2021 /root/.shrc
+-rw-r--r--  2 root  wheel  1023 Feb 19  2021 /root/.cshrc
+-rw-r--r--  1 root  wheel  149078 Feb 20  2021 /usr/local/lib/perl5/5.32/mach/.packlist
+-rwxrwxr-x  1 www  www  0 Dec 19  2020 /usr/local/www/apache24/moodledata/localcache/.lastpurged
+-rwxrwxr-x  1 www  www  128 Dec 18  2020 /usr/local/www/apache24/moodledata/.htaccess
+-rwxr-xr-x  1 www  www  2414 Jun 13  2020 /usr/local/www/apache24/data/moodle/.stylelintignore
+-rwxr-xr-x  1 www  www  4727 Jun 13  2020 /usr/local/www/apache24/data/moodle/.stylelintrc
+-rwxr-xr-x  1 www  www  67 Jun 13  2020 /usr/local/www/apache24/data/moodle/.shifter.json
+-rwxr-xr-x  1 www  www  597 Jun 13  2020 /usr/local/www/apache24/data/moodle/.gherkin-lintrc
+-rwxr-xr-x  1 www  www  8 Jun 13  2020 /usr/local/www/apache24/data/moodle/.nvmrc
+-rwxr-xr-x  1 www  www  8067 Jun 13  2020 /usr/local/www/apache24/data/moodle/.eslintrc
+-rwxr-xr-x  1 www  www  16 Jun 13  2020 /usr/local/www/apache24/data/moodle/.jshintignore
+-rwxr-xr-x  1 www  www  1545 Jun 13  2020 /usr/local/www/apache24/data/moodle/.jshintrc
+-rwxr-xr-x  1 www  www  9513 Jun 13  2020 /usr/local/www/apache24/data/moodle/.travis.yml
+-rwxr-xr-x  1 www  www  2372 Jun 13  2020 /usr/local/www/apache24/data/moodle/.eslintignore
+-rwxr-xr-x  1 www  www  10 Jun 13  2020 /usr/local/www/apache24/data/moodle/pix/.cvsignore
+-rwxr-xr-x  1 www  www  271 Jun 13  2020 /usr/local/www/apache24/data/moodle/lib/phpspreadsheet/vendor/psr/simple-cache/.editorconfig
+-rwxr-xr-x  1 www  www  0 Jun 13  2020 /usr/local/www/apache24/data/moodle/admin/tool/usertours/tours/.empty
+-rw-r--r--  1 jamie  jamie  962 Feb 26  2021 /usr/home/jamie/.cshrc
+-rw-r--r--  1 jamie  jamie  695 Feb 26  2021 /usr/home/jamie/.shrc
+-rw-------  1 jamie  jamie  301 Feb 26  2021 /usr/home/jamie/.mail_aliases
+-rw-r--r--  1 jamie  jamie  267 Feb 26  2021 /usr/home/jamie/.mailrc
+-rw-r--r--  1 jamie  jamie  323 Feb 26  2021 /usr/home/jamie/.login
+-rw-r--r--  1 jamie  jamie  91 Feb 26  2021 /usr/home/jamie/.login_conf
+-rw-r--r--  2 root  wheel  1023 Feb 19  2021 /.cshrc
+
+╔══════════╣ Readable files inside /tmp, /var/tmp, /private/tmp, /private/var/at/tmp, /private/var/tmp, and backup folders (limit 70)                                                                                                   
+-rwxr-xr-x  1 www  www  1410 Jun 13  2020 /usr/local/www/apache24/data/moodle/admin/tool/log/backup/moodle2/backup_tool_log_logstore_subplugin.class.php
+-rwxr-xr-x  1 www  www  7216 Jun 13  2020 /usr/local/www/apache24/data/moodle/admin/tool/log/backup/moodle2/restore_tool_log_logstore_subplugin.class.php
+-rwxr-xr-x  1 www  www  3384 Jun 13  2020 /usr/local/www/apache24/data/moodle/admin/tool/log/store/database/backup/moodle2/backup_logstore_database_nested_element.php
+-rwxr-xr-x  1 www  www  3625 Jun 13  2020 /usr/local/www/apache24/data/moodle/admin/tool/log/store/database/backup/moodle2/restore_logstore_database_subplugin.class.php
+-rwxr-xr-x  1 www  www  2590 Jun 13  2020 /usr/local/www/apache24/data/moodle/admin/tool/log/store/database/backup/moodle2/backup_logstore_database_subplugin.class.php
+-rwxr-xr-x  1 www  www  2404 Jun 13  2020 /usr/local/www/apache24/data/moodle/admin/tool/log/store/standard/backup/moodle2/restore_logstore_standard_subplugin.class.php
+-rwxr-xr-x  1 www  www  2220 Jun 13  2020 /usr/local/www/apache24/data/moodle/admin/tool/log/store/standard/backup/moodle2/backup_logstore_standard_subplugin.class.php
+-rwxr-xr-x  1 www  www  6507 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/backup.class.php
+-rwxr-xr-x  1 www  www  54935 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/moodle1/lib.php
+-rwxr-xr-x  1 www  www  246 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/moodle1/backuplib.php
+-rwxr-xr-x  1 www  www  18215 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/moodle1/tests/fixtures/moodle.xml
+-rwxr-xr-x  1 www  www  127 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/moodle1/tests/fixtures/icon.gif
+-rwxr-xr-x  1 www  www  47287 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/moodle1/tests/fixtures/questions.xml
+-rwxr-xr-x  1 www  www  27124 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/moodle1/tests/moodle1_converter_test.php
+-rwxr-xr-x  1 www  www  82731 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/moodle1/handlerlib.php
+-rwxr-xr-x  1 www  www  9092 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/convertlib.php
+-rwxr-xr-x  1 www  www  5911 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/imscc11/backuplib.php
+-rwxr-xr-x  1 www  www  4898 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/imscc11/lib.php
+-rwxr-xr-x  1 www  www  4864 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/imscc1/lib.php
+-rwxr-xr-x  1 www  www  245 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/converter/imscc1/backuplib.php
+-rwxr-xr-x  1 www  www  9846 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/backup.php
+-rwxr-xr-x  1 www  www  129 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_question_categories_question_category_question_eesay.xml
+-rwxr-xr-x  1 www  www  925 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_question_categories_question_category_question.xml
+-rwxr-xr-x  1 www  www  1486 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_modules_mod_basiclti.xml
+-rwxr-xr-x  1 www  www  412 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_blocks_block.xml
+-rwxr-xr-x  1 www  www  280 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_question_categories_question_category_question_shortanswer.xml
+-rwxr-xr-x  1 www  www  199 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/info_details_mod_instance.xml
+-rwxr-xr-x  1 www  www  166 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_modules_mod_quiz_question_instance.xml
+-rwxr-xr-x  1 www  www  268 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_sections_section.xml
+-rwxr-xr-x  1 www  www  884 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_modules_mod_lti.xml
+-rwxr-xr-x  1 www  www  469 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_question_categories_question_category.xml
+-rwxr-xr-x  1 www  www  1423 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_modules_mod_quiz.xml
+-rwxr-xr-x  1 www  www  219 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_modules_mod_label.xml
+-rwxr-xr-x  1 www  www  256 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_question_categories_question_category_question_answer.xml
+-rwxr-xr-x  1 www  www  224 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/info_details_mod.xml
+-rwxr-xr-x  1 www  www  415 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_modules_mod_resource.xml
+-rwxr-xr-x  1 www  www  585 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_question_categories_question_category_question_multiple_choice.xml
+-rwxr-xr-x  1 www  www  113 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_question_categories.xml
+-rwxr-xr-x  1 www  www  577 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_sections_section_mods_mod.xml
+-rwxr-xr-x  1 www  www  297 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_question_categories_question_category_question_true_false.xml
+-rwxr-xr-x  1 www  www  62429 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/moodle_blti_export.xml
+-rwxr-xr-x  1 www  www  210 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_modules_mod_quiz_feedback.xml
+-rwxr-xr-x  1 www  www  1517 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_header.xml
+-rwxr-xr-x  1 www  www  1364 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/base.xml
+-rwxr-xr-x  1 www  www  723 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/sheets/course_modules_mod_forum.xml
+-rwxr-xr-x  1 www  www  6283 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/includes/constants.php
+-rwxr-xr-x  1 www  www  45996 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/ccv1p1_lommanifest_v1p0.xsd
+-rwxr-xr-x  1 www  www  13160 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/imsbasiclti_v1p0p1.xsd
+-rwxr-xr-x  1 www  www  12885 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/imslticm_v1p0.xsd
+-rwxr-xr-x  1 www  www  13567 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/ccv1p1_imsdt_v1p1.xsd
+-rwxr-xr-x  1 www  www  12966 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/ccv1p1_imsccauth_v1p1.xsd
+-rwxr-xr-x  1 www  www  5728 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/xml.xsd
+-rwxr-xr-x  1 www  www  1198 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/cc11libxml2validator.xsd
+-rwxr-xr-x  1 www  www  17391 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/ccv1p1_lomresource_v1p0.xsd
+-rwxr-xr-x  1 www  www  63509 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/ccv1p1_imscp_v1p2_v1p0.xsd
+-rwxr-xr-x  1 www  www  14532 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/imslticc_v1p0p1.xsd
+-rwxr-xr-x  1 www  www  119087 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/ccv1p1_qtiasiv1p2p1_v1p0.xsd
+-rwxr-xr-x  1 www  www  12823 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/ccv1p1_imswl_v1p1.xsd
+-rwxr-xr-x  1 www  www  16993 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas11/imslticp_v1p0.xsd
+-rwxr-xr-x  1 www  www  4882 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/entity11.lti.class.php
+-rwxr-xr-x  1 www  www  6468 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/entity11.forum.class.php
+-rwxr-xr-x  1 www  www  90910 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas/domainProfile_4/ims_qtiasiv1p2.xsd
+-rwxr-xr-x  1 www  www  93037 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas/domainProfile_4/ims_qtiasiv1p2_localised.xsd
+-rwxr-xr-x  1 www  www  10351 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas/domainProfile_4/imscc_q_definition.xsd
+-rwxr-xr-x  1 www  www  97242 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas/domainProfile_4/ims_qtiasiv1p2_def_copy.xsd
+-rwxr-xr-x  1 www  www  5728 Jun 13  2020 /usr/local/www/apache24/data/moodle/backup/cc/schemas/domainProfile_4/xml.xsd
+
+╔══════════╣ Interesting writable files owned by me or writable by everyone (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                        
+/tmp                                                                                                                
+/tmp/.ICE-unix
+/tmp/.X11-unix
+/tmp/.XIM-unix
+/tmp/.font-unix
+/usr/home/jamie
+/usr/home/jamie/.cshrc
+/usr/home/jamie/.login
+/usr/home/jamie/.login_conf
+/usr/home/jamie/.mail_aliases
+/usr/home/jamie/.mailrc
+#)You_can_write_even_more_files_inside_last_directory
+
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_capabilities/cor-cache/core_capabilities-fee4acdfbf2009689e055218c943d692.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_config/cc9-cache/cc94cb67594514f8bdebb7c5dc66cb4d13a7679f.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_contentbank_enabled_extensions/ena-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_contentbank_enabled_extensions/ena-cache/enabled_extensions-dee4913512f99b0a8b53949593740f13.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_contextwithinsights/55--cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_contextwithinsights/55--cache/55-8f5488dd9862dba150b3305b1c1971af.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_coursecompletion/24_-cache/24_5-46aeb3b904ed861c1dc7495ac556d72f.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_coursecompletion/28_-cache/28_5-46aeb3b904ed861c1dc7495ac556d72f.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_coursecontacts/2-6-cache/2-6ef806ef34730c72f4e86c28204e404b.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_coursecontacts/3-6-cache/3-6ef806ef34730c72f4e86c28204e404b.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_coursecontacts/4-6-cache/4-6ef806ef34730c72f4e86c28204e404b.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/2b8-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/2b8-cache/2b8e366c67f1d35f6ce97eab83471ee430667436.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/67b-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/67b-cache/67b288271aae77d1654704a10afb9ac0b422db21.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/80a-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/80a-cache/80a42ad67b5bd67c4920158d25155b416ed194f1.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/c25-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/c25-cache/c2520d505fef80c8edccdf16070c354276ef3993.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/c62-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_databasemeta/c62-cache/c622cd5e170228256526a85886acd5543e22ec87.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_eventinvalidation/709-cache/70947100efae2edcaf860e3b39bb11b494e26dbe.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_groupdata/1-8-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_groupdata/1-8-cache/1-8f674787292f6d86bf86fd06f493b6ca.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/45b-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/45b-cache/45b1a83703c8b34566c7ed0eb049861bc93e0c53.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/4a8-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/4a8-cache/4a841a1a5e8b86ddfbed9a488d98ce810910c756.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/5e0-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/5e0-cache/5e015c5f754a3dec8bf314ad4322db844f6f71a0.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/6eb-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/6eb-cache/6eb1deda8ed5b0653b847cb246e5ff1ca67003b4.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/727-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/727-cache/7276e09fa8fd438062bd78df6f0bf8aae08db70c.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/90b-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/90b-cache/90b0e486378848a9577b72d3858a4e386d79de55.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/9e3-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/9e3-cache/9e33371b4884ee03bf7d291c1afcbe57a3bae813.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/a29-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/a29-cache/a29cf6edaf14455d812642a93850d24c74ef2597.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/abc-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/abc-cache/abcca0996d0ee8e47d93d790220243408944185c.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/c30-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/c30-cache/c30595a9e28d7fbf1b73724fd475ee903c5b090b.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/dbf-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/dbf-cache/dbf125364fb37e42cbad00c31463a8285d63f5bd.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/dd4-cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_htmlpurifier/dd4-cache/dd4a168fc933687d1c71333617eedb13d61f4535.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_roledefs/1-7-cache/1-7f26f4f6e3ab9a9d027accb891f6082d.cache
+/usr/local/www/apache24/moodledata/cache/cachestore_file/default_application/core_string/en_-cache/en_core_contentbank_1608386799-47007ad314d0e2cadbc57c4c0005112b.cache
+/usr/local/www/apache24/moodledata/cache/core_component.php
+/usr/local/www/apache24/moodledata/filedir/bf/09
+/usr/local/www/apache24/moodledata/filedir/bf/09/bf09aeb889f323edb35e84167e1ebbdf74624481
+/usr/local/www/apache24/moodledata/localcache/mustache/1608386799/boost/__Mustache_54d12e5d6977b747c3bea29c4f58c0a7.php
+/usr/local/www/apache24/moodledata/localcache/mustache/1608386799/boost/__Mustache_710b1579eee4926d7aa678fe48158ac2.php
+/usr/local/www/apache24/moodledata/localcache/mustache/1608386799/boost/__Mustache_7f3339e94473183d1567067a5c26cc2f.php
+/usr/local/www/apache24/moodledata/localcache/mustache/1608386799/boost/__Mustache_a8dc31e918f11103574544257d60c99f.php
+/usr/local/www/apache24/moodledata/localcache/mustache/1608386799/boost/__Mustache_bdba96dee363f335e6b9e2008c01bf83.php
+#)You_can_write_even_more_files_inside_last_directory
+
+/usr/local/www/apache24/moodledata/localcache/theme/1608386799/boost/pix/core/b
+/usr/local/www/apache24/moodledata/temp/core_plugin
+/usr/local/www/apache24/moodledata/temp/core_plugin/code_manager
+/usr/local/www/apache24/moodledata/temp/core_plugin/code_manager/archive
+/usr/local/www/apache24/moodledata/temp/core_plugin/code_manager/distfiles
+/usr/local/www/apache24/moodledata/temp/tool_installaddon
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/19870e63-1823-4209-b5ee-4c1f4d6e9dc4
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/19870e63-1823-4209-b5ee-4c1f4d6e9dc4/plugin.zip
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/1f6f7c9e-5a27-428a-8e5c-0ee32e040c68
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/1f6f7c9e-5a27-428a-8e5c-0ee32e040c68/plugin.zip
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/4452dfb6-8822-4a5d-8378-47eaa3ade379
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/4452dfb6-8822-4a5d-8378-47eaa3ade379/plugin.zip
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/8a42fa17-4a1a-4b64-9b9c-444906b90b2e
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/8a42fa17-4a1a-4b64-9b9c-444906b90b2e/plugin.zip
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/cb6e004f-e78f-45cd-aba3-cb07b2f622ff
+/usr/local/www/apache24/moodledata/temp/tool_installaddon/cb6e004f-e78f-45cd-aba3-cb07b2f622ff/plugin.zip
+/var/mail/jamie
+/var/tmp
+/var/tmp/vi.recover
+
+╔══════════╣ Interesting GROUP writable files (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files                                        
+  Group jamie:                                                                                                      
+                                                                                                                    
+  Group wheel:
+/usr/local/etc/hosts                                                                                                
+/etc/hosts
+/var/tmp
+/var/tmp/vi.recover
+/tmp
+/tmp/.X11-unix
+/tmp/.font-unix
+/tmp/.XIM-unix
+/tmp/.ICE-unix
+
+╔══════════╣ Searching passwords in config PHP files
+                                                                                                                    
+╔══════════╣ Checking for TTY (sudo/su) passwords in audit logs
+                                                                                                                    
+╔══════════╣ Finding IPs inside logs (limit 70)
+ 759 /var/log/moodle.schooled.htb-access_log:10.10.14.15                                                            
+  13 /var/log/utx.log:10.10.14.5
+   5 /var/log/moodle.schooled.htb-access_log:10.10.14.6
+   2 /var/log/utx.log:192.168.1.18
+   2 /var/log/moodle.schooled.htb-access_log:192.168.1.18
+   2 /var/log/messages:10.10.14.6
+   2 /var/log/messages:10.10.14.5
+   2 /var/log/maillog:10.10.10.234
+   1 /var/log/utx.log:192.168.1.8
+   1 /var/log/utx.log:10.10.14.6
+   1 /var/log/utx.log:10.10.14.15
+   1 /var/log/utx.lastlogin:10.10.14.15
+   1 /var/log/moodle.schooled.htb-access_log:10.10.14.5
+
+╔══════════╣ Finding passwords inside logs (limit 70)
+                                                                                                                    
+╔══════════╣ Finding emails inside logs (limit 70)
+  37 /var/log/messages:root@releng1.nyi.freebsd.org                                                                 
+  37 /var/log/messages:git@github.com
+   2 /var/log/maillog:jamie@schooled.htb
+   1 /var/log/maillog:test@student.schooled.htb
+   1 /var/log/maillog:moodle@moodle.schooled.htb
+   1 /var/log/maillog:202109110234.18B2Y0sk060871@localhost.my.domain
+   1 /var/log/maillog:202109110234.18B2Y0rR060864@localhost.my.domain
+   1 /var/log/maillog:202109110234.18B2Y0nn060872@localhost.my.domain
+   1 /var/log/maillog:202109110234.18B2Y0dK060870@localhost.my.domain
+   1 /var/log/maillog:202109110234.18B2Y09F060869@localhost.my.domain
+   1 /var/log/maillog:202109110234.18B2Y058060865@localhost.my.domain
+   1 /var/log/maillog:202109110233.18B2X0b9041689@localhost.my.domain
+   1 /var/log/maillog:202109110233.18B2X0Pg041685@localhost.my.domain
+   1 /var/log/maillog:202109110233.18B2X0HU041680@localhost.my.domain
+   1 /var/log/maillog:202109110233.18B2X06N041684@localhost.my.domain
+   1 /var/log/maillog:202109110232.18B2W0w5041659@localhost.my.domain
+   1 /var/log/maillog:202109110232.18B2W0dv041657@localhost.my.domain
+   1 /var/log/maillog:202109110232.18B2W0cB041658@localhost.my.domain
+   1 /var/log/maillog:202109110232.18B2W0Wq041655@localhost.my.domain
+   1 /var/log/maillog:202109110232.18B2W0W7041652@localhost.my.domain
+   1 /var/log/maillog:202109110232.18B2W0NP041654@localhost.my.domain
+   1 /var/log/maillog:202109110232.18B2W0EP041656@localhost.my.domain
+   1 /var/log/maillog:202109110231.18B2V0hR041625@localhost.my.domain
+   1 /var/log/maillog:202109110231.18B2V0Mg041623@localhost.my.domain
+   1 /var/log/maillog:202109110230.18B2U2bn041615@localhost.my.domain
+   1 /var/log/maillog:202109110230.18B2U0rD041605@localhost.my.domain
+   1 /var/log/maillog:202109110230.18B2U0gs041604@localhost.my.domain
+   1 /var/log/maillog:202109110230.18B2U0bP041601@localhost.my.domain
+   1 /var/log/maillog:202109110230.18B2U0ZY041607@localhost.my.domain
+   1 /var/log/maillog:202109110230.18B2U0RS041611@localhost.my.domain
+   1 /var/log/maillog:202109110230.18B2U0MJ041603@localhost.my.domain
+   1 /var/log/maillog:202109110230.18B2U0Hd041606@localhost.my.domain
+   1 /var/log/maillog:202109110230.18B2U0Bl041602@localhost.my.domain
+   1 /var/log/maillog:202109110229.18B2T0ll041488@localhost.my.domain
+   1 /var/log/maillog:202109110229.18B2T0Jg041489@localhost.my.domain
+   1 /var/log/maillog:202109110228.18B2S0rg041463@localhost.my.domain
+   1 /var/log/maillog:202109110228.18B2S0mp041451@localhost.my.domain
+   1 /var/log/maillog:202109110228.18B2S0gW041461@localhost.my.domain
+   1 /var/log/maillog:202109110228.18B2S0L4041462@localhost.my.domain
+   1 /var/log/maillog:202109110228.18B2S0Ib041453@localhost.my.domain
+   1 /var/log/maillog:202109110228.18B2S0BX041456@localhost.my.domain
+   1 /var/log/maillog:202109110228.18B2S082041454@localhost.my.domain
+   1 /var/log/maillog:202109110227.18B2R0eb041430@localhost.my.domain
+   1 /var/log/maillog:202109110227.18B2R0Q2041429@localhost.my.domain
+   1 /var/log/maillog:202109110227.18B2R0Fm041428@localhost.my.domain
+   1 /var/log/maillog:202109110227.18B2R03m041427@localhost.my.domain
+   1 /var/log/maillog:202109110226.18B2Q0Wf041352@localhost.my.domain
+   1 /var/log/maillog:202109110226.18B2Q0Vw041344@localhost.my.domain
+   1 /var/log/maillog:202109110226.18B2Q0Rh041345@localhost.my.domain
+   1 /var/log/maillog:202109110226.18B2Q0MP041353@localhost.my.domain
+   1 /var/log/maillog:202109110226.18B2Q0HM041346@localhost.my.domain
+   1 /var/log/maillog:202109110226.18B2Q0BJ041348@localhost.my.domain
+   1 /var/log/maillog:202109110225.18B2P0SM041323@localhost.my.domain
+   1 /var/log/maillog:202109110225.18B2P0MC041324@localhost.my.domain
+   1 /var/log/maillog:202109110224.18B2O0ed034863@localhost.my.domain
+   1 /var/log/maillog:202109110224.18B2O0dt034854@localhost.my.domain
+   1 /var/log/maillog:202109110224.18B2O0R6034858@localhost.my.domain
+   1 /var/log/maillog:202109110224.18B2O071034855@localhost.my.domain
+   1 /var/log/maillog:202109110224.18B2O06l034857@localhost.my.domain
+   1 /var/log/maillog:202109110224.18B2O04n034849@localhost.my.domain
+   1 /var/log/maillog:202109110224.18B2O03x034851@localhost.my.domain
+   1 /var/log/maillog:202109110224.18B2O03h034867@localhost.my.domain
+   1 /var/log/maillog:202109110224.18B2O00A034859@localhost.my.domain
+   1 /var/log/maillog:202109110223.18B2N0he006238@localhost.my.domain
+   1 /var/log/maillog:202109110223.18B2N0TB006239@localhost.my.domain
+   1 /var/log/maillog:202109110222.18B2M0uE005126@localhost.my.domain
+   1 /var/log/maillog:202109110222.18B2M0QG005123@localhost.my.domain
+   1 /var/log/maillog:202109110222.18B2M0G9005122@localhost.my.domain
+   1 /var/log/maillog:202109110222.18B2M03b005119@localhost.my.domain
+   1 /var/log/maillog:202109110222.18B2M038005124@localhost.my.domain
+
+╔══════════╣ Finding *password* or *credential* files in home (limit 70)
+/usr/libexec/bsdconfig/040.password                                                                                 
+/usr/libexec/bsdconfig/040.password/password
+/usr/local/include/gio-unix-2.0/gio/gunixcredentialsmessage.h
+/usr/local/include/giomm-2.4/giomm/credentials.h
+/usr/local/include/giomm-2.4/giomm/private/credentials_p.h
+/usr/local/include/giomm-2.4/giomm/private/tlspassword_p.h
+/usr/local/include/giomm-2.4/giomm/private/unixcredentialsmessage_p.h
+/usr/local/include/giomm-2.4/giomm/tlspassword.h
+/usr/local/include/giomm-2.4/giomm/unixcredentialsmessage.h
+/usr/local/include/glib-2.0/gio/gcredentials.h
+/usr/local/include/glib-2.0/gio/gtlspassword.h
+/usr/local/include/mysql/mysql/plugin_validate_password.h
+/usr/local/include/mysql/mysql/service_mysql_password_policy.h
+/usr/local/include/mysql/password.h
+/usr/local/include/php/ext/standard/php_password.h
+/usr/local/lib/mysql/plugin/component_validate_password.so
+/usr/local/lib/mysql/plugin/validate_password.so
+/usr/local/man/man3/gnutls_anon_allocate_client_credentials.3.gz
+/usr/local/man/man3/gnutls_anon_allocate_server_credentials.3.gz
+/usr/local/man/man3/gnutls_anon_free_client_credentials.3.gz
+/usr/local/man/man3/gnutls_anon_free_server_credentials.3.gz
+  #)There are more creds/passwds files in the previous parent folder
+
+/usr/local/share/doc/apache24/misc/password_encryptions.html.en
+/usr/local/share/doc/apache24/misc/password_encryptions.html.fr.utf8
+/usr/local/share/doc/cyrus-sasl2/html/sasl/faqs/plaintextpasswords.html
+/usr/local/share/doc/openldap/drafts/draft-behera-ldap-password-policy-xx.txt
+/usr/local/share/icons/Adwaita/16x16/legacy/dialog-password.png
+/usr/local/share/icons/Adwaita/22x22/legacy/dialog-password.png
+/usr/local/share/icons/Adwaita/24x24/legacy/dialog-password.png
+/usr/local/share/icons/Adwaita/256x256/legacy/dialog-password.png
+/usr/local/share/icons/Adwaita/32x32/legacy/dialog-password.png
+/usr/local/share/icons/Adwaita/48x48/legacy/dialog-password.png
+/usr/local/share/icons/Adwaita/scalable/status/dialog-password-symbolic.svg
+/usr/local/www/apache24/data/moodle/admin/cli/reset_password.php
+/usr/local/www/apache24/data/moodle/admin/templates/setting_configpasswordunmask.mustache
+/usr/local/www/apache24/data/moodle/admin/user/user_bulk_forcepasswordchange.php
+/usr/local/www/apache24/data/moodle/auth/yui/passwordunmask
+/usr/local/www/apache24/data/moodle/auth/yui/passwordunmask/passwordunmask.js
+/usr/local/www/apache24/data/moodle/enrol/guest/pix/withoutpassword.gif
+/usr/local/www/apache24/data/moodle/enrol/guest/pix/withoutpassword.png
+/usr/local/www/apache24/data/moodle/enrol/guest/pix/withoutpassword.svg
+
+╔══════════╣ Finding passwords inside key folders (limit 70) - only PHP files
+/usr/local/www/apache24/data/moodle/cache/stores/mongodb/lang/en/cachestore_mongodb.php:$string['password'] = 'Password';
+/usr/local/www/apache24/data/moodle/cache/stores/mongodb/lib.php:            $configuration['password'] = $config->testpassword;
+/usr/local/www/apache24/data/moodle/cache/stores/mongodb/lib.php:            $data['password'] = $config['password'];
+/usr/local/www/apache24/data/moodle/cache/stores/mongodb/lib.php:            $return['password'] = $data->password;
+/usr/local/www/apache24/data/moodle/cache/stores/mongodb/lib.php:            $this->options['password'] = (string)$configuration['password'];
+/usr/local/www/apache24/data/moodle/cache/stores/redis/lang/en/cachestore_redis.php:$string['password'] = 'Password';
+/usr/local/www/apache24/data/moodle/cache/stores/redis/lang/en/cachestore_redis.php:$string['test_password'] = 'Test server password';
+/usr/local/www/apache24/data/moodle/cache/stores/redis/lang/en/cachestore_redis.php:$string['test_password_desc'] = 'Redis test server password.';
+/usr/local/www/apache24/data/moodle/cache/stores/redis/lib.php:            $configuration['password'] = $config->test_password;
+/usr/local/www/apache24/data/moodle/cache/stores/redis/lib.php:            'password' => $data->password,
+/usr/local/www/apache24/data/moodle/cache/stores/redis/lib.php:        $data['password'] = !empty($config['password']) ? $config['password'] : '';
+/usr/local/www/apache24/data/moodle/cache/stores/redis/lib.php:    protected function new_redis($server, $prefix = '', $password = '') {
+/usr/local/www/apache24/data/moodle/install.php:    $config->dbpass   = '';
+/usr/local/www/apache24/data/moodle/install.php:    $config->dbpass   = trim($_POST['dbpass']);
+/usr/local/www/apache24/data/moodle/install.php:    $config->dbuser   = empty($distro->dbuser) ? '' : $distro->dbuser; // let distros set dbuser
+/usr/local/www/apache24/data/moodle/install.php:    $config->dbuser   = trim($_POST['dbuser']);
+/usr/local/www/apache24/data/moodle/install.php:    $disabled = empty($distro->dbuser) ? '' : 'disabled="disabled';
+/usr/local/www/apache24/data/moodle/install.php:    $strdbpass   = get_string('databasepass', 'install');
+/usr/local/www/apache24/data/moodle/install.php:    $strdbuser   = get_string('databaseuser', 'install');
+/usr/local/www/apache24/data/moodle/portfolio/boxnet/lang/en/portfolio_boxnet.php:$string['password'] = 'Your Box password (will not be stored)';                                                                                       
+/usr/local/www/apache24/data/moodle/report/security/lang/en/report_security.php:$string['check_passwordpolicy_error'] = 'Password policy not set.';
+/usr/local/www/apache24/data/moodle/report/security/lang/en/report_security.php:$string['check_passwordpolicy_name'] = 'Password policy';
+/usr/local/www/apache24/data/moodle/report/security/lang/en/report_security.php:$string['check_passwordpolicy_ok'] = 'Password policy enabled.';
+/usr/local/www/apache24/data/moodle/user/classes/privacy/provider.php:            $passwordresets = (object) array_map(function($record) {
+/usr/local/www/apache24/data/moodle/user/classes/privacy/provider.php:            'password' => 'privacy:metadata:password',                                                                                                            
+/usr/local/www/apache24/data/moodle/user/classes/privacy/provider.php:        $DB->delete_records('user_password_history', ['userid' => $userid]);
+/usr/local/www/apache24/data/moodle/user/classes/privacy/provider.php:        $DB->delete_records('user_password_resets', ['userid' => $userid]);
+/usr/local/www/apache24/data/moodle/user/classes/privacy/provider.php:        $passwordhistory = [
+/usr/local/www/apache24/data/moodle/user/classes/privacy/provider.php:        $userpasswordresets = [
+/usr/local/www/apache24/data/moodle/user/editadvanced.php:                $usernew->password = '';
+/usr/local/www/apache24/data/moodle/user/editadvanced.php:                $usernew->password = hash_internal_user_password($usernew->newpassword);                                                                                      
+/usr/local/www/apache24/data/moodle/user/editadvanced.php:            $usernew->password = AUTH_PASSWORD_NOT_CACHED;
+/usr/local/www/apache24/data/moodle/user/editadvanced.php:        $createpassword = !empty($usernew->createpassword);
+/usr/local/www/apache24/data/moodle/user/editadvanced.php:    $createpassword = false;
+/usr/local/www/apache24/data/moodle/user/editadvanced_form.php:                    $err['newpassword'] = $errmsg;
+/usr/local/www/apache24/data/moodle/user/editadvanced_form.php:                    $err['newpassword'] = get_string('required');
+/usr/local/www/apache24/data/moodle/user/editadvanced_form.php:            $passwordurl = $authinst->change_password_url();
+/usr/local/www/apache24/data/moodle/user/editadvanced_form.php:        $mform->setType('newpassword', core_user::get_property_type('password'));
+/usr/local/www/apache24/data/moodle/user/externallib.php:                    $updatepassword = true;
+/usr/local/www/apache24/data/moodle/user/externallib.php:                    $user['password'] = '';
+/usr/local/www/apache24/data/moodle/user/externallib.php:                $user['password'] = AUTH_PASSWORD_NOT_CACHED;
+/usr/local/www/apache24/data/moodle/user/externallib.php:            $createpassword = !empty($user['createpassword']);
+/usr/local/www/apache24/data/moodle/user/externallib.php:            $updatepassword = false;
+/usr/local/www/apache24/data/moodle/user/externallib.php:            'password' => new external_value(core_user::get_property_type('password'),
+/usr/local/www/apache24/data/moodle/user/lib.php:            $DB->delete_records('user_password_history', array('id' => $record->id));
+/usr/local/www/apache24/data/moodle/user/lib.php:        $passwd = $user->password;
+/usr/local/www/apache24/data/moodle/user/lib.php:        $userpassword = $user->password;
+/usr/local/www/apache24/data/moodle/user/lib.php:        'password' => 'current-password',
+/usr/local/www/apache24/data/moodle/user/lib.php:define('USER_FILTER_ENROLMENT', 1);
+/usr/local/www/apache24/data/moodle/user/lib.php:define('USER_FILTER_GROUP', 2);
+/usr/local/www/apache24/data/moodle/user/lib.php:define('USER_FILTER_LAST_ACCESS', 3);
+/usr/local/www/apache24/data/moodle/user/lib.php:define('USER_FILTER_ROLE', 4);
+/usr/local/www/apache24/data/moodle/user/lib.php:define('USER_FILTER_STATUS', 5);
+/usr/local/www/apache24/data/moodle/user/lib.php:define('USER_FILTER_STRING', 6);
+/usr/local/www/apache24/data/moodle/user/lib.php:function user_create_user($user, $updatepassword = true, $triggerevent = true) {
+/usr/local/www/apache24/data/moodle/user/lib.php:function user_update_user($user, $updatepassword = true, $triggerevent = true) {
+/usr/local/www/apache24/data/moodle/user/profile/field/text/field.class.php:        $fieldtype = ($this->field->param3 == 1 ? 'password' : 'text');
+/usr/local/www/apache24/data/moodle/user/selector/lib.php:define('USER_SELECTOR_DEFAULT_ROWS', 20);
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:                    'createpassword' => 1,
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:                'password' => 'Passw0rd!'
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:            $dbuser = $DB->get_record('user', array('id' => $createduser['id']));
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:            'missing_password' => [
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:            'password' => 'Moodle2012!',
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:            foreach ($dbuser as $property => $value) {
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:        $dbuser = $DB->get_record('user', array('id' => $user1['id']));
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:        $dbuser2 = $DB->get_record('user', array('id' => $user2['id']));
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:        $dbuser3 = $DB->get_record('user', array('id' => $user3['id']));
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:        $dbuser4 = $DB->get_record('user', array('id' => $user4['id']));
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:        $dbuserdelpic = $DB->get_record('user', array('id' => $user1['id']));
+/usr/local/www/apache24/data/moodle/user/tests/externallib_test.php:        $dbusernopic = $DB->get_record('user', array('id' => $user1['id']));
+
+╔══════════╣ Finding passwords inside key folders (limit 70) - no PHP files
+                                                                                                                    
+╔══════════╣ Finding possible password variables inside key folders (limit 140)
+                                                                                                                    
+╔══════════╣ Finding possible password in config files
+                                                                                                                    
+╔══════════╣ Finding 'username' string inside key folders (limit 70)
+/etc/rc.d/sdpd:user="${sdpd_username:-nobody}"                                                                      
+
+╔══════════╣ Searching specific hashes inside files - less false positives (limit 70)
