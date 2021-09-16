@@ -542,4 +542,3 @@ Done!
 - [HackTheBox - Schooled by ippsec](https://www.youtube.com/watch?v=bUfZlBMFJ2I)
 - [HTB: Schooled by 0xdf](https://0xdf.gitlab.io/2021/09/11/htb-schooled.html)
 - [Exploiting Moodle vulnerabilities and FreeBSD custom pkg](https://fmash16.github.io/content/writeups/hackthebox/htb-Schooled.html)
-https://fmash16.github.io/content/writeups/hackthebox/htb-Schooled.html
