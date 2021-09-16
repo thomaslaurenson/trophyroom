@@ -46,3 +46,5 @@ The boxes targeted in this repo are based off the **NetSecFocus Trophy Room** li
 | [SwagShop](hackthebox/machines/swagshop) | Linux | Easy | Yes | 2019-05-11 | 2021-09-13 |
 | [Tabby](hackthebox/machines/tabby) | Linux | Easy | Yes | 2020-06-20 | 2021-08-18 |
 | [TheNotebook](hackthebox/machines/thenotebook) | Linux | Medium | No | 2021-03-06 | 2021-07-03 |
+| [Valentine](hackthebox/machines/valentine) | Linux | Easy | Yes | 2018-02-17 | 2021-09-17 |
+| [Writeup](hackthebox/machines/writeup) | Linux | Easy | No | 2019-06-08 | 2021-08-04 |
