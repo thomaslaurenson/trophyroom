@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.91 scan initiated Sat Sep 18 10:49:24 2021 as: nmap -p- -oA logs/nmap-all 10.10.10.117 -->
+<nmaprun scanner="nmap" args="nmap -p- -oA logs/nmap-all 10.10.10.117" start="1631918964" startstr="Sat Sep 18 10:49:24 2021" version="7.91" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.10.117" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1631918964" endtime="1631918977"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.10.10.117" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65528">
+<extrareasons reason="conn-refused" count="65528"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="111"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="rpcbind" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6697"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ircs-u" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8067"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="infi-async" method="table" conf="3"/></port>
+<port protocol="tcp" portid="44875"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="65534"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+</ports>
+<times srtt="31502" rttvar="102" to="100000"/>
+</host>
+<runstats><finished time="1631918977" timestr="Sat Sep 18 10:49:37 2021" summary="Nmap done at Sat Sep 18 10:49:37 2021; 1 IP address (1 host up) scanned in 12.95 seconds" elapsed="12.95" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
