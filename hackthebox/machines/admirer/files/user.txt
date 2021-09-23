@@ -1,0 +1,15 @@
+Penny
+p.wise@admirer.htb
+Rajesh
+r.nayyar@admirer.htb
+Amy
+a.bialik@admirer.htb
+l.galecki@admirer.htb
+Howard
+h.helberg@admirer.htb
+Bernadette
+b.rauch@admirer.htb
+w.cooper@admirer.htb
+ftpuser
+admin
+waldo

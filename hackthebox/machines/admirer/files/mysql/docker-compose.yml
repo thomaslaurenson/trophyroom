@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: ap
+    environment:
+      MYSQL_DATABASE: admirer_pwn
+      MYSQL_ROOT_PASSWORD: thefunkybunch2987
+      MYSQL_USER: user
+      MYSQL_PASSWORD: thefunkybunch2987
+    ports:
+      - "3306:3306"
