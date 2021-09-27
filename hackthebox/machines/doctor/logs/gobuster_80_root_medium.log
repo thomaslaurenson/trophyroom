@@ -1,0 +1,5 @@
+/images               (Status: 301) [Size: 313] [--> http://10.10.10.209/images/]
+/js                   (Status: 301) [Size: 309] [--> http://10.10.10.209/js/]
+/fonts                (Status: 301) [Size: 312] [--> http://10.10.10.209/fonts/]
+/css                  (Status: 301) [Size: 310] [--> http://10.10.10.209/css/]
+/server-status        (Status: 403) [Size: 277]
