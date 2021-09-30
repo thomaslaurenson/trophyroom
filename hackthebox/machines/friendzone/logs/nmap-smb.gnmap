@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Sun Sep 26 11:15:47 2021 as: nmap --script smb-enum-* -p 445 -oA logs/nmap-smb 10.10.10.123
+Host: 10.10.10.123 (friendzone.red)	Status: Up
+Host: 10.10.10.123 (friendzone.red)	Ports: 445/open/tcp//microsoft-ds///
+# Nmap done at Sun Sep 26 11:20:48 2021 -- 1 IP address (1 host up) scanned in 300.81 seconds

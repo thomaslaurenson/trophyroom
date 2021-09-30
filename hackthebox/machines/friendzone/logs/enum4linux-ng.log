@@ -1,0 +1,173 @@
+ENUM4LINUX - next generation
+
+ ==========================
+|    Target Information    |
+ ==========================
+[*] Target ........... 10.10.10.123
+[*] Username ......... ''
+[*] Random Username .. 'xbyvyyau'
+[*] Password ......... ''
+[*] Timeout .......... 5 second(s)
+
+ ====================================
+|    Service Scan on 10.10.10.123    |
+ ====================================
+[*] Checking LDAP
+[-] Could not connect to LDAP on 389/tcp: connection refused
+[*] Checking LDAPS
+[-] Could not connect to LDAPS on 636/tcp: connection refused
+[*] Checking SMB
+[+] SMB is accessible on 445/tcp
+[*] Checking SMB over NetBIOS
+[+] SMB over NetBIOS is accessible on 139/tcp
+
+ ====================================================
+|    NetBIOS Names and Workgroup for 10.10.10.123    |
+ ====================================================
+[+] Got domain/workgroup name: WORKGROUP
+[+] Full NetBIOS names information:
+- FRIENDZONE      <00> -         B <ACTIVE>  Workstation Service
+- FRIENDZONE      <03> -         B <ACTIVE>  Messenger Service
+- FRIENDZONE      <20> -         B <ACTIVE>  File Server Service
+- ..__MSBROWSE__. <01> - <GROUP> B <ACTIVE>  Master Browser
+- WORKGROUP       <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+- WORKGROUP       <1d> -         B <ACTIVE>  Master Browser
+- WORKGROUP       <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+- MAC Address = 00-00-00-00-00-00
+
+ =========================================
+|    SMB Dialect Check on 10.10.10.123    |
+ =========================================
+[*] Trying on 445/tcp
+[+] Supported dialects and settings:
+SMB 1.0: true
+SMB 2.02: true
+SMB 2.1: true
+SMB 3.0: true
+SMB1 only: false
+Preferred dialect: SMB 3.0
+SMB signing required: false
+
+ =========================================
+|    RPC Session Check on 10.10.10.123    |
+ =========================================
+[*] Check for null session
+[+] Server allows session using username '', password ''
+[*] Check for random user session
+[+] Server allows session using username 'xbyvyyau', password ''
+[H] Rerunning enumeration with user 'xbyvyyau' might give more results
+
+ ===================================================
+|    Domain Information via RPC for 10.10.10.123    |
+ ===================================================
+[+] Domain: WORKGROUP
+[+] SID: NULL SID
+[+] Host is part of a workgroup (not a domain)
+
+ ===========================================================
+|    Domain Information via SMB session for 10.10.10.123    |
+ ===========================================================
+[*] Enumerating via unauthenticated SMB session on 445/tcp
+[+] Found domain information via SMB
+NetBIOS computer name: FRIENDZONE
+NetBIOS domain name: ''
+DNS domain: ''
+FQDN: friendzone
+
+ ===============================================
+|    OS Information via RPC for 10.10.10.123    |
+ ===============================================
+[*] Enumerating via unauthenticated SMB session on 445/tcp
+[+] Found OS information via SMB
+[*] Enumerating via 'srvinfo'
+[+] Found OS information via 'srvinfo'
+[+] After merging OS information we have the following result:
+OS: Linux/Unix (Samba 4.7.6-Ubuntu)
+OS version: '6.1'
+OS release: ''
+OS build: '0'
+Native OS: Windows 6.1
+Native LAN manager: Samba 4.7.6-Ubuntu
+Platform id: '500'
+Server type: '0x809a03'
+Server type string: Wk Sv PrQ Unx NT SNT FriendZone server (Samba, Ubuntu)
+
+ =====================================
+|    Users via RPC on 10.10.10.123    |
+ =====================================
+[*] Enumerating users via 'querydispinfo'
+[+] Found 0 users via 'querydispinfo'
+[*] Enumerating users via 'enumdomusers'
+[+] Found 0 users via 'enumdomusers'
+
+ ======================================
+|    Groups via RPC on 10.10.10.123    |
+ ======================================
+[*] Enumerating local groups
+[+] Found 0 group(s) via 'enumalsgroups domain'
+[*] Enumerating builtin groups
+[+] Found 0 group(s) via 'enumalsgroups builtin'
+[*] Enumerating domain groups
+[+] Found 0 group(s) via 'enumdomgroups'
+
+ ======================================
+|    Shares via RPC on 10.10.10.123    |
+ ======================================
+[*] Enumerating shares
+[+] Found 5 share(s):
+Development:
+  comment: FriendZone Samba Server Files
+  type: Disk
+Files:
+  comment: FriendZone Samba Server Files /etc/Files
+  type: Disk
+IPC$:
+  comment: IPC Service (FriendZone server (Samba, Ubuntu))
+  type: IPC
+general:
+  comment: FriendZone Samba Server Files
+  type: Disk
+print$:
+  comment: Printer Drivers
+  type: Disk
+[*] Testing share Development
+[+] Mapping: OK, Listing: OK
+[*] Testing share Files
+[+] Mapping: DENIED, Listing: N/A
+[*] Testing share IPC$
+[-] Could not check share: STATUS_OBJECT_NAME_NOT_FOUND
+[*] Testing share general
+[+] Mapping: OK, Listing: OK
+[*] Testing share print$
+[+] Mapping: DENIED, Listing: N/A
+
+ =========================================
+|    Policies via RPC for 10.10.10.123    |
+ =========================================
+[*] Trying port 445/tcp
+[+] Found policy:
+domain_password_information:
+  pw_history_length: None
+  min_pw_length: 5
+  min_pw_age: none
+  max_pw_age: 49710 days 6 hours 21 minutes
+  pw_properties:
+  - DOMAIN_PASSWORD_COMPLEX: false
+  - DOMAIN_PASSWORD_NO_ANON_CHANGE: false
+  - DOMAIN_PASSWORD_NO_CLEAR_CHANGE: false
+  - DOMAIN_PASSWORD_LOCKOUT_ADMINS: false
+  - DOMAIN_PASSWORD_PASSWORD_STORE_CLEARTEXT: false
+  - DOMAIN_PASSWORD_REFUSE_PASSWORD_CHANGE: false
+domain_lockout_information:
+  lockout_observation_window: 30 minutes
+  lockout_duration: 30 minutes
+  lockout_threshold: None
+domain_logoff_information:
+  force_logoff_time: 49710 days 6 hours 21 minutes
+
+ =========================================
+|    Printers via RPC for 10.10.10.123    |
+ =========================================
+[+] No printers returned (this is not an error)
+
+Completed after 9.81 seconds

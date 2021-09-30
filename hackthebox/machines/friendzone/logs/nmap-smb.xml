@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.91 scan initiated Sun Sep 26 11:15:47 2021 as: nmap -&#45;script smb-enum-* -p 445 -oA logs/nmap-smb 10.10.10.123 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script smb-enum-* -p 445 -oA logs/nmap-smb 10.10.10.123" start="1632608147" startstr="Sun Sep 26 11:15:47 2021" version="7.91" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="1" services="445"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.10.123" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1632608147" endtime="1632608448"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.10.10.123" addrtype="ipv4"/>
+<hostnames>
+<hostname name="friendzone.red" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="smb-enum-domains" output="&#xa;  Builtin&#xa;    Groups: n/a&#xa;    Users: n/a&#xa;    Creation time: unknown&#xa;    Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords&#xa;    Account lockout disabled&#xa;  FRIENDZONE&#xa;    Groups: n/a&#xa;    Users: n/a&#xa;    Creation time: unknown&#xa;    Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords&#xa;    Account lockout disabled&#xa;"/><script id="smb-enum-sessions" output="&#xa;  &lt;nobody&gt;&#xa;"/><script id="smb-enum-shares" output="&#xa;  account_used: guest&#xa;  \\10.10.10.123\Development: &#xa;    Type: STYPE_DISKTREE&#xa;    Comment: FriendZone Samba Server Files&#xa;    Users: 0&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\etc\Development&#xa;    Anonymous access: READ/WRITE&#xa;    Current user access: READ/WRITE&#xa;  \\10.10.10.123\Files: &#xa;    Type: STYPE_DISKTREE&#xa;    Comment: FriendZone Samba Server Files /etc/Files&#xa;    Users: 0&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\etc\hole&#xa;    Anonymous access: &lt;none&gt;&#xa;    Current user access: &lt;none&gt;&#xa;  \\10.10.10.123\IPC$: &#xa;    Type: STYPE_IPC_HIDDEN&#xa;    Comment: IPC Service (FriendZone server (Samba, Ubuntu))&#xa;    Users: 2&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\tmp&#xa;    Anonymous access: READ/WRITE&#xa;    Current user access: READ/WRITE&#xa;  \\10.10.10.123\general: &#xa;    Type: STYPE_DISKTREE&#xa;    Comment: FriendZone Samba Server Files&#xa;    Users: 0&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\etc\general&#xa;    Anonymous access: READ/WRITE&#xa;    Current user access: READ/WRITE&#xa;  \\10.10.10.123\print$: &#xa;    Type: STYPE_DISKTREE&#xa;    Comment: Printer Drivers&#xa;    Users: 0&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\var\lib\samba\printers&#xa;    Anonymous access: &lt;none&gt;&#xa;    Current user access: &lt;none&gt;"><elem key="account_used">guest</elem>
+<table key="\\10.10.10.123\Development">
+<elem key="Type">STYPE_DISKTREE</elem>
+<elem key="Comment">FriendZone Samba Server Files</elem>
+<elem key="Users">0</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\etc\Development</elem>
+<elem key="Anonymous access">READ/WRITE</elem>
+<elem key="Current user access">READ/WRITE</elem>
+</table>
+<table key="\\10.10.10.123\Files">
+<elem key="Type">STYPE_DISKTREE</elem>
+<elem key="Comment">FriendZone Samba Server Files /etc/Files</elem>
+<elem key="Users">0</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\etc\hole</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+<elem key="Current user access">&lt;none&gt;</elem>
+</table>
+<table key="\\10.10.10.123\IPC$">
+<elem key="Type">STYPE_IPC_HIDDEN</elem>
+<elem key="Comment">IPC Service (FriendZone server (Samba, Ubuntu))</elem>
+<elem key="Users">2</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\tmp</elem>
+<elem key="Anonymous access">READ/WRITE</elem>
+<elem key="Current user access">READ/WRITE</elem>
+</table>
+<table key="\\10.10.10.123\general">
+<elem key="Type">STYPE_DISKTREE</elem>
+<elem key="Comment">FriendZone Samba Server Files</elem>
+<elem key="Users">0</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\etc\general</elem>
+<elem key="Anonymous access">READ/WRITE</elem>
+<elem key="Current user access">READ/WRITE</elem>
+</table>
+<table key="\\10.10.10.123\print$">
+<elem key="Type">STYPE_DISKTREE</elem>
+<elem key="Comment">Printer Drivers</elem>
+<elem key="Users">0</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\var\lib\samba\printers</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+<elem key="Current user access">&lt;none&gt;</elem>
+</table>
+</script></hostscript><times srtt="33722" rttvar="27020" to="141802"/>
+</host>
+<runstats><finished time="1632608448" timestr="Sun Sep 26 11:20:48 2021" summary="Nmap done at Sun Sep 26 11:20:48 2021; 1 IP address (1 host up) scanned in 300.81 seconds" elapsed="300.81" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

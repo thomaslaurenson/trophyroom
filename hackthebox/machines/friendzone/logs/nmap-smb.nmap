@@ -1,0 +1,67 @@
+# Nmap 7.91 scan initiated Sun Sep 26 11:15:47 2021 as: nmap --script smb-enum-* -p 445 -oA logs/nmap-smb 10.10.10.123
+Nmap scan report for friendzone.red (10.10.10.123)
+Host is up (0.034s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-enum-domains: 
+|   Builtin
+|     Groups: n/a
+|     Users: n/a
+|     Creation time: unknown
+|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
+|     Account lockout disabled
+|   FRIENDZONE
+|     Groups: n/a
+|     Users: n/a
+|     Creation time: unknown
+|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
+|_    Account lockout disabled
+| smb-enum-sessions: 
+|_  <nobody>
+| smb-enum-shares: 
+|   account_used: guest
+|   \\10.10.10.123\Development: 
+|     Type: STYPE_DISKTREE
+|     Comment: FriendZone Samba Server Files
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\etc\Development
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\10.10.10.123\Files: 
+|     Type: STYPE_DISKTREE
+|     Comment: FriendZone Samba Server Files /etc/Files
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\etc\hole
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.10.10.123\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: IPC Service (FriendZone server (Samba, Ubuntu))
+|     Users: 2
+|     Max Users: <unlimited>
+|     Path: C:\tmp
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\10.10.10.123\general: 
+|     Type: STYPE_DISKTREE
+|     Comment: FriendZone Samba Server Files
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\etc\general
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\10.10.10.123\print$: 
+|     Type: STYPE_DISKTREE
+|     Comment: Printer Drivers
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\var\lib\samba\printers
+|     Anonymous access: <none>
+|_    Current user access: <none>
+
+# Nmap done at Sun Sep 26 11:20:48 2021 -- 1 IP address (1 host up) scanned in 300.81 seconds
