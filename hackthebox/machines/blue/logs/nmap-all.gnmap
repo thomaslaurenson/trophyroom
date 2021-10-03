@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Sun Oct  3 11:05:22 2021 as: nmap -p- -oA logs/nmap-all -T5 10.10.10.40
+Host: 10.10.10.40 ()	Status: Up
+Host: 10.10.10.40 ()	Ports: 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 445/open/tcp//microsoft-ds///, 49152/open/tcp//unknown///, 49153/open/tcp//unknown///, 49154/open/tcp//unknown///, 49155/open/tcp//unknown///, 49156/open/tcp//unknown///, 49157/open/tcp//unknown///	Ignored State: closed (65526)
+# Nmap done at Sun Oct  3 11:05:52 2021 -- 1 IP address (1 host up) scanned in 30.19 seconds

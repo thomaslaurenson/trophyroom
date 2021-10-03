@@ -1,0 +1,16 @@
+# Nmap 7.91 scan initiated Sun Oct  3 11:05:22 2021 as: nmap -p- -oA logs/nmap-all -T5 10.10.10.40
+Nmap scan report for 10.10.10.40
+Host is up (0.033s latency).
+Not shown: 65526 closed ports
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49156/tcp open  unknown
+49157/tcp open  unknown
+
+# Nmap done at Sun Oct  3 11:05:52 2021 -- 1 IP address (1 host up) scanned in 30.19 seconds
