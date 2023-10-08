@@ -2,12 +2,13 @@
 
 from pathlib import Path
 
+
 print("[+] 1. Hack The Box")
 print("[+] 2. VulnHub")
-machine_provider_input = input("[+] Enter machine provider [1/2]: ")
-if machine_provider_input == "1":
-    machine_provider = "hackthebox/machines"
-elif machine_provider_input == "2":
+machine_provider = input("[+] Enter machine provider [1/2]: ")
+if machine_provider == "1":
+    machine_provider = "hackthebox"
+elif machine_provider == "2":
     machine_provider = "vulnhub"
 else:
     print("[-] Not a valid choice. Exiting.")
@@ -69,5 +70,5 @@ filepath.touch()
 folders = ["exploits", "files", "logs", "screenshots"]
 
 for folder in folders:
-    folderpath = machine_path / folder
-    folderpath.mkdir()
+    folder_path = machine_path / folder
+    folder_path.mkdir()
