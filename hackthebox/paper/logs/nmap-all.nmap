@@ -1,0 +1,11 @@
+# Nmap 7.94 scan initiated Fri Oct 20 14:44:26 2023 as: nmap -p- -v --min-rate=1000 -T4 -oA nmap-all 10.10.11.143
+Nmap scan report for office.paper (10.10.11.143)
+Host is up (0.21s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+443/tcp open  https
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Fri Oct 20 14:45:34 2023 -- 1 IP address (1 host up) scanned in 68.37 seconds

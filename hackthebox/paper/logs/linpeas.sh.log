@@ -1,0 +1,1991 @@
+[dwight@paper ~]$ ./linpeas.sh 
+
+
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                    ▄▄▄▄▄▄▄             ▄▄▄▄▄▄▄▄
+             ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄
+         ▄▄▄▄     ▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄
+         ▄    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄          ▄▄▄▄▄▄               ▄▄▄▄▄▄ ▄
+         ▄▄▄▄▄▄              ▄▄▄▄▄▄▄▄                 ▄▄▄▄ 
+         ▄▄                  ▄▄▄ ▄▄▄▄▄                  ▄▄▄
+         ▄▄                ▄▄▄▄▄▄▄▄▄▄▄▄                  ▄▄
+         ▄            ▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄   ▄▄
+         ▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄
+         ▄▄▄▄▄  ▄▄▄▄▄                       ▄▄▄▄▄▄     ▄▄▄▄
+         ▄▄▄▄   ▄▄▄▄▄                       ▄▄▄▄▄      ▄ ▄▄
+         ▄▄▄▄▄  ▄▄▄▄▄        ▄▄▄▄▄▄▄        ▄▄▄▄▄     ▄▄▄▄▄
+         ▄▄▄▄▄▄  ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄   ▄▄▄▄▄ 
+          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄        ▄          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄                       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+          ▀▀▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▀▀▀▀▀▀
+               ▀▀▀▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▀▀
+                     ▀▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀▀▀
+
+    /---------------------------------------------------------------------------------\
+    |Do you like PEASS? |
+    |---------------------------------------------------------------------------------|
+    |         Get the latest version    :     https://github.com/sponsors/carlospolop |
+    |         Follow on Twitter         :     @hacktricks_live|
+    |         Respect on HTB            :     SirBroccoli|
+    |---------------------------------------------------------------------------------|
+    |Thank you!     |
+    \---------------------------------------------------------------------------------/
+          linpeas-ng by carlospolop        
+
+ADVISORY: This script should be used for authorized penetration testing and/or educational purposes only. Any misuse of this software will not be the responsibility of the author or of any other collaborator. Use it at your own computers and/or with the computer owner's permission.         
+
+Linux Privesc Checklist: https://book.hacktricks.xyz/linux-hardening/linux-privilege-escalation-checklist
+ LEGEND:  
+  RED/YELLOW: 95% a PE vector
+  RED: You should take a look to it
+  LightCyan: Users with console
+  Blue: Users without console & mounted devs
+  Green: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs) 
+  LightMagenta: Your username
+
+ Starting linpeas. Caching Writable Folders...
+
+  ╔═══════════════════╗
+═══════════════════════════════╣ Basic information ╠═══════════════════════════════
+  ╚═══════════════════╝       
+OS: Linux version 4.18.0-348.7.1.el8_5.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 8.5.0 20210514 (Red Hat 8.5.0-4) (GCC)) #1 SMP Wed Dec 22 13:25:12 UTC 2021
+User & Groups: uid=1004(dwight) gid=1004(dwight) groups=1004(dwight)
+Hostname: paper
+Writable folder: /dev/shm
+[+] /usr/bin/ping is available for network discovery (linpeas can discover hosts, learn more with -h)
+[+] /usr/bin/bash is available for network discovery, port scanning and port forwarding (linpeas can discover hosts, scan ports, and forward ports. Learn more with -h)        
+[+] /usr/bin/nc is available for network discovery & port scanning (linpeas can discover hosts and scan ports, learn more with -h)
+
+
+
+Caching directories . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . DONE
+
+ ╔════════════════════╗
+══════════════════════════════╣ System Information ╠══════════════════════════════ 
+ ╚════════════════════╝       
+╔══════════╣ Operative system
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#kernel-exploits 
+Linux version 4.18.0-348.7.1.el8_5.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 8.5.0 20210514 (Red Hat 8.5.0-4) (GCC)) #1 SMP Wed Dec 22 13:25:12 UTC 2021
+lsb_release Not Found
+
+╔══════════╣ Sudo version
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#sudo-version    
+Sudo version 1.8.29
+
+
+╔══════════╣ PATH
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#writable-path-abuses
+/home/dwight/.local/bin:/home/dwight/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+
+╔══════════╣ Date & uptime
+Sun Oct 29 15:54:36 EDT 2023               
+ 15:54:36 up 18 min,  1 user,  load average: 1.23, 0.34, 0.16
+
+╔══════════╣ Any sd*/disk* disk in /dev? (limit 20)
+disk      
+sda
+sda1
+sda2
+
+╔══════════╣ Unmounted file-system?
+╚ Check if you can mount umounted devices  
+
+/dev/mapper/cl-root     /                       xfs     defaults        0 0
+UUID=92708911-c24f-48e2-8b9f-bb4b24f0ca24 /boot                   ext4    defaults        1 2
+/dev/mapper/cl-swap     swap                    swap    defaults        0 0
+
+╔══════════╣ Environment
+╚ Any private information inside environment variables?    
+LS_COLORS=rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;05;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.m4a=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.oga=38;5;45:*.opus=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
+SSH_CONNECTION=10.10.14.2 34188 10.10.11.143 22
+LANG=C.UTF-8
+HISTCONTROL=ignoredups
+HOSTNAME=paper
+which_declare=declare -f
+XDG_SESSION_ID=17
+USER=dwight
+PWD=/home/dwight
+HOME=/home/dwight
+SSH_CLIENT=10.10.14.2 34188 22
+XDG_DATA_DIRS=/home/dwight/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+HISTFILE=/dev/null
+SSH_TTY=/dev/pts/0
+MAIL=/var/spool/mail/dwight
+SHELL=/bin/bash
+TERM=xterm-256color
+TC_LIB_DIR=/usr/lib64/tc
+SHLVL=2
+LOGNAME=dwight
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1004/bus
+XDG_RUNTIME_DIR=/run/user/1004
+PATH=/home/dwight/.local/bin:/home/dwight/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/bin
+HISTSIZE=0
+HISTFILESIZE=0
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+BASH_FUNC_which%%=() {  ( alias;
+ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot "$@"
+}
+_=/usr/bin/env
+
+╔══════════╣ Searching Signature verification failed in dmesg
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#dmesg-signature-verification-failed              
+dmesg Not Found  
+
+╔══════════╣ Executing Linux Exploit Suggester
+╚ https://github.com/mzet-/linux-exploit-suggester         
+[+] [CVE-2022-32250] nft_object UAF (NFT_MSG_NEWSET)       
+
+   Details: https://research.nccgroup.com/2022/09/01/settlers-of-netlink-exploiting-a-limited-uaf-in-nf_tables-cve-2022-32250/
+https://blog.theori.io/research/CVE-2022-32250-linux-kernel-lpe-2022/
+   Exposure: less probable
+   Tags: ubuntu=(22.04){kernel:5.15.0-27-generic}
+   Download URL: https://raw.githubusercontent.com/theori-io/CVE-2022-32250-exploit/main/exp.c
+   Comments: kernel.unprivileged_userns_clone=1 required (to obtain CAP_NET_ADMIN)
+
+[+] [CVE-2022-2586] nft_object UAF
+
+   Details: https://www.openwall.com/lists/oss-security/2022/08/29/5
+   Exposure: less probable
+   Tags: ubuntu=(20.04){kernel:5.12.13}
+   Download URL: https://www.openwall.com/lists/oss-security/2022/08/29/5/1
+   Comments: kernel.unprivileged_userns_clone=1 required (to obtain CAP_NET_ADMIN)
+
+[+] [CVE-2021-4034] PwnKit
+
+   Details: https://www.qualys.com/2022/01/25/cve-2021-4034/pwnkit.txt
+   Exposure: less probable
+   Tags: ubuntu=10|11|12|13|14|15|16|17|18|19|20|21,debian=7|8|9|10|11,fedora,manjaro
+   Download URL: https://codeload.github.com/berdav/CVE-2021-4034/zip/main
+
+[+] [CVE-2021-3156] sudo Baron Samedit
+
+   Details: https://www.qualys.com/2021/01/26/cve-2021-3156/baron-samedit-heap-based-overflow-sudo.txt
+   Exposure: less probable
+   Tags: mint=19,ubuntu=18|20, debian=10
+   Download URL: https://codeload.github.com/blasty/CVE-2021-3156/zip/main
+
+[+] [CVE-2021-3156] sudo Baron Samedit 2
+
+   Details: https://www.qualys.com/2021/01/26/cve-2021-3156/baron-samedit-heap-based-overflow-sudo.txt
+   Exposure: less probable
+   Tags: centos=6|7|8,ubuntu=14|16|17|18|19|20, debian=9|10
+   Download URL: https://codeload.github.com/worawit/CVE-2021-3156/zip/main
+
+[+] [CVE-2021-22555] Netfilter heap out-of-bounds write
+
+   Details: https://google.github.io/security-research/pocs/linux/cve-2021-22555/writeup.html
+   Exposure: less probable
+   Tags: ubuntu=20.04{kernel:5.8.0-*}
+   Download URL: https://raw.githubusercontent.com/google/security-research/master/pocs/linux/cve-2021-22555/exploit.c
+   ext-url: https://raw.githubusercontent.com/bcoles/kernel-exploits/master/CVE-2021-22555/exploit.c
+   Comments: ip_tables kernel module must be loaded
+
+[+] [CVE-2019-18634] sudo pwfeedback
+
+   Details: https://dylankatz.com/Analysis-of-CVE-2019-18634/
+   Exposure: less probable
+   Tags: mint=19
+   Download URL: https://github.com/saleemrashid/sudo-cve-2019-18634/raw/master/exploit.c
+   Comments: sudo configuration requires pwfeedback to be enabled.
+
+[+] [CVE-2019-15666] XFRM_UAF
+
+   Details: https://duasynt.com/blog/ubuntu-centos-redhat-privesc
+   Exposure: less probable
+   Download URL: 
+   Comments: CONFIG_USER_NS needs to be enabled; CONFIG_XFRM needs to be enabled
+
+[+] [CVE-2019-13272] PTRACE_TRACEME
+
+   Details: https://bugs.chromium.org/p/project-zero/issues/detail?id=1903
+   Exposure: less probable
+   Tags: ubuntu=16.04{kernel:4.15.0-*},ubuntu=18.04{kernel:4.15.0-*},debian=9{kernel:4.9.0-*},debian=10{kernel:4.19.0-*},fedora=30{kernel:5.0.9-*}
+   Download URL: https://github.com/offensive-security/exploitdb-bin-sploits/raw/master/bin-sploits/47133.zip
+   ext-url: https://raw.githubusercontent.com/bcoles/kernel-exploits/master/CVE-2019-13272/poc.c
+   Comments: Requires an active PolKit agent.
+
+
+╔══════════╣ Executing Linux Exploit Suggester 2
+╚ https://github.com/jondonas/linux-exploit-suggester-2    
+
+╔══════════╣ Protections
+═╣ AppArmor enabled? .............. AppArmor Not Found     
+═╣ AppArmor profile? .............. unconfined             
+═╣ is linuxONE? ................... s390x Not Found
+═╣ grsecurity present? ............ grsecurity Not Found   
+═╣ PaX bins present? .............. PaX Not Found          
+═╣ Execshield enabled? ............ Execshield Not Found   
+═╣ SELinux enabled? ............... SELinux status:                 disabled       
+═╣ Seccomp enabled? ............... disabled
+═╣ User namespace? ................ enabled
+═╣ Cgroup2 enabled? ............... enabled
+═╣ Is ASLR enabled? ............... Yes
+═╣ Printer? ....................... No
+═╣ Is this a virtual machine? ..... Yes (vmware)           
+
+  ╔═══════════╗
+═══════════════════════════════════╣ Container ╠═══════════════════════════════════
+  ╚═══════════╝           
+╔══════════╣ Container related tools present (if any):
+/usr/bin/podman  
+/usr/bin/runc
+╔══════════╣ Am I Containered?
+╔══════════╣ Container details             
+═╣ Is this a container? ........... No     
+═╣ Any running containers? ........ No     
+
+
+    ╔═══════╗
+═════════════════════════════════════╣ Cloud ╠═════════════════════════════════════
+    ╚═══════╝             
+═╣ Google Cloud Platform? ............... No
+═╣ AWS ECS? ............................. No
+═╣ AWS EC2? ............................. No
+═╣ AWS EC2 Beanstalk? ................... No
+═╣ AWS Lambda? .......................... No
+═╣ AWS Codebuild? ....................... No
+═╣ DO Droplet? .......................... No
+═╣ IBM Cloud VM? ........................ No
+═╣ Azure VM? ............................ No
+═╣ Azure APP? ........................... No
+
+
+
+                ╔════════════════════════════════════════════════╗
+════════════════╣ Processes, Crons, Timers, Services and Sockets ╠════════════════ 
+                ╚════════════════════════════════════════════════╝                 
+╔══════════╣ Cleaned processes
+╚ Check weird & unexpected proceses run by root: https://book.hacktricks.xyz/linux-hardening/privilege-escalation#processes   
+root           1  0.1  0.5 172808 10712 ?        Ss   15:35   0:02 /usr/lib/systemd/systemd --switched-root --system --deserialize 18
+root         838  0.0  0.5  89456  9252 ?        Ss   15:35   0:00 /usr/lib/systemd/systemd-journald
+root         874  0.0  0.5 118516  9660 ?        Ss   15:35   0:00 /usr/lib/systemd/systemd-udevd
+root         982  0.0  0.1 150744  2452 ?        S<sl 15:35   0:00 /sbin/auditd
+root         984  0.0  0.1  48560  2296 ?        S<   15:35   0:00  _ /usr/sbin/sedispatch
+polkitd     1011  0.0  1.2 1953360 23752 ?       Ssl  15:35   0:00 /usr/lib/polkit-1/polkitd --no-debug
+root        1012  0.0  0.6 219104 11596 ?        Ss   15:35   0:00 /usr/sbin/sssd -i --logger=files
+root        1062  0.1  0.7 228176 13724 ?        S    15:35   0:01  _ /usr/libexec/sssd/sssd_be --domain implicit_files --uid 0 --gid 0 --logger=files
+root        1088  0.0  1.7 229268 32180 ?        S    15:35   0:00  _ /usr/libexec/sssd/sssd_nss --uid 0 --gid 0 --logger=files
+root        1013  0.0  0.1  17792  2116 ?        Ss   15:35   0:00 /usr/sbin/mcelog --ignorenodev --daemon[0m --foreground
+root        1014  0.0  0.7 564496 14412 ?        Ssl  15:35   0:00 /usr/libexec/udisks2/udisksd
+avahi       1055  0.0  0.0  85208   416 ?        S    15:35   0:00  _ avahi-daemon: chroot helper
+root        1016  0.0  0.6 463028 11260 ?        Ssl  15:35   0:00 /usr/sbin/ModemManager
+root        1017  0.0  0.2 125020  5288 ?        Ssl  15:35   0:00 /usr/sbin/irqbalance --foreground
+root        1018  0.0  0.2  50260  5236 ?        Ss   15:35   0:00 /usr/sbin/smartd -n -q never
+libstor+    1019  0.0  0.1  19740  2020 ?        Ss   15:35   0:00 /usr/bin/lsmd -d
+rtkit       1022  0.0  0.1 202852  3616 ?        SNsl 15:35   0:00 /usr/libexec/rtkit-daemon
+  └─(Caps) 0x0000000000880004=cap_dac_read_search,cap_sys_ptrace,cap_sys_nice
+root        1023  0.0  0.3  79116  6640 ?        Ss   15:35   0:00 /usr/lib/systemd/systemd-machined
+dbus        1025  0.0  0.2  83916  5240 ?        Ss   15:35   0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  └─(Caps) 0x0000000020000000=cap_audit_write
+root        1026  0.0  0.5  86204  9436 ?        Ss   15:35   0:00 /usr/bin/VGAuthService -s
+root        1028  0.1  0.6 307992 11800 ?        Ssl  15:35   0:01 /usr/bin/vmtoolsd
+root        1056  0.0  0.9 405044 16816 ?        Ssl  15:35   0:00 /usr/sbin/NetworkManager --no-daemon[0m
+chrony      1065  0.0  0.2 151156  4504 ?        S    15:35   0:00 /usr/sbin/chronyd
+  └─(Caps) 0x0000000002000400=cap_net_bind_service,cap_sys_time
+root        1077  0.0  0.1  26244  2208 ?        S    15:35   0:00 /bin/bash /usr/sbin/ksmtuned
+root        6886  0.0  0.0   7316   868 ?        S    15:54   0:00  _ sleep 60
+root        1097  0.0  0.3  94472  6264 ?        Ss   15:35   0:00 /usr/sbin/sshd -D -oCiphers=aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256-ctr,aes256-cbc,aes128-gcm@openssh.com,aes128-ctr,aes128-cbc -oMACs=hmac-sha2-256-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha1,umac-128@openssh.com,hmac-sha2-512 -oGSSAPIKexAlgorithms=gss-curve25519-sha256-,gss-nistp256-sha256-,gss-group14-sha256-,gss-group16-sha512-,gss-gex-sha1-,gss-group14-sha1- -oKexAlgorithms=curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1 -oHostKeyAlgorithms=ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp521-cert-v01@openssh.com,ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,rsa-sha2-256,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-512-cert-v01@openssh.com,ssh-rsa,ssh-rsa-cert-v01@openssh.com -oPubkeyAcceptedKeyTypes=ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp521-cert-v01@openssh.com,ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,rsa-sha2-256,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-512-cert-v01@openssh.com,ssh-rsa,ssh-rsa-cert-v01@openssh.com -oCASignatureAlgorithms=ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519,rsa-sha2-256,rsa-sha2-512,ssh-rsa
+dwight      3250  0.0  0.3 163784  5568 ?        S    15:49   0:00      _ sshd: dwight@pts/0
+dwight      3251  0.0  0.2  32736  5428 pts/0    Ss   15:49   0:00          _ -bash
+dwight      3555  0.2  0.2  19168  5364 pts/0    S+   15:53   0:00              _ /bin/sh ./linpeas.sh
+dwight      6965  0.0  0.2  19168  3932 pts/0    S+   15:55   0:00                  _ /bin/sh ./linpeas.sh
+dwight      6969  0.0  0.2  63428  4908 pts/0    R+   15:55   0:00                  |   _ ps fauxwww
+dwight      6968  0.0  0.1  19168  2524 pts/0    S+   15:55   0:00                  _ /bin/sh ./linpeas.sh
+root        1098  0.1  1.6 496788 29560 ?        Ssl  15:35   0:02 /usr/libexec/platform-python -Es /usr/sbin/tuned -l -P
+root        1100  0.0  0.7 219124 13432 ?        Ss   15:35   0:00 php-fpm: master process (/etc/php-fpm.conf)
+apache      1151  0.0  0.4 233348  8204 ?        S    15:35   0:00  _ php-fpm: pool www
+apache      1152  0.0  0.4 233348  8216 ?        S    15:35   0:00  _ php-fpm: pool www
+apache      1153  0.0  0.4 233348  8216 ?        S    15:35   0:00  _ php-fpm: pool www
+apache      1155  0.0  0.4 233348  8216 ?        S    15:35   0:00  _ php-fpm: pool www
+apache      1157  0.0  0.4 233348  8200 ?        S    15:35   0:00  _ php-fpm: pool www
+root        1115  0.0  0.1 101776  2844 ?        Ssl  15:35   0:00 /usr/sbin/gssproxy -D
+root        1185  0.0  0.4  92624  7584 ?        Ss   15:35   0:00 /usr/lib/systemd/systemd-logind
+root        1188  0.0  0.6 331428 11040 ?        Ssl  15:35   0:00 /usr/libexec/accounts-daemon[0m
+mongod      1213  1.3  5.9 1388848 108468 ?      Sl   15:35   0:15 /usr/bin/mongod -f /etc/mongod.conf
+root        1232  0.0  0.6 285276 11392 ?        Ss   15:35   0:00 /usr/sbin/httpd -DFOREGROUND
+apache      1329  0.0  0.4 297984  7740 ?        S    15:35   0:00  _ /usr/sbin/httpd -DFOREGROUND
+apache      1363  0.0  0.4 299228  8144 ?        S    15:35   0:00  _ /usr/sbin/httpd -DFOREGROUND
+apache      1364  0.0  0.6 1815684 12024 ?       Sl   15:35   0:00  _ /usr/sbin/httpd -DFOREGROUND
+apache      1365  0.0  0.6 1815684 12036 ?       Sl   15:35   0:00  _ /usr/sbin/httpd -DFOREGROUND
+apache      1366  0.0  0.7 1946820 14096 ?       Sl   15:35   0:00  _ /usr/sbin/httpd -DFOREGROUND
+apache      2455  0.0  0.8 1815684 16180 ?       Sl   15:36   0:00  _ /usr/sbin/httpd -DFOREGROUND
+root        1236  0.0  0.3 211616  6252 ?        Ssl  15:35   0:00 /usr/sbin/rsyslogd -n
+root        1256  0.0  0.1  36952  3448 ?        Ss   15:35   0:00 /usr/sbin/crond -n
+root        1286  0.0  0.3 126088  6620 ?        S    15:35   0:00  _ /usr/sbin/CROND -n
+dwight      1622  0.0  0.1  12724  2452 ?        Ss   15:35   0:00      _ /bin/sh -c /home/dwight/bot_restart.sh >> /home/dwight/hubot/.hubot.log 2>&1         
+dwight      1623  0.0  0.1  12724  2748 ?        S    15:35   0:00          _ /bin/bash /home/dwight/bot_restart.sh
+dwight      2421  0.0  0.1  12724  2760 ?        S    15:36   0:00              _ bash /home/dwight/hubot/start_bot.sh
+dwight      2423  0.0  2.3 588552 43320 ?        Sl   15:36   0:00              |   _ node /home/dwight/hubot/node_modules/coffeescript/bin/coffee /home/dwight/hubot/node_modules/.bin/hubot -a rocketchat
+dwight      2533  0.0  0.1  12724  2968 ?        S    15:37   0:00              _ bash /home/dwight/hubot/start_bot.sh
+dwight      2535  0.0  2.5 621976 46188 ?        Sl   15:37   0:00              |   _ node /home/dwight/hubot/node_modules/coffeescript/bin/coffee /home/dwight/hubot/node_modules/.bin/hubot -a rocketchat
+dwight      6896  0.0  0.0   7316   828 ?        S    15:55   0:00              _ sleep 20s
+root        1262  0.0  0.1  44004  2384 ?        Ss   15:35   0:00 /usr/sbin/atd -f
+root        1287  0.0  0.0  13660  1636 tty1     Ss+  15:35   0:00 /sbin/agetty -o -p -- u --noclear tty1 linux
+dwight      1305  0.0  0.5  89484  9192 ?        Ss   15:35   0:00 /usr/lib/systemd/systemd --user
+dwight      1328  0.0  0.1 168536  1972 ?        S    15:35   0:00  _ (sd-pam)
+dwight      1621  0.0  0.3 298156  6696 ?        Ssl  15:35   0:00  _ /usr/bin/pulseaudio --daemonize=no --log-target=journal
+dwight      1939  0.0  0.2  76356  3996 ?        Ss   15:36   0:00  _ /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+dwight      3279  0.0  0.4 312912  9112 ?        Ssl  15:49   0:00  _ /usr/libexec/gvfsd
+dwight      3284  0.0  0.4 449608  8480 ?        Sl   15:49   0:00  _ /usr/libexec/gvfsd-fuse /run/user/1004/gvfs -f -o big_writes
+mysql       1338  0.2 15.4 1776364 283980 ?      Ssl  15:35   0:03 /usr/libexec/mysqld --basedir=/usr
+  └─(Caps) 0x0000000000800000=cap_sys_nice
+dnsmasq     2054  0.0  0.1  75452  1876 ?        S    15:36   0:00 /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper
+  └─(Caps) 0x0000000000003400=cap_net_bind_service,cap_net_admin,cap_net_raw
+root        2057  0.0  0.0  75424   440 ?        S    15:36   0:00  _ /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper
+rocketc+    2335  3.1 26.7 2550688 489828 ?      Ssl  15:36   0:36 /usr/local/bin/node /opt/Rocket.Chat/main.js
+
+╔══════════╣ Binary processes permissions (non 'root root' and not belonging to current user)
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#processes       
+
+╔══════════╣ Processes whose PPID belongs to a different user (not root)
+╚ You will know if a user can somehow spawn processes as a different user          
+Proc 1011 with ppid 1 is run by user polkitd but the ppid user is root             
+Proc 1015 with ppid 1 is run by user avahi but the ppid user is root
+Proc 1019 with ppid 1 is run by user libstoragemgmt but the ppid user is root
+Proc 1022 with ppid 1 is run by user rtkit but the ppid user is root
+Proc 1025 with ppid 1 is run by user dbus but the ppid user is root
+Proc 1065 with ppid 1 is run by user chrony but the ppid user is root
+Proc 1151 with ppid 1100 is run by user apache but the ppid user is root
+Proc 1152 with ppid 1100 is run by user apache but the ppid user is root
+Proc 1153 with ppid 1100 is run by user apache but the ppid user is root
+Proc 1155 with ppid 1100 is run by user apache but the ppid user is root
+Proc 1157 with ppid 1100 is run by user apache but the ppid user is root
+Proc 1213 with ppid 1 is run by user mongod but the ppid user is root
+Proc 1305 with ppid 1 is run by user dwight but the ppid user is root
+Proc 1329 with ppid 1232 is run by user apache but the ppid user is root
+Proc 1338 with ppid 1 is run by user mysql but the ppid user is root
+Proc 1363 with ppid 1232 is run by user apache but the ppid user is root
+Proc 1364 with ppid 1232 is run by user apache but the ppid user is root
+Proc 1365 with ppid 1232 is run by user apache but the ppid user is root
+Proc 1366 with ppid 1232 is run by user apache but the ppid user is root
+Proc 1622 with ppid 1286 is run by user dwight but the ppid user is root
+Proc 2054 with ppid 1 is run by user dnsmasq but the ppid user is root
+Proc 2335 with ppid 1 is run by user rocketchat but the ppid user is root
+Proc 2455 with ppid 1232 is run by user apache but the ppid user is root
+Proc 3250 with ppid 3238 is run by user dwight but the ppid user is root
+
+╔══════════╣ Files opened by processes belonging to other users
+╚ This is usually empty because of the lack of privileges to read other user processes information                  
+COMMAND    PID  TID TASKCMD             USER   FD      TYPE             DEVICE SIZE/OFF       NODE NAME             
+
+╔══════════╣ Processes with credentials in memory (root req)
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#credentials-from-process-memory                  
+gdm-password Not Found                     
+gnome-keyring-daemon Not Found             
+lightdm Not Found
+vsftpd Not Found 
+apache2 Not Found
+sshd: process found (dump creds from memory as root)       
+
+╔══════════╣ Cron jobs
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#scheduled-cron-jobs 
+/usr/bin/crontab 
+@reboot /home/dwight/bot_restart.sh >> /home/dwight/hubot/.hubot.log 2>&1
+incrontab Not Found
+-rw-r--r--. 1 root root   0 Nov  8  2019 /etc/cron.deny    
+-rw-r--r--. 1 root root 451 Jan 12  2021 /etc/crontab
+
+/etc/cron.d:
+total 20
+drwxr-xr-x.   2 root root   39 Nov  8  2019 .
+drwxr-xr-x. 145 root root 8192 Oct 29 15:35 ..
+-rw-r--r--.   1 root root  128 Nov  8  2019 0hourly
+-rw-r--r--.   1 root root  108 Aug  9  2021 raid-check
+
+/etc/cron.daily:
+total 16
+drwxr-xr-x.   2 root root   23 May 15  2020 .
+drwxr-xr-x. 145 root root 8192 Oct 29 15:35 ..
+-rwxr-xr-x.   1 root root  189 Jan  4  2018 logrotate
+
+/etc/cron.hourly:
+total 16
+drwxr-xr-x.   2 root root   22 Jan 14  2022 .
+drwxr-xr-x. 145 root root 8192 Oct 29 15:35 ..
+-rwxr-xr-x.   1 root root  575 Nov  8  2019 0anacron
+
+/etc/cron.monthly:
+total 12
+drwxr-xr-x.   2 root root    6 Jan 12  2021 .
+drwxr-xr-x. 145 root root 8192 Oct 29 15:35 ..
+
+/etc/cron.weekly:
+total 12
+drwxr-xr-x.   2 root root    6 Jan 12  2021 .
+drwxr-xr-x. 145 root root 8192 Oct 29 15:35 ..
+
+/var/spool/anacron:
+total 12
+drwxr-xr-x. 2 root root 63 Nov  8  2019 .
+drwxr-xr-x. 9 root root 97 Jun 22  2021 ..
+-rw-------. 1 root root  9 Jan 14  2022 cron.daily
+-rw-------. 1 root root  9 Jan 14  2022 cron.monthly
+-rw-------. 1 root root  9 Jan 14  2022 cron.weekly
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+
+
+
+
+
+
+SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+RANDOM_DELAY=45
+START_HOURS_RANGE=3-22
+
+1       5       cron.daily              nice run-parts /etc/cron.daily
+7       25      cron.weekly             nice run-parts /etc/cron.weekly
+@monthly 45     cron.monthly            nice run-parts /etc/cron.monthly
+
+╔══════════╣ Systemd PATH
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#systemd-path-relative-paths                      
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin     
+
+╔══════════╣ Analyzing .service files
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#services        
+/etc/systemd/system/sysinit.target.wants/iscsi.service could be executing some relative path
+You can't write on systemd PATH
+
+╔══════════╣ System timers
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#timers          
+NEXT LEFT       LAST PASSED       UNIT ACTIVATES
+Sun 2023-10-29 16:25:51 EDT  30min left n/an/a          dnf-makecache.timer          dnf-makecache.service
+Mon 2023-10-30 00:00:00 EDT  8h left    Sun 2023-10-29 15:35:54 EDT  19min ago    unbound-anchor.timer         unbound-anchor.service
+Mon 2023-10-30 15:50:46 EDT  23h left   Sun 2023-10-29 15:50:46 EDT  4min 43s ago systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
+
+╔══════════╣ Analyzing .timer files
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#timers          
+
+╔══════════╣ Analyzing .socket files
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#sockets         
+/etc/systemd/system/sockets.target.wants/avahi-daemon.socket is calling this writable listener: /run/avahi-daemon/socket      
+
+╔══════════╣ Unix Sockets Listening
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#sockets         
+/etc/httpd/run/cgisock.1232                
+/home/dwight/hubot/127.0.0.1:8000
+  └─(Read Write)
+/home/dwight/hubot/127.0.0.1:8080
+  └─(Read Write)
+/org/kernel/linux/storage/multipathd
+/run/.heim_org.h5l.kcm-socket
+  └─(Read Write)
+/run/avahi-daemon/socket
+  └─(Read Write)
+/run/dbus/system_bus_socket
+  └─(Read Write)
+/run/gssproxy.sock
+  └─(Read Write)
+/run/libvirt/libvirt-admin-sock
+/run/libvirt/libvirt-sock
+  └─(Read Write)
+/run/libvirt/libvirt-sock-ro
+  └─(Read Write)
+/run/libvirt/virtlockd-sock
+/run/libvirt/virtlogd-sock
+/run/lsm/ipc/sim
+  └─(Read Write)
+/run/lsm/ipc/simc
+  └─(Read Write)
+/run/lvm/lvmpolld.socket
+/run/mcelog-client
+  └─(Read )
+/run/php-fpm/www.sock
+/run/systemd/cgroups-agent
+/run/systemd/coredump
+/run/systemd/journal/dev-log
+  └─(Read Write)
+/run/systemd/journal/socket
+  └─(Read Write)
+/run/systemd/journal/stdout
+  └─(Read Write)
+/run/systemd/notify
+  └─(Read Write)
+/run/systemd/private
+  └─(Read Write)
+/run/udev/control
+/run/user/1004/bus
+  └─(Read Write)
+/run/user/1004/pipewire-0
+  └─(Read Write)
+/run/user/1004/pulse/native
+  └─(Read Write)
+/run/user/1004/systemd/notify
+  └─(Read Write)
+/run/user/1004/systemd/private
+  └─(Read Write)
+/run/vmware/guestServicePipe
+  └─(Read Write)
+/tmp/.esd-1004/socket
+  └─(Read Write)
+/tmp/mongodb-27017.sock
+/var/cache/PackageKit/8/metadata/BaseOS-8-x86_64/gpgdir/S.gpg-agent
+/var/cache/PackageKit/8/metadata/BaseOS-8-x86_64/gpgdir/S.gpg-agent.browser
+/var/cache/PackageKit/8/metadata/BaseOS-8-x86_64/gpgdir/S.gpg-agent.extra
+/var/cache/PackageKit/8/metadata/BaseOS-8-x86_64/gpgdir/S.gpg-agent.ssh
+/var/cache/PackageKit/8/metadata/extras-8-x86_64/gpgdir/S.gpg-agent
+/var/cache/PackageKit/8/metadata/extras-8-x86_64/gpgdir/S.gpg-agent.browser
+/var/cache/PackageKit/8/metadata/extras-8-x86_64/gpgdir/S.gpg-agent.extra
+/var/cache/PackageKit/8/metadata/extras-8-x86_64/gpgdir/S.gpg-agent.ssh
+/var/lib/gssproxy/default.sock
+  └─(Read Write)
+/var/lib/mysql/mysql.sock
+  └─(Read Write)
+/var/lib/mysql/mysqlx.sock
+  └─(Read Write)
+/var/lib/sss/pipes/nss
+  └─(Read Write)
+/var/lib/sss/pipes/private/sbus-dp_implicit_files.1062
+/var/lib/sss/pipes/private/sbus-monitor
+/var/run/.heim_org.h5l.kcm-socket
+  └─(Read Write)
+/var/run/lsm/ipc/sim
+  └─(Read Write)
+/var/run/lsm/ipc/simc
+  └─(Read Write)
+/var/run/mcelog-client
+  └─(Read )
+/var/run/vmware/guestServicePipe
+  └─(Read Write)
+
+╔══════════╣ D-Bus config files
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#d-bus           
+Possible weak user policy found on /etc/dbus-1/system.d/avahi-dbus.conf (  <policy user="avahi">)                   
+Possible weak user policy found on /etc/dbus-1/system.d/avahi-dbus.conf (  <policy group="avahi">)
+Possible weak user policy found on /etc/dbus-1/system.d/gdm.conf (  <policy user="gdm">)
+Possible weak user policy found on /etc/dbus-1/system.d/net.hadess.SensorProxy.conf (  <policy user="geoclue">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.fedoraproject.SetroubleshootPrivileged.conf (  <policy user="setroubleshoot">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.fedoraproject.Setroubleshootd.conf (        <policy user="setroubleshoot">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.freedesktop.GeoClue2.Agent.conf (  <policy user="geoclue">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.freedesktop.GeoClue2.conf (  <policy user="geoclue">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf (  <policy user="polkitd">
+  <policy user="polkitd">)
+Possible weak user policy found on /etc/dbus-1/system.d/org.freedesktop.RealtimeKit1.conf (  <policy user="rtkit">)
+Possible weak user policy found on /etc/dbus-1/system.d/pulseaudio-system.conf (  <policy user="pulse">)
+
+╔══════════╣ D-Bus Service Objects list
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#d-bus           
+NAME             PID PROCESS         USER             CONNECTION    UNIT                      SESSION    DESCRIPTION
+:1.10           1011 polkitd         polkitd          :1.10         polkit.service            -          -
+:1.11           1023 systemd-machine root             :1.11         systemd-machined.service  -          -
+:1.13           1056 NetworkManager  root             :1.13         NetworkManager.service    -          -
+:1.198         12074 busctl          dwight           :1.198        session-17.scope          17         -
+:1.2               1 systemd         root             :1.2          init.scope                -          -
+:1.26           1056 NetworkManager  root             :1.26         NetworkManager.service    -          -
+:1.29           1188 accounts-daemon[0m root             :1.29         accounts-daemon.service   -          -
+:1.30           1185 systemd-logind  root             :1.30         systemd-logind.service    -          -
+:1.4            1022 rtkit-daemon    root             :1.4          rtkit-daemon.service      -          -
+:1.41           1305 systemd         dwight           :1.41         user@1004.service         -          -
+:1.6            1015 avahi-daemon    avahi            :1.6          avahi-daemon.service      -          -
+:1.7            1016 ModemManager    root             :1.7          ModemManager.service      -          -
+:1.77           1621 pulseaudio      dwight           :1.77         user@1004.service         -          -
+:1.8            1014 udisksd         root             :1.8          udisks2.service           -          -
+:1.98           1098 tuned           root             :1.98         tuned.service             -          -
+com.redhat.Blivet0 - -               -                (activatable) - -
+com.redhat.ifcfgrh1 1056 NetworkManager  root             :1.26         NetworkManager.service    -          -
+com.redhat.tuned1098 tuned           root             :1.98         tuned.service             -          -
+fi.w1.wpa_supplicant1  - -               -                (activatable) - -
+net.reactivated.Fprint - -               -                (activatable) - -
+org.bluez          - -               -                (activatable) - -
+org.fedoraproject.SetroubleshootFixit               - -               -                (activatable) - -
+org.fedoraproject.SetroubleshootPrivileged          - -               -                (activatable) - -
+org.fedoraproject.Setroubleshootd                   - -               -                (activatable) - -
+org.freedesktop.Accounts 1188 accounts-daemon[0m root             :1.29         accounts-daemon.service   -          -
+org.freedesktop.Avahi  1015 avahi-daemon    avahi            :1.6          avahi-daemon.service      -          -
+org.freedesktop.ColorManager- -               -                (activatable) - -
+org.freedesktop.DBus   1 systemd         root             -             init.scope                -          -
+org.freedesktop.Flatpak.SystemHelper                - -               -                (activatable) - -
+org.freedesktop.GeoClue2  - -               -                (activatable) - -
+org.freedesktop.ModemManager1                    1016 ModemManager    root             :1.7          ModemManager.service      -          -
+org.freedesktop.NetworkManager                   1056 NetworkManager  root             :1.13         NetworkManager.service    -          -
+org.freedesktop.PackageKit- -               -                (activatable) - -
+org.freedesktop.PolicyKit1                       1011 polkitd         polkitd          :1.10         polkit.service            -          -
+org.freedesktop.RealtimeKit1                     1022 rtkit-daemon    root             :1.4          rtkit-daemon.service      -          -
+org.freedesktop.UDisks21014 udisksd         root             :1.8          udisks2.service           -          -
+org.freedesktop.UPower - -               -                (activatable) - -
+org.freedesktop.bolt   - -               -                (activatable) - -
+org.freedesktop.fwupd  - -               -                (activatable) - -
+org.freedesktop.hostname1 - -               -                (activatable) - -
+org.freedesktop.import1- -               -                (activatable) - -
+org.freedesktop.locale1- -               -                (activatable) - -
+org.freedesktop.login1 1185 systemd-logind  root             :1.30         systemd-logind.service    -          -
+org.freedesktop.machine1 1023 systemd-machine root             :1.11         systemd-machined.service  -          -
+org.freedesktop.nm_dispatcher                       - -               -                (activatable) - -
+org.freedesktop.portable1 - -               -                (activatable) - -
+org.freedesktop.realmd - -               -                (activatable) - -
+org.freedesktop.resolve1  - -               -                (activatable) - -
+org.freedesktop.systemd1  1 systemd         root             :1.2          init.scope                -          -
+org.freedesktop.timedate1 - -               -                (activatable) - -
+org.gnome.GConf.Defaults  - -               -                (activatable) - -
+org.opensuse.CupsPkHelper.Mechanism                 - -               -                (activatable) - -
+
+
+ ╔═════════════════════╗
+══════════════════════════════╣ Network Information ╠══════════════════════════════
+ ╚═════════════════════╝      
+╔══════════╣ Hostname, hosts and DNS
+paper     
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+127.0.0.1 paper office.paper chat.office.paper
+nameserver 192.168.122.1
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+
+╔══════════╣ Interfaces
+default 0.0.0.0  
+loopback 127.0.0.0
+link-local 169.254.0.0
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.10.11.143  netmask 255.255.254.0  broadcast 10.10.11.255
+        inet6 dead:beef::250:56ff:feb9:50a7  prefixlen 64  scopeid 0x0<global>
+        inet6 fe80::250:56ff:feb9:50a7  prefixlen 64  scopeid 0x20<link>
+        ether 00:50:56:b9:50:a7  txqueuelen 1000  (Ethernet)
+        RX packets 2819  bytes 1192827 (1.1 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2358  bytes 1257602 (1.1 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 29948  bytes 10022340 (9.5 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 29948  bytes 10022340 (9.5 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:9b:e7:f7  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+╔══════════╣ Active Ports
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#open-ports      
+tcp        0      0 127.0.0.1:48320         0.0.0.0:*               LISTEN      -  
+tcp        0      0 127.0.0.1:8000          0.0.0.0:*               LISTEN      2423/node           
+tcp        0      0 127.0.0.1:33060         0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:27017         0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::80                   :::*                    LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+tcp6       0      0 :::443                  :::*                    LISTEN      -                   
+
+╔══════════╣ Can I sniff with tcpdump?
+No        
+
+
+
+  ╔═══════════════════╗
+═══════════════════════════════╣ Users Information ╠═══════════════════════════════
+  ╚═══════════════════╝       
+╔══════════╣ My user
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#users           
+uid=1004(dwight) gid=1004(dwight) groups=1004(dwight)      
+
+╔══════════╣ Do I have PGP keys?
+/usr/bin/gpg  
+netpgpkeys Not Found
+netpgp Not Found 
+
+╔══════════╣ Checking 'sudo -l', /etc/sudoers, and /etc/sudoers.d
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#sudo-and-suid   
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+
+╔══════════╣ Checking sudo tokens
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#reusing-sudo-tokens 
+ptrace protection is disabled (0), so sudo tokens could be abused                  
+
+╔══════════╣ Checking Pkexec policy
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation/interesting-groups-linux-pe#pe-method-2          
+
+╔══════════╣ Superusers
+root:x:0:0:root:/root:/bin/bash            
+
+╔══════════╣ Users with console
+dwight:x:1004:1004::/home/dwight:/bin/bash 
+rocketchat:x:1001:1001::/home/rocketchat:/bin/bash
+root:x:0:0:root:/root:/bin/bash
+
+╔══════════╣ All users & groups
+uid=0(root) gid=0(root) groups=0(root)     
+uid=1(bin) gid=1(bin) groups=1(bin)
+uid=1001(rocketchat) gid=1001(rocketchat) groups=1001(rocketchat)
+uid=1004(dwight) gid=1004(dwight) groups=1004(dwight)
+uid=107(qemu) gid=107(qemu) groups=107(qemu),36(kvm)
+uid=11(operator) gid=0(root) groups=0(root)
+uid=113(usbmuxd) gid=113(usbmuxd) groups=113(usbmuxd)
+uid=12(games) gid=100(users) groups=100(users)
+uid=14(ftp) gid=50(ftp) groups=50(ftp)
+uid=171(pulse) gid=171(pulse) groups=171(pulse)
+uid=172(rtkit) gid=172(rtkit) groups=172(rtkit)
+uid=193(systemd-resolve) gid=193(systemd-resolve) groups=193(systemd-resolve)
+uid=2(daemon[0m) gid=2(daemon[0m) groups=2(daemon[0m)
+uid=27(mysql) gid=27(mysql) groups=27(mysql)
+uid=29(rpcuser) gid=29(rpcuser) groups=29(rpcuser)
+uid=3(adm) gid=4(adm) groups=4(adm)
+uid=32(rpc) gid=32(rpc) groups=32(rpc)
+uid=4(lp) gid=7(lp) groups=7(lp)
+uid=42(gdm) gid=42(gdm) groups=42(gdm)
+uid=48(apache) gid=48(apache) groups=48(apache)
+uid=5(sync) gid=0(root) groups=0(root)
+uid=59(tss) gid=59(tss) groups=59(tss)
+uid=6(shutdown) gid=0(root) groups=0(root)
+uid=65534(nobody) gid=65534(nobody) groups=65534(nobody)
+uid=66(pegasus) gid=65(pegasus) groups=65(pegasus)
+uid=7(halt) gid=0(root) groups=0(root)
+uid=70(avahi) gid=70(avahi) groups=70(avahi)
+uid=72(tcpdump) gid=72(tcpdump) groups=72(tcpdump)
+uid=74(sshd) gid=74(sshd) groups=74(sshd)
+uid=75(radvd) gid=75(radvd) groups=75(radvd)
+uid=8(mail) gid=12(mail) groups=12(mail)
+uid=81(dbus) gid=81(dbus) groups=81(dbus)
+uid=976(mongod) gid=974(mongod) groups=974(mongod)
+uid=977(nginx) gid=975(nginx) groups=975(nginx)
+uid=978(insights) gid=976(insights) groups=976(insights)
+uid=979(gnome-initial-setup) gid=977(gnome-initial-setup) groups=977(gnome-initial-setup)
+uid=980(pipewire) gid=978(pipewire) groups=978(pipewire)
+uid=981(setroubleshoot) gid=979(setroubleshoot) groups=979(setroubleshoot)
+uid=982(colord) gid=980(colord) groups=980(colord)
+uid=983(sssd) gid=981(sssd) groups=981(sssd)
+uid=984(clevis) gid=983(clevis) groups=983(clevis),59(tss)
+uid=985(dnsmasq) gid=985(dnsmasq) groups=985(dnsmasq)
+uid=991(saslauth) gid=76(saslauth) groups=76(saslauth)
+uid=992(libstoragemgmt) gid=986(libstoragemgmt) groups=986(libstoragemgmt)
+uid=993(chrony) gid=987(chrony) groups=987(chrony)
+uid=994(gluster) gid=989(gluster) groups=989(gluster)
+uid=995(unbound) gid=990(unbound) groups=990(unbound)
+uid=996(cockpit-ws) gid=993(cockpit-ws) groups=993(cockpit-ws)
+uid=997(geoclue) gid=994(geoclue) groups=994(geoclue)
+uid=998(polkitd) gid=996(polkitd) groups=996(polkitd)
+uid=999(systemd-coredump) gid=997(systemd-coredump) groups=997(systemd-coredump)
+
+╔══════════╣ Login now
+ 15:55:38 up 19 min,  1 user,  load average: 1.31, 0.50, 0.22                      
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+dwight   pts/0    10.10.14.2       15:49    1:54   0.51s  0.00s /bin/sh ./linpeas.sh
+
+╔══════════╣ Last logons
+root     pts/1        Sat Jul  3 05:02:12 2021 - Sat Jul  3 05:04:14 2021  (00:02)     192.168.1.6                  
+root     pts/1        Sat Jul  3 05:01:22 2021 - Sat Jul  3 05:02:10 2021  (00:00)     192.168.1.6
+root     pts/1        Sat Jul  3 05:01:10 2021 - Sat Jul  3 05:01:21 2021  (00:00)     192.168.1.6
+root     pts/1        Sat Jul  3 04:59:39 2021 - Sat Jul  3 05:01:09 2021  (00:01)     192.168.1.6
+root     pts/1        Sat Jul  3 04:59:12 2021 - Sat Jul  3 04:59:37 2021  (00:00)     192.168.1.6
+root     pts/1        Sat Jul  3 04:49:57 2021 - Sat Jul  3 04:59:04 2021  (00:09)     192.168.1.6
+nick     tty2         Sat Jul  3 10:14:32 2021 - down                      (-5:05)     0.0.0.0
+reboot   system boot  Sat Jul  3 10:13:30 2021 - Sat Jul  3 05:08:39 2021  (-5:04)     0.0.0.0
+
+wtmp begins Sat Jul  3 10:13:30 2021
+
+╔══════════╣ Last time logon each user
+Username         Port     From             Latest          
+root             tty1                      Tue Feb  1 11:23:55 -0500 2022
+gdm              tty1                      Sat Jul  3 07:43:35 -0400 2021
+dwight           pts/0    10.10.14.2       Sun Oct 29 15:49:16 -0400 2023
+
+╔══════════╣ Do not forget to test 'su' as any other user with shell: without password and with their names as password (I don't do it in FAST mode...)        
+
+╔══════════╣ Do not forget to execute 'sudo -l' without password or with valid password (if you know it)!!
+
+
+
+╔══════════════════════╗
+═════════════════════════════╣ Software Information ╠═════════════════════════════ 
+╚══════════════════════╝      
+╔══════════╣ Useful software
+/usr/bin/base64  
+/usr/bin/curl
+/usr/bin/g++
+/usr/bin/gcc
+/usr/bin/make
+/usr/bin/nc
+/usr/bin/ncat
+/usr/bin/perl
+/usr/bin/ping
+/usr/bin/podman
+/usr/bin/python3
+/usr/bin/python3.6
+/usr/bin/runc
+/usr/bin/sudo
+/usr/bin/wget
+
+╔══════════╣ Installed Compilers
+gcc.x86_64 8.5.0-4.el8_5                      @AppStream   
+gcc-c++.x86_64                     8.5.0-4.el8_5                      @AppStream
+/usr/bin/gcc
+/usr/bin/g++
+
+╔══════════╣ MySQL version
+mysql  Ver 8.0.26 for Linux on x86_64 (Source distribution)
+
+
+═╣ MySQL connection using default root/root ........... No
+═╣ MySQL connection using root/toor ................... No 
+═╣ MySQL connection using root/NOPASS ................. No 
+
+╔══════════╣ Searching mysql credentials and exec
+
+╔══════════╣ Analyzing Mongo Files (limit 70)
+Version: MongoDB shell version v4.0.27     
+git version: d47b151b55f286546e7c7c98888ae0577856ca20
+OpenSSL version: OpenSSL 1.0.1e-fips 11 Feb 2013
+allocator: tcmalloc
+modules: none
+build environment:
+    distmod: rhel70
+    distarch: x86_64
+    target_arch: x86_64
+db version v4.0.27
+git version: d47b151b55f286546e7c7c98888ae0577856ca20
+OpenSSL version: OpenSSL 1.0.1e-fips 11 Feb 2013
+allocator: tcmalloc
+modules: none
+build environment:
+    distmod: rhel70
+    distarch: x86_64
+    target_arch: x86_64
+Possible mongo anonymous authentication
+-rw-r--r--. 1 root root 896 Feb  1  2022 /etc/mongod.conf
+systemLog:
+  destination: file
+  logAppend: true
+  path: /var/log/mongodb/mongod.log
+storage:
+  dbPath: /var/lib/mongo
+  journal:
+    enabled: true
+  engine: wiredTiger
+processManagement:
+  timeZoneInfo: /usr/share/zoneinfo
+net:
+  port: 27017
+security:
+  authorization: "enabled"
+replication:
+  replSetName: rs01
+
+╔══════════╣ Analyzing Apache-Nginx Files (limit 70)
+Apache version: apache2 Not Found          
+Server version: Apache/2.4.37 (centos)     
+Server built:   Nov 12 2021 04:57:27
+Nginx version: nginx Not Found
+
+══╣ PHP exec extensions
+
+-rw-r--r--. 1 root root 1434 Jul  3  2021 /etc/httpd/conf.d/000-default.conf
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+        ErrorLog /var/log/error.log
+        CustomLog /var/log/access.log combined
+        LoadModule headers_module /usr/lib/apache2/modules/mod_headers.so
+        Header always set X-Backend-Server "office.paper"
+
+</VirtualHost>
+
+-rw-r--r--. 1 root root 62221 May  6  2020 /etc/php.ini
+allow_url_fopen = On
+allow_url_include = Off
+odbc.allow_persistent = On
+ibase.allow_persistent = 1
+mysqli.allow_persistent = On
+pgsql.allow_persistent = On
+
+
+drwxr-xr-x. 4 root root 37 Jul  3  2021 /etc/nginx
+-rw-r--r--. 1 root root 136 May  6  2020 /etc/nginx/conf.d/php-fpm.conf
+upstream php-fpm {
+        server unix:/run/php-fpm/www.sock;
+}
+-rw-r--r--. 1 root root 473 May  6  2020 /etc/nginx/default.d/php.conf
+index index.php index.html index.htm;
+location ~ \.(php|phar)(/.*)?$ {
+    fastcgi_split_path_info ^(.+\.(?:php|phar))(/.*)$;
+    fastcgi_intercept_errors on;
+    fastcgi_index  index.php;
+    include        fastcgi_params;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    fastcgi_param  PATH_INFO $fastcgi_path_info;
+    fastcgi_pass   php-fpm;
+}
+
+drwxr-xr-x 2 rocketchat rocketchat 22 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/codemirror/mode/nginx
+
+drwxr-xr-x 2 rocketchat rocketchat 22 Jul  1  2021 /opt/Rocket.Chat/programs/web.browser.legacy/dynamic/node_modules/codemirror/mode/nginx
+
+drwxr-xr-x 2 rocketchat rocketchat 22 Jul  1  2021 /opt/Rocket.Chat/programs/web.browser/dynamic/node_modules/codemirror/mode/nginx
+
+drwxr-xr-x 3 root root 18 Jul  3  2021 /usr/share/nginx
+
+
+╔══════════╣ Analyzing Http conf Files (limit 70)
+-rw-r--r--. 1 root root 11927 Jul  3  2021 /etc/httpd/conf/httpd.conf              
+-rw-r--r-- 1 root root 77 Nov 11  2021 /usr/lib/tmpfiles.d/httpd.conf
+
+╔══════════╣ Analyzing Wifi Connections Files (limit 70)
+drwxr-xr-x. 2 root root 6 Nov  9  2021 /etc/NetworkManager/system-connections      
+drwxr-xr-x. 2 root root 6 Nov  9  2021 /etc/NetworkManager/system-connections
+
+
+╔══════════╣ Analyzing VNC Files (limit 70)
+
+
+
+
+-rw-r--r-- 1 root root 475 Aug  9  2021 /usr/lib/firewalld/services/vnc-server.xml
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Virtual Network Computing Server (VNC)</short>
+  <description>A VNC server provides an external accessible X session. Enable this option if you plan to provide a VNC server with direct access. The access will be possible for displays :0 to :3. If you plan to provide access with SSH, do not open this option and use the via option of the VNC viewer.</description>   
+  <port protocol="tcp" port="5900-5903"/>
+</service>
+
+╔══════════╣ Searching ssl/ssh files
+╔══════════╣ Analyzing SSH Files (limit 70)
+
+
+
+
+
+-rw-r--r--. 1 root root 162 Jul  3  2021 /etc/ssh/ssh_host_ecdsa_key.pub
+-rw-r--r--. 1 root root 82 Jul  3  2021 /etc/ssh/ssh_host_ed25519_key.pub
+-rw-r--r--. 1 root root 382 Jul  3  2021 /etc/ssh/ssh_host_rsa_key.pub
+-rw-r--r-- 1 rocketchat rocketchat 272 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 1208 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/cert.pub
+-rw-r--r-- 1 rocketchat rocketchat 654 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/dsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 1194 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/dsa.2048.pub
+-rw-r--r-- 1 rocketchat rocketchat 174 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/ec.pub
+-rw-r--r-- 1 rocketchat rocketchat 272 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/pass.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 654 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/pass.dsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 268 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/pass.rsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 447 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/pass.rsa.2028.pub
+-rw-r--r-- 1 rocketchat rocketchat 654 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/pass2.dsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 247 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/rsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 422 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/parse-asn1/test/rsa.2028.pub
+-rw-r--r-- 1 rocketchat rocketchat 272 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/public-encrypt/test/1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 174 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/public-encrypt/test/ec.pub
+-rw-r--r-- 1 rocketchat rocketchat 272 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/public-encrypt/test/pass.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 247 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/public-encrypt/test/rsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 422 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/public-encrypt/test/rsa.2028.pub
+-rw-r--r-- 1 rocketchat rocketchat 447 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor-node-stubs/node_modules/public-encrypt/test/rsa.pass.pub
+-rw-r--r-- 1 rocketchat rocketchat 272 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 654 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/dsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 1194 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/dsa.2048.pub
+-rw-r--r-- 1 rocketchat rocketchat 174 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/ec.pub
+-rw-r--r-- 1 rocketchat rocketchat 272 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/pass.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 654 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/pass.dsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 268 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/pass.rsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 447 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/pass.rsa.2028.pub
+-rw-r--r-- 1 rocketchat rocketchat 654 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/pass2.dsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 247 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/rsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 422 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/parse-asn1/test/rsa.2028.pub
+-rw-r--r-- 1 rocketchat rocketchat 272 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/public-encrypt/test/1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 174 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/public-encrypt/test/ec.pub
+-rw-r--r-- 1 rocketchat rocketchat 272 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/public-encrypt/test/pass.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 247 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/public-encrypt/test/rsa.1024.pub
+-rw-r--r-- 1 rocketchat rocketchat 422 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/public-encrypt/test/rsa.2028.pub
+-rw-r--r-- 1 rocketchat rocketchat 447 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/public-encrypt/test/rsa.pass.pub
+-rw-r--r-- 1 rocketchat rocketchat 450 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/xml-encryption/test/test-auth0_rsa.pub
+
+══╣ Some certificates were found (out limited):
+/etc/pki/ca-trust/extracted/pem/objsign-ca-bundle.pem      
+/etc/pki/ca-trust/source/ca-bundle.legacy.crt
+/etc/pki/fwupd-metadata/LVFS-CA.pem
+/etc/pki/fwupd/LVFS-CA.pem
+/etc/pki/tls/certs/localhost.crt
+/opt/Rocket.Chat/programs/server/node_modules/node-gyp/test/fixtures/ca-bundle.crt
+/opt/Rocket.Chat/programs/server/node_modules/node-gyp/test/fixtures/ca.crt
+/opt/Rocket.Chat/programs/server/node_modules/node-gyp/test/fixtures/server.crt
+/opt/Rocket.Chat/programs/server/npm/node_modules/@google-cloud/common/node_modules/agent-base/test/ssl-cert-snakeoil.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/cert.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certIssuerKey.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certKey.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certKeyProduction.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certProduction.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/key.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/keyEncrypted.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/keyIssuer.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/keyPKCS8.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/keyPKCS8Encrypted.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/keyProduction.pem
+3555PSTORAGE_CERTSBIN
+
+══╣ Some client certificates were found:
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certIssuerKey.p12                    
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certIssuerKeyOpenSSL.p12
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certIssuerKeyPassphrase.p12
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/multipleKeys.p12
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/support/initializeTest.pfx
+/opt/Rocket.Chat/programs/server/npm/node_modules/xml-encryption/test/test-auth0.pfx
+/opt/Rocket.Chat/programs/server/npm/node_modules/xml-encryption/test/test-cbc128.pfx
+
+
+Searching inside /etc/ssh/ssh_config for interesting info
+Include /etc/ssh/ssh_config.d/*.conf
+
+╔══════════╣ Analyzing PAM Auth Files (limit 70)
+drwxr-xr-x. 2 root root 4096 Jan 14  2022 /etc/pam.d       
+-rw-r--r--. 1 root root 727 Jul 13  2021 /etc/pam.d/sshd
+auth       substack     password-auth
+auth       include      postlogin
+account    required     pam_sepermit.so
+account    required     pam_nologin.so
+account    include      password-auth
+password   include      password-auth
+session    required     pam_selinux.so close
+session    required     pam_loginuid.so
+session    required     pam_selinux.so open env_params
+session    required     pam_namespace.so
+session    optional     pam_keyinit.so force revoke
+session    optional     pam_motd.so
+session    include      password-auth
+session    include      postlogin
+
+
+╔══════════╣ Analyzing NFS Exports Files (limit 70)
+Connected NFS Mounts:                      
+sunrpc /var/lib/nfs/rpc_pipefs rpc_pipefs rw,relatime 0 0
+-rw-r--r--. 1 root root 0 Sep 10  2018 /etc/exports
+
+╔══════════╣ Searching kerberos conf files and tickets
+╚ http://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-active-directory  
+ptrace protection is disabled (0), you might find tickets inside processes memory  
+-rw-r--r--. 1 root root 812 Aug 26  2021 /etc/krb5.conf
+# To opt out of the system crypto-policies configuration of krb5, remove the
+# symlink at /etc/krb5.conf.d/crypto-policies which will not be recreated.
+includedir /etc/krb5.conf.d/
+
+[logging]
+    default = FILE:/var/log/krb5libs.log
+    kdc = FILE:/var/log/krb5kdc.log
+    admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+    dns_lookup_realm = false
+    ticket_lifetime = 24h
+    renew_lifetime = 7d
+    forwardable = true
+    rdns = false
+    pkinit_anchors = FILE:/etc/pki/tls/certs/ca-bundle.crt
+    spake_preauth_groups = edwards25519
+#    default_realm = EXAMPLE.COM
+    default_ccache_name = KEYRING:persistent:%{uid}
+
+[realms]
+# EXAMPLE.COM = {
+#     kdc = kerberos.example.com
+#     admin_server = kerberos.example.com
+# }
+
+[domain_realm]
+# .example.com = EXAMPLE.COM
+# example.com = EXAMPLE.COM
+-rw-r--r--. 1 root root 189 Dec 21  2021 /usr/lib64/sssd/conf/sssd.conf
+[sssd]
+services = nss, pam
+domains = shadowutils
+
+[nss]
+
+[pam]
+
+[domain/shadowutils]
+id_provider = files
+
+auth_provider = proxy
+proxy_pam_target = sssd-shadowutils
+
+proxy_fast_alias = True
+tickets kerberos Not Found
+klist Not Found  
+
+
+
+╔══════════╣ Searching tmux sessions
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#open-shell-sessions 
+tmux 2.7  
+
+
+/tmp/tmux-1004
+╔══════════╣ Searching uncommon passwd files (splunk)
+passwd file: /etc/pam.d/passwd             
+passwd file: /etc/passwd
+passwd file: /usr/share/bash-completion/completions/passwd
+passwd file: /var/lib/sss/mc/passwd
+
+╔══════════╣ Analyzing Github Files (limit 70)
+drwxrwxr-x 2 dwight dwight 23 Jul  3  2021 /home/dwight/hubot/node_modules/hubot/.github  
+drwx--x--x 2 dwight dwight 23 Jul  3  2021 /home/dwight/hubot/node_modules_bak/hubot/.github
+drwx--x--x 2 dwight dwight 23 Jul  3  2021 /home/dwight/hubot/node_modules_bak/node_modules.bak/hubot/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  3  2021 /opt/Rocket.Chat/programs/server/node_modules/aws4/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  3  2021 /opt/Rocket.Chat/programs/server/node_modules/balanced-match/.github       
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  3  2021 /opt/Rocket.Chat/programs/server/node_modules/fast-json-stable-stringify/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  3  2021 /opt/Rocket.Chat/programs/server/node_modules/needle/.github
+drwxr-xr-x 2 rocketchat rocketchat 63 Jul  3  2021 /opt/Rocket.Chat/programs/server/node_modules/node-gyp/.github
+drwxr-xr-x 2 rocketchat rocketchat 26 Jul  3  2021 /opt/Rocket.Chat/programs/server/node_modules/npm-normalize-package-bin/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array-includes/.github   
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array-includes/node_modules/es-abstract/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array-includes/node_modules/es-to-primitive/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array-includes/node_modules/has-symbols/.github
+drwxr-xr-x 3 rocketchat rocketchat 63 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array-includes/node_modules/is-callable/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array-includes/node_modules/is-regex/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array.prototype.flat/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array.prototype.flat/node_modules/es-abstract/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array.prototype.flat/node_modules/es-to-primitive/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array.prototype.flat/node_modules/has-symbols/.github
+drwxr-xr-x 3 rocketchat rocketchat 63 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array.prototype.flat/node_modules/is-callable/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/array.prototype.flat/node_modules/is-regex/.github
+drwxr-xr-x 2 rocketchat rocketchat 38 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/bugsnag/.github
+drwxr-xr-x 2 rocketchat rocketchat 48 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/clipboard/.github        
+drwxr-xr-x 3 rocketchat rocketchat 28 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/csv-parse/lib/.github    
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/flatted/.github
+drwxr-xr-x 3 rocketchat rocketchat 28 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/focus-within-polyfill/.github
+drwxr-xr-x 2 rocketchat rocketchat 117 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/googleapis/.github      
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/is-string/.github        
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/is-what/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/libmime/.github
+drwxr-xr-x 2 rocketchat rocketchat 28 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/libmime/node_modules/iconv-lite/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/mailparser/.github       
+drwxr-xr-x 2 rocketchat rocketchat 28 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/mailparser/node_modules/iconv-lite/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/merge-anything/.github   
+drwxr-xr-x 2 rocketchat rocketchat 74 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/babel-compiler/node_modules/call-bind/.github
+drwxr-xr-x 2 rocketchat rocketchat 74 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/babel-compiler/node_modules/get-intrinsic/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/babel-compiler/node_modules/has-symbols/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/babel-compiler/node_modules/object.assign/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/logging/node_modules/cli-color/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/logging/node_modules/d/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/logging/node_modules/es5-ext/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/logging/node_modules/es6-symbol/.github
+drwxr-xr-x 2 rocketchat rocketchat 63 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/mime/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/needle/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/node-releases/.github    
+drwxr-xr-x 2 rocketchat rocketchat 26 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/npm-normalize-package-bin/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.entries/.github   
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.entries/node_modules/es-abstract/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.entries/node_modules/es-to-primitive/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.entries/node_modules/has-symbols/.github
+drwxr-xr-x 3 rocketchat rocketchat 63 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.entries/node_modules/is-callable/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.entries/node_modules/is-regex/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.values/.github    
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.values/node_modules/es-abstract/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.values/node_modules/es-to-primitive/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.values/node_modules/has-symbols/.github
+drwxr-xr-x 3 rocketchat rocketchat 63 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.values/node_modules/is-callable/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/object.values/node_modules/is-regex/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/react-app-polyfill/node_modules/promise/.github
+drwxr-xr-x 2 rocketchat rocketchat 63 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/redis/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/string.prototype.trimend/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/string.prototype.trimend/node_modules/es-abstract/.github
+drwxr-xr-x 2 rocketchat rocketchat 25 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/string.prototype.trimend/node_modules/es-to-primitive/.github
+drwxr-xr-x 3 rocketchat rocketchat 42 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/string.prototype.trimend/node_modules/has-symbols/.github
+drwxr-xr-x 3 rocketchat rocketchat 63 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/string.prototype.trimend/node_modules/is-callable/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/string.prototype.trimend/node_modules/is-regex/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/string.prototype.trimleft/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/string.prototype.trimright/.github
+drwxr-xr-x 3 rocketchat rocketchat 23 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/string.prototype.trimstart/.github
+
+
+
+drwx------ 8 dwight dwight 163 Jul  3  2021 /home/dwight/hubot/.git
+
+╔══════════╣ Analyzing PGP-GPG Files (limit 70)
+/usr/bin/gpg  
+netpgpkeys Not Found
+netpgp Not Found 
+
+-r--r-----. 1 root root 1147 Apr 20  2018 /etc/insights-client/redhattools.pub.gpg
+-rw------- 1 dwight dwight 1200 Jul  3  2021 /home/dwight/.gnupg/trustdb.gpg
+-rw-r--r-- 1 root root 9551 Jun 22  2018 /usr/lib/systemd/import-pubring.gpg
+-rw-r--r-- 1 root root 3290 Jan  1  2020 /usr/share/gnupg/distsigkey.gpg
+-rw-------. 1 root root 1200 Jul  3  2021 /var/cache/PackageKit/8/metadata/AppStream-8-x86_64/gpgdir/trustdb.gpg
+-rw-------. 1 root root 1200 Jul  3  2021 /var/cache/PackageKit/8/metadata/BaseOS-8-x86_64/gpgdir/trustdb.gpg
+-rw------- 1 root root 1200 Jan 15  2022 /var/cache/PackageKit/8/metadata/appstream-8-x86_64.tmp/gpgdir/trustdb.gpg
+-rw------- 1 root root 1200 Jul  3  2021 /var/cache/PackageKit/8/metadata/epel-8-x86_64/gpgdir/trustdb.gpg
+-rw------- 1 root root 1200 Jul  3  2021 /var/cache/PackageKit/8/metadata/epel-modular-8-x86_64/gpgdir/trustdb.gpg
+-rw-------. 1 root root 1200 Jul  3  2021 /var/cache/PackageKit/8/metadata/extras-8-x86_64/gpgdir/trustdb.gpg
+-rw------- 1 root root 1200 Jul  3  2021 /var/cache/PackageKit/8/metadata/mongodb-org-4.0-8-x86_64/gpgdir/trustdb.gpg         
+-rw------- 1 root root 1200 Jul  3  2021 /var/cache/PackageKit/8/metadata/nodesource-8-x86_64/gpgdir/trustdb.gpg
+
+drwx------ 3 dwight dwight 69 Oct 29 15:55 /home/dwight/.gnupg
+
+╔══════════╣ Analyzing Cache Vi Files (limit 70)
+-rw-r--r-- 1 rocketchat rocketchat 16384 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/konecty_user-presence/node_modules/colors/lib/.colors.js.swp
+-rw-r--r-- 1 rocketchat rocketchat 16384 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/sharp/node_modules/semver/bin/.semver.js.swp
+-rw-r--r-- 1 rocketchat rocketchat 16384 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/tar/lib/.mkdir.js.swp
+
+
+╔══════════╣ Checking if runc is available
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation/runc-privilege-escalation
+runc was found in /usr/bin/runc, you may be able to escalate privileges with it    
+
+╔══════════╣ Searching docker files (limit 70)
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation/docker-breakout/docker-breakout-privilege-escalation       
+-rw-r--r-- 1 root root 1261 Apr 30  2018 /usr/local/lib/node_modules/hubot-rocketchat/Dockerfile                    
+
+
+╔══════════╣ Analyzing SNMP Files (limit 70)
+-rw-------. 1 root root 18861 Jun 29  2021 /etc/snmp/snmpd.conf                    
+
+╔══════════╣ Analyzing Postfix Files (limit 70)
+-rw-r--r--. 1 root root 675 Apr 27  2017 /usr/share/bash-completion/completions/postfix
+
+
+╔══════════╣ Analyzing Env Files (limit 70)
+-rw-r--r-- 1 dwight dwight 258 Sep 16  2021 /home/dwight/hubot/.env                
+export ROCKETCHAT_URL='http://127.0.0.1:48320'
+export ROCKETCHAT_USER=recyclops
+export ROCKETCHAT_PASSWORD=Queenofblad3s!23
+export ROCKETCHAT_USESSL=false
+export RESPOND_TO_DM=true
+export RESPOND_TO_EDITED=true
+export PORT=8000
+export BIND_ADDRESS=127.0.0.1
+
+╔══════════╣ Analyzing FTP Files (limit 70)
+-rw-r--r-- 1 root root 294 Aug 30  2017 /usr/share/doc/python3-pycurl/tests/vsftpd.conf
+anonymous_enable=yes
+write_enable=yes
+anon_upload_enable=yes
+anon_other_write_enable=yes
+anon_root=/var/empty
+
+
+
+
+
+
+
+
+
+╔══════════╣ Analyzing Rocketchat Files (limit 70)
+lrwxrwxrwx. 1 root root 42 Jul  3  2021 /etc/systemd/system/multi-user.target.wants/rocketchat.service -> /usr/lib/systemd/system/rocketchat.service
+Environment=MONGO_URL=mongodb://rocket:my$ecretPass@localhost:27017/rocketchat?replicaSet=rs01&authSource=rocketchat
+Environment=MONGO_OPLOG_URL=mongodb://rocket:my$ecretPass@localhost:27017/local?replicaSet=rs01&authSource=admin
+Environment=ROOT_URL=http://chat.office.paper
+Environment=PORT=48320
+Environment=BIND_IP=127.0.0.1
+Environment=DEPLOY_PLATFORM=rocketchatctl
+-rw-r--r-- 1 root root 673 Feb  1  2022 /usr/lib/systemd/system/rocketchat.service
+Environment=MONGO_URL=mongodb://rocket:my$ecretPass@localhost:27017/rocketchat?replicaSet=rs01&authSource=rocketchat
+Environment=MONGO_OPLOG_URL=mongodb://rocket:my$ecretPass@localhost:27017/local?replicaSet=rs01&authSource=admin
+Environment=ROOT_URL=http://chat.office.paper
+Environment=PORT=48320
+Environment=BIND_IP=127.0.0.1
+Environment=DEPLOY_PLATFORM=rocketchatctl
+
+╔══════════╣ Analyzing Samba Files (limit 70)
+-rw-r--r--. 1 root root 706 Dec 13  2021 /etc/samba/smb.conf                       
+        browseable = No
+        read only = No
+        create mask = 0600
+        browseable = No
+        create mask = 0664
+        directory mask = 0775
+
+╔══════════╣ Analyzing DNS Files (limit 70)
+-rw-r--r--. 1 root root 856 May  9  2017 /usr/share/bash-completion/completions/bind   
+-rw-r--r--. 1 root root 856 May  9  2017 /usr/share/bash-completion/completions/bind
+
+
+
+
+╔══════════╣ Analyzing Strapi Files (limit 70)
+drwxr-xr-x 2 rocketchat rocketchat 22 Jul  1  2021 /opt/Rocket.Chat/programs/server/npm/node_modules/katex/src/environments   
+
+
+
+
+
+
+
+╔══════════╣ Analyzing Interesting logs Files (limit 70)
+-rw-r--r--. 1 root root 3241319 Sep 15  2021 /var/log/access.log                   
+
+-rw-r--r--. 1 root root 1728222 Sep 15  2021 /var/log/error.log
+
+╔══════════╣ Analyzing Windows Files (limit 70)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-rw-r--r--. 1 root root 269 Jul  3  2021 /etc/my.cnf
+
+
+
+
+
+
+
+
+
+-rw-r--r-- 1 root root 475 Aug  9  2021 /usr/lib/firewalld/services/vnc-server.xml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+╔══════════╣ Analyzing Other Interesting Files (limit 70)
+-rw-r--r--. 1 root root 376 Jul 27  2021 /etc/skel/.bashrc 
+-rw-r--r-- 1 dwight dwight 358 Jul  3  2021 /home/dwight/.bashrc
+
+
+
+
+
+
+
+
+
+
+
+                      ╔════════════════════════════════════╗
+══════════════════════╣ Files with Interesting Permissions ╠══════════════════════ 
+                      ╚════════════════════════════════════╝                       
+╔══════════╣ SUID - Check easy privesc, exploits and write perms
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#sudo-and-suid   
+-rwsr-xr-x. 1 root root 38K May 11  2019 /usr/bin/fusermount                       
+-rwsr-xr-x 1 root root 78K Aug 18  2021 /usr/bin/chage
+-rwsr-xr-x 1 root root 83K Aug 18  2021 /usr/bin/gpasswd
+-rwsr-xr-x 1 root root 43K Aug 18  2021 /usr/bin/newgrp  --->  HP-UX_10.20
+-rwsr-xr-x 1 root root 50K Jul 21  2021 /usr/bin/mount  --->  Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8   
+-rwsr-xr-x 1 root root 49K Jul 21  2021 /usr/bin/su
+-rwsr-xr-x 1 root root 33K Jul 21  2021 /usr/bin/umount  --->  BSD/Linux(08-1996)
+-rwsr-xr-x 1 root root 65K Nov  8  2019 /usr/bin/crontab
+-rwsr-xr-x 1 root root 33K Apr  6  2020 /usr/bin/passwd  --->  Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)         
+-rws--x--x 1 root root 33K Jul 21  2021 /usr/bin/chfn  --->  SuSE_9.3/10
+-rws--x--x 1 root root 25K Jul 21  2021 /usr/bin/chsh
+-rwsr-xr-x. 1 root root 61K May 11  2019 /usr/bin/at  --->  RTru64_UNIX_4.0g(CVE-2002-1614)
+---s--x--x 1 root root 162K Oct 25  2021 /usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable
+-rwsr-xr-x 1 root root 34K May 11  2019 /usr/bin/fusermount3
+-rwsr-xr-x 1 root root 12K Nov  8  2021 /usr/sbin/grub2-set-bootflag (Unknown SUID binary!)
+-rwsr-xr-x 1 root root 12K May  7  2021 /usr/sbin/pam_timestamp_check
+-rwsr-xr-x 1 root root 37K May  7  2021 /usr/sbin/unix_chkpwd
+-rws--x--x 1 root root 45K Aug 27  2021 /usr/sbin/userhelper
+-rwsr-xr-x 1 root root 196K Jul 30  2021 /usr/sbin/mount.nfs
+-rwsr-xr-x. 1 root root 18K May 11  2019 /usr/lib/polkit-1/polkit-agent-helper-1
+-rwsr-x--- 1 root dbus 63K May  8  2021 /usr/libexec/dbus-1/dbus-daemon-launch-helper
+-rwsr-xr-x 1 root root 17K Dec 21  2021 /usr/libexec/qemu-bridge-helper (Unknown SUID binary!)
+-rwsr-x--- 1 root 973 58K Sep 10  2021 /usr/libexec/cockpit-session (Unknown SUID binary!)
+-rwsr-x--- 1 root sssd 161K Dec 21  2021 /usr/libexec/sssd/krb5_child (Unknown SUID binary!)
+-rwsr-x--- 1 root sssd 96K Dec 21  2021 /usr/libexec/sssd/ldap_child (Unknown SUID binary!)
+-rwsr-x--- 1 root sssd 25K Dec 21  2021 /usr/libexec/sssd/proxy_child (Unknown SUID binary!)
+-rwsr-x--- 1 root sssd 55K Dec 21  2021 /usr/libexec/sssd/selinux_child (Unknown SUID binary!)
+-rwsr-xr-x 1 root root 21K Feb  2  2021 /usr/libexec/spice-gtk-x86_64/spice-client-glib-usb-acl-helper (Unknown SUID binary!) 
+-rwsr-xr-x 1 root root 13K Jun 10  2021 /usr/libexec/Xorg.wrap
+
+╔══════════╣ SGID
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#sudo-and-suid   
+-rwxr-sr-x 1 root tty 21K Jul 21  2021 /usr/bin/write      
+-rwx--s--x. 1 root slocate 48K May 11  2019 /usr/bin/locate
+-rwx--s--x. 1 root lock 22K May 11  2019 /usr/sbin/lockdev
+-rwx--s--x. 1 root utmp 14K May 10  2019 /usr/libexec/utempter/utempter
+-r-xr-sr-x 1 root ssh_keys 445K Jul 13  2021 /usr/libexec/openssh/ssh-keysign
+
+╔══════════╣ Checking misconfigurations of ld.so
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#ld.so           
+/etc/ld.so.conf  
+Content of /etc/ld.so.conf:                
+include ld.so.conf.d/*.conf
+ld.so.conf.d
+  ld.so.conf.d/* 
+cat: 'ld.so.conf.d/*': No such file or directory           
+
+/etc/ld.so.preload
+╔══════════╣ Capabilities                  
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#capabilities    
+══╣ Current shell capabilities             
+CapInh:  0x0000000000000000=               
+CapPrm:  0x0000000000000000=
+CapEff:  0x0000000000000000=
+CapBnd:  0x000001ffffffffff=cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read,cap_perfmon,cap_bpf,cap_checkpoint_restore
+CapAmb:  0x0000000000000000=
+
+══╣ Parent process capabilities
+CapInh:  0x0000000000000000=               
+CapPrm:  0x0000000000000000=
+CapEff:  0x0000000000000000=
+CapBnd:  0x000001ffffffffff=cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read,cap_perfmon,cap_bpf,cap_checkpoint_restore
+CapAmb:  0x0000000000000000=
+
+
+Files with capabilities (limited to 50):
+/usr/bin/newgidmap = cap_setgid+ep
+/usr/bin/newuidmap = cap_setuid+ep
+/usr/bin/ping = cap_net_admin,cap_net_raw+p
+/usr/bin/gnome-keyring-daemon = cap_ipc_lock+ep
+/usr/sbin/arping = cap_net_raw+p
+/usr/sbin/clockdiff = cap_net_raw+p
+/usr/sbin/suexec = cap_setgid,cap_setuid+ep
+/usr/sbin/mtr-packet = cap_net_raw+ep
+/usr/libexec/mysqld = cap_sys_nice+ep
+
+╔══════════╣ Files with ACLs (limited to 50)
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#acls            
+files with acls in searched folders Not Found              
+
+╔══════════╣ Files (scripts) in /etc/profile.d/
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#profiles-files  
+total 124 
+drwxr-xr-x.   2 root root 4096 Jan 14  2022 .
+drwxr-xr-x. 145 root root 8192 Oct 29 15:35 ..
+-rw-r--r--.   1 root root 1336 Jun 15  2020 PackageKit.sh
+-rw-r--r--.   1 root root  664 May 11  2019 bash_completion.sh
+-rw-r--r--.   1 root root  196 May 10  2019 colorgrep.csh
+-rw-r--r--.   1 root root  201 May 10  2019 colorgrep.sh
+-rw-r--r--.   1 root root 1741 Jul 14  2021 colorls.csh
+-rw-r--r--.   1 root root 1606 Jul 14  2021 colorls.sh
+-rw-r--r--.   1 root root  162 May 10  2019 colorxzgrep.csh
+-rw-r--r--.   1 root root  183 May 10  2019 colorxzgrep.sh
+-rw-r--r--.   1 root root  216 Jan 13  2021 colorzgrep.csh
+-rw-r--r--.   1 root root  220 Jan 13  2021 colorzgrep.sh
+-rw-r--r--.   1 root root   80 May 15  2020 csh.local
+-rw-r--r--.   1 root root  813 Jan 13  2021 flatpak.sh
+-rw-r--r--.   1 root root 1107 Dec 14  2017 gawk.csh
+-rw-r--r--.   1 root root  757 Dec 14  2017 gawk.sh
+-rw-r--r--.   1 root root  102 Oct 15  2021 iproute2.sh
+-rw-r--r--.   1 root root 2486 May 15  2020 lang.csh
+-rw-r--r--.   1 root root 2312 May 15  2020 lang.sh
+-rw-r--r--.   1 root root  500 May 11  2019 less.csh
+-rw-r--r--.   1 root root  253 May 11  2019 less.sh
+-rw-r--r--.   1 root root   81 May 15  2020 sh.local
+-rw-r--r--.   1 root root  204 May  8  2021 ssh-x-forwarding.csh
+-rw-r--r--.   1 root root  225 May  8  2021 ssh-x-forwarding.sh
+-rw-r--r--.   1 root root  106 Sep 22  2021 vim.csh
+-rw-r--r--.   1 root root  248 Sep 22  2021 vim.sh
+-rw-r--r--.   1 root root 2092 Jun 16  2020 vte.sh
+-rw-r--r--.   1 root root  120 May 17  2021 which2.csh
+-rw-r--r--.   1 root root  478 May 17  2021 which2.sh
+
+╔══════════╣ Permissions in init, init.d, systemd, and rc.d
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#init-init-d-systemd-and-rc-d                     
+
+═╣ Hashes inside passwd file? ........... No
+═╣ Writable passwd file? ................ No               
+═╣ Credentials in fstab/mtab? ........... No               
+═╣ Can I read shadow files? ............. No               
+═╣ Can I read shadow plists? ............ No               
+═╣ Can I write shadow plists? ........... No               
+═╣ Can I read opasswd file? ............. No               
+═╣ Can I write in network-scripts? ...... No               
+═╣ Can I read root folder? .............. No               
+
+╔══════════╣ Searching root files in home dirs (limit 30)
+/home/    
+/root/
+/var/www
+/var/www/cgi-bin
+/var/www/html
+
+╔══════════╣ Searching folders owned by me containing others files on it (limit 100)
+
+╔══════════╣ Readable files belonging to root and readable by me but not world readable
+
+╔══════════╣ Interesting writable files owned by me or writable by everyone (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#writable-files  
+/dev/mqueue   
+/dev/shm
+/home/dwight
+/run/user/1004
+/run/user/1004/containers
+/run/user/1004/dbus-1
+/run/user/1004/dbus-1/services
+/run/user/1004/gnupg
+/run/user/1004/gvfs
+/run/user/1004/libpod
+/run/user/1004/pulse
+/run/user/1004/pulse/pid
+/run/user/1004/systemd
+/tmp
+/tmp/.esd-1004
+/tmp/tmux-1004
+/var/tmp
+/var/tmp/dnf-dwight-u9x3_81w
+/var/tmp/dnf-dwight-u9x3_81w/dnf.librepo.log
+/var/tmp/dnf-dwight-u9x3_81w/dnf.log
+/var/tmp/dnf-dwight-u9x3_81w/dnf.rpm.log
+/var/tmp/dnf-dwight-u9x3_81w/expired_repos.json
+/var/tmp/dnf-dwight-u9x3_81w/hawkey.log
+#)You_can_write_even_more_files_inside_last_directory
+
+/var/tmp/dnf-dwight-u9x3_81w/locks/6713fb1d999ad16fee3c21d590b1abce73b24507
+
+╔══════════╣ Interesting GROUP writable files (not in Home) (max 500)
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#writable-files  
+  Group dwight:  
+/var/tmp/dnf-dwight-u9x3_81w/dnf.log       
+/var/tmp/dnf-dwight-u9x3_81w/dnf.librepo.log
+/var/tmp/dnf-dwight-u9x3_81w/dnf.rpm.log
+/var/tmp/dnf-dwight-u9x3_81w/expired_repos.json
+/var/tmp/dnf-dwight-u9x3_81w/hawkey.log
+
+
+
+  ╔═════════════════════════╗
+════════════════════════════╣ Other Interesting Files ╠════════════════════════════
+  ╚═════════════════════════╝    
+╔══════════╣ .sh files in path
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#script-binaries-in-path
+/usr/bin/lesspipe.sh                       
+/usr/bin/amuFormat.sh
+/usr/bin/gettext.sh
+/usr/bin/setup-nsssysinit.sh
+/usr/bin/rescan-scsi-bus.sh
+
+╔══════════╣ Executable files potentially added by user (limit 70)
+2022-01-14+06:12:24.9980151480 /boot/vmlinuz-0-rescue-a3fe8114a69e48d9a400c4ebb90d68b1 
+2022-01-13+10:56:05.3705828170 /home/dwight/hubot/scripts/files.js
+2021-09-16+07:34:52.6565698890 /home/dwight/hubot/bin/hubot
+2021-09-16+07:34:18.7078974250 /home/dwight/hubot/package.json
+2021-09-16+07:26:51.8485215220 /home/dwight/hubot/package.json.bak
+2021-09-16+06:58:59.1278363840 /home/dwight/bot_restart.sh
+2021-07-03+07:28:17.5036512490 /home/dwight/hubot/package-lock.json
+2021-07-03+07:28:17.5016512680 /home/dwight/hubot/yarn.lock
+2021-07-03+07:28:17.5006512760 /home/dwight/hubot/start_bot.sh
+2021-07-03+07:28:17.4986512950 /home/dwight/hubot/README.md
+2021-07-03+07:28:17.4976513050 /home/dwight/hubot/Procfile
+2021-07-03+07:28:17.4956513230 /home/dwight/hubot/LICENSE
+2021-07-03+07:28:17.4926513500 /home/dwight/hubot/external-scripts.json
+2021-07-03+07:28:14.9246748490 /home/dwight/hubot/bin/hubot.cmd
+2021-07-03+07:28:14.8336756820 /home/dwight/hubot/scripts/listof.js
+2021-07-03+07:28:14.8326756910 /home/dwight/hubot/scripts/smalltalk.js
+2021-07-03+07:28:14.8296757180 /home/dwight/hubot/scripts/why.js
+2021-07-03+07:28:14.8286757280 /home/dwight/hubot/scripts/version.js
+2021-07-03+07:28:14.8276757370 /home/dwight/hubot/scripts/run.js
+2021-07-03+07:28:14.8256757550 /home/dwight/hubot/scripts/example.js
+2021-07-03+07:28:14.8246757640 /home/dwight/hubot/scripts/error.coffee
+2021-07-03+07:28:14.8236757740 /home/dwight/hubot/scripts/dwight.js
+2021-07-03+07:28:14.8226757820 /home/dwight/hubot/scripts/cmd.coffee
+2021-07-03+07:03:49.5951648180 /usr/local/bin/node
+
+╔══════════╣ Unexpected in /opt (usually empty)
+total 0   
+drwxr-xr-x.  3 root       root        25 Jun 22  2021 .
+dr-xr-xr-x. 17 root       root       244 Jan 17  2022 ..
+drwxr-xr-x   4 rocketchat rocketchat 107 Jan 14  2022 Rocket.Chat
+
+╔══════════╣ Unexpected in root
+/.autorelabel 
+
+╔══════════╣ Modified interesting files in the last 5mins (limit 100)
+/var/log/mongodb/mongod.log                
+/var/log/cron
+/var/log/messages
+/var/log/secure
+/var/tmp/dnf-dwight-u9x3_81w/dnf.log
+/var/tmp/dnf-dwight-u9x3_81w/dnf.librepo.log
+/var/tmp/dnf-dwight-u9x3_81w/dnf.rpm.log
+/var/tmp/dnf-dwight-u9x3_81w/expired_repos.json
+/var/tmp/dnf-dwight-u9x3_81w/hawkey.log
+/home/dwight/.dbshell
+/home/dwight/hubot/.hubot.log
+/home/dwight/.local/share/containers/storage/libpod/bolt_state.db
+
+╔══════════╣ Writable log files (logrotten) (limit 50)
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#logrotate-exploitation 
+logrotate 3.14.0 
+
+    Default mail command:       /bin/mail
+    Default compress command:   /bin/gzip
+    Default uncompress command: /bin/gunzip
+    Default compress extension: .gz
+    Default state file path:    /var/lib/logrotate/logrotate.status
+    ACL support:                yes
+    SELinux support:            yes
+Writable: /var/tmp/dnf-dwight-u9x3_81w/dnf.log
+Writable: /var/tmp/dnf-dwight-u9x3_81w/dnf.librepo.log     
+Writable: /var/tmp/dnf-dwight-u9x3_81w/dnf.rpm.log         
+Writable: /home/dwight/.npm/_logs/2021-07-03T11_22_16_966Z-debug.log               
+Writable: /home/dwight/.npm/_logs/2021-07-03T11_22_42_745Z-debug.log               
+Writable: /home/dwight/.npm/_logs/2021-07-03T11_23_22_172Z-debug.log               
+Writable: /home/dwight/hubot/node_modules_bak/node_modules.bak/log/examples/file.log   
+Writable: /home/dwight/hubot/node_modules_bak/log/examples/file.log                
+Writable: /home/dwight/hubot/node_modules/log/examples/file.log                    
+Writable: /home/dwight/hubot/.hubot.log    
+
+╔══════════╣ Files inside /home/dwight (limit 20)
+total 864 
+drwx------  11 dwight dwight    315 Oct 29 15:55 .
+drwxr-xr-x.  3 root   root       20 Jan 14  2022 ..
+lrwxrwxrwx   1 dwight dwight      9 Jul  3  2021 .bash_history -> /dev/null
+-rw-r--r--   1 dwight dwight     18 May 10  2019 .bash_logout
+-rw-r--r--   1 dwight dwight    141 May 10  2019 .bash_profile
+-rw-r--r--   1 dwight dwight    358 Jul  3  2021 .bashrc
+drwx------   5 dwight dwight     56 Jul  3  2021 .config
+-rw-------   1 dwight dwight      9 Oct 29 15:55 .dbshell
+-rw-------   1 dwight dwight     16 Jul  3  2021 .esd_auth
+drwx------   3 dwight dwight     69 Oct 29 15:55 .gnupg
+-rw-rw-r--   1 dwight dwight     18 Sep 16  2021 .hubot_history
+drwx------   3 dwight dwight     19 Jul  3  2021 .local
+drwxr-xr-x   4 dwight dwight     39 Jul  3  2021 .mozilla
+drwxrwxr-x   5 dwight dwight     83 Jul  3  2021 .npm
+drwx------   2 dwight dwight      6 Sep 16  2021 .ssh
+drwxr-xr-x   2 dwight dwight     24 Sep 16  2021 .vim
+-rwxr-xr-x   1 dwight dwight   1174 Sep 16  2021 bot_restart.sh
+drwx------   8 dwight dwight   4096 Sep 16  2021 hubot
+-rwxrw-r--   1 dwight dwight 847773 Oct 15 00:29 linpeas.sh
+drwxr-xr-x   4 dwight dwight     32 Jul  3  2021 sales
+-r--------   1 dwight dwight     33 Oct 29 15:36 user.txt
+
+╔══════════╣ Files inside others home (limit 20)
+/var/www/html/.npm/_cacache/content-v2/sha512/bd/b8/887e8cd546e1b56f6f0bdf46a82c1119b92b0e3c63cb5cb07c7a4f709c7fb5b3d5298bbdce32005567f9ea78d01dc354400bd1f52f9f4ba042a8bf6f80b5
+/var/www/html/.npm/_cacache/content-v2/sha512/1c/16/5504c62ce5b96c8fde064de4197a5eecf68755bae4941f2d7e025661eeb3d5bb1d68b366ac86f1062f2fd24cd2bbbd48dbac28392aaf7f1978ac26075fe8
+/var/www/html/.npm/_cacache/content-v2/sha512/0b/61/241d7c17bcbb1baee7094d14b7c451efecc7ffcbd92598a0f13d313cc9ebc2a07e61f007baf58fbf94ff9a8695bdd5cae7ce03bbf1e94e93613a00f25f21
+/var/www/html/.npm/_cacache/content-v2/sha512/0b/ee/94225e6a1e69d213a650bad70507ec33e7c6553950c7e1d7fb9ed37eb176c08b40b9d3a24dac53c110281b6a7a0686466b987bd273f66edd51813d24e0bb
+/var/www/html/.npm/_cacache/content-v2/sha512/0a/2e/ce1a2b49bdc54254bea58ab1eaa67299e95137c4097621862b9db6ffd505e3c7a88fe1111fa9d76b3e8a474d1df304adcb0108e1ca0ed60932adce974ad8
+/var/www/html/.npm/_cacache/content-v2/sha512/0a/f6/86c15333b523092ce7973eb7b3edfc9f39b759a8d50ad5c3c01332c7ad3c9b22e6bda4c76698f479630b5f35fb4838cbf70cf52115ac6c64c35340edb42a
+/var/www/html/.npm/_cacache/content-v2/sha512/9a/0b/c14ac22e3766e39a991edce1cfe37dfdabc45b357777aa0e630a1d6fedcb32fa764c315f2626641fa47d27d49434dde021554ddbfcb656c15f10ab1d9aef
+/var/www/html/.npm/_cacache/content-v2/sha512/ba/5f/f385d5221ed833d37f707b36eaab345171df73ac8aec6352b3e33cb61f13c4025bd501ef9889a610ac93d183760d97930bb395dd00fb59eb9edc0e358d05
+/var/www/html/.npm/_cacache/content-v2/sha512/ba/25/0c281d2d832fbe7a495d1416999f3215aad96c755c4e6801c19da82e08baa3b8e9aefa35420db4f399dc22b71903f8d02650ca56bf09ddc2acda16aa4f73
+/var/www/html/.npm/_cacache/content-v2/sha512/93/fb/c6697e3f6256b75b3c8c0af4d039761e207bea38ab67a8176ecd31e9ce9419cc0b2428c859d8af849c189233dcc64a820578ca572b16b8758799210a9ec1
+/var/www/html/.npm/_cacache/content-v2/sha512/d9/78/abc89f2c202368e9e8fc77489d5c310c29f55f14aee47a4182b4902e7a51ac607431863d772937fde6cc1308dd9d67fe254df67ce05bb7d63a8910482358
+/var/www/html/.npm/_cacache/content-v2/sha512/d9/f3/7df920612acbac4d3b728455e53aa4940b2a5875c67eb00ec8b4c7bb2bc66aae8e1f5253a688caad44d13d9d393b011a6f5b6bcff76e5ee2c3ee56135f63
+/var/www/html/.npm/_cacache/content-v2/sha512/d3/79/802ab6a2ade0c2977b438776086e4b5a6637fca37debf550e4113a46365002b37277c44440c3141487bb8cf3dd33f555040258f8d6e2db473ee44efbeec8
+/var/www/html/.npm/_cacache/content-v2/sha512/79/ca/be6eae8d1754c8b80eddb67ac05d3d27e3eb5d2b292b9efd3611ff1637d658e58b64f01d0a27a95b78a713d494d100c112229bc5153b1d91f1c2a958e29b
+/var/www/html/.npm/_cacache/content-v2/sha512/9d/28/deb6b2d91ae4885ebc8d9ee2b0a90bed714c2d40443e980ee67c2119fc9d2b52c1153f8291b6a455c4dcfc832ec70f0b18e163ff11b31f8a6a48a7135e55
+/var/www/html/.npm/_cacache/content-v2/sha512/9d/39/c9e76f296eac586a78690d8b22e1177c30079a040ebbf91675d023359b76d30151440dc77902e0386ba5b9624199d623571f3673f13e9304a2de06e36b89
+/var/www/html/.npm/_cacache/content-v2/sha512/97/9b/bd468b0817cb3ea0fe37615bfa557ff2aeaecb7dca0612d16f6068dd38166602bdaba335c6d8ffc153a7bc1738f18bd1f000413dec4bbee9cbaae8195374
+/var/www/html/.npm/_cacache/content-v2/sha512/97/d9/78d32c76789e790f56313d12a1be75dd328419b6c4c10bee097f1cc36c8aecabd15dcd8a11a9ad7d228d6a929ef916b2225baff620c8ac09512767700633
+/var/www/html/.npm/_cacache/content-v2/sha512/97/ae/419fa02841759242765cfa71b02fe1b92485a38e82399a5a44e8e2a99bd34d6be757ec9d2281b896aa06155c6f4c1ce352fae43544e1c2e1a1a044a60fe3
+/var/www/html/.npm/_cacache/content-v2/sha512/3a/f0/fd10dccf2db7a010d9d83f95147c9222ad3838f97c0c5866907d04d8d097a7c4dbef20a3f7537fed01048f22efe51f15d84999a95e55077aa00874acc12d
+
+╔══════════╣ Searching installed mail applications
+
+╔══════════╣ Mails (limit 50)
+  9281720      0 -rw-rw----   1  rpc      mail            0 Jul  3  2021 /var/mail/rpc 
+ 10152432      0 -rw-rw----   1  1000     mail            0 Jul  3  2021 /var/mail/nick
+ 11176001      0 -rw-rw----   1  rocketchat mail            0 Jul  3  2021 /var/mail/rocketchat
+ 11074260      0 -rw-rw----   1  1002     mail            0 Jul  3  2021 /var/mail/dwight
+  9220466      0 -rw-rw----   1  1005     mail            0 Sep 16  2021 /var/mail/secnigma
+  9281720      0 -rw-rw----   1  rpc        mail            0 Jul  3  2021 /var/spool/mail/rpc
+ 10152432      0 -rw-rw----   1  1000     mail            0 Jul  3  2021 /var/spool/mail/nick
+ 11176001      0 -rw-rw----   1  rocketchat mail            0 Jul  3  2021 /var/spool/mail/rocketchat
+ 11074260      0 -rw-rw----   1  1002     mail            0 Jul  3  2021 /var/spool/mail/dwight
+  9220466      0 -rw-rw----   1  1005     mail            0 Sep 16  2021 /var/spool/mail/secnigma
+
+╔══════════╣ Backup files (limited 100)
+-rw-r--r--. 1 root root 1498 May 13  2019 /etc/nsswitch.conf.bak                   
+-rw-r--r--. 1 root root 163 Jul  3  2021 /etc/httpd/conf.d/office.htb.conf.bak
+-rw-r--r--. 1 root root 8720 May 20  2021 /etc/httpd/conf.d/ssl.conf.bak
+-rw-r--r--. 1 root root 2516 Jun  4  2019 /usr/lib/modules/4.18.0-80.el8.x86_64/kernel/drivers/net/team/team_mode_activebackup.ko.xz
+-rw-r--r--. 1 root root 2432 Dec 22  2021 /usr/lib/modules/4.18.0-348.7.1.el8_5.x86_64/kernel/drivers/net/team/team_mode_activebackup.ko.xz
+-rw-r--r-- 2 root root 1393 Aug 12  2021 /usr/lib/python3.6/site-packages/sos/report/plugins/__pycache__/ovirt_engine_backup.cpython-36.opt-1.pyc
+-rw-r--r-- 2 root root 1393 Aug 12  2021 /usr/lib/python3.6/site-packages/sos/report/plugins/__pycache__/ovirt_engine_backup.cpython-36.pyc
+-rw-r--r-- 1 root root 1775 Feb 25  2021 /usr/lib/python3.6/site-packages/sos/report/plugins/ovirt_engine_backup.py
+-rw-r--r-- 1 root root 7138 Feb 13  2018 /usr/lib/node_modules/node-gyp/node_modules/form-data/README.md.bak
+-rw-r--r-- 1 root root 7138 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/form-data/README.md.bak
+-rwxr-xr-x. 1 root root 38024 Sep  1  2021 /usr/lib64/mysql/plugin/component_mysqlbackup.so
+-rwxr-xr-x. 1 root root 8136 Sep  1  2021 /usr/lib64/mysql/plugin/component_test_backup_lock_service.so
+-rwxr-xr-x. 1 root root 41808 May 27  2021 /usr/lib64/open-vm-tools/plugins/vmsvc/libvmbackup.so
+-rw-r--r-- 1 root root 305 Jul 26  2020 /usr/share/doc/teamd/example_configs/activebackup_arp_ping_1.conf
+-rw-r--r-- 1 root root 465 Jul 26  2020 /usr/share/doc/teamd/example_configs/activebackup_arp_ping_2.conf
+-rw-r--r-- 1 root root 194 Jul 26  2020 /usr/share/doc/teamd/example_configs/activebackup_ethtool_1.conf
+-rw-r--r-- 1 root root 212 Jul 26  2020 /usr/share/doc/teamd/example_configs/activebackup_ethtool_2.conf
+-rw-r--r-- 1 root root 241 Jul 26  2020 /usr/share/doc/teamd/example_configs/activebackup_ethtool_3.conf
+-rw-r--r-- 1 root root 447 Jul 26  2020 /usr/share/doc/teamd/example_configs/activebackup_multi_lw_1.conf
+-rw-r--r-- 1 root root 285 Jul 26  2020 /usr/share/doc/teamd/example_configs/activebackup_nsna_ping_1.conf
+-rw-r--r-- 1 root root 318 Jul 26  2020 /usr/share/doc/teamd/example_configs/activebackup_tipc.conf
+-rw-r--r--. 1 root root 17711 Aug  6  2006 /usr/share/doc/mcpp/ChangeLog.old
+-rw-r--r--. 1 root root 41508 Mar  9  2006 /usr/share/doc/pinfo/ChangeLog.old
+-rw-r--r-- 1 root root 2670 Dec  8  2016 /usr/share/man/man1/db_hotbackup.1.gz
+-r--r--r-- 1 root root 2900 Sep 22  2021 /usr/share/man/man8/vgcfgbackup.8.gz
+-rw-r--r--. 1 root root 1815 Jul 29  2017 /usr/share/help/C/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 1999 Jan  5  2017 /usr/share/help/C/gnome-help/backup-frequency.page
+-rw-r--r--. 1 root root 2356 Jan  5  2017 /usr/share/help/C/gnome-help/backup-how.page
+-rw-r--r--. 1 root root 1320 Sep 18  2012 /usr/share/help/C/gnome-help/backup-restore.page
+-rw-r--r--. 1 root root 3318 Apr 11  2017 /usr/share/help/C/gnome-help/backup-thinkabout.page
+-rw-r--r--. 1 root root 2505 Jan  5  2017 /usr/share/help/C/gnome-help/backup-what.page
+-rw-r--r--. 1 root root 2268 Jul 29  2017 /usr/share/help/C/gnome-help/backup-where.page
+-rw-r--r--. 1 root root 1262 Jan  5  2017 /usr/share/help/C/gnome-help/backup-why.page
+-rw-r--r--. 1 root root 2615 May 13  2019 /usr/share/help/as/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 3643 May 13  2019 /usr/share/help/as/gnome-help/backup-frequency.page
+-rw-r--r--. 1 root root 4242 May 13  2019 /usr/share/help/as/gnome-help/backup-how.page
+-rw-r--r--. 1 root root 2601 May 13  2019 /usr/share/help/as/gnome-help/backup-restore.page
+-rw-r--r--. 1 root root 4650 May 13  2019 /usr/share/help/as/gnome-help/backup-thinkabout.page
+-rw-r--r--. 1 root root 4854 May 13  2019 /usr/share/help/as/gnome-help/backup-what.page
+-rw-r--r--. 1 root root 3430 May 13  2019 /usr/share/help/as/gnome-help/backup-where.page
+-rw-r--r--. 1 root root 1660 May 13  2019 /usr/share/help/as/gnome-help/backup-why.page
+-rw-r--r--. 1 root root 2210 May 13  2019 /usr/share/help/ca/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 2674 May 13  2019 /usr/share/help/ca/gnome-help/backup-frequency.page
+-rw-r--r--. 1 root root 3007 May 13  2019 /usr/share/help/ca/gnome-help/backup-how.page
+-rw-r--r--. 1 root root 1740 May 13  2019 /usr/share/help/ca/gnome-help/backup-restore.page
+-rw-r--r--. 1 root root 3986 May 13  2019 /usr/share/help/ca/gnome-help/backup-thinkabout.page
+-rw-r--r--. 1 root root 3215 May 13  2019 /usr/share/help/ca/gnome-help/backup-what.page
+-rw-r--r--. 1 root root 2824 May 13  2019 /usr/share/help/ca/gnome-help/backup-where.page
+-rw-r--r--. 1 root root 1685 May 13  2019 /usr/share/help/ca/gnome-help/backup-why.page
+-rw-r--r--. 1 root root 2363 May 13  2019 /usr/share/help/cs/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 2601 May 13  2019 /usr/share/help/cs/gnome-help/backup-frequency.page
+-rw-r--r--. 1 root root 2883 May 13  2019 /usr/share/help/cs/gnome-help/backup-how.page
+-rw-r--r--. 1 root root 1858 May 13  2019 /usr/share/help/cs/gnome-help/backup-restore.page
+-rw-r--r--. 1 root root 3996 May 13  2019 /usr/share/help/cs/gnome-help/backup-thinkabout.page
+-rw-r--r--. 1 root root 3127 May 13  2019 /usr/share/help/cs/gnome-help/backup-what.page
+-rw-r--r--. 1 root root 2857 May 13  2019 /usr/share/help/cs/gnome-help/backup-where.page
+-rw-r--r--. 1 root root 1892 May 13  2019 /usr/share/help/cs/gnome-help/backup-why.page
+-rw-r--r--. 1 root root 1856 May 13  2019 /usr/share/help/da/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 2040 May 13  2019 /usr/share/help/da/gnome-help/backup-frequency.page
+-rw-r--r--. 1 root root 2397 May 13  2019 /usr/share/help/da/gnome-help/backup-how.page
+-rw-r--r--. 1 root root 1362 May 13  2019 /usr/share/help/da/gnome-help/backup-restore.page
+-rw-r--r--. 1 root root 3311 May 13  2019 /usr/share/help/da/gnome-help/backup-thinkabout.page
+-rw-r--r--. 1 root root 2546 May 13  2019 /usr/share/help/da/gnome-help/backup-what.page
+-rw-r--r--. 1 root root 2309 May 13  2019 /usr/share/help/da/gnome-help/backup-where.page
+-rw-r--r--. 1 root root 1302 May 13  2019 /usr/share/help/da/gnome-help/backup-why.page
+-rw-r--r--. 1 root root 3251 May 13  2019 /usr/share/help/de/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 3436 May 13  2019 /usr/share/help/de/gnome-help/backup-frequency.page
+-rw-r--r--. 1 root root 3818 May 13  2019 /usr/share/help/de/gnome-help/backup-how.page
+-rw-r--r--. 1 root root 2735 May 13  2019 /usr/share/help/de/gnome-help/backup-restore.page
+-rw-r--r--. 1 root root 4939 May 13  2019 /usr/share/help/de/gnome-help/backup-thinkabout.page
+-rw-r--r--. 1 root root 4021 May 13  2019 /usr/share/help/de/gnome-help/backup-what.page
+-rw-r--r--. 1 root root 3706 May 13  2019 /usr/share/help/de/gnome-help/backup-where.page
+-rw-r--r--. 1 root root 2649 May 13  2019 /usr/share/help/de/gnome-help/backup-why.page
+-rw-r--r--. 1 root root 4349 May 13  2019 /usr/share/help/el/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 5132 May 13  2019 /usr/share/help/el/gnome-help/backup-frequency.page
+-rw-r--r--. 1 root root 5562 May 13  2019 /usr/share/help/el/gnome-help/backup-how.page
+-rw-r--r--. 1 root root 3614 May 13  2019 /usr/share/help/el/gnome-help/backup-restore.page
+-rw-r--r--. 1 root root 6883 May 13  2019 /usr/share/help/el/gnome-help/backup-thinkabout.page
+-rw-r--r--. 1 root root 6104 May 13  2019 /usr/share/help/el/gnome-help/backup-what.page
+-rw-r--r--. 1 root root 4888 May 13  2019 /usr/share/help/el/gnome-help/backup-where.page
+-rw-r--r--. 1 root root 3678 May 13  2019 /usr/share/help/el/gnome-help/backup-why.page
+-rw-r--r--. 1 root root 2941 May 13  2019 /usr/share/help/es/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 3265 May 13  2019 /usr/share/help/es/gnome-help/backup-frequency.page
+-rw-r--r--. 1 root root 3592 May 13  2019 /usr/share/help/es/gnome-help/backup-how.page
+-rw-r--r--. 1 root root 2404 May 13  2019 /usr/share/help/es/gnome-help/backup-restore.page
+-rw-r--r--. 1 root root 4639 May 13  2019 /usr/share/help/es/gnome-help/backup-thinkabout.page
+-rw-r--r--. 1 root root 3692 May 13  2019 /usr/share/help/es/gnome-help/backup-what.page
+-rw-r--r--. 1 root root 3418 May 13  2019 /usr/share/help/es/gnome-help/backup-where.page
+-rw-r--r--. 1 root root 2426 May 13  2019 /usr/share/help/es/gnome-help/backup-why.page
+-rw-r--r--. 1 root root 2335 May 13  2019 /usr/share/help/fi/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 2562 May 13  2019 /usr/share/help/fi/gnome-help/backup-frequency.page
+-rw-r--r--. 1 root root 2911 May 13  2019 /usr/share/help/fi/gnome-help/backup-how.page
+-rw-r--r--. 1 root root 1814 May 13  2019 /usr/share/help/fi/gnome-help/backup-restore.page
+-rw-r--r--. 1 root root 3903 May 13  2019 /usr/share/help/fi/gnome-help/backup-thinkabout.page
+-rw-r--r--. 1 root root 2995 May 13  2019 /usr/share/help/fi/gnome-help/backup-what.page
+-rw-r--r--. 1 root root 2974 May 13  2019 /usr/share/help/fi/gnome-help/backup-where.page
+-rw-r--r--. 1 root root 1896 May 13  2019 /usr/share/help/fi/gnome-help/backup-why.page
+-rw-r--r--. 1 root root 4131 May 13  2019 /usr/share/help/fr/gnome-help/backup-check.page
+-rw-r--r--. 1 root root 4388 May 13  2019 /usr/share/help/fr/gnome-help/backup-frequency.page
+
+╔══════════╣ Searching tables inside readable .db/.sql/.sqlite files (limit 100)
+Found /etc/pki/nssdb/cert8.db: Berkeley DB 1.85 (Hash, version 2, native byte-order)   
+Found /etc/pki/nssdb/cert9.db: SQLite 3.x database, last written using SQLite version 0
+Found /etc/pki/nssdb/key3.db: Berkeley DB 1.85 (Hash, version 2, native byte-order)
+Found /etc/pki/nssdb/key4.db: SQLite 3.x database, last written using SQLite version 0
+Found /etc/pki/nssdb/secmod.db: Berkeley DB 1.85 (Hash, version 2, native byte-order)
+Found /home/dwight/.local/share/containers/storage/libpod/bolt_state.db: data
+Found /var/lib/PackageKit/transactions.db: SQLite 3.x database, last written using SQLite version 3026000
+Found /var/lib/colord/mapping.db: SQLite 3.x database, last written using SQLite version 3026000
+Found /var/lib/colord/storage.db: SQLite 3.x database, last written using SQLite version 3026000
+Found /var/lib/dnf/history.sqlite: SQLite 3.x database, last written using SQLite version 3026000
+Found /var/lib/fwupd/pending.db: SQLite 3.x database, last written using SQLite version 3026000
+
+ -> Extracting tables from /etc/pki/nssdb/cert9.db (limit 20)
+ -> Extracting tables from /etc/pki/nssdb/key4.db (limit 20)                       
+ -> Extracting tables from /var/lib/PackageKit/transactions.db (limit 20)          
+ -> Extracting tables from /var/lib/colord/mapping.db (limit 20)                   
+ -> Extracting tables from /var/lib/colord/storage.db (limit 20)                   
+ -> Extracting tables from /var/lib/dnf/history.sqlite (limit 20)                  
+ -> Extracting tables from /var/lib/fwupd/pending.db (limit 20)                    
+
+╔══════════╣ Web files?(output limit)
+/var/www/:
+total 4.0K
+drwxr-xr-x.  4 root root   33 Nov 11  2021 .
+drwxr-xr-x. 22 root root 4.0K Jan 14  2022 ..
+drwxr-xr-x.  2 root root    6 Nov 11  2021 cgi-bin
+drwxr-xr-x.  4 root root   38 Nov 11  2021 html
+
+/var/www/cgi-bin:
+total 0
+drwxr-xr-x. 2 root root  6 Nov 11  2021 .
+
+╔══════════╣ All relevant hidden files (not in /sys/ or the ones listed in the previous check) (limit 70)
+-rw-r--r--. 1 root root 172 Dec 22  2021 /boot/.vmlinuz-4.18.0-348.7.1.el8_5.x86_64.hmac  
+-rw------- 1 root root 0 Oct 29 15:35 /run/lsm/ipc/.lsmd-ipc-lock
+-rw-r--r-- 1 root root 0 Oct 29 15:35 /run/initramfs/.need_shutdown
+-rw-r--r--. 1 root root 18 Jul 27  2021 /etc/skel/.bash_logout
+-rw-r--r--. 1 root root 129 Dec 21  2021 /etc/selinux/targeted/.policy.sha512
+-rw-------. 1 root root 0 Jul  3  2021 /etc/.pwd.lock
+-rw-------. 1 root root 147 Aug  7  2018 /etc/insights-client/.exp.sed
+-rw-------. 1 root root 80626 Dec 11  2018 /etc/insights-client/.fallback.json
+-rw-------. 1 root root 811 Dec 11  2018 /etc/insights-client/.fallback.json.asc
+-rw-r--r--. 1 root root 208 Jan 14  2022 /etc/.updated
+-rw-r--r--. 1 root root 0 Jul  3  2021 /var/lib/rpm/.rpm.lock
+-rw-r--r--. 1 root root 0 Jul  3  2021 /var/lib/flatpak/.changed
+-rw-r--r-- 1 root root 208 Jan 14  2022 /var/.updated
+-rw-r--r--. 1 root root 165 Jun  4  2019 /usr/lib/modules/4.18.0-80.el8.x86_64/.vmlinuz.hmac
+-rw-r--r--. 1 root root 172 Dec 22  2021 /usr/lib/modules/4.18.0-348.7.1.el8_5.x86_64/.vmlinuz.hmac
+-rw-r--r-- 1 root root 0 Sep 29  2021 /usr/lib/dracut/modules.d/99squash/.shchkdir
+-rw-r--r-- 1 root root 88 Oct 26  1985 /usr/lib/node_modules/node-gyp/.jshintrc
+-rw-r--r-- 1 root root 62 Oct 26  1985 /usr/lib/node_modules/node-gyp/node_modules/ajv/scripts/.eslintrc.yml
+-rw-r--r-- 1 root root 439 Oct 26  1985 /usr/lib/node_modules/node-gyp/node_modules/ajv/.tonic_example.js
+-rw-r--r-- 1 root root 286 Oct 26  1985 /usr/lib/node_modules/node-gyp/node_modules/extend/.editorconfig
+-rw-r--r-- 1 root root 397 Oct 26  1985 /usr/lib/node_modules/node-gyp/node_modules/extend/.eslintrc
+-rw-r--r-- 1 root root 4096 Oct 26  1985 /usr/lib/node_modules/node-gyp/node_modules/extend/.jscs.json
+-rw-r--r-- 1 root root 562 Oct 26  1985 /usr/lib/node_modules/node-gyp/node_modules/fast-json-stable-stringify/.eslintrc.yml
+-rw-r--r-- 1 root root 178 Aug 24  2017 /usr/lib/node_modules/node-gyp/node_modules/http-signature/.dir-locals.el
+-rw-r--r-- 1 root root 1147 Apr  6  2014 /usr/lib/node_modules/node-gyp/node_modules/isstream/.jshintrc
+-rw-r--r-- 1 root root 630 May  8  2018 /usr/lib/node_modules/node-gyp/node_modules/json-schema-traverse/.eslintrc.yml
+-rw-r--r-- 1 root root 91 May  8  2018 /usr/lib/node_modules/node-gyp/node_modules/json-schema-traverse/spec/.eslintrc.yml
+-rw-r--r-- 1 root root 193 Jan  3  2017 /usr/lib/node_modules/node-gyp/node_modules/performance-now/.tm_properties
+-rw-r--r-- 1 root root 399 Jul 26  2017 /usr/lib/node_modules/node-gyp/node_modules/qs/.editorconfig
+-rw-r--r-- 1 root root 5 Dec 23  2015 /usr/lib/node_modules/node-gyp/node_modules/qs/.eslintignore
+-rw-r--r-- 1 root root 554 May  2  2018 /usr/lib/node_modules/node-gyp/node_modules/qs/.eslintrc
+-rw-r--r-- 1 root root 348 Sep  9  2017 /usr/lib/node_modules/node-gyp/node_modules/qs/test/.eslintrc
+-rw-r--r-- 1 root root 245 Jan 10  2022 /usr/lib/node_modules/npm/.licensee.json
+-rw-r--r-- 1 root root 3274 Jan 10  2022 /usr/lib/node_modules/npm/.mailmap
+-rw-r--r-- 1 root root 0 Oct 14  2021 /usr/lib/node_modules/npm/.npmrc
+-rw-r--r-- 1 root root 1160 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/color-name/.eslintrc.json
+-rw-r--r-- 1 root root 46 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/debug/.coveralls.yml
+-rw-r--r-- 1 root root 276 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/define-properties/.editorconfig
+-rw-r--r-- 1 root root 4108 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/define-properties/.jscs.json
+-rw-r--r-- 1 root root 179 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/err-code/.editorconfig
+-rw-r--r-- 1 root root 127 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/err-code/.eslintrc.json
+-rw-r--r-- 1 root root 276 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/es-abstract/.editorconfig
+-rw-r--r-- 1 root root 4003 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/es-abstract/.jscs.json
+-rw-r--r-- 1 root root 234 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/es-abstract/.nycrc
+-rw-r--r-- 1 root root 286 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/es-to-primitive/.editorconfig
+-rw-r--r-- 1 root root 4130 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/es-to-primitive/.jscs.json
+-rw-r--r-- 1 root root 286 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/extend/.editorconfig
+-rw-r--r-- 1 root root 4096 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/extend/.jscs.json
+-rw-r--r-- 1 root root 562 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/fast-json-stable-stringify/.eslintrc.yml
+-rw-r--r-- 1 root root 421 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/fs-vacuum/.eslintrc
+-rw-r--r-- 1 root root 286 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/function-bind/.editorconfig
+-rw-r--r-- 1 root root 4140 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/function-bind/.jscs.json
+-rw-r--r-- 1 root root 439 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/har-validator/node_modules/ajv/.tonic_example.js
+-rw-r--r-- 1 root root 62 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/har-validator/node_modules/ajv/scripts/.eslintrc.yml
+-rw-r--r-- 1 root root 630 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/har-validator/node_modules/json-schema-traverse/.eslintrc.yml
+-rw-r--r-- 1 root root 91 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/har-validator/node_modules/json-schema-traverse/spec/.eslintrc.yml
+-rw-r--r-- 1 root root 178 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/http-signature/.dir-locals.el
+-rw-r--r-- 1 root root 715 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/https-proxy-agent/.editorconfig
+-rw-r--r-- 1 root root 2935 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/https-proxy-agent/.eslintrc.js
+-rw-r--r-- 1 root root 286 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/is-callable/.editorconfig
+-rw-r--r-- 1 root root 993 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/is-callable/.istanbul.yml
+-rw-r--r-- 1 root root 4128 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/is-callable/.jscs.json
+-rw-r--r-- 1 root root 2878 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/is-date-object/.jscs.json
+-rw-r--r-- 1 root root 4140 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/is-regex/.jscs.json
+-rw-r--r-- 1 root root 276 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/is-symbol/.editorconfig
+-rw-r--r-- 1 root root 4128 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/is-symbol/.jscs.json
+-rw-r--r-- 1 root root 5 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/is-symbol/.nvmrc
+-rw-r--r-- 1 root root 286 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/normalize-package-data/node_modules/resolve/.editorconfig
+-rw-r--r-- 1 root root 13 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/normalize-package-data/node_modules/resolve/.eslintignore
+-rw-r--r-- 1 root root 276 Jan 10  2022 /usr/lib/node_modules/npm/node_modules/object.getownpropertydescriptors/.editorconfig
+
+╔══════════╣ Readable files inside /tmp, /var/tmp, /private/tmp, /private/var/at/tmp, /private/var/tmp, and backup folders (limit 70)
+-rw-rw-r-- 1 dwight dwight 1832 Oct 29 15:55 /var/tmp/dnf-dwight-u9x3_81w/dnf.log  
+-rw-rw-r-- 1 dwight dwight 464 Oct 29 15:55 /var/tmp/dnf-dwight-u9x3_81w/dnf.librepo.log
+-rw-rw-r-- 1 dwight dwight 58 Oct 29 15:55 /var/tmp/dnf-dwight-u9x3_81w/dnf.rpm.log
+-rw-rw-r-- 1 dwight dwight 2 Oct 29 15:55 /var/tmp/dnf-dwight-u9x3_81w/expired_repos.json
+-rw-rw-r-- 1 dwight dwight 60 Oct 29 15:55 /var/tmp/dnf-dwight-u9x3_81w/hawkey.log
+
+╔══════════╣ Searching passwords in history files
+/opt/Rocket.Chat/programs/server/npm/node_modules/pdfjs-dist/lib/test/unit/pdf_history_spec.js: * @licstart The following is the entire license notice for the
+/opt/Rocket.Chat/programs/server/npm/node_modules/pdfjs-dist/lib/test/unit/pdf_history_spec.js: * @licend The above is the entire license notice for the
+/opt/Rocket.Chat/programs/server/npm/node_modules/pdfjs-dist/lib/web/pdf_history.js: * @licstart The following is the entire license notice for the
+/opt/Rocket.Chat/programs/server/npm/node_modules/pdfjs-dist/lib/web/pdf_history.js: * @licend The above is the entire license notice for the
+/opt/Rocket.Chat/programs/server/npm/node_modules/pdfjs-dist/lib/web/view_history.js: * @licstart The following is the entire license notice for the
+/opt/Rocket.Chat/programs/server/npm/node_modules/pdfjs-dist/lib/web/view_history.js: * @licend The above is the entire license notice for the
+
+╔══════════╣ Searching *password* or *credential* files in home (limit 70)
+/etc/authselect/password-auth              
+/etc/brlapi.key
+/etc/pam.d/gdm-password
+/etc/pam.d/password-auth
+/etc/pki/tls/private/localhost.key
+/etc/trusted-key.key
+/etc/unbound/root.key
+/opt/Rocket.Chat/programs/server/node_modules/node-gyp/test/fixtures/server.key
+/opt/Rocket.Chat/programs/server/npm/node_modules/@google-cloud/common/node_modules/agent-base/test/ssl-cert-snakeoil.key
+/opt/Rocket.Chat/programs/server/npm/node_modules/@google-cloud/common/node_modules/google-auth-library/build/src/auth/credentials.d.ts
+/opt/Rocket.Chat/programs/server/npm/node_modules/@google-cloud/common/node_modules/google-auth-library/build/src/auth/credentials.js
+/opt/Rocket.Chat/programs/server/npm/node_modules/@grpc/grpc-js/build/src/call-credentials-filter.d.ts
+/opt/Rocket.Chat/programs/server/npm/node_modules/@grpc/grpc-js/build/src/call-credentials-filter.js
+/opt/Rocket.Chat/programs/server/npm/node_modules/@grpc/grpc-js/build/src/call-credentials-filter.js.map
+/opt/Rocket.Chat/programs/server/npm/node_modules/@grpc/grpc-js/build/src/call-credentials.d.ts
+  #)There are more creds/passwds files in the previous parent folder
+
+/opt/Rocket.Chat/programs/server/npm/node_modules/@grpc/grpc-js/src/call-credentials.ts
+/opt/Rocket.Chat/programs/server/npm/node_modules/@grpc/grpc-js/src/channel-credentials.ts
+/opt/Rocket.Chat/programs/server/npm/node_modules/@grpc/grpc-js/src/server-credentials.ts
+  #)There are more creds/passwds files in the previous parent folder
+
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/lib/credentials
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/cert.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certIssuerKey.p12
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certIssuerKey.pem
+/opt/Rocket.Chat/programs/server/npm/node_modules/apn/test/credentials/support/certIssuerKeyOpenSSL.p12
+  #)There are more creds/passwds files in the previous parent folder
+
+/opt/Rocket.Chat/programs/server/npm/node_modules/aws-sdk/lib/credentials
+/opt/Rocket.Chat/programs/server/npm/node_modules/aws-sdk/lib/credentials.d.ts
+/opt/Rocket.Chat/programs/server/npm/node_modules/aws-sdk/lib/credentials.js
+/opt/Rocket.Chat/programs/server/npm/node_modules/aws-sdk/lib/credentials/chainable_temporary_credentials.d.ts
+/opt/Rocket.Chat/programs/server/npm/node_modules/aws-sdk/lib/credentials/chainable_temporary_credentials.js
+/opt/Rocket.Chat/programs/server/npm/node_modules/aws-sdk/lib/credentials/cognito_identity_credentials.d.ts
+/opt/Rocket.Chat/programs/server/npm/node_modules/aws-sdk/lib/credentials/cognito_identity_credentials.js
+  #)There are more creds/passwds files in the previous parent folder
+
+
+╔══════════╣ Checking for TTY (sudo/su) passwords in audit logs
+
+╔══════════╣ Searching passwords inside logs (limit 70)
+
+
+
+   ╔════════════════╗
+════════════════════════════════╣ API Keys Regex ╠════════════════════════════════ 
+   ╚════════════════╝         
+Regexes to search for API keys aren't activated, use param '-r' 
+
