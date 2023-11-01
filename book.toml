@@ -9,6 +9,7 @@ title = "trophyroom"
 [output.html]
 git-repository-url = "https://github.com/thomaslaurenson/trophy_room/tree/main"
 edit-url-template = "https://github.com/thomaslaurenson/trophy_room/edit/main/{path}"
+cname = "trophyroom.thomaslaurenson.com"
 
 [output.html.playground]
 editable = false
