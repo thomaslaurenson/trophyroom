@@ -4,7 +4,7 @@ description = "Collection of walk through, hints, notes, code snippets, tools lo
 language = "en"
 multilingual = false
 src = "."
-title = "trophyroom"
+title = "Trophy Room"
 
 [output.html]
 git-repository-url = "https://github.com/thomaslaurenson/trophy_room/tree/main"
