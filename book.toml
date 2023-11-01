@@ -1,0 +1,24 @@
+[book]
+authors = ["Thomas Laurenson"]
+description = "Collection of walk through, hints, notes, code snippets, tools logs and resources for vulnerable CTF-style boxes"
+language = "en"
+multilingual = false
+src = "."
+title = "trophyroom"
+
+[output.html]
+git-repository-url = "https://github.com/thomaslaurenson/trophy_room/tree/main"
+edit-url-template = "https://github.com/thomaslaurenson/trophy_room/edit/main/{path}"
+
+[output.html.playground]
+editable = false
+line-numbers = true
+
+[output.html.search]
+limit-results = 50
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 2
+boost-paragraph = 1
+expand = true
+heading-split-level = 2
