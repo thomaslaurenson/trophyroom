@@ -14,15 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install mdbook
-        run: |
-          cargo install mdbook \
-          --no-default-features \
-          --vers "^0.4" \
-          --locked
+      - name: Download mdbook
+        run: make install_mdbook
 
-      - name: Build mdbook
-        run: mdbook build
+      - name: Build mdbook project
+        run: make build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
