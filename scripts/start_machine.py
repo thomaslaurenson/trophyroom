@@ -5,11 +5,14 @@ import pathlib
 
 print("[+] 1. Hack The Box")
 print("[+] 2. VulnHub")
-machine_provider = input("[+] Enter machine provider [1/2]: ")
+print("[+] 3. Proving Grounds")
+machine_provider = input("[+] Enter machine provider [1/2/3]: ")
 if machine_provider == "1":
     machine_provider = "hackthebox"
 elif machine_provider == "2":
     machine_provider = "vulnhub"
+elif machine_provider == "3":
+    machine_provider = "provinggrounds"
 else:
     print("[-] Not a valid choice. Exiting.")
     exit(1)

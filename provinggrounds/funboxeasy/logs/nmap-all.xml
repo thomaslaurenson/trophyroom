@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Fri Nov  3 13:29:51 2023 as: nmap -p- -v -oA nmap-all -&#45;min-rate=1000 192.168.220.111 -->
+<nmaprun scanner="nmap" args="nmap -p- -v -oA nmap-all -&#45;min-rate=1000 192.168.220.111" start="1698971391" startstr="Fri Nov  3 13:29:51 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="1"/>
+<debugging level="0"/>
+<taskbegin task="Ping Scan" time="1698971391"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.220.111" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskend task="Ping Scan" time="1698971391" extrainfo="1 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1698971391"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1698971391"/>
+<taskbegin task="Connect Scan" time="1698971391"/>
+<taskprogress task="Connect Scan" time="1698971422" percent="45.29" remaining="38" etc="1698971459"/>
+<taskend task="Connect Scan" time="1698971459" extrainfo="65535 total ports"/>
+<host starttime="1698971391" endtime="1698971459"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="192.168.220.111" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65532">
+<extrareasons reason="conn-refused" count="65532" proto="tcp" ports="1-21,23-79,81-33059,33061-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="33060"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="mysqlx" method="table" conf="3"/></port>
+</ports>
+<times srtt="205058" rttvar="1236" to="210002"/>
+</host>
+<runstats><finished time="1698971459" timestr="Fri Nov  3 13:30:59 2023" summary="Nmap done at Fri Nov  3 13:30:59 2023; 1 IP address (1 host up) scanned in 67.75 seconds" elapsed="67.75" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

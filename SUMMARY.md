@@ -40,3 +40,7 @@
 - [sense](./hackthebox/sense/README.md)
 - [spectra](./hackthebox/spectra/README.md)
 - [schooled](./hackthebox/schooled/README.md)
+
+# Proving Grounds
+
+- [funboxeasy](./provinggrounds/funboxeasy/README.md)

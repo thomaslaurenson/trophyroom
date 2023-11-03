@@ -1,0 +1,13 @@
+/admin               [36m (Status: 301)[0m [Size: 318][34m [--> http://192.168.220.111/admin/][0m
+/logout.php          [32m (Status: 200)[0m [Size: 75]
+/store               [36m (Status: 301)[0m [Size: 318][34m [--> http://192.168.220.111/store/][0m
+/profile.php         [36m (Status: 302)[0m [Size: 7247][34m [--> http://192.168.220.111/index.php][0m
+/index.php           [32m (Status: 200)[0m [Size: 3468]
+/registration.php    [32m (Status: 200)[0m [Size: 9409]
+/header.php          [32m (Status: 200)[0m [Size: 1666]
+/dashboard.php       [36m (Status: 302)[0m [Size: 10272][34m [--> http://192.168.220.111/index.php][0m
+/secret              [36m (Status: 301)[0m [Size: 319][34m [--> http://192.168.220.111/secret/][0m
+/forgot-password.php [32m (Status: 200)[0m [Size: 2763]
+/server-status       [33m (Status: 403)[0m [Size: 280]
+/.php                [33m (Status: 403)[0m [Size: 280]
+/change-password.php [36m (Status: 302)[0m [Size: 11239][34m [--> http://192.168.220.111/index.php][0m

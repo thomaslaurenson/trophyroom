@@ -1,0 +1,11 @@
+# Nmap 7.94 scan initiated Fri Nov  3 13:29:51 2023 as: nmap -p- -v -oA nmap-all --min-rate=1000 192.168.220.111
+Nmap scan report for 192.168.220.111
+Host is up (0.21s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+33060/tcp open  mysqlx
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Fri Nov  3 13:30:59 2023 -- 1 IP address (1 host up) scanned in 67.75 seconds
