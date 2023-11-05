@@ -52,15 +52,15 @@ def generate_badges():
         f"{base_url}/pg_writeups-{completed_box_count}-green"
         f"?logo=data:image/png;base64,{PG_BADGE_ICON}"
     )
-    badge_writeups = f"![htb writeups]({badge_url})"
+    badge_writeups = f"![pg writeups]({badge_url})"
 
     # Make oscp-like completed percentage badge
     coverage = round(completed_box_count_oscp / len(MACHINES_OSCP) * 100)
     badge_url = (
-        f"{base_url}/htb_writeups-{coverage}%25-green"
+        f"{base_url}/pg_writeups-{coverage}%25-green"
         f"?logo=data:image/png;base64,{PG_BADGE_ICON})"
     )
-    badge_coverage = f"![htb oscp coverage]({badge_url}"
+    badge_coverage = f"![pg oscp coverage]({badge_url}"
 
     return f"{badge_writeups} {badge_coverage}\n"
 
@@ -84,7 +84,7 @@ def generate_toc_table():
     for box_name in completed_boxes:
         box_data = machines_retired_lookup[box_name]
         name = box_data["name"]
-        url = f"hackthebox/{name}".lower()
+        url = f"provinggrounds/{name}".lower()
         os = box_data["primary_os"]
         match os:
             case 1:
