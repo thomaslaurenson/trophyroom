@@ -1,0 +1,1353 @@
+[
+    {
+        "name": "Lampiao",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-07-20T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "BTRSys2.1",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2020-07-20T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Sar",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-07-20T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Dawn",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-07-20T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "NoName",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2020-07-20T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Inclusiveness",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-07-20T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Vegeta1",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-08-25T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Solstice",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-08-25T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "My-CMSMS",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-08-25T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Sumo",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-09-01T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Katana",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-09-01T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Ha-natraj",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-09-01T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Tre",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-09-01T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Funbox",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2020-09-02T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Photographer",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-09-02T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Shakabrah",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-09-03T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "GlasgowSmile",
+        "primary_os": 2,
+        "difficulty": 3,
+        "release_date": "2020-09-01T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Seppuku",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-09-01T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "SoSimple",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2020-09-02T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "SunsetMidnight",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-09-04T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "InfosecPrep",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-09-04T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Assertion101",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2020-09-16T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Pwned1",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-09-16T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "SunsetDecoy",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-09-16T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "CyberSploit1",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-10-06T13:15:07",
+        "type": "play"
+    },
+    {
+        "name": "Djinn3",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2020-10-11T00:00:00",
+        "type": "play"
+    },
+    {
+        "name": "Potato",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-10-19T13:28:29",
+        "type": "play"
+    },
+    {
+        "name": "FunboxRookie",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-11-02T17:10:30",
+        "type": "play"
+    },
+    {
+        "name": "FunboxEasy",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-11-16T15:56:19",
+        "type": "play"
+    },
+    {
+        "name": "PyExp",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-12-03T19:03:00",
+        "type": "play"
+    },
+    {
+        "name": "Loly",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2020-12-10T20:33:28",
+        "type": "play"
+    },
+    {
+        "name": "SunsetNoontide",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-12-21T15:18:16",
+        "type": "play"
+    },
+    {
+        "name": "InsanityHosting",
+        "primary_os": 8,
+        "difficulty": 3,
+        "release_date": "2021-01-20T15:04:51",
+        "type": "play"
+    },
+    {
+        "name": "BBSCute",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2021-02-08T12:41:04",
+        "type": "play"
+    },
+    {
+        "name": "OnSystemShellDredd",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2021-02-23T15:55:54",
+        "type": "play"
+    },
+    {
+        "name": "FunboxEasyEnum",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2021-03-11T17:10:46",
+        "type": "play"
+    },
+    {
+        "name": "Monitoring",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2021-04-01T12:11:24",
+        "type": "play"
+    },
+    {
+        "name": "Gaara",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2021-05-04T13:44:04",
+        "type": "play"
+    },
+    {
+        "name": "Stapler",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2021-06-17T11:44:23",
+        "type": "play"
+    },
+    {
+        "name": "Moneybox",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2022-11-02T18:17:25",
+        "type": "play"
+    },
+    {
+        "name": "Empire-breakout",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2023-01-24T22:11:30",
+        "type": "play"
+    },
+    {
+        "name": "Amaterasu",
+        "primary_os": 10,
+        "difficulty": 1,
+        "release_date": "2023-03-28T12:58:37",
+        "type": "play"
+    },
+    {
+        "name": "DC-1",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2022-04-04T12:02:55",
+        "type": "play"
+    },
+    {
+        "name": "DC-2",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2022-04-04T12:03:12",
+        "type": "play"
+    },
+    {
+        "name": "DC-4",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2022-04-04T12:03:12",
+        "type": "play"
+    },
+    {
+        "name": "DC-9",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2022-06-30T09:22:26",
+        "type": "play"
+    },
+    {
+        "name": "EvilBox-One",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2022-06-30T09:22:27",
+        "type": "play"
+    },
+    {
+        "name": "Election1",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-06-30T09:22:27",
+        "type": "play"
+    },
+    {
+        "name": "Blogger",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2022-08-25T12:29:29",
+        "type": "play"
+    },
+    {
+        "name": "ICMP",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2022-08-25T12:29:32",
+        "type": "play"
+    },
+    {
+        "name": "DriftingBlues6",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2022-08-25T12:29:36",
+        "type": "play"
+    },
+    {
+        "name": "Bratarina",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "PayDay",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Internal",
+        "primary_os": 3,
+        "difficulty": 1,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "ZenPhoto",
+        "primary_os": 4,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "ClamAV",
+        "primary_os": 5,
+        "difficulty": 1,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Helpdesk",
+        "primary_os": 3,
+        "difficulty": 1,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Kevin",
+        "primary_os": 6,
+        "difficulty": 1,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "AuthBy",
+        "primary_os": 3,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Nibbles",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Wombo",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Roquefort",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Zino",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Algernon",
+        "primary_os": 6,
+        "difficulty": 1,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Twiggy",
+        "primary_os": 8,
+        "difficulty": 1,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Peppo",
+        "primary_os": 2,
+        "difficulty": 3,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Shifty",
+        "primary_os": 2,
+        "difficulty": 3,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Billyboss",
+        "primary_os": 6,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Jacko",
+        "primary_os": 6,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Slort",
+        "primary_os": 6,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Quackerjack",
+        "primary_os": 8,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Sirol",
+        "primary_os": 2,
+        "difficulty": 3,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Shenzi",
+        "primary_os": 6,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Banzai",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Snookums",
+        "primary_os": 8,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Butch",
+        "primary_os": 3,
+        "difficulty": 2,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Pebbles",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2020-08-03T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Sybaris",
+        "primary_os": 8,
+        "difficulty": 2,
+        "release_date": "2020-10-06T13:15:10",
+        "type": "practice"
+    },
+    {
+        "name": "Pelican",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-10-11T00:00:00",
+        "type": "practice"
+    },
+    {
+        "name": "Nickel",
+        "primary_os": 6,
+        "difficulty": 2,
+        "release_date": "2020-10-28T13:26:16",
+        "type": "practice"
+    },
+    {
+        "name": "Nukem",
+        "primary_os": 9,
+        "difficulty": 2,
+        "release_date": "2020-10-28T13:26:19",
+        "type": "practice"
+    },
+    {
+        "name": "Sorcerer",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-11-02T17:10:35",
+        "type": "practice"
+    },
+    {
+        "name": "Dibble",
+        "primary_os": 10,
+        "difficulty": 2,
+        "release_date": "2020-11-09T13:37:34",
+        "type": "practice"
+    },
+    {
+        "name": "UC404",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2020-11-09T13:37:39",
+        "type": "practice"
+    },
+    {
+        "name": "CookieCutter",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2020-11-12T16:09:50",
+        "type": "practice"
+    },
+    {
+        "name": "Reconstruction",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2020-11-16T15:56:14",
+        "type": "practice"
+    },
+    {
+        "name": "Escape",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2020-11-16T15:56:23",
+        "type": "practice"
+    },
+    {
+        "name": "Nappa",
+        "primary_os": 9,
+        "difficulty": 2,
+        "release_date": "2020-11-25T18:29:54",
+        "type": "practice"
+    },
+    {
+        "name": "Megavolt",
+        "primary_os": 8,
+        "difficulty": 3,
+        "release_date": "2020-11-25T18:29:57",
+        "type": "practice"
+    },
+    {
+        "name": "Hetemit",
+        "primary_os": 8,
+        "difficulty": 2,
+        "release_date": "2020-12-10T19:04:16",
+        "type": "practice"
+    },
+    {
+        "name": "Cassios",
+        "primary_os": 8,
+        "difficulty": 2,
+        "release_date": "2020-12-17T16:37:29",
+        "type": "practice"
+    },
+    {
+        "name": "Splodge",
+        "primary_os": 8,
+        "difficulty": 2,
+        "release_date": "2020-12-21T15:18:20",
+        "type": "practice"
+    },
+    {
+        "name": "Vector",
+        "primary_os": 3,
+        "difficulty": 3,
+        "release_date": "2021-01-20T15:04:55",
+        "type": "practice"
+    },
+    {
+        "name": "Fail",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-01-28T13:50:13",
+        "type": "practice"
+    },
+    {
+        "name": "Hunit",
+        "primary_os": 9,
+        "difficulty": 2,
+        "release_date": "2021-02-01T13:35:46",
+        "type": "practice"
+    },
+    {
+        "name": "Malbec",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-02-08T12:41:08",
+        "type": "practice"
+    },
+    {
+        "name": "Medjed",
+        "primary_os": 6,
+        "difficulty": 2,
+        "release_date": "2021-02-15T13:48:26",
+        "type": "practice"
+    },
+    {
+        "name": "Phobos",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2021-02-23T15:55:57",
+        "type": "practice"
+    },
+    {
+        "name": "Hutch",
+        "primary_os": 3,
+        "difficulty": 2,
+        "release_date": "2021-03-01T13:24:36",
+        "type": "practice"
+    },
+    {
+        "name": "BadCorp",
+        "primary_os": 2,
+        "difficulty": 3,
+        "release_date": "2021-03-11T17:10:58",
+        "type": "practice"
+    },
+    {
+        "name": "Walla",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-03-15T12:38:24",
+        "type": "practice"
+    },
+    {
+        "name": "XposedAPI",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-03-24T15:18:21",
+        "type": "practice"
+    },
+    {
+        "name": "Develop",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2021-04-01T12:35:05",
+        "type": "practice"
+    },
+    {
+        "name": "Postfish",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2021-04-05T13:44:05",
+        "type": "practice"
+    },
+    {
+        "name": "Catto",
+        "primary_os": 8,
+        "difficulty": 2,
+        "release_date": "2021-04-22T12:26:52",
+        "type": "practice"
+    },
+    {
+        "name": "Flasky",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2021-04-29T12:41:33",
+        "type": "practice"
+    },
+    {
+        "name": "Tico",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2021-05-11T12:38:15",
+        "type": "practice"
+    },
+    {
+        "name": "G00g",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-05-18T13:04:58",
+        "type": "practice"
+    },
+    {
+        "name": "Hepet",
+        "primary_os": 6,
+        "difficulty": 2,
+        "release_date": "2021-05-26T14:17:28",
+        "type": "practice"
+    },
+    {
+        "name": "Apex",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2021-06-02T11:33:09",
+        "type": "practice"
+    },
+    {
+        "name": "Hawat",
+        "primary_os": 9,
+        "difficulty": 1,
+        "release_date": "2021-06-08T12:32:08",
+        "type": "practice"
+    },
+    {
+        "name": "Synapse",
+        "primary_os": 2,
+        "difficulty": 3,
+        "release_date": "2021-06-23T16:24:15",
+        "type": "practice"
+    },
+    {
+        "name": "Bunyip",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2021-07-14T18:07:09",
+        "type": "practice"
+    },
+    {
+        "name": "VoIP",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2021-07-27T18:35:45",
+        "type": "practice"
+    },
+    {
+        "name": "Sona",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2021-08-19T16:01:35",
+        "type": "practice"
+    },
+    {
+        "name": "Forward",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-08-19T16:01:37",
+        "type": "practice"
+    },
+    {
+        "name": "Spaghetti",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2021-08-31T13:45:10",
+        "type": "practice"
+    },
+    {
+        "name": "Muddy",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2021-08-31T13:45:15",
+        "type": "practice"
+    },
+    {
+        "name": "Cobweb",
+        "primary_os": 8,
+        "difficulty": 2,
+        "release_date": "2021-09-01T16:58:03",
+        "type": "practice"
+    },
+    {
+        "name": "Deployer",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2021-09-06T11:39:22",
+        "type": "practice"
+    },
+    {
+        "name": "Exfiltrated",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2021-09-06T11:39:27",
+        "type": "practice"
+    },
+    {
+        "name": "Chatty",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2021-09-16T14:48:00",
+        "type": "practice"
+    },
+    {
+        "name": "Heist",
+        "primary_os": 3,
+        "difficulty": 3,
+        "release_date": "2021-09-22T13:22:57",
+        "type": "practice"
+    },
+    {
+        "name": "Maria",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-09-27T18:24:56",
+        "type": "practice"
+    },
+    {
+        "name": "Craft",
+        "primary_os": 3,
+        "difficulty": 2,
+        "release_date": "2021-11-02T16:43:12",
+        "type": "practice"
+    },
+    {
+        "name": "Surf",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-11-11T18:44:48",
+        "type": "practice"
+    },
+    {
+        "name": "Readys",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-11-18T14:46:19",
+        "type": "practice"
+    },
+    {
+        "name": "Vault",
+        "primary_os": 3,
+        "difficulty": 3,
+        "release_date": "2021-11-24T16:26:22",
+        "type": "practice"
+    },
+    {
+        "name": "Injecto",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2021-12-06T16:57:58",
+        "type": "practice"
+    },
+    {
+        "name": "Shiftdel",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2021-12-15T16:12:24",
+        "type": "practice"
+    },
+    {
+        "name": "Depreciated",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-01-11T15:22:54",
+        "type": "practice"
+    },
+    {
+        "name": "Resourced",
+        "primary_os": 3,
+        "difficulty": 2,
+        "release_date": "2022-02-15T17:08:29",
+        "type": "practice"
+    },
+    {
+        "name": "DVR4",
+        "primary_os": 6,
+        "difficulty": 2,
+        "release_date": "2022-02-16T17:39:27",
+        "type": "practice"
+    },
+    {
+        "name": "Fanatastic",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2022-03-09T17:02:30",
+        "type": "practice"
+    },
+    {
+        "name": "Breakout",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-03-09T17:02:36",
+        "type": "practice"
+    },
+    {
+        "name": "Exghost",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2022-03-23T15:58:05",
+        "type": "practice"
+    },
+    {
+        "name": "Charlotte",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-03-23T16:38:05",
+        "type": "practice"
+    },
+    {
+        "name": "ERP",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-10-11T07:20:54",
+        "type": "practice"
+    },
+    {
+        "name": "Zipper",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2022-10-11T07:20:55",
+        "type": "practice"
+    },
+    {
+        "name": "Vanity",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-11-02T17:19:53",
+        "type": "practice"
+    },
+    {
+        "name": "Boolean",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-11-02T18:17:25",
+        "type": "practice"
+    },
+    {
+        "name": "Fractal",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2022-11-02T18:17:25",
+        "type": "practice"
+    },
+    {
+        "name": "Source",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2022-11-04T14:52:13",
+        "type": "practice"
+    },
+    {
+        "name": "RPC1",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-01-10T11:17:48",
+        "type": "practice"
+    },
+    {
+        "name": "Clue",
+        "primary_os": 2,
+        "difficulty": 3,
+        "release_date": "2023-01-10T13:33:36",
+        "type": "practice"
+    },
+    {
+        "name": "Marshalled",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-01-19T12:05:19",
+        "type": "practice"
+    },
+    {
+        "name": "Upsploit",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2023-01-19T12:05:19",
+        "type": "practice"
+    },
+    {
+        "name": "GLPI",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2023-03-21T14:10:40",
+        "type": "practice"
+    },
+    {
+        "name": "Bottleup",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-03-28T00:59:31",
+        "type": "practice"
+    },
+    {
+        "name": "ProStore",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-03-28T00:59:31",
+        "type": "practice"
+    },
+    {
+        "name": "Validator",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-03-28T11:33:26",
+        "type": "practice"
+    },
+    {
+        "name": "Wheels",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2022-06-09T12:28:58",
+        "type": "practice"
+    },
+    {
+        "name": "Illusion",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-06-09T12:28:58",
+        "type": "practice"
+    },
+    {
+        "name": "Mantis",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-06-09T12:28:58",
+        "type": "practice"
+    },
+    {
+        "name": "PlanetExpress",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2022-06-28T15:00:50",
+        "type": "practice"
+    },
+    {
+        "name": "KeyVault",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-06-28T15:00:50",
+        "type": "practice"
+    },
+    {
+        "name": "Thor",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2022-06-28T15:00:50",
+        "type": "practice"
+    },
+    {
+        "name": "Flower",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2022-08-01T16:05:48",
+        "type": "practice"
+    },
+    {
+        "name": "Lunar",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-08-01T16:05:49",
+        "type": "practice"
+    },
+    {
+        "name": "Hallucination",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-08-01T16:05:49",
+        "type": "practice"
+    },
+    {
+        "name": "Flimsy",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2022-08-30T14:03:44",
+        "type": "practice"
+    },
+    {
+        "name": "Rookie Mistake",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-08-30T14:03:44",
+        "type": "practice"
+    },
+    {
+        "name": "Scarlet",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-09-01T16:06:02",
+        "type": "practice"
+    },
+    {
+        "name": "Emporium",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2022-09-01T16:06:07",
+        "type": "practice"
+    },
+    {
+        "name": "Assignment",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2022-09-01T16:06:08",
+        "type": "practice"
+    },
+    {
+        "name": "Marketing",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-09-01T16:06:08",
+        "type": "practice"
+    },
+    {
+        "name": "Glider",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2022-09-01T16:06:08",
+        "type": "practice"
+    },
+    {
+        "name": "Cockpit",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-04-06T15:39:53",
+        "type": "practice"
+    },
+    {
+        "name": "Astronaut",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2023-04-06T15:39:53",
+        "type": "practice"
+    },
+    {
+        "name": "Educated",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-04-06T15:39:53",
+        "type": "practice"
+    },
+    {
+        "name": "Extplorer",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-04-06T15:39:53",
+        "type": "practice"
+    },
+    {
+        "name": "RubyDome",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2023-06-16T11:09:18",
+        "type": "practice"
+    },
+    {
+        "name": "Codo",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2023-06-16T11:18:19",
+        "type": "practice"
+    },
+    {
+        "name": "Levram",
+        "primary_os": 1,
+        "difficulty": 1,
+        "release_date": "2023-06-16T15:05:36",
+        "type": "practice"
+    },
+    {
+        "name": "Hub",
+        "primary_os": 2,
+        "difficulty": 1,
+        "release_date": "2023-06-16T15:18:24",
+        "type": "practice"
+    },
+    {
+        "name": "Osaka",
+        "primary_os": 3,
+        "difficulty": 3,
+        "release_date": "2023-06-16T15:31:40",
+        "type": "practice"
+    },
+    {
+        "name": "Nagoya",
+        "primary_os": 3,
+        "difficulty": 3,
+        "release_date": "2023-06-16T15:41:41",
+        "type": "practice"
+    },
+    {
+        "name": "Craft2",
+        "primary_os": 3,
+        "difficulty": 3,
+        "release_date": "2022-04-28T12:01:39",
+        "type": "practice"
+    },
+    {
+        "name": "Symbolic",
+        "primary_os": 3,
+        "difficulty": 2,
+        "release_date": "2022-04-28T12:01:42",
+        "type": "practice"
+    },
+    {
+        "name": "BlackGate",
+        "primary_os": 1,
+        "difficulty": 3,
+        "release_date": "2022-05-18T13:37:42",
+        "type": "practice"
+    },
+    {
+        "name": "Access",
+        "primary_os": 3,
+        "difficulty": 2,
+        "release_date": "2022-05-18T13:37:45",
+        "type": "practice"
+    },
+    {
+        "name": "Squid",
+        "primary_os": 3,
+        "difficulty": 1,
+        "release_date": "2022-05-18T13:37:47",
+        "type": "practice"
+    },
+    {
+        "name": "Matrimony",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2022-05-18T13:37:48",
+        "type": "practice"
+    },
+    {
+        "name": "Crane",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2023-08-31T11:36:33",
+        "type": "practice"
+    },
+    {
+        "name": "image",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-08-31T11:47:12",
+        "type": "practice"
+    },
+    {
+        "name": "law",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2023-08-31T13:37:31",
+        "type": "practice"
+    },
+    {
+        "name": "pc",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-08-31T13:51:52",
+        "type": "practice"
+    },
+    {
+        "name": "pyLoader",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-08-31T15:34:33",
+        "type": "practice"
+    },
+    {
+        "name": "bullyBox",
+        "primary_os": 1,
+        "difficulty": 2,
+        "release_date": "2023-08-31T15:45:27",
+        "type": "practice"
+    },
+    {
+        "name": "plum",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2023-08-31T17:35:46",
+        "type": "practice"
+    },
+    {
+        "name": "press",
+        "primary_os": 2,
+        "difficulty": 2,
+        "release_date": "2023-08-31T17:45:35",
+        "type": "practice"
+    },
+    {
+        "name": "nara",
+        "primary_os": 3,
+        "difficulty": 2,
+        "release_date": "2023-08-31T17:55:29",
+        "type": "practice"
+    },
+    {
+        "name": "Kyoto",
+        "primary_os": 3,
+        "difficulty": 2,
+        "release_date": "2023-08-31T18:03:58",
+        "type": "practice"
+    }
+]

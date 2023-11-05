@@ -1,0 +1,2138 @@
+[
+    {
+        "name": "Coder",
+        "os": "Windows",
+        "release": "2023-04-01T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Bookworm",
+        "os": "Linux",
+        "release": "2023-05-27T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Jupiter",
+        "os": "Linux",
+        "release": "2023-06-03T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Topology",
+        "os": "Linux",
+        "release": "2023-06-10T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Sandworm",
+        "os": "Linux",
+        "release": "2023-06-17T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Pilgrimage",
+        "os": "Linux",
+        "release": "2023-06-24T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Intentions",
+        "os": "Linux",
+        "release": "2023-07-01T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Sau",
+        "os": "Linux",
+        "release": "2023-07-08T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "RegistryTwo",
+        "os": "Linux",
+        "release": "2023-07-22T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Authority",
+        "os": "Windows",
+        "release": "2023-07-15T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Gofer",
+        "os": "Linux",
+        "release": "2023-07-29T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Download",
+        "os": "Linux",
+        "release": "2023-08-05T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Keeper",
+        "os": "Linux",
+        "release": "2023-08-12T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Cybermonday",
+        "os": "Linux",
+        "release": "2023-08-19T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Zipping",
+        "os": "Linux",
+        "release": "2023-08-26T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "CozyHosting",
+        "os": "Linux",
+        "release": "2023-09-02T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Rebound",
+        "os": "Windows",
+        "release": "2023-09-09T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Clicker",
+        "os": "Linux",
+        "release": "2023-09-23T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Visual",
+        "os": "Windows",
+        "release": "2023-09-30T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Analytics",
+        "os": "Linux",
+        "release": "2023-10-07T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Lame",
+        "os": "Linux",
+        "release": "2017-03-14T19:54:51.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Legacy",
+        "os": "Windows",
+        "release": "2017-03-14T22:45:38.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Devel",
+        "os": "Windows",
+        "release": "2017-03-14T22:45:40.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Popcorn",
+        "os": "Linux",
+        "release": "2017-03-14T22:45:42.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Beep",
+        "os": "Linux",
+        "release": "2017-03-14T22:45:43.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Optimum",
+        "os": "Windows",
+        "release": "2017-03-18T06:28:47.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Bastard",
+        "os": "Windows",
+        "release": "2017-03-18T20:19:32.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Tenten",
+        "os": "Linux",
+        "release": "2017-03-22T07:39:37.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Arctic",
+        "os": "Windows",
+        "release": "2017-03-22T07:40:48.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Cronos",
+        "os": "Linux",
+        "release": "2017-03-22T14:57:21.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Grandpa",
+        "os": "Windows",
+        "release": "2017-04-12T09:06:56.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Granny",
+        "os": "Windows",
+        "release": "2017-04-12T16:16:23.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "October",
+        "os": "Linux",
+        "release": "2017-04-20T18:13:09.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Brainfuck",
+        "os": "Linux",
+        "release": "2017-04-29T11:03:28.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Lazy",
+        "os": "Linux",
+        "release": "2017-05-03T13:06:37.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Sneaky",
+        "os": "Linux",
+        "release": "2017-05-14T05:54:28.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Joker",
+        "os": "Linux",
+        "release": "2017-05-19T10:57:26.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Haircut",
+        "os": "Linux",
+        "release": "2017-05-26T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Holiday",
+        "os": "Linux",
+        "release": "2017-06-02T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Bank",
+        "os": "Linux",
+        "release": "2017-06-16T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Europa",
+        "os": "Linux",
+        "release": "2017-06-23T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Calamity",
+        "os": "Linux",
+        "release": "2017-06-30T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Charon",
+        "os": "Linux",
+        "release": "2017-07-07T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Jail",
+        "os": "Linux",
+        "release": "2017-07-14T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Blocky",
+        "os": "Linux",
+        "release": "2017-07-21T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Blue",
+        "os": "Windows",
+        "release": "2017-07-28T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Nineveh",
+        "os": "Linux",
+        "release": "2017-08-04T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Apocalyst",
+        "os": "Linux",
+        "release": "2017-08-18T19:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Shrek",
+        "os": "Linux",
+        "release": "2017-08-25T19:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Mirai",
+        "os": "Linux",
+        "release": "2017-09-01T19:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "SolidState",
+        "os": "Linux",
+        "release": "2017-09-08T19:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Mantis",
+        "os": "Windows",
+        "release": "2017-09-16T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Kotarak",
+        "os": "Linux",
+        "release": "2017-09-23T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Shocker",
+        "os": "Linux",
+        "release": "2017-09-30T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Minion",
+        "os": "Windows",
+        "release": "2017-10-07T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Node",
+        "os": "Linux",
+        "release": "2017-10-14T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Sense",
+        "os": "OpenBSD",
+        "release": "2017-10-21T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Enterprise",
+        "os": "Linux",
+        "release": "2017-10-28T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Tally",
+        "os": "Windows",
+        "release": "2017-11-04T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Jeeves",
+        "os": "Windows",
+        "release": "2017-11-11T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Ariekei",
+        "os": "Linux",
+        "release": "2017-11-18T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Fulcrum",
+        "os": "Linux",
+        "release": "2017-11-25T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Inception",
+        "os": "Linux",
+        "release": "2017-12-02T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Bashed",
+        "os": "Linux",
+        "release": "2017-12-09T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "FluxCapacitor",
+        "os": "Linux",
+        "release": "2017-12-16T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "CrimeStoppers",
+        "os": "Linux",
+        "release": "2018-01-06T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Nibbles",
+        "os": "Linux",
+        "release": "2018-01-13T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Nightmare",
+        "os": "Linux",
+        "release": "2018-01-20T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Chatterbox",
+        "os": "Windows",
+        "release": "2018-01-27T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Falafel",
+        "os": "Linux",
+        "release": "2018-02-03T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Aragog",
+        "os": "Linux",
+        "release": "2018-02-10T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Valentine",
+        "os": "Linux",
+        "release": "2018-02-17T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Bart",
+        "os": "Windows",
+        "release": "2018-02-24T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Stratosphere",
+        "os": "Linux",
+        "release": "2018-03-03T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Celestial",
+        "os": "Linux",
+        "release": "2018-03-10T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Silo",
+        "os": "Windows",
+        "release": "2018-03-17T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Poison",
+        "os": "FreeBSD",
+        "release": "2018-03-24T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Rabbit",
+        "os": "Windows",
+        "release": "2018-03-31T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Canape",
+        "os": "Linux",
+        "release": "2018-04-14T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Olympus",
+        "os": "Linux",
+        "release": "2018-04-21T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Sunday",
+        "os": "Solaris",
+        "release": "2018-04-28T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Fighter",
+        "os": "Windows",
+        "release": "2018-05-05T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "TartarSauce",
+        "os": "Linux",
+        "release": "2018-05-12T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Dropzone",
+        "os": "Windows",
+        "release": "2018-05-19T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "DevOops",
+        "os": "Linux",
+        "release": "2018-06-02T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Smasher",
+        "os": "Linux",
+        "release": "2018-06-09T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Bounty",
+        "os": "Windows",
+        "release": "2018-06-16T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Reel",
+        "os": "Windows",
+        "release": "2018-06-23T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Jerry",
+        "os": "Windows",
+        "release": "2018-06-30T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Mischief",
+        "os": "Linux",
+        "release": "2018-07-07T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Hawk",
+        "os": "Linux",
+        "release": "2018-07-14T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Reddish",
+        "os": "Linux",
+        "release": "2018-07-21T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Active",
+        "os": "Windows",
+        "release": "2018-07-28T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Waldo",
+        "os": "Linux",
+        "release": "2018-08-04T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Dab",
+        "os": "Linux",
+        "release": "2018-08-18T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "SecNotes",
+        "os": "Windows",
+        "release": "2018-08-25T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Oz",
+        "os": "Linux",
+        "release": "2018-09-01T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Giddy",
+        "os": "Windows",
+        "release": "2018-09-08T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Ypuffy",
+        "os": "Other",
+        "release": "2018-09-15T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Carrier",
+        "os": "Linux",
+        "release": "2018-09-22T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Access",
+        "os": "Windows",
+        "release": "2018-09-29T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Ethereal",
+        "os": "Windows",
+        "release": "2018-10-06T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Frolic",
+        "os": "Linux",
+        "release": "2018-10-13T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Zipper",
+        "os": "Linux",
+        "release": "2018-10-20T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Curling",
+        "os": "Linux",
+        "release": "2018-10-27T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Vault",
+        "os": "Linux",
+        "release": "2018-11-03T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "RedCross",
+        "os": "Linux",
+        "release": "2018-11-10T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Irked",
+        "os": "Linux",
+        "release": "2018-11-17T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "BigHead",
+        "os": "Windows",
+        "release": "2018-11-24T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Teacher",
+        "os": "Linux",
+        "release": "2018-12-01T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Lightweight",
+        "os": "Linux",
+        "release": "2018-12-08T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Chaos",
+        "os": "Linux",
+        "release": "2018-12-15T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Conceal",
+        "os": "Windows",
+        "release": "2019-01-05T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Sizzle",
+        "os": "Windows",
+        "release": "2019-01-12T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Help",
+        "os": "Linux",
+        "release": "2019-01-19T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "FluJab",
+        "os": "Linux",
+        "release": "2019-01-26T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "CTF",
+        "os": "Linux",
+        "release": "2019-02-02T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "FriendZone",
+        "os": "Linux",
+        "release": "2019-02-09T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Querier",
+        "os": "Windows",
+        "release": "2019-02-16T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Hackback",
+        "os": "Windows",
+        "release": "2019-02-23T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Netmon",
+        "os": "Windows",
+        "release": "2019-03-02T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Fortune",
+        "os": "Other",
+        "release": "2019-03-09T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Arkham",
+        "os": "Windows",
+        "release": "2019-03-16T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Helpline",
+        "os": "Windows",
+        "release": "2019-03-23T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "LaCasaDePapel",
+        "os": "Linux",
+        "release": "2019-03-30T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Kryptos",
+        "os": "Linux",
+        "release": "2019-04-06T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Unattended",
+        "os": "Linux",
+        "release": "2019-04-13T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "OneTwoSeven",
+        "os": "Linux",
+        "release": "2019-04-20T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Bastion",
+        "os": "Windows",
+        "release": "2019-04-27T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Ghoul",
+        "os": "Linux",
+        "release": "2019-05-04T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "SwagShop",
+        "os": "Linux",
+        "release": "2019-05-11T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Ellingson",
+        "os": "Linux",
+        "release": "2019-05-18T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Luke",
+        "os": "FreeBSD",
+        "release": "2019-05-25T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Smasher2",
+        "os": "Linux",
+        "release": "2019-06-01T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Writeup",
+        "os": "Linux",
+        "release": "2019-06-08T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Chainsaw",
+        "os": "Linux",
+        "release": "2019-06-15T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Jarvis",
+        "os": "Linux",
+        "release": "2019-06-22T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Haystack",
+        "os": "Linux",
+        "release": "2019-06-29T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Player",
+        "os": "Linux",
+        "release": "2019-07-06T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Craft",
+        "os": "Linux",
+        "release": "2019-07-13T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "RE",
+        "os": "Windows",
+        "release": "2019-07-20T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Safe",
+        "os": "Linux",
+        "release": "2019-07-27T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Rope",
+        "os": "Linux",
+        "release": "2019-08-03T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Heist",
+        "os": "Windows",
+        "release": "2019-08-10T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Scavenger",
+        "os": "Linux",
+        "release": "2019-08-17T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Networked",
+        "os": "Linux",
+        "release": "2019-08-24T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Zetta",
+        "os": "Linux",
+        "release": "2019-08-31T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Bitlab",
+        "os": "Linux",
+        "release": "2019-09-07T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Wall",
+        "os": "Linux",
+        "release": "2019-09-14T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Bankrobber",
+        "os": "Windows",
+        "release": "2019-09-21T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Json",
+        "os": "Windows",
+        "release": "2019-09-28T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Sniper",
+        "os": "Windows",
+        "release": "2019-10-05T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Forest",
+        "os": "Windows",
+        "release": "2019-10-12T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Registry",
+        "os": "Linux",
+        "release": "2019-10-19T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Mango",
+        "os": "Linux",
+        "release": "2019-10-26T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Postman",
+        "os": "Linux",
+        "release": "2019-11-02T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "AI",
+        "os": "Linux",
+        "release": "2019-11-09T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Traverxec",
+        "os": "Linux",
+        "release": "2019-11-16T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Control",
+        "os": "Windows",
+        "release": "2019-11-23T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Obscurity",
+        "os": "Linux",
+        "release": "2019-11-30T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Resolute",
+        "os": "Windows",
+        "release": "2019-12-07T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "PlayerTwo",
+        "os": "Linux",
+        "release": "2019-12-14T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "OpenAdmin",
+        "os": "Linux",
+        "release": "2020-01-04T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Monteverde",
+        "os": "Windows",
+        "release": "2020-01-11T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Patents",
+        "os": "Linux",
+        "release": "2020-01-18T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Nest",
+        "os": "Windows",
+        "release": "2020-01-25T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Fatty",
+        "os": "Linux",
+        "release": "2020-02-08T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Sauna",
+        "os": "Windows",
+        "release": "2020-02-15T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Book",
+        "os": "Linux",
+        "release": "2020-02-22T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Oouch",
+        "os": "Linux",
+        "release": "2020-02-29T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Multimaster",
+        "os": "Windows",
+        "release": "2020-03-07T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Traceback",
+        "os": "Linux",
+        "release": "2020-03-14T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Remote",
+        "os": "Windows",
+        "release": "2020-03-21T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Cascade",
+        "os": "Windows",
+        "release": "2020-03-28T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "ForwardSlash",
+        "os": "Linux",
+        "release": "2020-04-04T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "ServMon",
+        "os": "Windows",
+        "release": "2020-04-11T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Magic",
+        "os": "Linux",
+        "release": "2020-04-18T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Quick",
+        "os": "Linux",
+        "release": "2020-04-25T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Admirer",
+        "os": "Linux",
+        "release": "2020-05-02T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Cache",
+        "os": "Linux",
+        "release": "2020-05-09T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Travel",
+        "os": "Linux",
+        "release": "2020-05-16T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Dyplesher",
+        "os": "Linux",
+        "release": "2020-05-23T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Blunder",
+        "os": "Linux",
+        "release": "2020-05-30T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Blackfield",
+        "os": "Windows",
+        "release": "2020-06-06T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Fuse",
+        "os": "Windows",
+        "release": "2020-06-13T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Tabby",
+        "os": "Linux",
+        "release": "2020-06-20T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "RopeTwo",
+        "os": "Linux",
+        "release": "2020-06-27T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Intense",
+        "os": "Linux",
+        "release": "2020-07-04T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "SneakyMailer",
+        "os": "Linux",
+        "release": "2020-07-11T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Buff",
+        "os": "Windows",
+        "release": "2020-07-18T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "OpenKeyS",
+        "os": "OpenBSD",
+        "release": "2020-07-25T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Unbalanced",
+        "os": "Linux",
+        "release": "2020-08-01T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Laser",
+        "os": "Linux",
+        "release": "2020-08-08T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Worker",
+        "os": "Windows",
+        "release": "2020-08-15T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Omni",
+        "os": "Other",
+        "release": "2020-08-22T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Feline",
+        "os": "Linux",
+        "release": "2020-08-29T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Passage",
+        "os": "Linux",
+        "release": "2020-09-05T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Compromised",
+        "os": "Linux",
+        "release": "2020-09-12T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "CrossFit",
+        "os": "Linux",
+        "release": "2020-09-19T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Doctor",
+        "os": "Linux",
+        "release": "2020-09-26T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Reel2",
+        "os": "Windows",
+        "release": "2020-10-03T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Jewel",
+        "os": "Linux",
+        "release": "2020-10-10T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Bucket",
+        "os": "Linux",
+        "release": "2020-10-17T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Time",
+        "os": "Linux",
+        "release": "2020-10-24T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "APT",
+        "os": "Windows",
+        "release": "2020-10-31T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Academy",
+        "os": "Linux",
+        "release": "2020-11-07T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Laboratory",
+        "os": "Linux",
+        "release": "2020-11-14T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Cereal",
+        "os": "Windows",
+        "release": "2020-11-21T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Luanne",
+        "os": "Other",
+        "release": "2020-11-28T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Sharp",
+        "os": "Windows",
+        "release": "2020-12-05T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Ready",
+        "os": "Linux",
+        "release": "2020-12-12T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Attended",
+        "os": "OpenBSD",
+        "release": "2020-12-19T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Delivery",
+        "os": "Linux",
+        "release": "2021-01-09T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Tenet",
+        "os": "Linux",
+        "release": "2021-01-16T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Tentacle",
+        "os": "Linux",
+        "release": "2021-01-23T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Sink",
+        "os": "Linux",
+        "release": "2021-01-30T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "ScriptKiddie",
+        "os": "Linux",
+        "release": "2021-02-06T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Ophiuchi",
+        "os": "Linux",
+        "release": "2021-02-13T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Breadcrumbs",
+        "os": "Windows",
+        "release": "2021-02-20T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Spectra",
+        "os": "Other",
+        "release": "2021-02-27T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "TheNotebook",
+        "os": "Linux",
+        "release": "2021-03-06T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Proper",
+        "os": "Windows",
+        "release": "2021-03-13T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "CrossFitTwo",
+        "os": "OpenBSD",
+        "release": "2021-03-20T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Armageddon",
+        "os": "Linux",
+        "release": "2021-03-27T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Schooled",
+        "os": "FreeBSD",
+        "release": "2021-04-03T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Unobtainium",
+        "os": "Linux",
+        "release": "2021-04-10T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Toolbox",
+        "os": "Windows",
+        "release": "2021-03-12T10:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Atom",
+        "os": "Windows",
+        "release": "2021-04-17T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Monitors",
+        "os": "Linux",
+        "release": "2021-04-24T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Love",
+        "os": "Windows",
+        "release": "2021-05-01T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "pivotapi",
+        "os": "Windows",
+        "release": "2021-05-08T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Pit",
+        "os": "Linux",
+        "release": "2021-05-15T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Knife",
+        "os": "Linux",
+        "release": "2021-05-22T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Spider",
+        "os": "Linux",
+        "release": "2021-05-29T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Cap",
+        "os": "Linux",
+        "release": "2021-06-05T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "dynstr",
+        "os": "Linux",
+        "release": "2021-06-12T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Static",
+        "os": "Linux",
+        "release": "2021-06-19T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Explore",
+        "os": "Android",
+        "release": "2021-06-26T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Intelligence",
+        "os": "Windows",
+        "release": "2021-07-03T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Seal",
+        "os": "Linux",
+        "release": "2021-07-10T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "BountyHunter",
+        "os": "Linux",
+        "release": "2021-07-24T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Pikaboo",
+        "os": "Linux",
+        "release": "2021-07-17T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Writer",
+        "os": "Linux",
+        "release": "2021-07-31T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Anubis",
+        "os": "Windows",
+        "release": "2021-08-14T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Developer",
+        "os": "Linux",
+        "release": "2021-08-21T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Previse",
+        "os": "Linux",
+        "release": "2021-08-07T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Horizontall",
+        "os": "Linux",
+        "release": "2021-08-28T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "EarlyAccess",
+        "os": "Linux",
+        "release": "2021-09-04T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Forge",
+        "os": "Linux",
+        "release": "2021-09-11T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Gobox",
+        "os": "Linux",
+        "release": "2021-08-23T09:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Stacked",
+        "os": "Linux",
+        "release": "2021-09-18T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Validation",
+        "os": "Linux",
+        "release": "2021-09-13T09:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Bolt",
+        "os": "Linux",
+        "release": "2021-09-25T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Driver",
+        "os": "Windows",
+        "release": "2021-10-02T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Hancliffe",
+        "os": "Windows",
+        "release": "2021-10-09T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Jarmis",
+        "os": "Linux",
+        "release": "2021-09-27T09:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Devzat",
+        "os": "Linux",
+        "release": "2021-10-16T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Overflow",
+        "os": "Linux",
+        "release": "2021-10-23T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Antique",
+        "os": "Linux",
+        "release": "2021-09-27T09:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Return",
+        "os": "Windows",
+        "release": "2021-09-27T09:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Secret",
+        "os": "Linux",
+        "release": "2021-10-30T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Toby",
+        "os": "Linux",
+        "release": "2021-11-06T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Shibboleth",
+        "os": "Linux",
+        "release": "2021-11-13T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Spooktrol",
+        "os": "Linux",
+        "release": "2021-10-26T09:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Nunchucks",
+        "os": "Linux",
+        "release": "2021-11-02T10:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Unicode",
+        "os": "Linux",
+        "release": "2021-11-27T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Backdoor",
+        "os": "Linux",
+        "release": "2021-11-20T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Fingerprint",
+        "os": "Linux",
+        "release": "2021-12-04T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Union",
+        "os": "Linux",
+        "release": "2021-11-22T10:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Timing",
+        "os": "Linux",
+        "release": "2021-12-11T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Search",
+        "os": "Windows",
+        "release": "2021-12-18T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Pandora",
+        "os": "Linux",
+        "release": "2022-01-08T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "AdmirerToo",
+        "os": "Linux",
+        "release": "2022-01-15T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "LogForge",
+        "os": "Linux",
+        "release": "2021-12-23T10:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Meta",
+        "os": "Linux",
+        "release": "2022-01-22T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "NodeBlog",
+        "os": "Linux",
+        "release": "2022-01-10T08:00:05.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Scanned",
+        "os": "Linux",
+        "release": "2022-01-29T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Paper",
+        "os": "Linux",
+        "release": "2022-02-05T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Flustered",
+        "os": "Linux",
+        "release": "2022-01-31T15:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Acute",
+        "os": "Windows",
+        "release": "2022-02-12T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Undetected",
+        "os": "Linux",
+        "release": "2022-02-19T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Pressed",
+        "os": "Linux",
+        "release": "2022-02-03T08:00:05.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Epsilon",
+        "os": "Linux",
+        "release": "2022-02-07T08:00:05.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "SteamCloud",
+        "os": "Linux",
+        "release": "2022-02-14T08:00:05.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "RouterSpace",
+        "os": "Linux",
+        "release": "2022-02-26T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "GoodGames",
+        "os": "Linux",
+        "release": "2022-02-21T16:00:05.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Object",
+        "os": "Windows",
+        "release": "2022-02-28T16:00:05.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Phoenix",
+        "os": "Linux",
+        "release": "2022-03-05T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Catch",
+        "os": "Linux",
+        "release": "2022-03-12T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Perspective",
+        "os": "Windows",
+        "release": "2022-03-19T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Timelapse",
+        "os": "Windows",
+        "release": "2022-03-26T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Retired",
+        "os": "Linux",
+        "release": "2022-04-02T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Ransom",
+        "os": "Linux",
+        "release": "2022-03-15T08:00:05.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Talkative",
+        "os": "Linux",
+        "release": "2022-04-09T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Hathor",
+        "os": "Windows",
+        "release": "2022-04-16T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Altered",
+        "os": "Linux",
+        "release": "2022-03-30T07:00:05.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Backend",
+        "os": "Linux",
+        "release": "2022-04-12T07:00:05.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Late",
+        "os": "Linux",
+        "release": "2022-04-23T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "OverGraph",
+        "os": "Linux",
+        "release": "2022-04-30T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Noter",
+        "os": "Linux",
+        "release": "2022-05-07T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Response",
+        "os": "Linux",
+        "release": "2022-05-14T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "BackendTwo",
+        "os": "Linux",
+        "release": "2022-05-02T07:00:05.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "OpenSource",
+        "os": "Linux",
+        "release": "2022-05-21T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Seventeen",
+        "os": "Linux",
+        "release": "2022-05-28T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "StreamIO",
+        "os": "Windows",
+        "release": "2022-06-04T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Scrambled",
+        "os": "Windows",
+        "release": "2022-06-11T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Trick",
+        "os": "Linux",
+        "release": "2022-06-18T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Carpediem",
+        "os": "Linux",
+        "release": "2022-06-25T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Faculty",
+        "os": "Linux",
+        "release": "2022-07-02T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "RedPanda",
+        "os": "Linux",
+        "release": "2022-07-09T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Extension",
+        "os": "Linux",
+        "release": "2022-07-16T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Shared",
+        "os": "Linux",
+        "release": "2022-07-23T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Support",
+        "os": "Windows",
+        "release": "2022-07-30T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Moderators",
+        "os": "Linux",
+        "release": "2022-08-06T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Outdated",
+        "os": "Windows",
+        "release": "2022-08-13T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Health",
+        "os": "Linux",
+        "release": "2022-08-20T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Vessel",
+        "os": "Linux",
+        "release": "2022-08-27T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "UpDown",
+        "os": "Linux",
+        "release": "2022-09-03T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Sekhmet",
+        "os": "Windows",
+        "release": "2022-09-10T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Shoppy",
+        "os": "Linux",
+        "release": "2022-09-17T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Absolute",
+        "os": "Windows",
+        "release": "2022-09-24T16:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Ambassador",
+        "os": "Linux",
+        "release": "2022-10-01T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Photobomb",
+        "os": "Linux",
+        "release": "2022-10-08T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "RainyDay",
+        "os": "Linux",
+        "release": "2022-10-15T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Awkward",
+        "os": "Linux",
+        "release": "2022-10-22T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "MetaTwo",
+        "os": "Linux",
+        "release": "2022-10-29T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Flight",
+        "os": "Windows",
+        "release": "2022-11-05T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Forgot",
+        "os": "Linux",
+        "release": "2022-11-12T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Derailed",
+        "os": "Linux",
+        "release": "2022-11-19T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Precious",
+        "os": "Linux",
+        "release": "2022-11-26T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Squashed",
+        "os": "Linux",
+        "release": "2022-11-10T07:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Pollution",
+        "os": "Linux",
+        "release": "2022-12-03T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Mentor",
+        "os": "Linux",
+        "release": "2022-12-10T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Soccer",
+        "os": "Linux",
+        "release": "2022-12-17T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "BroScience",
+        "os": "Linux",
+        "release": "2023-01-07T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Stocker",
+        "os": "Linux",
+        "release": "2023-01-14T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Investigation",
+        "os": "Linux",
+        "release": "2023-01-21T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Encoding",
+        "os": "Linux",
+        "release": "2023-01-28T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Interface",
+        "os": "Linux",
+        "release": "2023-02-11T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "PikaTwoo",
+        "os": "Linux",
+        "release": "2023-02-04T17:00:00.000000Z",
+        "difficultyText": "Insane"
+    },
+    {
+        "name": "Bagel",
+        "os": "Linux",
+        "release": "2023-02-18T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Escape",
+        "os": "Windows",
+        "release": "2023-02-25T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Agile",
+        "os": "Linux",
+        "release": "2023-03-04T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Inject",
+        "os": "Linux",
+        "release": "2023-03-11T17:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Cerberus",
+        "os": "Windows",
+        "release": "2023-03-18T17:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Socket",
+        "os": "Linux",
+        "release": "2023-03-25T17:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Busqueda",
+        "os": "Linux",
+        "release": "2023-04-08T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Mailroom",
+        "os": "Linux",
+        "release": "2023-04-15T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "MonitorsTwo",
+        "os": "Linux",
+        "release": "2023-04-29T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "OnlyForYou",
+        "os": "Linux",
+        "release": "2023-04-22T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "Snoopy",
+        "os": "Linux",
+        "release": "2023-05-06T16:00:00.000000Z",
+        "difficultyText": "Hard"
+    },
+    {
+        "name": "Format",
+        "os": "Linux",
+        "release": "2023-05-13T16:00:00.000000Z",
+        "difficultyText": "Medium"
+    },
+    {
+        "name": "PC",
+        "os": "Linux",
+        "release": "2023-05-20T16:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "TwoMillion",
+        "os": "Linux",
+        "release": "2023-06-07T09:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Wifinetic",
+        "os": "Linux",
+        "release": "2023-09-13T10:00:00.000000Z",
+        "difficultyText": "Easy"
+    },
+    {
+        "name": "Aero",
+        "os": "Windows",
+        "release": "2023-09-28T12:00:00.000000Z",
+        "difficultyText": "Medium"
+    }
+]
